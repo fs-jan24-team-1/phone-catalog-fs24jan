@@ -5,7 +5,7 @@ import { Footer } from './components/Footer';
 
 export const App = () => {
   return (
-    <div data-cy="app">
+    <div data-cy="app" className="wrapper">
       <Header />
 
       <div className="section">

@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
+import './header.scss';
 import classNames from 'classnames';
 
 export const Header = () => {
@@ -6,18 +7,13 @@ export const Header = () => {
     classNames('navbar-item', { 'has-background-grey-lighter': isActive });
 
   return (
-    <>
-      <div className="logo">
-        <Link to="/">Logo</Link>
-      </div>
+    <div className="header">
+      <div className="header__container">
+        <div className="logo">
+          <Link to="/">Logo</Link>
+        </div>
 
-      <nav
-        data-cy="nav"
-        className="navbar is-fixed-top has-shadow"
-        role="navigation"
-        aria-label="main navigation"
-      >
-        <div className="container">
+        <nav data-cy="nav" className="navbar">
           <div className="navbar-brand">
             <NavLink className={getLinkClass} to="/">
               Home
@@ -32,17 +28,17 @@ export const Header = () => {
               Accessories
             </NavLink>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
-      <div className="left-side">
-        <NavLink className={getLinkClass} to="/favourites">
+      <div className="right-side">
+        <NavLink className={getLinkClass} to="/Favorites">
           Favourites
         </NavLink>
         <NavLink className={getLinkClass} to="/cart">
           Cart
         </NavLink>
       </div>
-    </>
+    </div>
   );
 };
