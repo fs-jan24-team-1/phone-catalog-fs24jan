@@ -24,6 +24,7 @@
   &.default {
     color: $white;
     background-color: $accent;
+    border: 1px solid $accent;
   }
 
   &:hover {
