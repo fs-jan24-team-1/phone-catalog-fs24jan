@@ -89,3 +89,121 @@
   display: flex;
   justify-content: end;
 }
+
+.menus {
+  width: 48px;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid $elements;
+
+  @include on-mobile {
+    display: flex;
+  }
+}
+
+.menus__logo {
+  width: 14px;
+  height: 10px;
+}
+
+.favorites {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 64px;
+  border-left: 1px solid $elements;
+
+  @include on-tablet {
+    height: 100%;
+    width: 48px;
+  }
+
+  @include on-mobile {
+    display: none;
+  }
+}
+
+.cart {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  width: 64px;
+  border-left: 1px solid $elements;
+  transition: border-bottom 0.3s;
+
+
+  @include on-tablet {
+    height: 100%;
+    width: 48px;
+  }
+
+  @include on-mobile {
+    display: none;
+  }
+
+}
+
+@include on-desktop {
+  .favorites {
+    height: 100%;
+    width: 64px;
+  }
+
+  .cart {
+    height: 100%;
+    width: 64px;
+  }
+}
+
+.cartIconContainer {
+    position: relative;
+  }
+
+  .cartItemCount {
+    right: 14px;
+    position: absolute;
+    top: -7.5px;
+    right: -8px;
+    background-color: #EB5757;
+    color: white;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px;
+  }
+
+
+
+  .favoritesIconContainer {
+    position: relative;
+  }
+
+  .favoritesItemCount {
+    right: 14px;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #EB5757;
+    color: white;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px;
+  }
+
+
+  .styles.favorites.is_active {
+    border-bottom: 1px solid $elements;
+  }
