@@ -11,7 +11,7 @@ import { ProductCard } from './components/ProductCard';
 import { TabletsPage } from './pages/TabletsPage';
 import { FavoritesPage } from './pages/FavoritesPage';
 import { PhonesPage } from './pages/PhonesPage';
-import { AccesoriesPage } from './pages/AccessoriesPage';
+import { AccessoriesPage } from './pages/AccessoriesPage';
 import { CartPage } from './pages/CartPage';
 
 export const Root = () => {
@@ -23,15 +23,15 @@ export const Root = () => {
           <Route path="/home" element={<Navigate to="/" replace />} />
 
           <Route path="/phones" element={<PhonesPage />}>
-            <Route path=":productId" element={<ProductCard />} />
+            {/* <Route path=":productId" element={<ProductCard />} /> */}
           </Route>
 
           <Route path="/tablets" element={<TabletsPage />}>
-            <Route path=":productId" element={<ProductCard />} />
+            {/* <Route path=":productId" element={<ProductCard />} /> */}
           </Route>
 
-          <Route path="/accessories" element={<AccesoriesPage />}>
-            <Route path=":productId" element={<ProductCard />} />
+          <Route path="/accessories" element={<AccessoriesPage />}>
+            {/* <Route path=":productId" element={<ProductCard />} /> */}
           </Route>
 
           <Route path="/favorites" element={<FavoritesPage />} />
