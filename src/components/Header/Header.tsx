@@ -1,20 +1,24 @@
 import { Link, NavLink } from 'react-router-dom';
-import './header.scss';
+import styles from './header.module.scss';
 import classNames from 'classnames';
+import logo from './Logo.svg';
 
 export const Header = () => {
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
-    classNames('navbar-item', { 'has-background-grey-lighter': isActive });
-
+    classNames(styles.header__nav_link, { [styles.is_active]: isActive });
   return (
-    <div className="header">
-      <div className="header__container">
-        <div className="logo">
-          <Link to="/">Logo</Link>
+    <div className={styles.header}>
+      <div className={styles.header__container}>
+        <div className={styles.header__logo}>
+          <div>
+            <Link to="/">
+              <img className={ styles.header__img} src={logo} alt="Nice gadgets logo" />
+            </Link>
+          </div>
         </div>
 
         <nav data-cy="nav" className="navbar">
-          <div className="navbar-brand">
+          <div className={styles.header__navbar}>
             <NavLink className={getLinkClass} to="/">
               Home
             </NavLink>
@@ -31,11 +35,11 @@ export const Header = () => {
         </nav>
       </div>
 
-      <div className="right-side">
-        <NavLink className={getLinkClass} to="/Favorites">
+      <div className={styles.right_side}>
+        <NavLink to="/Favorites">
           Favourites
         </NavLink>
-        <NavLink className={getLinkClass} to="/cart">
+        <NavLink to="/cart">
           Cart
         </NavLink>
       </div>
