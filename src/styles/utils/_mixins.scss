@@ -1,5 +1,5 @@
 @mixin on-mobile {
-  @media screen and (min-width: 320px) {
+  @media screen and (max-width: 639px) {
     @content;
   }
 }
