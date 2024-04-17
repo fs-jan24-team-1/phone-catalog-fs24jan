@@ -1,0 +1,58 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/typography';
+
+.button {
+  display: flex;
+  width: 176px;
+  height: 40px;
+
+  font-family: $Mont;
+  // font-family: Mont, serif;
+  // font-weight: 800;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  background-color: $white;
+  border-radius: 48px;
+
+  transition: all 0.5s ease;
+
+  &.default {
+    color: $white;
+    background-color: $accent;
+  }
+
+  &:hover {
+    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+  }
+
+  &.selected {
+    color: $accent;
+    background-color: $white;
+    border: 1px solid $elements;
+  }
+
+  // !! Тимчасово створено для презентації зміни тексту при натисненні - видалити
+  // #region button-text animation
+  &::after {
+    content: 'Primary';
+  }
+  &.selected::after {
+    content: 'Selected';
+  }
+  // #endregion
+
+  // &.defaultPagination {}
+  // &.defaultSlider {}
+  // &.defaultColor {}
+  // &.defaultFavorite {}
+
+  // &.hoverPagination:hover {}
+  // &.hoverSlider:hover {}
+  // &.hoverColor:hover {}
+  // &.hoverFavorite:hover {}
+}

@@ -1,0 +1,60 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/typography';
+
+.color__сontainer {
+  display: flex;
+}
+
+.button {
+  display: flex;
+  width: 32px;
+  height: 32px;
+
+  font-family: $Mont;
+  // font-weight: 800;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 48px;
+
+  transition: all 0.5s ease;
+
+// Цвета кнопки
+  &::before {
+    content: '';
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 36px;
+  }
+
+  &.brown::before {
+    background: #FCDBC1;
+  }
+
+  &.green::before {
+    background: $green;
+  }
+
+  &.white::before {
+    background: $icons;
+  }
+
+  &.red::before {
+    background: $red;
+  }
+
+// Статус кнопки
+  &.default {
+    color: $primary;
+    border: 1px solid $icons;
+  }
+
+  &:hover, &.selected {
+    border: 1px solid $primary;
+  }
+}

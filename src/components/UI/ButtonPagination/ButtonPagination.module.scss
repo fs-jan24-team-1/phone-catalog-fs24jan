@@ -1,0 +1,42 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/typography';
+
+.pagination__сontainer {
+  display: flex;
+}
+
+.button {
+  display: flex;
+  width: 32px;
+  height: 32px;
+
+  // gap: 8px;
+
+  font-family: $Mont;
+  font-weight: 800;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  background-color: $white;
+  border-radius: 48px;
+
+  transition: all 0.5s ease;
+
+  &.default {
+    color: $primary;
+    border: 1px solid $icons;
+  }
+
+  &:hover {
+    border: 1px solid $primary;
+  }
+
+  &.selected {
+    border: 1px solid $primary;
+    background-color: $primary;
+    color: $white;
+  }
+}
