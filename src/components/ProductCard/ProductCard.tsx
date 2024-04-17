@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../../types/Product';
-import styles from './ProductCard.module.scss';
+import styles from './productCard.module.scss';
 import { useDispatch } from 'react-redux';
 
 type Props = {
@@ -14,14 +14,14 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       type: 'product/addToFavourites',
       payload: product,
     });
-  }
+  };
 
   const handleRemoveFromFavourites = () => {
     dispatch({
       type: 'product/removeFromFavourites',
       payload: product,
     });
-  }
+  };
 
   return (
     <div className={styles.productCard}>
@@ -37,12 +37,14 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
       <button
         onClick={handleAddToFavourites}
-        className={styles.addToFavourites}>
+        className={styles.addToFavourites}
+      >
         Add to favourites
       </button>
       <button
         onClick={handleRemoveFromFavourites}
-        className={styles.addToFavourites}>
+        className={styles.addToFavourites}
+      >
         Remove from favourites
       </button>
     </div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from './ButtonPagination.module.scss';
+import styles from './buttonPagination.module.scss';
 import { useState } from 'react';
 
 export const ButtonPagination = () => {

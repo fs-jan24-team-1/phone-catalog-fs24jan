@@ -1,29 +1,29 @@
 import { Link } from 'react-router-dom';
-import styles from './ButtonSlider.module.scss';
+import styles from './buttonSlider.module.scss';
 import { useState } from 'react';
 
-export const ButtonSlider = () => {
+interface ButtonSliderProps {
+  iconType: 'arrowLeft' | 'arrowRight' | 'plus' | 'minus';
+}
+
+export const ButtonSlider: React.FC<ButtonSliderProps> = ({ iconType }) => {
   const [selectedSlider, setSelectedSlider] = useState(false);
 
   const handleClickSlider = () => {
     setSelectedSlider(!selectedSlider);
   };
 
-  const sliderExample = ['<','>','+','-'];
-
   return (
     <>
-    {sliderExample.map(curVal =>
       <Link
-        key={curVal}
         to="#"
         className={`${styles.button} ${selectedSlider ? styles.disable : styles.default}`}
         onClick={handleClickSlider}
       >
-        {/* need some icon: <>+- */}
-        {curVal}
+        <div
+          className={`${styles.icon} ${selectedSlider ? styles[iconType] : `${styles[iconType]} ${styles.disable}`}`}
+        />
       </Link>
-    )}
     </>
   );
 };

@@ -1,0 +1,31 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/typography';
+
+.button {
+  display: flex;
+
+  font-family: $Mont;
+  align-items: center;
+
+  cursor: pointer;
+  text-decoration: none;
+  color: $secondary;
+
+  transition: all 0.5s ease;
+
+  &:hover {
+    color: $primary;
+  }
+
+  &::before {
+    content: '';
+    width: 19px;
+    height: 19px;
+    margin-right: 4px;
+    filter: brightness(0);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../../../img/icons/arrow_left.svg');
+  }
+}

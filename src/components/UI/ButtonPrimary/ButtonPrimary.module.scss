@@ -7,8 +7,6 @@
   height: 40px;
 
   font-family: $Mont;
-  // font-family: Mont, serif;
-  // font-weight: 800;
   font-size: 14px;
   justify-content: center;
   align-items: center;
@@ -24,6 +22,7 @@
   &.default {
     color: $white;
     background-color: $accent;
+    border: 1px solid $accent;
   }
 
   &:hover {
@@ -35,24 +34,4 @@
     background-color: $white;
     border: 1px solid $elements;
   }
-
-  // !! Тимчасово створено для презентації зміни тексту при натисненні - видалити
-  // #region button-text animation
-  &::after {
-    content: 'Primary';
-  }
-  &.selected::after {
-    content: 'Selected';
-  }
-  // #endregion
-
-  // &.defaultPagination {}
-  // &.defaultSlider {}
-  // &.defaultColor {}
-  // &.defaultFavorite {}
-
-  // &.hoverPagination:hover {}
-  // &.hoverSlider:hover {}
-  // &.hoverColor:hover {}
-  // &.hoverFavorite:hover {}
 }

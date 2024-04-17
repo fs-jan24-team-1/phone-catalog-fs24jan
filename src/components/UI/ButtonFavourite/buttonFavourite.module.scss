@@ -1,14 +1,10 @@
 @import '../../../styles/utils/variables';
 @import '../../../styles/utils/typography';
 
-.pagination__сontainer {
-  display: flex;
-}
-
 .button {
   display: flex;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 
   font-family: $Mont;
   justify-content: center;
@@ -22,8 +18,15 @@
 
   transition: all 0.5s ease;
 
+  &::before {
+    content: '';
+
+    width: 16px;
+    height: 16px;
+    background-image: url('../../../img/icons/favorite_heart.svg');
+  }
+
   &.default {
-    color: $primary;
     border: 1px solid $icons;
   }
 
@@ -32,8 +35,10 @@
   }
 
   &.selected {
-    border: 1px solid $primary;
-    background-color: $primary;
-    color: $white;
+    border: 1px solid $elements;
+
+    &::before {
+      background-image: url('../../../img/icons/favorite_heart_active.svg');
+    }
   }
 }
