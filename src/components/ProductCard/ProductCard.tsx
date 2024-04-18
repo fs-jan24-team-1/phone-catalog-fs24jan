@@ -39,10 +39,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <h3 className={styles.productName}>{product.name}</h3>
 
           <div className={styles.productPrice}>
-            <div className={styles.productFullPrice}>${product.fullPrice}</div>
+            <div className={styles.productFullPrice}>${product.price}</div>
 
-            {product.price && (
-              <div className={styles.productDiscount}>${product.price}</div>
+            {product.fullPrice && (
+              <div className={styles.productDiscount}>${product.fullPrice}</div>
             )}
           </div>
         </div>

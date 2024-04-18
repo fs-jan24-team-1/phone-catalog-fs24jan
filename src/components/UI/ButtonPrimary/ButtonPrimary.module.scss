@@ -2,6 +2,7 @@
 @import '../../../styles/utils/typography';
 
 .button {
+  box-sizing: border-box;
   display: flex;
   width: 176px;
   height: 40px;
