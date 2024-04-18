@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './buttonFavourite.module.scss';
 import { useState } from 'react';
+import React from 'react';
 
 export const ButtonFavourite = () => {
   const [selectedFavourite, setSelectedFavourite] = useState(false);

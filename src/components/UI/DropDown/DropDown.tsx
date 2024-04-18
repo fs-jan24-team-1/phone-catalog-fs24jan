@@ -51,10 +51,10 @@ export const Dropdown = () => {
   return (
     <div style={{ width: '176px', padding: '10px'}} >
       <Select
-        // isMulti
         defaultValue={options[0]}
         options={options}
         styles={customStyles}
+        isSearchable={false}
       />
     </div>
   );

@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { ProductCard } from '../../components/ProductCard';
 import { RootState } from '../../store/store';
 import { Product } from '../../types/Product';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const AccessoriesPage = () => {
   let products = useSelector((state: RootState) => state.product.products);
@@ -14,6 +15,8 @@ export const AccessoriesPage = () => {
 
   return (
     <div>
+      <Breadcrumbs />
+
       <h1 className="title">AccesoriesCategory page</h1>
       <h3>{numberOfItems} models</h3>
 
