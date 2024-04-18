@@ -11,13 +11,13 @@ export const HomePage = () => {
   return (
     <>
       <h1 className="title">Welcome to Nice Gadgets store!</h1>
-      <ButtonPrimary textForPrimaryButton='Primary' />
+      {/* <ButtonPrimary textForPrimaryButton='Primary' /> */}
       <ButtonPagination />
       <ButtonSlider iconType={'arrowLeft'} />
       <ButtonSlider iconType={'arrowRight'} />
       <ButtonSlider iconType={'plus'} />
       <ButtonSlider iconType={'minus'} />
-      <ButtonFavourite />
+      {/* <ButtonFavourite /> */}
       {COLOR_EXAMPLE.map(currentColor => (
         <ButtonColor key={currentColor} colorDevice={currentColor} />
       ))}

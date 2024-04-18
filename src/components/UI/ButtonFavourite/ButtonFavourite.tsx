@@ -2,11 +2,15 @@ import { Link } from 'react-router-dom';
 import styles from './buttonFavourite.module.scss';
 import { useState } from 'react';
 
-export const ButtonFavourite = () => {
+interface Props {
+  callback: () => void;
+}
+export const ButtonFavourite: React.FC<Props> = ({ callback }) => {
   const [selectedFavourite, setSelectedFavourite] = useState(false);
 
   const handleClickFavourite = () => {
     setSelectedFavourite(!selectedFavourite);
+    callback();
   };
 
   return (

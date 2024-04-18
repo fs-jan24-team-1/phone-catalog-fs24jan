@@ -1,8 +1,10 @@
 import React from 'react';
 import { Product } from '../../types/Product';
 import styles from './productCard.module.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
+import { RootState } from '../../store/store';
+import { ButtonFavourite } from '../UI/ButtonFavourite';
 
 type Props = {
   product: Product;
@@ -10,37 +12,66 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
+  let favourites = useSelector((state: RootState) => state.product.favourites);
+  let cart = useSelector((state: RootState) => state.product.cart);
+
+  const isProductInFavourites = favourites.some(
+    (favProduct: Product) => favProduct.id === product.id,
+  );
+
+  const isProductInCart = cart.some(
+    (cartProduct: Product) => cartProduct.id === product.id,
+  );
+
   const handleAddToFavourites = () => {
-    dispatch({
-      type: 'product/addToFavourites',
-      payload: product,
-    });
+    if (isProductInFavourites) {
+      dispatch({
+        type: 'product/removeFromFavourites',
+        payload: product,
+      });
+    } else {
+      dispatch({
+        type: 'product/addToFavourites',
+        payload: product,
+      });
+    }
   };
 
-  const handleRemoveFromFavourites = () => {
-    dispatch({
-      type: 'product/removeFromFavourites',
-      payload: product,
-    });
+  const handleAddToCart = () => {
+    if (isProductInCart) {
+      dispatch({
+        type: 'product/removeFromCart',
+        payload: product,
+      });
+    } else {
+      dispatch({
+        type: 'product/addToCart',
+        payload: product,
+      });
+    }
   };
 
   return (
     <article className={styles.wrapper}>
       <div className={styles.productCard}>
-        <img
-          className={styles.productImage}
-          src={product.image}
-          alt={product.name}
-        />
+        <div className={styles.productImageContainer}>
+          <img
+            className={styles.productImage}
+            src={product.image}
+            alt={product.name}
+          />
+        </div>
 
         <div className={styles.productDetails}>
           <h3 className={styles.productName}>{product.name}</h3>
 
           <div className={styles.productPrice}>
-            <div className={styles.productFullPrice}>${product.fullPrice}</div>
+            <div className={styles.productDiscount}>${product.price}</div>
 
-            {product.price && (
-              <div className={styles.productDiscount}>${product.price}</div>
+            {product.fullPrice && (
+              <div className={styles.productFullPrice}>
+                ${product.fullPrice}
+              </div>
             )}
           </div>
         </div>
@@ -71,9 +102,13 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         </div>
 
         <div className={styles.buttonBox}>
-          <ButtonPrimary textForPrimaryButton='PrimaryText' />
-
-          <button>F</button>
+          <ButtonPrimary
+            textForPrimaryButton={
+              isProductInCart ? 'Added to cart' : 'Add to cart'
+            }
+            callback={handleAddToCart}
+          />
+          <ButtonFavourite callback={handleAddToFavourites} />
         </div>
       </div>
     </article>
