@@ -1,6 +1,6 @@
 // NavBar.tsx
 import { Link } from 'react-router-dom';
-import styles from './navBar.module.scss';
+import styles from './NavBar.module.scss';
 
 export const NavBar = ({ onClose }: { onClose: () => void }) => {
   return (
