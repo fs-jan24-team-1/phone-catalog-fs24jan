@@ -27,11 +27,13 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <article className={styles.wrapper}>
       <div className={styles.productCard}>
-        <img
-          className={styles.productImage}
-          src={product.image}
-          alt={product.name}
-        />
+        <div className={styles.productImage}>
+          <img
+            className={styles.productImage}
+            src={product.image}
+            alt={product.name}
+          />
+        </div>
 
         <div className={styles.productDetails}>
           <h3 className={styles.productName}>{product.name}</h3>
