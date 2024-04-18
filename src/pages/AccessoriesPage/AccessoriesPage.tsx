@@ -2,12 +2,8 @@ import styles from './accesoriesPage.module.scss';
 import { Catalog } from '../../components/Catalog';
 import { useSelector } from 'react-redux';
 import { Product } from '../../types/Product';
-import { RootState } from '../../store/store';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { ProductCard } from '../../components/ProductCard';
 import { RootState } from '../../store/store';
-import { Product } from '../../types/Product';
-import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const AccessoriesPage = () => {
   let products = useSelector((state: RootState) => state.product.products);
