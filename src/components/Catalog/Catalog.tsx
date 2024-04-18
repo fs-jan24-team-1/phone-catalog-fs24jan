@@ -1,4 +1,4 @@
-import styles from './Catalog.module.scss';
+import styles from './catalog.module.scss';
 import { ProductCard } from '../ProductCard';
 import { Product } from '../../types/Product';
 

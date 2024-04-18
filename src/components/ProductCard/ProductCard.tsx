@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../../types/Product';
-import styles from './ProductCard.module.scss';
+import styles from './productCard.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
 import { RootState } from '../../store/store';
@@ -54,7 +54,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <article className={styles.wrapper}>
       <div className={styles.productCard}>
-        <div className={styles.productImage}>
+        <div className={styles.productImageContainer}>
           <img
             className={styles.productImage}
             src={product.image}
@@ -66,10 +66,12 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <h3 className={styles.productName}>{product.name}</h3>
 
           <div className={styles.productPrice}>
-            <div className={styles.productFullPrice}>${product.price}</div>
+            <div className={styles.productDiscount}>${product.price}</div>
 
             {product.fullPrice && (
-              <div className={styles.productDiscount}>${product.fullPrice}</div>
+              <div className={styles.productFullPrice}>
+                ${product.fullPrice}
+              </div>
             )}
           </div>
         </div>
@@ -101,7 +103,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
         <div className={styles.buttonBox}>
           <ButtonPrimary
-            textForPrimaryButton={isProductInCart ? 'Added to cart' : 'Add to cart'}
+            textForPrimaryButton={
+              isProductInCart ? 'Added to cart' : 'Add to cart'
+            }
             callback={handleAddToCart}
           />
           <ButtonFavourite callback={handleAddToFavourites} />
