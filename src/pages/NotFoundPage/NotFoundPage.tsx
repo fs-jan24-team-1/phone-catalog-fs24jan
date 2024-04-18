@@ -1,6 +1,6 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './notFoundPage.module.scss';
-import React from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const NotFoundPage = () => {

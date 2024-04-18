@@ -14,12 +14,15 @@ import { FavoritesPage } from './pages/FavoritesPage';
 import { PhonesPage } from './pages/PhonesPage';
 import { AccessoriesPage } from './pages/AccessoriesPage';
 import { CartPage } from './pages/CartPage';
+import { useRef } from 'react';
 
 export const Root = () => {
+  const scrollToTopRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<App />}>
+        <Route path="/" element={<App scrollToTopRef={scrollToTopRef} />}>
           <Route index element={<HomePage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
 

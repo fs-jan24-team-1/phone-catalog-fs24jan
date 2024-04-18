@@ -3,11 +3,15 @@ import styles from './buttonFavourite.module.scss';
 import { useState } from 'react';
 import React from 'react';
 
-export const ButtonFavourite = () => {
+interface Props {
+  callback: () => void;
+}
+export const ButtonFavourite: React.FC<Props> = ({ callback }) => {
   const [selectedFavourite, setSelectedFavourite] = useState(false);
 
   const handleClickFavourite = () => {
     setSelectedFavourite(!selectedFavourite);
+    callback();
   };
 
   return (

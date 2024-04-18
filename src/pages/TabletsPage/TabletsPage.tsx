@@ -1,7 +1,8 @@
+import styles from './tabletsPage.module.scss';
 import { useSelector } from 'react-redux';
-import { ProductCard } from '../../components/ProductCard';
 import { RootState } from '../../store/store';
 import { Product } from '../../types/Product';
+import { Catalog } from '../../components/Catalog';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const TabletsPage = () => {
@@ -11,19 +12,12 @@ export const TabletsPage = () => {
     (product: Product) => product.category === 'tablets',
   );
 
-  const numberOfItems = products.length;
-
-
   return (
-    <div>
+    <div className={styles.container}>
       <Breadcrumbs />
+      <h1 className="title">Tablets Page</h1>
 
-      <h1 className="title">TabletsCategory page</h1>
-      <h3>{numberOfItems} models</h3>
-
-      {products.map((product: Product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      <Catalog products={products} />
     </div>
   );
 };
