@@ -1,8 +1,10 @@
 import React from 'react';
 import { Product } from '../../types/Product';
 import styles from './productCard.module.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
+import { RootState } from '../../store/store';
+import { ButtonFavourite } from '../UI/ButtonFavourite';
 
 type Props = {
   product: Product;
@@ -10,18 +12,43 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
+  let favourites = useSelector((state: RootState) => state.product.favourites);
+  let cart = useSelector((state: RootState) => state.product.cart);
+
+  const isProductInFavourites = favourites.some(
+    (favProduct: Product) => favProduct.id === product.id,
+  );
+
+  const isProductInCart = cart.some(
+    (cartProduct: Product) => cartProduct.id === product.id,
+  );
+
   const handleAddToFavourites = () => {
-    dispatch({
-      type: 'product/addToFavourites',
-      payload: product,
-    });
+    if (isProductInFavourites) {
+      dispatch({
+        type: 'product/removeFromFavourites',
+        payload: product,
+      });
+    } else {
+      dispatch({
+        type: 'product/addToFavourites',
+        payload: product,
+      });
+    }
   };
 
-  const handleRemoveFromFavourites = () => {
-    dispatch({
-      type: 'product/removeFromFavourites',
-      payload: product,
-    });
+  const handleAddToCart = () => {
+    if (isProductInCart) {
+      dispatch({
+        type: 'product/removeFromCart',
+        payload: product,
+      });
+    } else {
+      dispatch({
+        type: 'product/addToCart',
+        payload: product,
+      });
+    }
   };
 
   return (
@@ -71,9 +98,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         </div>
 
         <div className={styles.buttonBox}>
-          <ButtonPrimary textForPrimaryButton='PrimaryText' />
-
-          <button>F</button>
+          <ButtonPrimary
+            textForPrimaryButton={isProductInCart ? 'Added to cart' : 'Add to cart'}
+            callback={handleAddToCart}
+          />
+          <ButtonFavourite callback={handleAddToFavourites} />
         </div>
       </div>
     </article>
