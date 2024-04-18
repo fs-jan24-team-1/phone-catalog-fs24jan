@@ -5,9 +5,8 @@
   display: flex;
   width: 32px;
   height: 32px;
-
+  
   font-family: $Mont;
-  font-weight: 800;
   justify-content: center;
   align-items: center;
 
@@ -20,8 +19,7 @@
   transition: all 0.5s ease;
 
   &.default {
-    color: $primary;
-    border: 1px solid $elements;
+    border: 1px solid $icons;
   }
 
   &:hover {
@@ -29,7 +27,47 @@
   }
 
   &.disable {
-    color: $secondary;
-    border: 1px solid $secondary;
+    border: 1px solid $elements;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &.arrowLeft {
+    background-image: url('../../../img/icons/arrow_left.svg');
+  }
+
+  &.arrowRight {
+    background-image: url('../../../img/icons/arrow_right.svg');
+  }
+
+  &.arrowLeft,
+  &.arrowRight {
+    filter: brightness(1);
+
+    &.disable {
+      filter: brightness(0);
+    }
+  }
+
+  &.plus {
+    background-image: url('../../../img/icons/plus.svg');
+  }
+
+  &.minus {
+    background-image: url('../../../img/icons/minus.svg');
+  }
+
+  &.plus,
+  &.minus {
+    filter: brightness(4);
+
+    &.disable {
+      filter: brightness(0);
+    }
   }
 }

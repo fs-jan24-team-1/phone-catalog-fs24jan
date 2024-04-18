@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../../types/Product';
-import styles from './ProductCard.module.scss';
+import styles from './productCard.module.scss';
 import { useDispatch } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
 
@@ -71,7 +71,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         </div>
 
         <div className={styles.buttonBox}>
-          <ButtonPrimary />
+          <ButtonPrimary textForPrimaryButton='PrimaryText' />
 
           <button>F</button>
         </div>
