@@ -1,4 +1,4 @@
-import './Loader.scss';
+import './loader.scss';
 
 export const Loader = () => (
   <div className="Loader" data-cy="loader">
