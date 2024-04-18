@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from './buttonPrimary.module.scss';
+import styles from './ButtonPrimary.module.scss';
 import { useState } from 'react';
 
 interface Props {

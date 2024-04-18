@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from './buttonColor.module.scss';
+import styles from './ButtonColor.module.scss';
 import { useState } from 'react';
 
 type Props = {

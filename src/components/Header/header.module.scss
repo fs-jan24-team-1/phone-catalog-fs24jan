@@ -3,10 +3,17 @@
 @import '../../styles/utils/normalize';
 
 .header {
+  height: 48px;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
   border-bottom: 1px solid $elements;
+
+
+  @include on-desktop {
+    height: 64px;
+  }
+
 
   &__container {
     display: flex;
@@ -24,13 +31,29 @@
     padding: 13px 16px;
 
     @include on-tablet {
-      padding: 18px 24px;
+      padding: 24px;
+      padding-bottom:20px ;
+
+    }
+
+    @include on-mobile {
+      padding: 24px;
     }
   }
 
   &__img {
     @include on-desktop {
       width: 80px;
+      height: auto;
+    }
+
+    @include on-tablet {
+      width: 64px;
+      height: auto;
+    }
+
+    @include on-mobile {
+      width: 64px;
       height: auto;
     }
   }
@@ -118,7 +141,7 @@
   border-left: 1px solid $elements;
 
   @include on-tablet {
-    height: 100%;
+    height: 48px;
     width: 48px;
   }
 
@@ -139,7 +162,7 @@
 
 
   @include on-tablet {
-    height: 100%;
+    height: 48px;
     width: 48px;
   }
 
@@ -151,12 +174,12 @@
 
 @include on-desktop {
   .favorites {
-    height: 100%;
+    height: 64px;
     width: 64px;
   }
 
   .cart {
-    height: 100%;
+    height: 64px;
     width: 64px;
   }
 }
