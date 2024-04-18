@@ -12,10 +12,12 @@ import { RootState } from '../../store/store';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
-  const [cartItemCount, setCartItemCount] = useState(2);
 
-  let favourites = useSelector((state: RootState) => state.product.favourites);
-  const favoritesCount = favorites.length;
+  let favourItes = useSelector((state: RootState) => state.product.favourites);
+  const favoritesCount = favourItes.length;
+
+  let cartItes = useSelector((state: RootState) => state.product.cart);
+  const cartCount = cartItes.length;
 
   const toggleMenu = () => {
     setIsMenuShow(!isMenuShow);
@@ -65,7 +67,7 @@ export const Header = () => {
         <NavLink to="/cart" className={({ isActive }) => classNames(styles.cart, { [styles.is_active]: isActive })}>
           <div className={styles.cartIconContainer}>
             <img src={cours} alt="cart" className={styles.cart__logo} />
-            {cartItemCount > 0 && <div className={styles.cartItemCount}>{cartItemCount}</div>}
+            {cartCount > 0 && <div className={styles.cartItemCount}>{cartCount}</div>}
           </div>
         </NavLink>
 

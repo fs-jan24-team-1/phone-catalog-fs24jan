@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from './ButtonSlider.module.scss';
+import styles from './buttonSlider.module.scss';
 import { useState } from 'react';
 
 interface ButtonSliderProps {
