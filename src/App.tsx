@@ -1,4 +1,5 @@
-import './app.scss';
+import './App.scss';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -7,7 +8,11 @@ import { getProducts } from './api';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
 
-export const App = () => {
+type Props = {
+  scrollToTopRef: React.RefObject<HTMLDivElement> | null;
+};
+
+export const App: React.FC<Props> = ({ scrollToTopRef }) => {
   // const [products, setProducts] = useState<Product[]>([]);
   const dispatch = useDispatch();
   // const products = useSelector((state: RootState) => state.product.products);
@@ -34,7 +39,7 @@ export const App = () => {
 
   return (
     <div data-cy="app" className="wrapper">
-      <Header />
+      <Header scrollToTopRef={scrollToTopRef} />
 
       <div className="section">
         <div className="container">
@@ -42,7 +47,7 @@ export const App = () => {
         </div>
       </div>
 
-      <Footer />
+      <Footer scrollToTopRef={scrollToTopRef} />
     </div>
   );
 };

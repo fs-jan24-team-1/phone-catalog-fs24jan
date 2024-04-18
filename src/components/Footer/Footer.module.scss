@@ -8,7 +8,7 @@
 
 .footer {
   display: flex;
-  width: 100vw;
+  width: 100%;
   background-color: transparent;
   border-top: 1px solid $elements;
 
@@ -79,11 +79,20 @@
 
 .back-to-top {
   display: flex;
-  width: 100%;
-  height: 32px;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  width: fit-content;
+  height: 32px;
+
+  &__content {
+    display: flex;
+    width: fit-content;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+  }
 
   &__text {
     font-family: 'Mont', sans-serif;
