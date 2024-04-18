@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../../types/Product';
-import styles from './productCard.module.scss';
+import styles from './ProductCard.module.scss';
 import { useDispatch } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
 

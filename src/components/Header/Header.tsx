@@ -7,11 +7,15 @@ import cours from '../../img/icons/cours.svg';
 import favorites from '../../img/icons/hearts.svg';
 import { useState } from 'react';
 import { NavBar } from '../NavBar/NavBar';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(2);
-  const [favoritesCount, setFavoritesCount] = useState(3);
+
+  let favourites = useSelector((state: RootState) => state.product.favourites);
+  const favoritesCount = favorites.length;
 
   const toggleMenu = () => {
     setIsMenuShow(!isMenuShow);
