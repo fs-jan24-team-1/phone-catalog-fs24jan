@@ -4,13 +4,15 @@ import { useState } from 'react';
 
 interface Props {
   textForPrimaryButton: string;
+  callback: () => void;
 }
 
-export const ButtonPrimary: React.FC<Props> = ({ textForPrimaryButton }) => {
+export const ButtonPrimary: React.FC<Props> = ({ textForPrimaryButton, callback }) => {
   const [selected, setSelected] = useState(false);
 
   const handleClick = () => {
     setSelected(!selected);
+    callback();
   };
 
   return (
