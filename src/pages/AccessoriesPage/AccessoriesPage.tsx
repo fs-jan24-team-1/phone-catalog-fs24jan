@@ -1,7 +1,8 @@
+import styles from './accesoriesPage.module.scss';
+import { Catalog } from '../../components/Catalog';
 import { useSelector } from 'react-redux';
-import { ProductCard } from '../../components/ProductCard';
-import { RootState } from '../../store/store';
 import { Product } from '../../types/Product';
+import { RootState } from '../../store/store';
 
 export const AccessoriesPage = () => {
   let products = useSelector((state: RootState) => state.product.products);
@@ -10,16 +11,11 @@ export const AccessoriesPage = () => {
     (product: Product) => product.category === 'accessories',
   );
 
-  const numberOfItems = products.length;
-
   return (
-    <div>
-      <h1 className="title">AccesoriesCategory page</h1>
-      <h3>{numberOfItems} models</h3>
-
-      {products.map((product: Product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className={styles.container}>
+      <h1 className="title">Accesories</h1>
+      
+      <Catalog products={products} />
     </div>
   );
 };

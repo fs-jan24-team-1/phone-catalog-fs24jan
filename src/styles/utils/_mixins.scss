@@ -20,16 +20,15 @@
   --columns: 1;
 
   display: grid;
-  column-gap: 40px;
+  row-gap: 40px;
+  column-gap: 16px;
   grid-template-columns: repeat(var(--columns), 1fr);
 
   @include on-tablet {
-    --columns: 6;
+    --columns: 2;
   }
 
-  @include on-mobile {
-    --columns: 2;
-
-    column-gap: 20px;
+  @include on-desktop {
+    --columns: 4;
   }
 }

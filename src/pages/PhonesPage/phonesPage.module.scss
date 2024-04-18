@@ -1,0 +1,16 @@
+@import '../../styles/utils/mixins';
+
+.container {
+  margin: 24px 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include on-tablet {
+    margin: 24px 24px;
+  }
+
+  @include on-desktop {
+    margin: 24px 32px;
+  }
+}
