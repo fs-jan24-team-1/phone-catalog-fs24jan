@@ -2,7 +2,7 @@
 @import '../../../styles/utils/typography';
 
 .color__сontainer {
-  display: flex;
+  display: inline-block;
 }
 
 .button {
@@ -11,17 +11,16 @@
   height: 32px;
 
   font-family: $Mont;
-  // font-weight: 800;
   justify-content: center;
   align-items: center;
 
   cursor: pointer;
   text-decoration: none;
   border-radius: 48px;
+  background-color: $white;
 
   transition: all 0.5s ease;
 
-// Цвета кнопки
   &::before {
     content: '';
     position: absolute;
@@ -30,25 +29,9 @@
     height: 30px;
 
     border-radius: 36px;
+    background-color: var(--bg-color);
   }
 
-  &.brown::before {
-    background: #FCDBC1;
-  }
-
-  &.green::before {
-    background: $green;
-  }
-
-  &.white::before {
-    background: $icons;
-  }
-
-  &.red::before {
-    background: $red;
-  }
-
-// Статус кнопки
   &.default {
     color: $primary;
     border: 1px solid $icons;
