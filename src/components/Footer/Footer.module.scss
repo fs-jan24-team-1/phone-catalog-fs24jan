@@ -1,0 +1,117 @@
+@import "./../../styles/utils/variables";
+@import "./../../styles/utils/mixins";
+@import "./../../styles/utils/typography";
+
+* {
+  box-sizing: border-box;
+}
+
+.footer {
+  display: flex;
+  width: 100vw;
+  background-color: transparent;
+  border-top: 1px solid $elements;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 16px;
+    gap: 32px;
+
+    @include on-mobile {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    @include on-tablet {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__logo {
+    width: 89px;
+    height: 32px;
+
+    background-image: url(./../../img/icons/Logo.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 16px;
+
+    @include on-mobile {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @include on-tablet {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    font-family: 'Mont', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $secondary;
+  }
+}
+
+.back-to-top {
+  display: flex;
+  width: 100%;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  &__text {
+    font-family: 'Mont', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    color: $secondary;
+  }
+
+  &__button {
+    display: flex;
+    height: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 1px solid $icons;
+    border-radius: 50%;
+    background-color: transparent;
+
+    background-image: url(./../../img/icons/arrow_up.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  @include on-mobile {
+    width: 100%;
+  }
+
+  @include on-tablet {
+    width: fit-content;
+  }
+}

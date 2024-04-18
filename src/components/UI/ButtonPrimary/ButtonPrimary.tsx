@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom';
-import styles from './ButtonPrimary.module.scss';
+import styles from './buttonPrimary.module.scss';
 import { useState } from 'react';
 
-export const ButtonPrimary = () => {
+interface Props {
+  textForPrimaryButton: string;
+  callback: () => void;
+}
+
+export const ButtonPrimary: React.FC<Props> = ({ textForPrimaryButton, callback }) => {
   const [selected, setSelected] = useState(false);
 
   const handleClick = () => {
     setSelected(!selected);
+    callback();
   };
 
   return (
@@ -14,6 +20,8 @@ export const ButtonPrimary = () => {
       to="#"
       className={`${styles.button} ${selected ? styles.selected : styles.default}`}
       onClick={handleClick}
-    ></Link>
+    >
+      {textForPrimaryButton}
+    </Link>
   );
 };

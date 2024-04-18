@@ -4,6 +4,7 @@ import { Product } from '../types/Product';
 interface ProductState {
   products: Product[];
   favourites: Product[];
+  cart: Product[];
   page: number;
   totalCount: number;
   limit: number;
@@ -12,6 +13,7 @@ interface ProductState {
 const initialState: ProductState = {
   products: [],
   favourites: [],
+  cart: [],
   page: 1,
   totalCount: 0,
   limit: 2,
@@ -23,6 +25,10 @@ const productSlice = createSlice({
   reducers: {
     setFavourites: (state, action: PayloadAction<Product[]>) => {
       state.favourites = action.payload;
+    },
+
+    setCart: (state, action: PayloadAction<Product[]>) => {
+      state.cart = action.payload;
     },
 
     setProducts: (state, action: PayloadAction<Product[]>) => {
@@ -51,6 +57,19 @@ const productSlice = createSlice({
         state.favourites.splice(index, 1);
       }
     },
+    addToCart: (state, action: PayloadAction<Product>) => {
+      const productToAdd: Product = action.payload;
+      state.cart.push(productToAdd);
+    },
+    removeFromCart: (state, action: PayloadAction<Product>) => {
+      const productToRemove: Product = action.payload;
+      const index = state.cart.findIndex(
+        (product: Product) => product.id === productToRemove.id,
+      );
+      if (index !== -1) {
+        state.cart.splice(index, 1);
+      }
+    },
   },
 });
 
@@ -60,6 +79,8 @@ export const {
   setLimit,
   addToFavourites,
   removeFromFavourites,
+  addToCart,
+  removeFromCart,
 } = productSlice.actions;
 
 export default productSlice.reducer;
