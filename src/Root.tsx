@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import {
   Navigate,
   Route,
@@ -8,7 +7,6 @@ import {
 import { App } from './App';
 import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
-import { ProductCard } from './components/ProductCard';
 import { TabletsPage } from './pages/TabletsPage';
 import { FavoritesPage } from './pages/FavoritesPage';
 import { PhonesPage } from './pages/PhonesPage';
