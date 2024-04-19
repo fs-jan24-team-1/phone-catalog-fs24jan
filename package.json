@@ -72,6 +72,7 @@
     "*.tsx": [
       "eslint --fix",
       "prettier --write"
-    ]
+    ],
+    "homepage": "https://fs-jan24-team-1.github.io/phone-catalog-fs24jan/"
   }
 }
