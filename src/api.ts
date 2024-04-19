@@ -10,3 +10,11 @@ export function getProducts(): Promise<Product[]> {
 export function getPhones(): Promise<ProductItemType[]> {
   return fetch(`/api/phones.json`).then(response => response.json());
 }
+
+export function getTablets(): Promise<ProductItemType[]> {
+  return fetch(`/api/tablets.json`).then(response => response.json());
+}
+
+export function getAccessories(): Promise<ProductItemType[]> {
+  return fetch(`/api/accessories.json`).then(response => response.json());
+}

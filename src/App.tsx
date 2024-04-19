@@ -5,17 +5,14 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { useEffect } from 'react';
 import { getProducts } from './api';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './store/store';
+import { useDispatch } from 'react-redux';
 
 type Props = {
   scrollToTopRef: React.RefObject<HTMLDivElement> | null;
 };
 
 export const App: React.FC<Props> = ({ scrollToTopRef }) => {
-  // const [products, setProducts] = useState<Product[]>([]);
   const dispatch = useDispatch();
-  // const products = useSelector((state: RootState) => state.product.products);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,10 +29,6 @@ export const App: React.FC<Props> = ({ scrollToTopRef }) => {
 
     fetchProducts();
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   console.log('Products from Redux state:', products);
-  // }, [products]);
 
   return (
     <div data-cy="app" className="wrapper">

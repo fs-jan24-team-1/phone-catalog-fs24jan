@@ -17,10 +17,10 @@ type Props = {
 export const Header: FC<Props> = ({ scrollToTopRef }) => {
   const [isMenuShow, setIsMenuShow] = useState(false);
 
-  let favourItes = useSelector((state: RootState) => state.product.favourites);
+  const favourItes = useSelector((state: RootState) => state.product.favourites);
   const favoritesCount = favourItes.length;
 
-  let cartItes = useSelector((state: RootState) => state.product.cart);
+  const cartItes = useSelector((state: RootState) => state.product.cart);
   const cartCount = cartItes.length;
 
   const toggleMenu = () => {

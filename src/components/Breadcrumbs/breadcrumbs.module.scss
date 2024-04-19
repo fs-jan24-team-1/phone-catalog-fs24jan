@@ -1,0 +1,48 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/typography';
+
+.breadcrumb__style {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs {
+  display: flex;
+  margin-right: 8px;
+
+  font-family: $Mont;
+  align-items: center;
+  text-decoration: none;
+  color: $secondary;
+
+  transition: color 0.5s ease;
+
+  &:hover {
+    color: $primary;
+  }
+
+  &::before {
+    content: '';
+    width: 19px;
+    height: 19px;
+    margin-right: 8px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../../img/icons/arrow_right.svg');
+  }
+
+}
+
+.home__icon {
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../img/icons/Home.svg');
+  // background-color: red;
+
+}
+
