@@ -5,7 +5,7 @@ import { Product } from '../../types/Product';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const FavoritesPage = () => {
-  let products = useSelector((state: RootState) => state.product.favourites);
+  const products = useSelector((state: RootState) => state.product.favourites);
   const numberOfItems = products.length;
 
   return (
