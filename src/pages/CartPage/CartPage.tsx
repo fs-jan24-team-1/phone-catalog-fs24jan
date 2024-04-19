@@ -6,8 +6,12 @@ import { CartItem } from '../../components/CartIem';
 
 export const CartPage = () => {
   let products = useSelector((state: RootState) => state.product.cart);
-  products = products
-    .filter((product: Product) => product.category === 'phones')
+  products = products.filter(
+    (product: Product) =>
+      product.category === 'phones' ||
+      product.category === 'accessories' ||
+      product.category === 'tablets',
+  );
 
   return (
     <div className={styles.container}>
