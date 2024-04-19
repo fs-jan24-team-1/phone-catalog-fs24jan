@@ -4,6 +4,7 @@ import { ButtonFavourite } from '../../components/UI/ButtonFavourite';
 import { ButtonPagination } from '../../components/UI/ButtonPagination';
 import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
 import { ButtonSlider } from '../../components/UI/ButtonSlider';
+import { Dropdown } from '../../components/UI/DropDown';
 
 export const HomePage = () => {
   const COLOR_EXAMPLE = ['black', 'green', 'yellow', 'white', 'purple', 'red'];
@@ -22,6 +23,7 @@ export const HomePage = () => {
         <ButtonColor key={currentColor} colorDevice={currentColor} />
       ))}
       <ButtonBack textForBackButton="Back/Default" />
+      <Dropdown />
     </>
   );
 };
