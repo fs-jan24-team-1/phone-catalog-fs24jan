@@ -2,6 +2,7 @@ import styles from './accesoriesPage.module.scss';
 import { Catalog } from '../../components/Catalog';
 import { useSelector } from 'react-redux';
 import { Product } from '../../types/Product';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { RootState } from '../../store/store';
 
 export const AccessoriesPage = () => {
@@ -13,8 +14,10 @@ export const AccessoriesPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className="title">Accesories</h1>
-      
+      <Breadcrumbs />
+
+      <h1 className="title">AccesoriesCategory page</h1>
+
       <Catalog products={products} />
     </div>
   );
