@@ -4,12 +4,11 @@ import { Product } from '../../types/Product';
 import styles from './cartPage.module.scss';
 import { CartItem } from '../../components/CartIem';
 import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
-import { useState } from 'react';
 
 export const CartPage = () => {
   let products = useSelector((state: RootState) => state.product.cart);
-  
-  // Create variebles for product.category === 'phones' ||...
+
+  // Create variebles for `product.category === 'phones' ||...`
   products = products.filter(
     (product: Product) =>
       product.category === 'phones' ||
@@ -22,12 +21,6 @@ export const CartPage = () => {
     return 0;
   };
 
-  const [getFullPrice, setGetFullPrice] = useState(0);
-
-  const handleUpdateFullPrice = (price: number) => {
-    setGetFullPrice(prevPrice => prevPrice + price);
-  };
-
   return (
     <>
       <h1 className="title">Cart</h1>
@@ -38,13 +31,12 @@ export const CartPage = () => {
             <CartItem
               key={product.id}
               product={product}
-              setGetFullPrice={handleUpdateFullPrice}
             />
           ))}
         </div>
 
         <div className={styles.totalCost}>
-          <strong className={styles.totalCost__price}>${getFullPrice}</strong>
+          <strong className={styles.totalCost__price}>${0}</strong>
           <p className={styles.totalCost__itemCount}>
             Total for {products.length} {products.length > 1 ? 'items' : 'item'}
           </p>

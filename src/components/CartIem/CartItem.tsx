@@ -1,23 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './cartItem.module.scss';
 import { Product } from '../../types/Product';
 import { ButtonSlider } from '../UI/ButtonSlider';
 
 type Props = {
   product: Product;
-  setGetFullPrice: (value: number) => void;
 };
 
-export const CartItem: React.FC<Props> = ({ product, setGetFullPrice }) => {
-  // useEffect(() => {
-  //   setGetFullPrice(product.price);
-  // }, [product.price, setGetFullPrice]);
-
-  // const handleUpdatePrice = (price: number) => {
-  //   setGetFullPrice(product.price * price);
-
-  //   return price;
-  // };
+export const CartItem: React.FC<Props> = ({ product }) => {
 
   return (
     <div className={styles.cartItem}>
