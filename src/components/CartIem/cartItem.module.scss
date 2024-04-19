@@ -4,11 +4,12 @@
 
 .cartItem {
   display: flex;
+  width: 288px;
+  height: auto;
+
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  width: 288px;
-  height: auto;
   justify-content: space-between;
   margin-bottom: 16px;
 

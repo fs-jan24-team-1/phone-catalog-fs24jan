@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { getPhones } from '../../api';
+import { getAccessories, getPhones, getTablets } from '../../api';
 import { useParams } from 'react-router-dom';
 import { ProductItemType } from '../../types/ProductItemType';
 import { NotFoundPage } from '../NotFoundPage';
 import { ButtonColor } from '../../components/UI/ButtonColor';
 import styles from './productItemPage.module.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export const ProductItemPage = () => {
+  const products = useSelector((state: RootState) => state.product.products);
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<ProductItemType | null>(null);
   const [selectedColor, setSelectedColor] = useState(
@@ -16,11 +19,21 @@ export const ProductItemPage = () => {
     product?.capacityAvailable[0],
   );
 
+  const productCategory = products.find(item => item.itemId === productId)?.category;
+  let [items] = useState<ProductItemType[]>([]);
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const phones = await getPhones();
-        const foundProduct = phones.find(phone => phone.id === productId);
+        if (productCategory === 'phones') {
+          items = await getPhones();
+        } else if (productCategory === 'tablets') {
+          items = await getTablets();
+        } else if (productCategory === 'accessories') {
+          items = await getAccessories();
+        }
+
+        const foundProduct = items.find(item => item.id === productId);
         if (foundProduct) {
           setProduct(foundProduct);
         } else {
@@ -34,11 +47,13 @@ export const ProductItemPage = () => {
     if (productId) {
       fetchProduct();
     }
-  }, [productId]);
+  }, [productCategory, productId]);
+
 
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
+  console.log(handleColorChange, selectedColor);
 
   const handleCapacityChange = (capacity: string) => {
     setSelectedCapacity(capacity);
