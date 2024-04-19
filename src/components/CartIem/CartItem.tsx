@@ -14,7 +14,11 @@ export const CartItem: React.FC<Props> = ({ product }) => {
       <div className={styles.cartItem__column1}>
         <div className={styles.cartItem__icon}></div>
         <div className={styles.cartItem__image}>
-          <img className={styles.cartItem__productImage} src={product.image} alt="" />
+          <img
+            className={styles.cartItem__productImage}
+            src={product.image}
+            alt={product.name}
+          />
         </div>
 
         <div className={styles.cartItem__description}>
@@ -25,7 +29,9 @@ export const CartItem: React.FC<Props> = ({ product }) => {
       <div className={styles.cartItem__column2}>
         <div className={styles.cartItem__button}>
           <ButtonSlider iconType={'minus'} />
-          <span className={styles.cartItem__count}>1</span>
+          <span className={styles.cartItem__count}>
+            {1}
+          </span>
           <ButtonSlider iconType={'plus'} />
         </div>
 

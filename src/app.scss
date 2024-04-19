@@ -1,10 +1,11 @@
 @import './styles/utils/typography';
+@import './styles/utils/variables';
 
 html,
 body {
   font-family: 'Mont', serif;
 
-  background-color: #e2e6e9;
+  background-color: $background-color;
   height: 100%;
   margin: 0;
   padding: 0;
