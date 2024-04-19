@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './buttonSlider.module.scss';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface ButtonSliderProps {
   iconType: 'arrowLeft' | 'arrowRight' | 'plus' | 'minus';
