@@ -8,13 +8,14 @@ type Props = {
 };
 
 export const CartItem: React.FC<Props> = ({ product }) => {
+  console.log(product);
 
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItem__column1}>
         <div className={styles.cartItem__icon}></div>
         <div className={styles.cartItem__image}>
-          <img className={styles.cartItem__productImage} src={product.image} alt="" />
+          <img className={styles.cartItem__productImage} src={product.image} alt={product.name} />
         </div>
 
         <div className={styles.cartItem__description}>

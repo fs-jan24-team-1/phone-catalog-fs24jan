@@ -12,8 +12,8 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
-  let favourites = useSelector((state: RootState) => state.product.favourites);
-  let cart = useSelector((state: RootState) => state.product.cart);
+  const favourites = useSelector((state: RootState) => state.product.favourites);
+  const cart = useSelector((state: RootState) => state.product.cart);
 
   const isProductInFavourites = favourites.some(
     (favProduct: Product) => favProduct.id === product.id,
@@ -37,7 +37,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     }
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = () => {q
     if (isProductInCart) {
       dispatch({
         type: 'product/removeFromCart',
