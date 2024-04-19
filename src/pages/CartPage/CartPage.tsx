@@ -4,9 +4,12 @@ import { Product } from '../../types/Product';
 import styles from './cartPage.module.scss';
 import { CartItem } from '../../components/CartIem';
 import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
+import { useState } from 'react';
 
 export const CartPage = () => {
   let products = useSelector((state: RootState) => state.product.cart);
+  
+  // Create variebles for product.category === 'phones' ||...
   products = products.filter(
     (product: Product) =>
       product.category === 'phones' ||
@@ -15,7 +18,15 @@ export const CartPage = () => {
   );
 
   //Need to DELETE or RECREATE this temp function
-  const tempFunction = () => { return 0; };
+  const tempFunction = () => {
+    return 0;
+  };
+
+  const [getFullPrice, setGetFullPrice] = useState(0);
+
+  const handleUpdateFullPrice = (price: number) => {
+    setGetFullPrice(prevPrice => prevPrice + price);
+  };
 
   return (
     <>
@@ -24,13 +35,19 @@ export const CartPage = () => {
       <div className={styles.container}>
         <div className={styles.container__products}>
           {products.map((product: Product) => (
-            <CartItem key={product.id} product={product} />
+            <CartItem
+              key={product.id}
+              product={product}
+              setGetFullPrice={handleUpdateFullPrice}
+            />
           ))}
         </div>
 
         <div className={styles.totalCost}>
-          <strong className={styles.totalCost__price}>$2657</strong>
-          <p className={styles.totalCost__itemCount}>Total for 3 items</p>
+          <strong className={styles.totalCost__price}>${getFullPrice}</strong>
+          <p className={styles.totalCost__itemCount}>
+            Total for {products.length} {products.length > 1 ? 'items' : 'item'}
+          </p>
           <div className={styles.totalCost__line}></div>
           <ButtonPrimary
             textForPrimaryButton="Checkout"
