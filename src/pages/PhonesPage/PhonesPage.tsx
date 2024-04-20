@@ -9,8 +9,8 @@ import { Pagination } from '../../components/Pagination';
 
 export const PhonesPage = () => {
   let products = useSelector((state: RootState) => state.product.products);
+  const productsPerPage = useSelector((state: RootState) => state.product.productsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage] = useState(24);
 
   products = products.filter(
     (product: Product) => product.category === 'phones',
@@ -20,8 +20,8 @@ export const PhonesPage = () => {
     setCurrentPage(pageNumber);
   };
 
-  const indexOfLastPost = currentPage * productPerPage;
-  const indexOfFirstPost = indexOfLastPost - productPerPage;
+  const indexOfLastPost = currentPage * productsPerPage;
+  const indexOfFirstPost = indexOfLastPost - productsPerPage;
   const currentProducts = products.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
@@ -33,7 +33,7 @@ export const PhonesPage = () => {
       <Catalog products={currentProducts} totalProducts={products.length}/>
       <Pagination
         length={products.length}
-        productsPerPage={productPerPage}
+        productsPerPage={productsPerPage}
         handlePagination={handlePagination}
         currentPage={currentPage}
       />
