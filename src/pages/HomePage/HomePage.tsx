@@ -1,6 +1,5 @@
 import { ButtonBack } from '../../components/UI/ButtonBack';
 import { ButtonColor } from '../../components/UI/ButtonColor';
-import { ButtonPagination } from '../../components/UI/ButtonPagination';
 import { ButtonSlider } from '../../components/UI/ButtonSlider';
 import { Dropdown } from '../../components/UI/DropDown';
 
@@ -10,7 +9,6 @@ export const HomePage = () => {
   return (
     <>
       <h1 className="title">Welcome to Nice Gadgets store!</h1>
-      <ButtonPagination />
       <ButtonSlider iconType={'arrowLeft'} />
       <ButtonSlider iconType={'arrowRight'} />
       <ButtonSlider iconType={'plus'} />

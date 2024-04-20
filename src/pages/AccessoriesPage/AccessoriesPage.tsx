@@ -18,7 +18,7 @@ export const AccessoriesPage = () => {
 
       <h1 className="title">AccesoriesCategory page</h1>
 
-      <Catalog products={products} />
+      <Catalog products={products} totalProducts={products.length}/>
     </div>
   );
 };

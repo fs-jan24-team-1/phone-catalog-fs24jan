@@ -17,7 +17,7 @@ export const TabletsPage = () => {
       <Breadcrumbs />
       <h1 className="title">Tablets Page</h1>
 
-      <Catalog products={products} />
+      <Catalog products={products} totalProducts={products.length}/>
     </div>
   );
 };
