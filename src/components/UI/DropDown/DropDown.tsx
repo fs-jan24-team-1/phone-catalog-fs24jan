@@ -10,6 +10,8 @@ const options = [
 const customStyles = {
   control: (base: any, { isFocused }: any) => ({
     ...base,
+    display: 'flex',
+    gap: '85px',
     padding: '12px, 10px',
     height: '40px',
 
@@ -49,7 +51,7 @@ const customStyles = {
 
 export const Dropdown = () => {
   return (
-    <div style={{ width: '176px', padding: '10px'}} >
+    <div style={{}}>
       <Select
         // isMulti
         defaultValue={options[0]}
