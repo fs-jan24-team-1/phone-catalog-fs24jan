@@ -6,6 +6,7 @@ import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Catalog } from '../../components/Catalog';
 import { SetStateAction, useState } from 'react';
 import { Pagination } from '../../components/Pagination';
+import { Category } from '../../types/Category';
 
 export const PhonesPage = () => {
   let products = useSelector((state: RootState) => state.product.products);
@@ -13,7 +14,7 @@ export const PhonesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   products = products.filter(
-    (product: Product) => product.category === 'phones',
+    (product: Product) => product.category === Category.phones,
   );
 
   const handlePagination = (pageNumber: SetStateAction<number>) => {
@@ -33,9 +34,8 @@ export const PhonesPage = () => {
       <Catalog products={currentProducts} totalProducts={products.length}/>
       <Pagination
         length={products.length}
-        productsPerPage={productsPerPage}
-        handlePagination={handlePagination}
         currentPage={currentPage}
+        handlePagination={handlePagination}
       />
     </div>
   );

@@ -2,21 +2,22 @@ import React from 'react';
 import { ButtonSlider } from '../UI/ButtonSlider';
 import { ButtonPagination } from '../UI/ButtonPagination';
 import styles from './pagination.module.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 type Props = {
-  productsPerPage: number;
   length: number;
-  handlePagination: (pageNumber: number) => void;
   currentPage: number;
+  handlePagination: (pageNumber: number) => void;
 };
 
 export const Pagination: React.FC<Props> = ({
-  productsPerPage,
   length,
   currentPage,
   handlePagination,
 }) => {
   const paginationNumbers = [];
+  const productsPerPage = useSelector((state: RootState) => state.product.productsPerPage);
 
   for (let i = 1; i <= Math.ceil(length / productsPerPage); i++) {
     paginationNumbers.push(i);
