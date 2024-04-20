@@ -1,28 +1,21 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './buttonPagination.module.scss';
-import { useState } from 'react';
 
-export const ButtonPagination = () => {
-  const [selectedPagination, setSelectedPagination] = useState(false);
+type ButtonPaginationProps = {
+  text: number;
+  active: boolean;
+  onClick: () => void;
+};
 
-  const handleClickPagination = () => {
-    setSelectedPagination(!selectedPagination);
-  };
-
-  const paginationExample = [1,2,3,4,5];
-
+export const ButtonPagination: React.FC<ButtonPaginationProps> = ({ text, active, onClick }) => {
   return (
-    <div className={styles.pagination__сontainer}>
-      {paginationExample.map(curVal =>
-        <Link
-          key={curVal}
-          to="#"
-          className={`${styles.button} ${selectedPagination ? styles.selected : styles.default}`}
-          onClick={handleClickPagination}
-        >
-          {curVal}
-        </Link>
-      )}
-    </div>
+    <Link
+      to="#"
+      className={`${styles.button} ${active ? styles.selected : styles.default}`}
+      onClick={onClick}
+    >
+      {text}
+    </Link>
   );
 };

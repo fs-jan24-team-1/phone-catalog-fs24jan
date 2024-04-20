@@ -4,15 +4,14 @@ import { Product } from '../../types/Product';
 
 interface Props {
   products: Product[];
+  totalProducts: number;
 }
 
-export const Catalog: React.FC<Props> = ({ products }) => {
-  const numberOfItems = products.length;
-
+export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h3>{numberOfItems} models</h3>
+        <h3>{totalProducts} models</h3>
 
         <div className="filter">filter component</div>
 
