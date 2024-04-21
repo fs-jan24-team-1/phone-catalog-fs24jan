@@ -6,11 +6,15 @@ type MyOptionType = {
   value: string;
 };
 
-const options: MyOptionType[] = [
-  { value: 'option 1', label: 'Option 1' },
-  { value: 'option 2', label: 'Option 2' },
-  { value: 'option 3', label: 'Option 3' },
-];
+interface Option {
+  value: number | string;
+  label: string;
+}
+
+interface DropdownProps {
+  options: Option[];
+  onSelectChange: (selectedOption: string | number) => void;
+}
 
 interface CustomStylesProps {
   isFocused?: boolean;
@@ -66,18 +70,28 @@ const customStyles: StylesConfig<MyOptionType, false> = {
   }),
   indicatorsContainer: (base: CSSObjectWithLabel) => ({
     ...base,
-    padding:'0 4px'
+    padding: '0 4px',
   }),
 };
 
-export const Dropdown: React.FC = () => {
+export const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  onSelectChange,
+}) => {
+  const handleChange = (selectedOption: Option | null) => {
+    if (selectedOption) {
+      onSelectChange(selectedOption.value);
+    }
+  };
+
   return (
-    <div style={{width: '176px', boxSizing: 'border-box'}}>
+    <div>
       <Select
         defaultValue={options[0]}
         options={options}
         styles={customStyles}
         isSearchable={false}
+        onChange={handleChange}
       />
     </div>
   );

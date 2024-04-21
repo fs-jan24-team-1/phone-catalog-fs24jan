@@ -1,8 +1,6 @@
 import { ButtonBack } from '../../components/UI/ButtonBack';
 import { ButtonColor } from '../../components/UI/ButtonColor';
-import { ButtonPagination } from '../../components/UI/ButtonPagination';
 import { ButtonSlider } from '../../components/UI/ButtonSlider';
-import { Dropdown } from '../../components/UI/DropDown';
 
 export const HomePage = () => {
   const COLOR_EXAMPLE = ['black', 'green', 'yellow', 'white', 'purple', 'red'];
@@ -10,7 +8,6 @@ export const HomePage = () => {
   return (
     <>
       <h1 className="title">Welcome to Nice Gadgets store!</h1>
-      <ButtonPagination />
       <ButtonSlider iconType={'arrowLeft'} />
       <ButtonSlider iconType={'arrowRight'} />
       <ButtonSlider iconType={'plus'} />
@@ -19,7 +16,6 @@ export const HomePage = () => {
         <ButtonColor key={currentColor} colorDevice={currentColor} />
       ))}
       <ButtonBack textForBackButton="Back/Default" />
-      <Dropdown />
     </>
   );
 };
