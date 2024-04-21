@@ -7,6 +7,7 @@ import { ButtonColor } from '../../components/UI/ButtonColor';
 import styles from './productItemPage.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -53,7 +54,7 @@ export const ProductItemPage = () => {
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
-  console.log(handleColorChange, selectedColor);
+  // console.log(handleColorChange, selectedColor);
 
   const handleCapacityChange = (capacity: string) => {
     setSelectedCapacity(capacity);
@@ -61,6 +62,8 @@ export const ProductItemPage = () => {
 
   return (
     <div className="product-item">
+      <Breadcrumbs />
+
       {product ? (
         <>
           <h1 className="title">{product.name}</h1>

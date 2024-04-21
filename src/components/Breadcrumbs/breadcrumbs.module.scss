@@ -13,12 +13,25 @@
   font-family: $Mont;
   align-items: center;
   text-decoration: none;
-  color: $secondary;
+  color: $primary;
 
   transition: color 0.5s ease;
 
-  &:hover {
-    color: $primary;
+  &__disabled {
+  display: flex;
+  align-items: center;
+  color: $secondary;
+
+    &::before {
+      content: '';
+      width: 19px;
+      height: 19px;
+      margin-right: 8px;
+
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url('../../img/icons/arrow_right.svg');
+    }
   }
 
   &::before {
@@ -31,7 +44,6 @@
     background-size: cover;
     background-image: url('../../img/icons/arrow_right.svg');
   }
-
 }
 
 .home__icon {
@@ -42,7 +54,5 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('../../img/icons/Home.svg');
-  // background-color: red;
-
 }
 
