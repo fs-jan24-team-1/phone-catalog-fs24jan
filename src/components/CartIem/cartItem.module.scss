@@ -48,11 +48,17 @@
     max-height: 66px;
     object-fit: contain;
     width: 100%;
+    transition: all 0.5s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   &__description {
     display: flex;
     align-items: center;
+    text-decoration: none;
   }
 
   &__name {
