@@ -1,11 +1,6 @@
 import React from 'react';
 import Select, { StylesConfig, CSSObjectWithLabel } from 'react-select';
 
-type MyOptionType = {
-  label: string;
-  value: string;
-};
-
 interface Option {
   value: number | string;
   label: string;
@@ -13,7 +8,7 @@ interface Option {
 
 interface DropdownProps {
   options: Option[];
-  onSelectChange: (selectedOption: string | number) => void;
+  onSelectChange: (selectedOption: string) => void;
 }
 
 interface CustomStylesProps {
@@ -22,7 +17,7 @@ interface CustomStylesProps {
   menuIsOpen?: boolean;
 }
 
-const customStyles: StylesConfig<MyOptionType, false> = {
+const customStyles: StylesConfig<Option, false> = {
   control: (base: CSSObjectWithLabel, { isFocused }: CustomStylesProps) => ({
     ...base,
 
@@ -80,7 +75,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   const handleChange = (selectedOption: Option | null) => {
     if (selectedOption) {
-      onSelectChange(selectedOption.value);
+      onSelectChange(`${selectedOption.value}`);
     }
   };
 
