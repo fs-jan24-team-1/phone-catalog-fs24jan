@@ -3,20 +3,22 @@
 @import '../../styles/utils/typography';
 
 .container {
+  margin-top: 32px;
+  margin-bottom: auto;
   display: flex;
-  margin: 24px 17px;
-
-  @include on-tablet {
-    margin: 24px 24px;
-  }
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
 
   @include on-desktop {
-    margin: 24px 32px;
+    justify-content: center;
+    flex-direction: row;
+    gap: 16px;
+    align-items: start;
   }
 
-  &__products{
-    display:  flex;
-    margin-right: 16px;
+  &__products {
+    display: flex;
     flex-direction: column;
   }
 }
@@ -26,12 +28,19 @@
   flex-direction: column;
 
   padding: 24px;
-  width: 368px;
-  height: 206px;
+  width: 288px;
   align-items: center;
 
   border-radius: 16px;
   border: 1px solid $elements;
+
+  @include on-tablet {
+    width: 592px;
+  }
+
+  @include on-desktop {
+    width: 368px;
+  }
 
   &__price {
     font-family: $Mont;
@@ -39,9 +48,10 @@
   }
 
   &__itemCount {
+    margin-bottom: 25px;
+    
     font-family: $Mont;
     font-size: 14px;
-    margin-bottom: 25px;
     color: $secondary;
   }
 
@@ -52,4 +62,3 @@
     background-color: $elements;
   }
 }
-

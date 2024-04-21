@@ -2,17 +2,45 @@ import React from 'react';
 import styles from './cartItem.module.scss';
 import { Product } from '../../types/Product';
 import { ButtonSlider } from '../UI/ButtonSlider';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 type Props = {
   product: Product;
 };
 
 export const CartItem: React.FC<Props> = ({ product }) => {
+  const cart = useSelector((state: RootState) => state.product.cart);
+  const dispatch = useDispatch();
+
+  const cartItem: Product = cart.find((item: Product) => item.id === product.id);
+
+  const handleRemoveFromCart = () => {
+    dispatch({
+      type: 'product/removeFromCart',
+      payload: product,
+    });
+  };
+
+  const handleDeacreaseQuantity = () => {
+    dispatch({
+      type: 'product/decreaseCart',
+      payload: product,
+    });
+  };
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: 'product/addToCart',
+      payload: product,
+    });
+  };
+
 
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItem__column1}>
-        <div className={styles.cartItem__icon}></div>
+        <div className={styles.cartItem__icon} onClick={handleRemoveFromCart}></div>
         <div className={styles.cartItem__image}>
           <img
             className={styles.cartItem__productImage}
@@ -28,14 +56,14 @@ export const CartItem: React.FC<Props> = ({ product }) => {
 
       <div className={styles.cartItem__column2}>
         <div className={styles.cartItem__button}>
-          <ButtonSlider iconType={'minus'} />
+        <ButtonSlider iconType={'minus'} onClick={() => handleDeacreaseQuantity()} />
           <span className={styles.cartItem__count}>
-            {1}
+            {cartItem.quantity}
           </span>
-          <ButtonSlider iconType={'plus'} />
+          <ButtonSlider iconType={'plus'} onClick={() => handleAddToCart()} />
         </div>
 
-        <span className={styles.cartItem__price}>{`$${product.price}`}</span>
+        <span className={styles.cartItem__price}>{`$${product.price * product.quantity}`}</span>
       </div>
     </div>
   );
