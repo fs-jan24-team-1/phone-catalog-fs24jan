@@ -56,11 +56,11 @@ export const CartItem: React.FC<Props> = ({ product }) => {
 
       <div className={styles.cartItem__column2}>
         <div className={styles.cartItem__button}>
-        <ButtonSlider iconType={'minus'} onClick={() => handleDeacreaseQuantity()} />
+        <ButtonSlider iconType={'minus'} handleClick={() => handleDeacreaseQuantity()} />
           <span className={styles.cartItem__count}>
             {cartItem.quantity}
           </span>
-          <ButtonSlider iconType={'plus'} onClick={() => handleAddToCart()} />
+          <ButtonSlider iconType={'plus'} handleClick={() => handleAddToCart()} />
         </div>
 
         <span className={styles.cartItem__price}>{`$${product.price * product.quantity}`}</span>
