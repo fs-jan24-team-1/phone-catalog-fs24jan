@@ -2,8 +2,9 @@ import React from 'react';
 import { ButtonSlider } from '../UI/ButtonSlider';
 import { ButtonPagination } from '../UI/ButtonPagination';
 import styles from './pagination.module.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { useSearchParams } from 'react-router-dom';
 
 type Props = {
   length: number;
@@ -17,7 +18,22 @@ export const Pagination: React.FC<Props> = ({
   handlePagination,
 }) => {
   const paginationNumbers = [];
-  const productsPerPage = useSelector((state: RootState) => state.product.productsPerPage);
+
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const perPage = params.get('perPage');
+
+  if (perPage) {
+    dispatch({
+      type: 'product/setProductsPerPage',
+      payload: perPage,
+    });
+  }
+
+  const productsPerPage = useSelector(
+    (state: RootState) => state.product.productsPerPage,
+  );
 
   for (let i = 1; i <= Math.ceil(length / productsPerPage); i++) {
     paginationNumbers.push(i);
@@ -34,6 +50,10 @@ export const Pagination: React.FC<Props> = ({
       handlePagination(currentPage - 1);
     }
   };
+
+  if (paginationNumbers.length <= 1) {
+    return null;
+  }
 
   return (
     <div className={styles.paginationContainer}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Select, { StylesConfig, CSSObjectWithLabel } from 'react-select';
+import { SortBy } from '../../Catalog';
 
 interface Option {
   value: number | string;
@@ -8,7 +9,7 @@ interface Option {
 
 interface DropdownProps {
   options: Option[];
-  onSelectChange: (selectedOption: string) => void;
+  onSelectChange: (selectedOption: SortBy) => void;
 }
 
 interface CustomStylesProps {
@@ -75,7 +76,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   const handleChange = (selectedOption: Option | null) => {
     if (selectedOption) {
-      onSelectChange(`${selectedOption.value}`);
+      onSelectChange(selectedOption.value as SortBy);
     }
   };
 

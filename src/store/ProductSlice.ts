@@ -14,7 +14,7 @@ const initialState: ProductState = {
   products: [],
   favourites: [],
   cart: [],
-  productsPerPage: 24,
+  productsPerPage: Infinity,
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
