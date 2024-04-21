@@ -1,11 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
 
-const options = [
-  { value: 'option 1', label: 'Option 1' },
-  { value: 'option 2', label: 'Option 2' },
-  { value: 'option 3', label: 'Option 3' },
-];
+interface Option {
+  value: number | string;
+  label: string;
+}
+
+interface DropdownProps {
+  options: Option[];
+  onSelectChange: (selectedOption: string | number) => void;
+}
 
 const customStyles = {
   control: (base: any, { isFocused }: any) => ({
@@ -49,15 +53,23 @@ const customStyles = {
   }),
 };
 
-export const Dropdown = () => {
+export const Dropdown: React.FC<DropdownProps> = ({ options, onSelectChange }) => {
+  const handleChange = (selectedOption: Option | null) => {
+    if (selectedOption) {
+      onSelectChange(selectedOption.value);
+    }
+  };
+
   return (
-    <div style={{}}>
+    <div>
       <Select
-        // isMulti
         defaultValue={options[0]}
         options={options}
         styles={customStyles}
+        onChange={handleChange}
       />
     </div>
   );
 };
+
+
