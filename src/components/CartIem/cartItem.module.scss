@@ -4,12 +4,11 @@
 
 .cartItem {
   display: flex;
-  width: 288px;
-  height: auto;
-
   flex-direction: column;
   gap: 16px;
   padding: 16px;
+  width: 288px;
+  height: auto;
   justify-content: space-between;
   margin-bottom: 16px;
 
@@ -95,8 +94,9 @@
     background-image: url(../../img/icons/close.svg);
     background-size: cover;
     background-repeat: no-repeat;
-    width: 16px;
     height: 16px;
+    width: 16px;
+    cursor: pointer;
   }
 }
 

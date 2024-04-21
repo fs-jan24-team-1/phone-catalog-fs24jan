@@ -4,14 +4,16 @@ import React, { useState } from 'react';
 
 interface ButtonSliderProps {
   iconType: 'arrowLeft' | 'arrowRight' | 'plus' | 'minus';
+  onClick?: () => void;
 }
 
-export const ButtonSlider: React.FC<ButtonSliderProps> = ({ iconType }) => {
+export const ButtonSlider: React.FC<ButtonSliderProps> = ({ iconType, onClick }) => {
   const [selectedSlider, setSelectedSlider] = useState(false);
 
   const handleClickSlider = () => {
     setSelectedSlider(!selectedSlider);
-  };
+    if (onClick) onClick();
+  }
 
   return (
     <>
