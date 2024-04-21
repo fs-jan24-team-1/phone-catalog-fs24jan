@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
 import { RootState } from '../../store/store';
 import { ButtonFavourite } from '../UI/ButtonFavourite';
+import { toast } from 'react-toastify';
 
 type Props = {
   product: Product;
@@ -39,11 +40,13 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleAddToCart = () => {
     if (isProductInCart) {
+      // toast.error('remove');
       dispatch({
         type: 'product/removeFromCart',
         payload: product,
       });
     } else {
+      // toast.success('add');
       dispatch({
         type: 'product/addToCart',
         payload: product,
@@ -101,7 +104,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           </div>
         </div>
 
-        <div className={styles.buttonBox}>
+        <div className={styles.buttonBox} >
           <ButtonPrimary
             textForPrimaryButton={
               isProductInCart ? 'Added to cart' : 'Add to cart'
