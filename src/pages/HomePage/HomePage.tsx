@@ -1,7 +1,6 @@
 import { ButtonBack } from '../../components/UI/ButtonBack';
 import { ButtonColor } from '../../components/UI/ButtonColor';
 import { ButtonSlider } from '../../components/UI/ButtonSlider';
-import { Dropdown } from '../../components/UI/DropDown';
 
 export const HomePage = () => {
   const COLOR_EXAMPLE = ['black', 'green', 'yellow', 'white', 'purple', 'red'];
@@ -17,7 +16,6 @@ export const HomePage = () => {
         <ButtonColor key={currentColor} colorDevice={currentColor} />
       ))}
       <ButtonBack textForBackButton="Back/Default" />
-      <Dropdown />
     </>
   );
 };

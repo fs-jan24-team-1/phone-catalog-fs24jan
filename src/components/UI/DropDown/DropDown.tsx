@@ -70,11 +70,14 @@ const customStyles: StylesConfig<MyOptionType, false> = {
   }),
   indicatorsContainer: (base: CSSObjectWithLabel) => ({
     ...base,
-    padding:'0 4px'
+    padding: '0 4px',
   }),
 };
 
-export const Dropdown: React.FC<DropdownProps> = ({ options, onSelectChange }) => {
+export const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  onSelectChange,
+}) => {
   const handleChange = (selectedOption: Option | null) => {
     if (selectedOption) {
       onSelectChange(selectedOption.value);
@@ -93,5 +96,3 @@ export const Dropdown: React.FC<DropdownProps> = ({ options, onSelectChange }) =
     </div>
   );
 };
-
-

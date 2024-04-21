@@ -45,7 +45,6 @@ export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
     sortedProducts.sort((a, b) => a.year - b.year);
   }
 
-  const paginatedProducts = sortedProducts.slice(0, itemsPerPage);
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -67,7 +66,7 @@ export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
         </div>
 
         <div className={styles.sectionWrapper}>
-          {paginatedProducts.map((product: Product) => (
+          {sortedProducts.map((product: Product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
