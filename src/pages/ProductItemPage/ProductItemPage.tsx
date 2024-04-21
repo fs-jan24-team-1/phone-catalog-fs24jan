@@ -54,7 +54,7 @@ export const ProductItemPage = () => {
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
-  // console.log(handleColorChange, selectedColor);
+  console.log(handleColorChange, selectedColor);
 
   const handleCapacityChange = (capacity: string) => {
     setSelectedCapacity(capacity);
