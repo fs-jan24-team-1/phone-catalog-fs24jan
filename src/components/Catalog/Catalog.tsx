@@ -25,6 +25,7 @@ const itemsPerPageOptions = [
 export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
   const [sortBy, setSortBy] = useState<string>('');
   const [itemsPerPage, setItemsPerPage] = useState<number>(8);
+  console.log(itemsPerPage)
 
   const handleSortChange = (selectedSort: string) => {
     setSortBy(selectedSort);
