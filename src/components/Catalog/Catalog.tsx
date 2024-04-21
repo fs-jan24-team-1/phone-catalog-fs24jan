@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 interface Props {
   products: Product[];
+  totalProducts: number;
 }
 
 const sortOptions = [
@@ -21,7 +22,7 @@ const itemsPerPageOptions = [
   { value: 24, label: '24' },
 ];
 
-export const Catalog: React.FC<Props> = ({ products }) => {
+export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
   const [sortBy, setSortBy] = useState<string>('');
   const [itemsPerPage, setItemsPerPage] = useState<number>(8);
 
@@ -45,12 +46,10 @@ export const Catalog: React.FC<Props> = ({ products }) => {
   }
 
   const paginatedProducts = sortedProducts.slice(0, itemsPerPage);
-  const numberOfItems = products.length;
-
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h3>{numberOfItems} models</h3>
+        <h3>{totalProducts} models</h3>
 
         <div className={styles.filter}>
           <div className={styles.filterContainer}>

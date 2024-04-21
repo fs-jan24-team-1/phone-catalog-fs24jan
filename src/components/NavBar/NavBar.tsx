@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // NavBar.tsx
 import { Link } from 'react-router-dom';
 import styles from './navBar.module.scss';

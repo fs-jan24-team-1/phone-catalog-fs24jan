@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './buttonFavourite.module.scss';
 import { useState } from 'react';
+import React from 'react';
 
 interface Props {
   callback: () => void;

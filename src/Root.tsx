@@ -7,13 +7,13 @@ import {
 import { App } from './App';
 import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
-import { ProductCard } from './components/ProductCard';
 import { TabletsPage } from './pages/TabletsPage';
 import { FavoritesPage } from './pages/FavoritesPage';
 import { PhonesPage } from './pages/PhonesPage';
 import { AccessoriesPage } from './pages/AccessoriesPage';
 import { CartPage } from './pages/CartPage';
 import { useRef } from 'react';
+import { ProductItemPage } from './pages/ProductItemPage';
 
 export const Root = () => {
   const scrollToTopRef = useRef<HTMLDivElement | null>(null);
@@ -25,17 +25,15 @@ export const Root = () => {
           <Route index element={<HomePage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
 
-          <Route path="/phones" element={<PhonesPage />}>
-            {/* <Route path=":productId" element={<ProductCard />} /> */}
-          </Route>
+          <Route path="/phones" element={<PhonesPage />}></Route>
+          <Route path="/phones/:productId" element={<ProductItemPage />}></Route>
 
-          <Route path="/tablets" element={<TabletsPage />}>
-            {/* <Route path=":productId" element={<ProductCard />} /> */}
-          </Route>
+          <Route path="/tablets" element={<TabletsPage />}></Route>
+          <Route path="/tablets/:productId" element={<ProductItemPage />}></Route>
 
-          <Route path="/accessories" element={<AccessoriesPage />}>
-            {/* <Route path=":productId" element={<ProductCard />} /> */}
-          </Route>
+
+          <Route path="/accessories" element={<AccessoriesPage />}></Route>
+          <Route path="/accessories/:productId" element={<ProductItemPage />}></Route>
 
           <Route path="/favorites" element={<FavoritesPage />} />
 
