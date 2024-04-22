@@ -27,11 +27,15 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleAddToFavourites = () => {
     if (isProductInFavourites) {
+      toast.success('The product has been removed');
+
       dispatch({
         type: 'product/removeFromFavourites',
         payload: product,
       });
     } else {
+      toast.success('The product has been added');
+
       dispatch({
         type: 'product/addToFavourites',
         payload: product,
