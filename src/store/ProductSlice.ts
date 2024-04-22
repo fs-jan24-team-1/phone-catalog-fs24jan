@@ -1,52 +1,77 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
 
-interface ProductState {
+export interface ProductState {
   products: Product[];
   favourites: Product[];
   cart: Product[];
-  page: number;
-  totalCount: number;
-  limit: number;
+  productsPerPage: number;
+  cartTotalQuantity: number;
+  cartTotalAmount: number;
 }
 
 const initialState: ProductState = {
   products: [],
   favourites: [],
   cart: [],
-  page: 1,
-  totalCount: 0,
-  limit: 2,
+  productsPerPage: Infinity,
+  cartTotalQuantity: 0,
+  cartTotalAmount: 0,
+};
+
+type CartTotal = {
+  total: number;
+  quantity: number;
+};
+
+const loadState = (key: string) => {
+  try {
+    const serializedState = localStorage.getItem(key);
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+const saveState = (key: string, state: Product[]) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem(key, serializedState);
+  } catch {
+    // errors
+  }
 };
 
 const productSlice = createSlice({
   name: 'product',
-  initialState,
+  initialState: {
+    ...initialState,
+    favourites: loadState('favourites') || initialState.favourites,
+    cart: loadState('cart') || initialState.cart,
+  },
   reducers: {
     setFavourites: (state, action: PayloadAction<Product[]>) => {
       state.favourites = action.payload;
+      saveState('favourites', action.payload);
     },
-
     setCart: (state, action: PayloadAction<Product[]>) => {
       state.cart = action.payload;
+      saveState('cart', action.payload);
     },
-
     setProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
     },
+    setProductsPerPage: (state, action: PayloadAction<number>) => {
+      state.productsPerPage = action.payload;
+    },
 
-    setPage: (state, action: PayloadAction<number>) => {
-      state.page = action.payload;
-    },
-    setTotalCount: (state, action: PayloadAction<number>) => {
-      state.totalCount = action.payload;
-    },
-    setLimit: (state, action: PayloadAction<number>) => {
-      state.limit = action.payload;
-    },
     addToFavourites: (state, action: PayloadAction<Product>) => {
       const productToAdd: Product = action.payload;
       state.favourites.push(productToAdd);
+      saveState('favourites', state.favourites);
     },
     removeFromFavourites: (state, action: PayloadAction<Product>) => {
       const productToRemove: Product = action.payload;
@@ -55,12 +80,27 @@ const productSlice = createSlice({
       );
       if (index !== -1) {
         state.favourites.splice(index, 1);
+        saveState('favourites', state.favourites);
       }
     },
     addToCart: (state, action: PayloadAction<Product>) => {
-      const productToAdd: Product = action.payload;
-      state.cart.push(productToAdd);
+      const index = state.cart.findIndex(
+        (product: Product) => product.id === action.payload.id,
+      );
+
+      if (index >= 0) {
+        state.cart[index] = {
+          ...state.cart[index],
+          quantity: state.cart[index].quantity + 1,
+        };
+      } else {
+        const productToAdd = { ...action.payload, quantity: 1 };
+        state.cart.push(productToAdd);
+      }
+
+      saveState('cart', state.cart);
     },
+
     removeFromCart: (state, action: PayloadAction<Product>) => {
       const productToRemove: Product = action.payload;
       const index = state.cart.findIndex(
@@ -68,19 +108,60 @@ const productSlice = createSlice({
       );
       if (index !== -1) {
         state.cart.splice(index, 1);
+        saveState('cart', state.cart);
       }
+    },
+
+    decreaseCart: (state, action: PayloadAction<Product>) => {
+      const decreaseItem = state.cart.find(
+        (item: Product) => item.id === action.payload.id,
+      );
+      if (decreaseItem.quantity > 1) {
+        decreaseItem.quantity -= 1;
+      } else if (decreaseItem.quantity === 1) {
+        const nextCartItems = state.cart.filter(
+          (item: Product) => item.id !== action.payload.id,
+        );
+        state.cart = nextCartItems;
+        saveState('cart', state.cart);
+      }
+    },
+
+    getTotals(state) {
+      // eslint-disable-next-line prefer-const
+      let { total, quantity } : CartTotal = state.cart.reduce(
+        (cartTotal: CartTotal, cartItem: Product) => {
+          const { price, quantity } = cartItem;
+          const itemTotal = price * quantity;
+
+          cartTotal.total += itemTotal;
+          cartTotal.quantity += quantity;
+
+          return cartTotal;
+        },
+        {
+          total: 0,
+          quantity: 0,
+        },
+      );
+      total = parseFloat(total.toFixed(2));
+      state.cartTotalQuantity = quantity;
+      state.cartTotalAmount = total;
     },
   },
 });
 
 export const {
-  setPage,
-  setTotalCount,
-  setLimit,
+  setFavourites,
+  setCart,
+  setProducts,
+  setProductsPerPage,
   addToFavourites,
   removeFromFavourites,
   addToCart,
   removeFromCart,
+  decreaseCart,
+  getTotals,
 } = productSlice.actions;
 
 export default productSlice.reducer;

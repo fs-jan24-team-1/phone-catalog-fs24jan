@@ -8,6 +8,7 @@
   justify-content: space-between;
   box-sizing: border-box;
   border-bottom: 1px solid $elements;
+  background-color: $white;
 
   @include on-desktop {
     height: 64px;
@@ -15,7 +16,6 @@
 
   &__container {
     display: flex;
-    // justify-content: space-between;
     align-items: center;
     gap: 16px;
 
@@ -76,7 +76,7 @@
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 800;
-    size: 12px;
+    font-size: 12px;
 
     @include on-desktop {
       height: 64px;

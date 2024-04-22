@@ -1,19 +1,26 @@
 import React from 'react';
-import Select from 'react-select';
+import Select, { StylesConfig, CSSObjectWithLabel } from 'react-select';
+import { SortBy } from '../../Catalog';
 
-const options = [
-  { value: 'option 1', label: 'Option 1' },
-  { value: 'option 2', label: 'Option 2' },
-  { value: 'option 3', label: 'Option 3' },
-];
+interface Option {
+  value: number | string;
+  label: string;
+}
 
-const customStyles = {
-  control: (base: any, { isFocused }: any) => ({
+interface DropdownProps {
+  options: Option[];
+  onSelectChange: (selectedOption: SortBy) => void;
+}
+
+interface CustomStylesProps {
+  isFocused?: boolean;
+  isSelected?: boolean;
+  menuIsOpen?: boolean;
+}
+
+const customStyles: StylesConfig<Option, false> = {
+  control: (base: CSSObjectWithLabel, { isFocused }: CustomStylesProps) => ({
     ...base,
-    padding: '12px, 10px',
-    height: '40px',
-
-    boxSizing: 'border-box',
 
     border: `1px solid ${isFocused ? '#0F0F11' : '#B4BDC3'}`,
     boxShadow: 'none',
@@ -23,15 +30,18 @@ const customStyles = {
     fontFamily: 'Mont',
     fontSize: '14px',
     fontWeight: '700',
+    minHeight: '40px',
 
     '&:hover': {
       borderColor: '#89939A',
     },
   }),
-  option: (base: any, { isSelected }: any) => ({
+
+  option: (base: CSSObjectWithLabel, { isSelected }: CustomStylesProps) => ({
     ...base,
-    height: '32px',
     fontSize: '14px',
+    lineHeight: '21px',
+
     color: isSelected ? '#0F0F11' : '#89939A',
     fontWeight: '700',
     backgroundColor: isSelected ? '#FAFBFC' : '#fff',
@@ -40,21 +50,44 @@ const customStyles = {
       color: '#0F0F11',
     },
   }),
-  dropdownIndicator: (base: any, state: any) => ({
+  valueContainer: (base: CSSObjectWithLabel) => ({
+    ...base,
+    padding: '0 12px',
+    lineHeight: '1',
+  }),
+  dropdownIndicator: (base: CSSObjectWithLabel, state: CustomStylesProps) => ({
     ...base,
     transition: 'all .3s ease',
-    transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
+    transform: state.menuIsOpen ? 'rotate(180deg)' : 'none',
+  }),
+  indicatorSeparator: (base: CSSObjectWithLabel) => ({
+    ...base,
+    display: 'none',
+  }),
+  indicatorsContainer: (base: CSSObjectWithLabel) => ({
+    ...base,
+    padding: '0 4px',
   }),
 };
 
-export const Dropdown = () => {
+export const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  onSelectChange,
+}) => {
+  const handleChange = (selectedOption: Option | null) => {
+    if (selectedOption) {
+      onSelectChange(selectedOption.value as SortBy);
+    }
+  };
+
   return (
-    <div style={{ width: '176px', padding: '10px'}} >
+    <div>
       <Select
-        // isMulti
         defaultValue={options[0]}
         options={options}
         styles={customStyles}
+        isSearchable={false}
+        onChange={handleChange}
       />
     </div>
   );

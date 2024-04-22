@@ -1,7 +1,9 @@
-import './Loader.scss';
+import React from 'react';
+import './loader.scss';
+import styles from './loader.module.scss';
 
 export const Loader = () => (
-  <div className="Loader" data-cy="loader">
-    <div className="Loader__content" />
+  <div className={styles.loader} data-cy="loader">
+    <div className={styles.loader__content} />
   </div>
 );

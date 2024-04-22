@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
 import { RootState } from '../../store/store';
 import { ButtonFavourite } from '../UI/ButtonFavourite';
+import { Link, useLocation } from 'react-router-dom';
 
 type Props = {
   product: Product;
@@ -12,8 +13,10 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
-  let favourites = useSelector((state: RootState) => state.product.favourites);
-  let cart = useSelector((state: RootState) => state.product.cart);
+  const favourites = useSelector(
+    (state: RootState) => state.product.favourites,
+  );
+  const cart = useSelector((state: RootState) => state.product.cart);
 
   const isProductInFavourites = favourites.some(
     (favProduct: Product) => favProduct.id === product.id,
@@ -51,66 +54,77 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     }
   };
 
+  const { pathname } = useLocation();
+  const url =
+    pathname !== `/${product.category}`
+      ? `../${product.category}/${product.itemId}`
+      : `./${product.itemId}`;
+
   return (
-    <article className={styles.wrapper}>
-      <div className={styles.productCard}>
-        <div className={styles.productImageContainer}>
-          <img
-            className={styles.productImage}
-            src={product.image}
-            alt={product.name}
-          />
-        </div>
-
-        <div className={styles.productDetails}>
-          <h3 className={styles.productName}>{product.name}</h3>
-
-          <div className={styles.productPrice}>
-            <div className={styles.productDiscount}>${product.price}</div>
-
-            {product.fullPrice && (
-              <div className={styles.productFullPrice}>
-                ${product.fullPrice}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className={styles.underline}></div>
-
-        <div className={styles.productDescription}>
-          <div className={styles.productDescriptionBox}>
-            <span className={styles.productDescriptionTitle}>Screen</span>
-            <span className={styles.productDescriptionValue}>
-              {product.screen}
-            </span>
+    <Link
+      to={url}
+      style={{ textDecoration: 'none', color: 'black' }}
+    >
+      <article className={styles.wrapper}>
+        <div className={styles.productCard}>
+          <div className={styles.productImageContainer}>
+            <img
+              className={styles.productImage}
+              src={product.image}
+              alt={product.name}
+            />
           </div>
 
-          <div className={styles.productDescriptionBox}>
-            <span className={styles.productDescriptionTitle}>Capacity</span>
-            <span className={styles.productDescriptionValue}>
-              {product.capacity}
-            </span>
+          <div className={styles.productDetails}>
+            <h3 className={styles.productName}>{product.name}</h3>
+
+            <div className={styles.productPrice}>
+              <div className={styles.productDiscount}>${product.price}</div>
+
+              {product.fullPrice && (
+                <div className={styles.productFullPrice}>
+                  ${product.fullPrice}
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className={styles.productDescriptionBox}>
-            <span className={styles.productDescriptionTitle}>RAM</span>
-            <span className={styles.productDescriptionValue}>
-              {product.ram}
-            </span>
+          <div className={styles.underline}></div>
+
+          <div className={styles.productDescription}>
+            <div className={styles.productDescriptionBox}>
+              <span className={styles.productDescriptionTitle}>Screen</span>
+              <span className={styles.productDescriptionValue}>
+                {product.screen}
+              </span>
+            </div>
+
+            <div className={styles.productDescriptionBox}>
+              <span className={styles.productDescriptionTitle}>Capacity</span>
+              <span className={styles.productDescriptionValue}>
+                {product.capacity}
+              </span>
+            </div>
+
+            <div className={styles.productDescriptionBox}>
+              <span className={styles.productDescriptionTitle}>RAM</span>
+              <span className={styles.productDescriptionValue}>
+                {product.ram}
+              </span>
+            </div>
+          </div>
+
+          <div className={styles.buttonBox}>
+            <ButtonPrimary
+              textForPrimaryButton={
+                isProductInCart ? 'Added to cart' : 'Add to cart'
+              }
+              callback={handleAddToCart}
+            />
+            <ButtonFavourite callback={handleAddToFavourites} />
           </div>
         </div>
-
-        <div className={styles.buttonBox}>
-          <ButtonPrimary
-            textForPrimaryButton={
-              isProductInCart ? 'Added to cart' : 'Add to cart'
-            }
-            callback={handleAddToCart}
-          />
-          <ButtonFavourite callback={handleAddToFavourites} />
-        </div>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 };
