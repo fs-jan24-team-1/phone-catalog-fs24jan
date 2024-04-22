@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
 import { RootState } from '../../store/store';
 import { ButtonFavourite } from '../UI/ButtonFavourite';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 type Props = {
   product: Product;
@@ -54,9 +54,15 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     }
   };
 
+  const { pathname } = useLocation();
+  const url =
+    pathname !== `/${product.category}`
+      ? `../${product.category}/${product.itemId}`
+      : `./${product.itemId}`;
+
   return (
     <Link
-      to={`./${product.itemId}`}
+      to={url}
       style={{ textDecoration: 'none', color: 'black' }}
     >
       <article className={styles.wrapper}>

@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Link, NavLink } from 'react-router-dom';
 import styles from './header.module.scss';
 import classNames from 'classnames';

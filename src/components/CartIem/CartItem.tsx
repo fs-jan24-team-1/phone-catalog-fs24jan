@@ -4,6 +4,7 @@ import { Product } from '../../types/Product';
 import { ButtonSlider } from '../UI/ButtonSlider';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { Link, useLocation } from 'react-router-dom';
 
 type Props = {
   product: Product;
@@ -38,25 +39,27 @@ export const CartItem: React.FC<Props> = ({ product }) => {
     });
   };
 
+  const { pathname } = useLocation();
+  const url =
+    pathname !== `/${product.category}`
+      ? `../${product.category}/${product.itemId}`
+      : `./${product.itemId}`;
+
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItem__column1}>
-        <button
-          className={styles.cartItem__close}
-          onClick={handleRemoveFromCart}
-        ></button>
-
-        <div className={styles.cartItem__image}>
+        <div className={styles.cartItem__icon} onClick={handleRemoveFromCart}></div>
+        <Link to={url} className={styles.cartItem__image}>
           <img
             className={styles.cartItem__productImage}
             src={product.image}
             alt={product.name}
           />
-        </div>
+        </Link>
 
-        <div className={styles.cartItem__description}>
+        <Link to={url} className={styles.cartItem__description}>
           <span className={styles.cartItem__name}>{product.name}</span>
-        </div>
+        </Link>
       </div>
 
       <div className={styles.cartItem__column2}>
