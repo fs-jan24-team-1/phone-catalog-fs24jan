@@ -46,7 +46,7 @@ export const CartPage = () => {
             <div className={styles.totalCost__line}></div>
             <ButtonPrimary
               textForPrimaryButton="Checkout"
-              callback={tempFunction}
+              callback={tempFunction} // щось додати
             />
           </div>
         </div>
