@@ -29,9 +29,9 @@ export const PhonesPage = () => {
     <div className={styles.container}>
       <Breadcrumbs />
 
-      <h1 className="title">Mobile phones</h1>
+      <h1 className={styles.container__title}>Mobile phones</h1>
 
-      <Catalog products={currentProducts} totalProducts={products.length}/>
+      <Catalog products={currentProducts} totalProducts={products.length} />
       <Pagination
         length={products.length}
         currentPage={currentPage}

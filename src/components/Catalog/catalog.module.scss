@@ -6,7 +6,19 @@
   justify-content: center;
 }
 
-.container {
+.catalog {
+  &__quantity {
+    margin-bottom: 32px;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: $secondary;
+
+    @include on-tablet {
+      margin-bottom: 40px;
+    }
+  }
 }
 
 .filter {
@@ -17,20 +29,22 @@
     justify-content: start;
     gap: 16px;
   }
-}
-.filterContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.filterDescription {
-  color: $secondary;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15.34px;
+
+  &__сontainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__description {
+    color: $secondary;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15.34px;
+  }
 }
 
-.sectionWrapper {
+.product {
   @include pageGrid;
   margin: 24px 0;
 }

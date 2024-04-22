@@ -10,7 +10,9 @@ import { Category } from '../../types/Category';
 
 export const TabletsPage = () => {
   let products = useSelector((state: RootState) => state.product.products);
-  const productsPerPage = useSelector((state: RootState) => state.product.productsPerPage);
+  const productsPerPage = useSelector(
+    (state: RootState) => state.product.productsPerPage,
+  );
   const [currentPage, setCurrentPage] = useState(1);
 
   products = products.filter(
@@ -28,7 +30,7 @@ export const TabletsPage = () => {
   return (
     <div className={styles.container}>
       <Breadcrumbs />
-      <h1 className="title">Tablets Page</h1>
+      <h1 className={styles.container__title}>Tablets</h1>
 
       <Catalog products={currentProducts} totalProducts={products.length} />
       <Pagination

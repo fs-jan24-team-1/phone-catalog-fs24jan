@@ -19,15 +19,12 @@ export const LottieAnimation: FC<LottieAnimationProps> = ({
   speed = 1,
 }) => {
   const options: Options = {
-    loop, autoplay, animationData,
+    loop,
+    autoplay,
+    animationData,
   };
 
   return (
-    <Lottie
-      options={options}
-      height={height}
-      width={width}
-      speed={speed}
-    />
+    <Lottie options={options} height={height} width={width} speed={speed} />
   );
 };
