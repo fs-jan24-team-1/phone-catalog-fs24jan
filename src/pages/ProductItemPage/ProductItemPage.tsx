@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import classNames from 'classnames';
+import { ButtonCapacity } from '../../components/UI/ButtonCapacity';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -106,31 +107,38 @@ export const ProductItemPage = () => {
             </div>
 
             <div className={styles.product__info}>
-              <div>
-                <p>
-                  <strong>Available colors:</strong>
+              <div className={styles.product__info__colors}>
+                <p className={styles.product__info__colors_title}>
+                  Available colors:
                 </p>
-                <div className="color-buttons">
+                <div className={styles.product__info__colors_buttons}>
                   {product.colorsAvailable.map((color, index) => (
-                    <ButtonColor key={index} colorDevice={color} />
+                    <div
+                      key={index}
+                      className={styles.product__info__color_button}
+                    >
+                      <ButtonColor colorDevice={color} />
+                    </div>
                   ))}
                 </div>
               </div>
 
-              <p>
-                <strong>Capacity:</strong>
-              </p>
-              <div className="capacity-buttons">
-                {product.capacityAvailable.map((capacity, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleCapacityChange(capacity)}
-                    className={`capacity-button ${selectedCapacity === capacity ? 'selected' : ''}`}
-                  >
-                    {capacity}
-                  </button>
-                ))}
+              <div className={styles.product__info__capacity}>
+                <p className={styles.product__info__capacity_title}>
+                  Select capacity:
+                </p>
+                <div className={styles.product__info__capacity_buttons}>
+                  {product.capacityAvailable.map((capacity, index) => (
+                    <div
+                      key={index}
+                      className={styles.product__info__capacity_button}
+                    >
+                      <ButtonCapacity text={capacity} />
+                    </div>
+                  ))}
+                </div>
               </div>
+
               <p>
                 <strong>Price:</strong> ${product.priceRegular}
               </p>

@@ -18,11 +18,13 @@
     gap: 16px;
   }
 }
+
 .filterContainer {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
+
 .filterDescription {
   color: $secondary;
   font-weight: 500;

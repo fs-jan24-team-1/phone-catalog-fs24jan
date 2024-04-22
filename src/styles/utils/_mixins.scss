@@ -38,7 +38,6 @@
   height: $size;
 }
 
-
 @mixin page-grid {
   --columns: 4;
 
@@ -54,7 +53,6 @@
     --columns: 24;
   }
 }
-
 
 @mixin hover($property, $toValue) {
   transition: #{$property} $effectDuration;

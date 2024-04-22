@@ -1,14 +1,15 @@
 @import '../../../styles/utils/variables';
 @import '../../../styles/utils/typography';
 
-.color__сontainer {
-  display: inline-block;
+.pagination__сontainer {
+  display: flex;
 }
 
 .button {
   display: flex;
-  width: 32px;
+  width: 100%;
   height: 32px;
+  padding: 8px;
 
   font-family: $Mont;
   justify-content: center;
@@ -16,28 +17,24 @@
 
   cursor: pointer;
   text-decoration: none;
-  border-radius: 48px;
+
   background-color: $white;
+  border-radius: 4px;
 
   transition: all 0.5s ease;
-
-  &::before {
-    content: '';
-    position: absolute;
-
-    width: 26px;
-    height: 26px;
-
-    border-radius: 36px;
-    background-color: var(--bg-color);
-  }
 
   &.default {
     color: $primary;
     border: 1px solid $icons;
   }
 
-  &:hover, &.selected {
+  &:hover {
     border: 1px solid $primary;
+  }
+
+  &.selected {
+    border: 1px solid $primary;
+    background-color: $primary;
+    color: $white;
   }
 }
