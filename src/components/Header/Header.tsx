@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Link, NavLink } from 'react-router-dom';
 import styles from './header.module.scss';
 import classNames from 'classnames';
@@ -13,10 +14,10 @@ import { RootState } from '../../store/store';
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
 
-  let favourItes = useSelector((state: RootState) => state.product.favourites);
+  const favourItes = useSelector((state: RootState) => state.product.favourites);
   const favoritesCount = favourItes.length;
 
-  let cartItes = useSelector((state: RootState) => state.product.cart);
+  const cartItes = useSelector((state: RootState) => state.product.cart);
   const cartCount = cartItes.length;
 
   const toggleMenu = () => {
