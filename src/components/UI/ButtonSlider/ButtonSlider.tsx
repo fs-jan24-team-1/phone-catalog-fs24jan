@@ -8,28 +8,17 @@ interface ButtonSliderProps {
   disabled?: boolean;
 }
 
-export const ButtonSlider: React.FC<ButtonSliderProps> = ({ iconType, active, handleClick, disabled }) => {
-  const buttonContent = (
-    <div
-      className={`${styles.icon} ${active ? styles[iconType] : `${styles[iconType]} ${styles.disable}`}`}
-    />
-  );
-
-  if (disabled) {
-    return (
-      <span className={`${styles.button} ${styles.disable}`}>
-        {buttonContent}
-      </span>
-    );
-  }
-
+export const ButtonSlider: React.FC<ButtonSliderProps> = ({ iconType, active, handleClick }) => {
   return (
     <div
-      className={`${styles.button} ${active ? styles.disable : styles.default}`}
-      onClick={handleClick}
+    className={`${styles.button} ${active ? styles.disable : styles.default}`}
+    onClick={handleClick}
     >
-      {buttonContent}
+      <div
+      className={`${styles.icon} ${active ? styles[iconType] : `${styles[iconType]} ${styles.disable}`}`}
+    >
     </div>
+  </div>
+
   );
 };
-

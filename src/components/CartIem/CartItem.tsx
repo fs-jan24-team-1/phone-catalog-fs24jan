@@ -67,7 +67,7 @@ export const CartItem: React.FC<Props> = ({ product }) => {
           <ButtonSlider
             iconType={'minus'}
             handleClick={() => handleDeacreaseQuantity()}
-            disabled={product.quantity === 1}
+            active={product.quantity === 1}
           />
           <span className={styles.cartItem__count}>{cartItem.quantity}</span>
           <ButtonSlider
