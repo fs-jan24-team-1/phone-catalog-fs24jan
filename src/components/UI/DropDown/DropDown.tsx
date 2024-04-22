@@ -1,6 +1,7 @@
 import React from 'react';
 import Select, { StylesConfig, CSSObjectWithLabel } from 'react-select';
 import { SortBy } from '../../Filter/Filter';
+import { useSearchParams } from 'react-router-dom';
 
 interface Option {
   value: number | string;
@@ -80,10 +81,22 @@ export const Dropdown: React.FC<DropdownProps> = ({
     }
   };
 
+  const [searchParams] = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const sortByParam = params.get('sort');
+  const perPageParam = params.get('perPage');
+
+  const getSelectedValue = (options: Option[]) => {
+    if (options[0].value === SortBy.age) {
+      return options.find((option) => option.value === sortByParam);
+    }
+    return options.find((option) => option.value === Number(perPageParam));
+  }
+
   return (
     <div>
       <Select
-        defaultValue={options[0]}
+        defaultValue={getSelectedValue(options) || options[0]}
         options={options}
         styles={customStyles}
         isSearchable={false}

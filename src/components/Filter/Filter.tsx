@@ -30,8 +30,8 @@ export const Filter = () => {
   const [sortBy, setSortBy] = useState<SortBy>(
     sortByParam ? (sortByParam as SortBy) : SortBy.age,
   );
+  console.log(sortBy);
 
-console.log(sortBy);
   const handleSortParams = (selectedSort: SortBy) => {
     const params = new URLSearchParams(searchParams);
     params.set('sort', selectedSort);
@@ -58,7 +58,9 @@ console.log(sortBy);
     <div className={styles.filter}>
       <div className={styles.filterContainer}>
         <span className={styles.filterDescription}>Sort by</span>
-        <Dropdown options={sortOptions} onSelectChange={handleSortParams} />
+        <Dropdown
+          options={sortOptions}
+          onSelectChange={handleSortParams} />
       </div>
 
       <div className={styles.filterContainer}>
