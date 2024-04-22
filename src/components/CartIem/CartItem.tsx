@@ -48,7 +48,7 @@ export const CartItem: React.FC<Props> = ({ product }) => {
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItem__column1}>
-        <div className={styles.cartItem__icon} onClick={handleRemoveFromCart}></div>
+        <div className={styles.cartItem__close} onClick={handleRemoveFromCart}></div>
         <Link to={url} className={styles.cartItem__image}>
           <img
             className={styles.cartItem__productImage}
