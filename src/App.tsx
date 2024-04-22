@@ -9,11 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
 import { MessageContainer } from "./components/UI/MessageNotification";
 
-type Props = {
-  scrollToTopRef: React.RefObject<HTMLDivElement> | null;
-};
-
-export const App: React.FC<Props> = ({ scrollToTopRef }) => {
+export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +32,7 @@ export const App: React.FC<Props> = ({ scrollToTopRef }) => {
     <div data-cy="app" className="wrapper">
       <MessageContainer />
 
-      <Header scrollToTopRef={scrollToTopRef} />
+      <Header />
 
       <div className="section">
         <div className="container">
@@ -44,7 +40,7 @@ export const App: React.FC<Props> = ({ scrollToTopRef }) => {
         </div>
       </div>
 
-      <Footer scrollToTopRef={scrollToTopRef} />
+      <Footer />
     </div>
   );
 };

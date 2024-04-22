@@ -1,12 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom"
 import styles from "./footer.module.scss"
 
-type Props = {
-  scrollToTopRef: React.RefObject<HTMLDivElement> | null;
-};
-
-export const Footer: React.FC<Props> = ({ scrollToTopRef }) => {
+export const Footer = () => {
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   return (
     <footer className={styles.footer}>
@@ -28,9 +26,7 @@ export const Footer: React.FC<Props> = ({ scrollToTopRef }) => {
         </ul>
 
         <div className={styles['back-to-top']}>
-          <div className={styles['back-to-top__content']} onClick={
-            () => scrollToTopRef?.current?.scrollIntoView({ behavior: 'smooth' })
-          }>
+          <div className={styles['back-to-top__content']} onClick={handleScrollToTop}>
             <span className={styles['back-to-top__text']}>Back to top</span>
 
             <div className={styles['back-to-top__button']} />

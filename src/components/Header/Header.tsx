@@ -6,16 +6,12 @@ import logo from '../../img/icons/Logo.svg';
 import menu from '../../img/icons/menu.svg';
 import cours from '../../img/icons/cours.svg';
 import favorites from '../../img/icons/hearts.svg';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { NavBar } from '../NavBar/NavBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-type Props = {
-  scrollToTopRef: React.RefObject<HTMLDivElement> | null;
-};
-
-export const Header: FC<Props> = ({ scrollToTopRef }) => {
+export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
 
   const favourItes = useSelector((state: RootState) => state.product.favourites);
@@ -32,7 +28,7 @@ export const Header: FC<Props> = ({ scrollToTopRef }) => {
     classNames(styles.header__nav_link, { [styles.is_active]: isActive });
 
   return (
-    <div className={styles.header} ref={scrollToTopRef}>
+    <div className={styles.header}>
       <div className={styles.header__container}>
         <div className={styles.header__logo}>
           <div>
