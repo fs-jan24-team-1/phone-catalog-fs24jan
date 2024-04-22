@@ -129,7 +129,6 @@ export const ProductItemPage = () => {
                     <img
                       src={image}
                       alt={product.name}
-                      className={styles.thumbnailImage}
                     />
                   </div>
                 ))}
