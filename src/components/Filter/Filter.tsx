@@ -2,7 +2,6 @@ import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from '../UI/DropDown';
 import styles from './filter.module.scss';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 export enum SortBy {
   age = 'age',
@@ -39,19 +38,10 @@ export const Filter = () => {
     setSortBy(selectedSort);
   };
 
-  const dispatch = useDispatch();
   const handlePerPageParams = (selectedItemsPerPage: string) => {
     const params = new URLSearchParams(searchParams);
-    if (params.has('perPage')) {
-      params.set('perPage', selectedItemsPerPage);
-    } else {
-      params.append('perPage', selectedItemsPerPage);
-    }
+    params.set('perPage', selectedItemsPerPage);
     setSearchParams(params.toString());
-    dispatch({
-      type: 'product/setProductsPerPage',
-      payload: selectedItemsPerPage,
-    });
   };
 
   return (
