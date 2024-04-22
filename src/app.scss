@@ -20,3 +20,10 @@ body {
 .section {
   flex: 1 1 auto;
 }
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
