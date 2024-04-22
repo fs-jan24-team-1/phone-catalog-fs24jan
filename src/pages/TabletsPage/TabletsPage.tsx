@@ -1,12 +1,9 @@
-import styles from './tabletsPage.module.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { Product } from '../../types/Product';
 import { Catalog } from '../../components/Catalog';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { SetStateAction, useState } from 'react';
 import { Pagination } from '../../components/Pagination';
 import { Category } from '../../types/Category';
+import { usePageLogic } from '../../hooks/usePageLogic';
+import styles from './tabletsPage.module.scss';
 
 export const TabletsPage = () => {
   let products = useSelector((state: RootState) => state.product.products);
@@ -26,15 +23,16 @@ export const TabletsPage = () => {
   const indexOfLastPost = currentPage * productsPerPage;
   const indexOfFirstPost = indexOfLastPost - productsPerPage;
   const currentProducts = products.slice(indexOfFirstPost, indexOfLastPost);
+  const { currentProducts, sortedProducts, currentPage, handlePagination } = usePageLogic(Category.tablets);
 
   return (
     <div className={styles.container}>
       <Breadcrumbs />
       <h1 className={styles.container__title}>Tablets</h1>
 
-      <Catalog products={currentProducts} totalProducts={products.length} />
+      <Catalog products={currentProducts} totalProducts={sortedProducts.length} />
       <Pagination
-        length={products.length}
+        length={sortedProducts.length}
         currentPage={currentPage}
         handlePagination={handlePagination}
       />

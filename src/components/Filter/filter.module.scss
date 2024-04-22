@@ -1,0 +1,25 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+
+  @include on-tablet {
+    justify-content: start;
+    gap: 16px;
+  }
+}
+
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filterDescription {
+  color: $secondary;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15.34px;
+}

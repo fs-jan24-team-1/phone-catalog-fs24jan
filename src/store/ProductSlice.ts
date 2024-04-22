@@ -116,13 +116,8 @@ const productSlice = createSlice({
       const decreaseItem = state.cart.find(
         (item: Product) => item.id === action.payload.id,
       );
-      if (decreaseItem.quantity > 1) {
+      if (decreaseItem && decreaseItem.quantity > 1) {
         decreaseItem.quantity -= 1;
-      } else if (decreaseItem.quantity === 1) {
-        const nextCartItems = state.cart.filter(
-          (item: Product) => item.id !== action.payload.id,
-        );
-        state.cart = nextCartItems;
         saveState('cart', state.cart);
       }
     },
