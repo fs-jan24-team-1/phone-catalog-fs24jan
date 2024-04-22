@@ -5,7 +5,9 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { useEffect } from 'react';
 import { getProducts } from './api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './store/store';
+import { MessageContainer } from "./components/UI/MessageNotification";
 
 type Props = {
   scrollToTopRef: React.RefObject<HTMLDivElement> | null;
@@ -32,6 +34,8 @@ export const App: React.FC<Props> = ({ scrollToTopRef }) => {
 
   return (
     <div data-cy="app" className="wrapper">
+      <MessageContainer />
+
       <Header scrollToTopRef={scrollToTopRef} />
 
       <div className="section">
