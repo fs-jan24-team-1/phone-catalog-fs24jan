@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import styles from "./footer.module.scss"
-import { MessageContainer } from "./../UI/MessageNotification";
-import { toast } from "react-toastify";
 
 type Props = {
   scrollToTopRef: React.RefObject<HTMLDivElement> | null;
@@ -17,16 +15,15 @@ export const Footer: React.FC<Props> = ({ scrollToTopRef }) => {
 
         <ul className={styles.footer__list}>
           <li className={styles.footer__item}>
-            <Link to="#" className={styles.footer__link} onClick={() => toast.warning("Something went wrong")}>Github</Link>
+            <Link to="#" className={styles.footer__link}>Github</Link>
           </li>
 
-          <li className={styles.footer__item} onClick={() => toast.error("Something went wrong")}>
+          <li className={styles.footer__item}>
             <Link to="#" className={styles.footer__link}>Contacts</Link>
           </li>
 
-          <li className={styles.footer__item} onClick={() => toast.success("Product added to cart")}>
+          <li className={styles.footer__item}>
             <Link to="#" className={styles.footer__link}>Rights</Link>
-            <MessageContainer />
           </li>
         </ul>
 
