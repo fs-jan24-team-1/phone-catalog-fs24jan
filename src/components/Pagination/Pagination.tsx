@@ -2,8 +2,7 @@ import React from 'react';
 import { ButtonSlider } from '../UI/ButtonSlider';
 import { ButtonPagination } from '../UI/ButtonPagination';
 import styles from './pagination.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 type Props = {
@@ -31,9 +30,7 @@ export const Pagination: React.FC<Props> = ({
     });
   }
 
-  const productsPerPage = useSelector(
-    (state: RootState) => state.product.productsPerPage,
-  );
+  const productsPerPage = perPage ? Number(perPage) : length;
 
   for (let i = 1; i <= Math.ceil(length / productsPerPage); i++) {
     paginationNumbers.push(i);

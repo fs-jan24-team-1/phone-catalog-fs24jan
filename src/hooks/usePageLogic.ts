@@ -9,13 +9,12 @@ import { sortProducts } from "../utils/sortProducts";
 
 export const usePageLogic = (category: Category) => {
   const products = useSelector((state: RootState) => state.product.products);
-  const productsPerPage = useSelector(
-    (state: RootState) => state.product.productsPerPage,
-  );
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<SortBy>(SortBy.age);
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
+  const perPage = params.get('perPage');
+  const productsPerPage = perPage ? Number(perPage) : products.length;
 
   useEffect(() => {
     const sortByParam = params.get('sort');
