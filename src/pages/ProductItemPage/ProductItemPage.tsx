@@ -8,6 +8,7 @@ import styles from './productItemPage.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import classNames from 'classnames';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -20,7 +21,9 @@ export const ProductItemPage = () => {
     product?.capacityAvailable[0],
   );
 
-  const productCategory = products.find(item => item.itemId === productId)?.category;
+  const productCategory = products.find(
+    item => item.itemId === productId,
+  )?.category;
   let [items] = useState<ProductItemType[]>([]);
 
   useEffect(() => {
@@ -50,7 +53,6 @@ export const ProductItemPage = () => {
     }
   }, [productCategory, productId]);
 
-
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
@@ -61,38 +63,60 @@ export const ProductItemPage = () => {
   };
 
   return (
-    <div className="product-item">
-      <Breadcrumbs />
+    <div className={styles.product__content}>
+      <div className={styles.breadcrumbs__products}>
+        <Breadcrumbs />
+      </div>
 
       {product ? (
         <>
-          <h1 className="title">{product.name}</h1>
-          <div className="product-details">
-            <div className="product-images">
-              {product.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={product.name}
-                  className={`product-image ${index === 0 ? `${styles.mainImage}` : `${styles.thumbnailImage}`}`}
-                />
-              ))}
-            </div>
-            <div className="product-info">
-              <p>
-                <strong>Category:</strong> {product.category}
-              </p>
-              <p>
-                <strong>Color:</strong>
-              </p>
-              <div className="color-buttons">
-                {product.colorsAvailable.map((color, index) => (
-                  <ButtonColor
+          <h1 className={styles.title}>{product.name}</h1>
+
+          <div className={styles.details}>
+            <div className={styles.product__images}>
+              <div className={styles.product__image_column}>
+                {product.images.map((image, index) => (
+                  <div
                     key={index}
-                    colorDevice={color}
-                  />
+                    className={classNames(styles.product__image_column_small, {
+                      [styles.selected]: index === 0,
+                    })}
+                  >
+                    <img
+                      src={image}
+                      alt={product.name}
+                      className={styles.thumbnailImage}
+                    />
+                  </div>
                 ))}
               </div>
+              <div className={styles.product__image_main}>
+                {product.images.map(
+                  (image, index) =>
+                    index === 0 && (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={product.name}
+                        className={`${styles.mainImage}`}
+                      />
+                    ),
+                )}
+              </div>
+            </div>
+
+            <div className={styles.product__info}>
+              <div>
+                <p>
+                  <strong>Available colors:</strong>
+                </p>
+                <div className="color-buttons">
+                  {product.colorsAvailable.map((color, index) => (
+                    <ButtonColor key={index} colorDevice={color} />
+                  ))}
+                </div>
+              </div>
+
               <p>
                 <strong>Capacity:</strong>
               </p>
@@ -110,48 +134,51 @@ export const ProductItemPage = () => {
               <p>
                 <strong>Price:</strong> ${product.priceRegular}
               </p>
-              <p>
-                <strong>Description:</strong>
-              </p>
-              {product.description.map((desc, index) => (
-                <div key={index}>
-                  <p>
-                    <strong>{desc.title}</strong>
-                  </p>
-                  <ul>
-                    {desc.text.map((text, idx) => (
-                      <li key={idx}>{text}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              <p>
-                <strong>Screen:</strong> {product.screen}
-              </p>
-              <p>
-                <strong>Resolution:</strong> {product.resolution}
-              </p>
-              <p>
-                <strong>Processor:</strong> {product.processor}
-              </p>
-              <p>
-                <strong>RAM:</strong> {product.ram}
-              </p>
-              <p>
-                <strong>Camera:</strong> {product.camera}
-              </p>
-              <p>
-                <strong>Zoom:</strong> {product.zoom}
-              </p>
-              <p>
-                <strong>Cell:</strong>
-              </p>
-              <ul>
-                {product.cell.map((cell, idx) => (
-                  <li key={idx}>{cell}</li>
-                ))}
-              </ul>
             </div>
+          </div>
+
+          <div className={styles.product__about}>
+            <p>
+              <strong>About:</strong>
+            </p>
+            {product.description.map((desc, index) => (
+              <div key={index}>
+                <p>
+                  <strong>{desc.title}</strong>
+                </p>
+                <ul>
+                  {desc.text.map((text, idx) => (
+                    <li key={idx}>{text}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <p>
+              <strong>Screen:</strong> {product.screen}
+            </p>
+            <p>
+              <strong>Resolution:</strong> {product.resolution}
+            </p>
+            <p>
+              <strong>Processor:</strong> {product.processor}
+            </p>
+            <p>
+              <strong>RAM:</strong> {product.ram}
+            </p>
+            <p>
+              <strong>Camera:</strong> {product.camera}
+            </p>
+            <p>
+              <strong>Zoom:</strong> {product.zoom}
+            </p>
+            <p>
+              <strong>Cell:</strong>
+            </p>
+            <ul>
+              {product.cell.map((cell, idx) => (
+                <li key={idx}>{cell}</li>
+              ))}
+            </ul>
           </div>
         </>
       ) : (
