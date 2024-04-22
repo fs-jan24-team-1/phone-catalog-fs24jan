@@ -148,6 +148,11 @@ const productSlice = createSlice({
       state.cartTotalQuantity = quantity;
       state.cartTotalAmount = total;
     },
+
+    clearCart(state) {
+      state.cart = [];
+      saveState('cart', state.cart);
+  },
   },
 });
 
@@ -162,6 +167,7 @@ export const {
   removeFromCart,
   decreaseCart,
   getTotals,
+  clearCart,
 } = productSlice.actions;
 
 export default productSlice.reducer;
