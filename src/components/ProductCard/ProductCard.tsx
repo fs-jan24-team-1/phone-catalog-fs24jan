@@ -6,6 +6,7 @@ import { ButtonPrimary } from '../UI/ButtonPrimary';
 import { RootState } from '../../store/store';
 import { ButtonFavourite } from '../UI/ButtonFavourite';
 import { Link, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 type Props = {
   product: Product;
@@ -13,9 +14,7 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
-  const favourites = useSelector(
-    (state: RootState) => state.product.favourites,
-  );
+  const favourites = useSelector((state: RootState) => state.product.favourites);
   const cart = useSelector((state: RootState) => state.product.cart);
 
   const isProductInFavourites = favourites.some(
@@ -28,11 +27,15 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleAddToFavourites = () => {
     if (isProductInFavourites) {
+      toast.success('The product has been removed');
+
       dispatch({
         type: 'product/removeFromFavourites',
         payload: product,
       });
     } else {
+      toast.success('The product has been added');
+
       dispatch({
         type: 'product/addToFavourites',
         payload: product,
@@ -42,11 +45,15 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleAddToCart = () => {
     if (isProductInCart) {
+      toast.success('The product has been removed');
+
       dispatch({
         type: 'product/removeFromCart',
         payload: product,
       });
     } else {
+      toast.success('The product has been added');
+
       dispatch({
         type: 'product/addToCart',
         payload: product,
@@ -114,7 +121,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             </div>
           </div>
 
-          <div className={styles.buttonBox}>
+          <div className={styles.buttonBox} >
             <ButtonPrimary
               textForPrimaryButton={
                 isProductInCart ? 'Added to cart' : 'Add to cart'
