@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './buttonSlider.module.scss';
 
 interface ButtonSliderProps {
@@ -25,13 +24,12 @@ export const ButtonSlider: React.FC<ButtonSliderProps> = ({ iconType, active, ha
   }
 
   return (
-    <Link
-      to="#"
+    <div
       className={`${styles.button} ${active ? styles.disable : styles.default}`}
       onClick={handleClick}
     >
       {buttonContent}
-    </Link>
+    </div>
   );
 };
 

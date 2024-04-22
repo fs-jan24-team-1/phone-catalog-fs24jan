@@ -1,6 +1,6 @@
 import React from 'react';
 import Select, { StylesConfig, CSSObjectWithLabel } from 'react-select';
-import { SortBy } from '../../Catalog';
+import { SortBy } from '../../Filter/Filter';
 
 interface Option {
   value: number | string;
