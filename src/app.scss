@@ -1,5 +1,6 @@
 @import './styles/utils/typography';
 @import './styles/utils/variables';
+@import './styles/utils/mixins';
 
 html,
 body {
@@ -25,5 +26,9 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: $header-height-mobile 16px 0;
+
+  @include on-desktop {
+    padding-top: $header-height-desktop;
+  }
 }
