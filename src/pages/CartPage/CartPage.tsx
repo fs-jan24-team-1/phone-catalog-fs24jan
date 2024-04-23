@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { ButtonBack } from '../../components/UI/ButtonBack';
 import { LottieAnimation } from '../../components/UI/LottieAnimation';
-import * as animationData from '../../EmptyCart.json';
+import * as animationData from './../../animations/EmptyCart.json';
 import { Link } from 'react-router-dom';
 
 
