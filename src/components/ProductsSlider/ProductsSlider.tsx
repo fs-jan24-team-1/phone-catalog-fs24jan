@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './ProductsSlider.scss';
 import { ProductCard } from '../ProductCard/ProductCard';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import { Product } from '../../types/Product';
 
 type Props = {
