@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import styles from './header.module.scss';
 import classNames from 'classnames';
 import logo from '../../img/icons/Logo.svg';
@@ -27,6 +27,9 @@ export const Header = () => {
 
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames(styles.header__nav_link, { [styles.is_active]: isActive });
+
+  const { pathname } = useLocation();
+  const isShowSearch = pathname === '/tablets' || pathname === '/accessories' || pathname === '/phones';
 
   return (
     <div className={styles.header}>
@@ -59,7 +62,7 @@ export const Header = () => {
           </div>
         </nav>
       </div>
-      <SearchComponent />
+      {isShowSearch && <SearchComponent/>}
       <div className={styles.right_side}>
         <NavLink to="/Favorites" className={({ isActive }) => classNames(styles.favorites, { [styles.is_active]: isActive })}>
           <div className={styles.favoritesIconContainer}>
