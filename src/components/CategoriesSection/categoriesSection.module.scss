@@ -1,0 +1,106 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/normalize';
+
+.category {
+  &__title {
+    margin-bottom: 24px;
+
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 30.8px;
+    color: $primary;
+
+    @include on-tablet {
+      font-size: 32px;
+      line-height: 41px;
+    }
+  }
+
+  &__container {
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    align-items: center;
+
+     @include on-tablet {
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+     }
+  }
+
+  &__link {
+    text-decoration: none;
+    width: 100%;
+  }
+
+  &__type {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__photo__container {
+    position: relative;
+    max-width: 100%;
+    margin-bottom: 24px;
+
+    height: 288px;
+
+    overflow: hidden;
+    background-color: #d53c51;
+
+    border-radius: 10px;
+
+    @include on-tablet {
+      height: 187px;
+    }
+
+    @include on-desktop {
+      height: 368px;
+    }
+  }
+
+  &__photo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-height: 80%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__name {
+    margin-bottom: 4px;
+
+    color: $primary;
+    font-size: 20px;
+    font-weight: 700px;
+    line-height: 25.56px;
+  }
+
+  &__quantity {
+    margin-bottom: 30px; //тимчасово
+
+    color: $secondary;
+    font-size: 14px;
+    font-weight: 600px;
+    line-height: 21px;
+  }
+}
+
+.violet-background {
+  background-color: #6D6474;
+}
+
+.grey-background {
+  background-color: #89939A;
+}
+
+.burgundy-background {
+  background-color: #D53C51;
+}
