@@ -15,6 +15,7 @@ import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
 import { ButtonFavourite } from '../../components/UI/ButtonFavourite';
 // import { ButtonSlider } from '../../components/UI/ButtonSlider';
 import { ButtonBack } from '../../components/UI/ButtonBack';
+import { ProductButtonType } from '../../types/ProductButtonType';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -201,7 +202,7 @@ export const ProductItemPage = () => {
 
                 <div className={styles.product__info__price_buttons}>
                   <ButtonPrimary
-                    textForPrimaryButton="Add to cart"
+                    textForPrimaryButton={ProductButtonType.ADD}
                     // callback={handleAddToCart}
                     callback={tempFunction} // щось додати у функцію
                   />
