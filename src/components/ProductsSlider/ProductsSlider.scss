@@ -1,12 +1,8 @@
 @import './mixin.scss';
 
 .carousel {
-
-  @include on-desktop {
-    padding-left: 150px;
-    padding-right: 150px;
-  }
-
+  margin-top: 80px;
+  padding-left: 5px;
   @include on-tablet {
     padding-right: 24px;
   }
@@ -14,7 +10,6 @@
   @include on-mobile {
     margin-left: 16px;
   }
-
 
   &__top {
     display: flex;
@@ -48,7 +43,7 @@
   &__button {
     width: 32px;
     height: 32px;
-    border: 1px solid #b4bdc3;
+    border: 1px solid #B4BDC3;
     border-radius: 50%;
     cursor: pointer;
     background-color: #fafbfc;
@@ -59,7 +54,7 @@
 
 
     &:hover {
-      border: 1px solid #0F0F11;
+      border: 1px solid #E2E6E9;
     }
 
     &:disabled {
@@ -67,20 +62,22 @@
     }
 
     &--left {
-      background-image: url('./arrows_left.svg');
+      background-image: url('../../img/icons/arrows_left.svg');
+      background-size: 5px;
     }
 
     &--left:disabled {
-      background-image: url('./arrows_left.svg');
+      background-image: url('../../img/icons/arrows_left.svg');
       border: 1px solid #e2e6e9;
     }
 
     &--right {
-      background-image: url('./arrows_right.svg');
+      background-image: url('../../img/icons/arrows_right.svg');
+      background-size: 5px;
     }
 
     &--right:disabled {
-      background-image: url('./arrows_right.svg');
+      background-image: url('../../img/icons/arrows_right.svg');
       border: 1px solid #e2e6e9;
     }
   }
@@ -104,7 +101,7 @@
     }
 
     @include on-desktop {
-      grid-template-columns: repeat(20, 250px);
+      grid-template-columns: repeat(20, 275px);
     }
   }
 }

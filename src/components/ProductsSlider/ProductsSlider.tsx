@@ -1,23 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './ProductsSlider.scss';
 import { ProductCard } from '../ProductCard/ProductCard';
-import { Product } from '../../types/Product';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { Product } from '../../types/Product';
 
 type Props = {
+  products: Product[];
   title: string;
 };
 
-export const ProductsSlider: React.FC<Props> = ({ title }) => {
+export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
   const [activeArrowLeft, setActiveArrowLeft] = useState(false);
   const [activeArrowRight, setActiveArrowRight] = useState(true);
   const slider = useRef<HTMLUListElement>(null);
   const [sliderItemWidth, setSliderItemWidth] = useState(0);
-
-  const productss = useSelector((state: RootState) => state.product.products);
-
-  const products = [...productss].sort((a, b) => b.year - a.year).slice(0, 20);
 
   useEffect(() => {
     const handleResize = () => {
