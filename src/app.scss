@@ -1,5 +1,6 @@
 @import './styles/utils/typography';
 @import './styles/utils/variables';
+@import './styles/utils/mixins';
 
 html,
 body {
@@ -12,11 +13,22 @@ body {
 }
 
 .wrapper {
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .section {
   flex: 1 1 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: $header-height-mobile;
+
+  @include on-desktop {
+    padding-top: $header-height-desktop;
+  }
 }

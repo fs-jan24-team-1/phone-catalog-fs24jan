@@ -14,7 +14,9 @@ export const CartItem: React.FC<Props> = ({ product }) => {
   const cart = useSelector((state: RootState) => state.product.cart);
   const dispatch = useDispatch();
 
-  const cartItem: Product = cart.find((item: Product) => item.id === product.id);
+  const cartItem: Product = cart.find(
+    (item: Product) => item.id === product.id,
+  );
 
   const handleRemoveFromCart = () => {
     dispatch({
@@ -46,7 +48,7 @@ export const CartItem: React.FC<Props> = ({ product }) => {
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItem__column1}>
-        <div className={styles.cartItem__icon} onClick={handleRemoveFromCart}></div>
+        <div className={styles.cartItem__close} onClick={handleRemoveFromCart}></div>
         <Link to={url} className={styles.cartItem__image}>
           <img
             className={styles.cartItem__productImage}
@@ -62,14 +64,21 @@ export const CartItem: React.FC<Props> = ({ product }) => {
 
       <div className={styles.cartItem__column2}>
         <div className={styles.cartItem__button}>
-        <ButtonSlider iconType={'minus'} handleClick={() => handleDeacreaseQuantity()} />
-          <span className={styles.cartItem__count}>
-            {cartItem.quantity}
-          </span>
-          <ButtonSlider iconType={'plus'} handleClick={() => handleAddToCart()} />
+          <ButtonSlider
+            iconType={'minus'}
+            handleClick={() => handleDeacreaseQuantity()}
+            active={product.quantity === 1}
+          />
+          <span className={styles.cartItem__count}>{cartItem.quantity}</span>
+          <ButtonSlider
+            iconType={'plus'}
+            handleClick={() => handleAddToCart()}
+          />
         </div>
 
-        <span className={styles.cartItem__price}>{`$${product.price * product.quantity}`}</span>
+        <span
+          className={styles.cartItem__price}
+        >{`$${product.price * product.quantity}`}</span>
       </div>
     </div>
   );

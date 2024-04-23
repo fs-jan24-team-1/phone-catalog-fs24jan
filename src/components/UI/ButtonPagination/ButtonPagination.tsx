@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './buttonPagination.module.scss';
 
 type ButtonPaginationProps = {
@@ -10,12 +9,11 @@ type ButtonPaginationProps = {
 
 export const ButtonPagination: React.FC<ButtonPaginationProps> = ({ text, active, onClick }) => {
   return (
-    <Link
-      to="#"
+    <div
       className={`${styles.button} ${active ? styles.selected : styles.default}`}
       onClick={onClick}
     >
       {text}
-    </Link>
+    </div>
   );
 };

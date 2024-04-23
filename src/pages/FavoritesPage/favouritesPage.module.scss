@@ -1,0 +1,77 @@
+@import './../../styles/utils/mixins';
+@import './../../styles/utils/variables';
+@import '../../styles/utils/typography';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 16px 64px;
+
+  @include on-tablet {
+    padding: 24px 24px 64px;
+  }
+
+  @include on-desktop {
+    padding: 24px 32px 80px;
+  }
+}
+
+.title {
+  margin-top: 24px;
+  font-family: $Mont;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+}
+
+.itemsLeft {
+  color: $secondary;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.products {
+  @include page-grid;
+  width: fit-content;
+  justify-content: center;
+  margin: 40px auto 0;
+  gap: 40px 16px;
+}
+
+.animation {
+  align-self: center;
+  width: 250px;
+}
+
+.message {
+  display: flex;
+  align-self: center;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 24px;
+}
+
+.go-home-button {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  align-self: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 48px;
+  border: none;
+  background-color: #4219d0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transition: 0.3s ease;
+    box-shadow: 0px 3px 13px 0px #17203166;
+  }
+}

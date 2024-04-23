@@ -5,7 +5,6 @@ export interface ProductState {
   products: Product[];
   favourites: Product[];
   cart: Product[];
-  productsPerPage: number;
   cartTotalQuantity: number;
   cartTotalAmount: number;
 }
@@ -14,7 +13,6 @@ const initialState: ProductState = {
   products: [],
   favourites: [],
   cart: [],
-  productsPerPage: Infinity,
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
@@ -64,10 +62,6 @@ const productSlice = createSlice({
     setProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
     },
-    setProductsPerPage: (state, action: PayloadAction<number>) => {
-      state.productsPerPage = action.payload;
-    },
-
     addToFavourites: (state, action: PayloadAction<Product>) => {
       const productToAdd: Product = action.payload;
       state.favourites.push(productToAdd);
@@ -116,13 +110,8 @@ const productSlice = createSlice({
       const decreaseItem = state.cart.find(
         (item: Product) => item.id === action.payload.id,
       );
-      if (decreaseItem.quantity > 1) {
+      if (decreaseItem && decreaseItem.quantity > 1) {
         decreaseItem.quantity -= 1;
-      } else if (decreaseItem.quantity === 1) {
-        const nextCartItems = state.cart.filter(
-          (item: Product) => item.id !== action.payload.id,
-        );
-        state.cart = nextCartItems;
         saveState('cart', state.cart);
       }
     },
@@ -148,6 +137,11 @@ const productSlice = createSlice({
       state.cartTotalQuantity = quantity;
       state.cartTotalAmount = total;
     },
+
+    clearCart(state) {
+      state.cart = [];
+      saveState('cart', state.cart);
+  },
   },
 });
 
@@ -155,13 +149,13 @@ export const {
   setFavourites,
   setCart,
   setProducts,
-  setProductsPerPage,
   addToFavourites,
   removeFromFavourites,
   addToCart,
   removeFromCart,
   decreaseCart,
   getTotals,
+  clearCart,
 } = productSlice.actions;
 
 export default productSlice.reducer;
