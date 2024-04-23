@@ -9,6 +9,7 @@ import { ButtonBack } from '../../components/UI/ButtonBack';
 import { LottieAnimation } from '../../components/UI/LottieAnimation';
 import * as animationData from './../../animations/EmptyCart.json';
 import { Link } from 'react-router-dom';
+import { ProductButtonType } from '../../types/ProductButtonType';
 
 
 export const CartPage = () => {
@@ -59,7 +60,7 @@ export const CartPage = () => {
             </p>
             <div className={styles.totalCost__line}></div>
             <ButtonPrimary
-              textForPrimaryButton="Checkout"
+              textForPrimaryButton={ProductButtonType.CHECKOUT}
               callback={tempFunction}
             />
           </div>
