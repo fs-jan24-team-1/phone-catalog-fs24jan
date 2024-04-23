@@ -1,10 +1,9 @@
 import React from 'react';
 import { ButtonSlider } from '../UI/ButtonSlider';
 import { ButtonPagination } from '../UI/ButtonPagination';
-import styles from './pagination.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import styles from './pagination.module.scss';
 
 type Props = {
   length: number;
@@ -31,9 +30,7 @@ export const Pagination: React.FC<Props> = ({
     });
   }
 
-  const productsPerPage = useSelector(
-    (state: RootState) => state.product.productsPerPage,
-  );
+  const productsPerPage = perPage ? Number(perPage) : length;
 
   for (let i = 1; i <= Math.ceil(length / productsPerPage); i++) {
     paginationNumbers.push(i);
@@ -55,6 +52,66 @@ export const Pagination: React.FC<Props> = ({
     return null;
   }
 
+  if (paginationNumbers.length >= 7) {
+    const visiblePages = 5;
+    const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+    const endPage = Math.min(
+      paginationNumbers.length,
+      startPage + visiblePages - 1,
+    );
+
+    const pages = [];
+    if (startPage > 3) {
+      pages.push(1);
+      if (startPage > 4) {
+        pages.push('...');
+      }
+    }
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    return (
+      <div className={styles.paginationContainer}>
+        <div className={styles.pagination}>
+          <ButtonSlider
+            iconType="arrowLeft"
+            active={currentPage === 1}
+            handleClick={handlePreviousPage}
+          />
+          {pages.map(page => (
+            <div
+              key={page}
+              onClick={() => {
+                if (typeof page === 'number') {
+                  handlePagination(page);
+                }
+              }}
+              className={`pagination-item ${
+                currentPage === page ? 'active' : ''
+              } ${page === '...' ? 'ellipsis' : ''}`}
+            >
+              {page === '...' ? (
+                <span className={styles.ellipsis}>...</span>
+              ) : (
+                <ButtonPagination
+                  text={page as number}
+                  active={currentPage === page}
+                  onClick={() => handlePagination(page as number)}
+                />
+              )}
+            </div>
+          ))}
+          <ButtonSlider
+            iconType="arrowRight"
+            active={currentPage === paginationNumbers.length}
+            handleClick={handleNextPage}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.paginationContainer}>
       <div className={styles.pagination}>
@@ -67,7 +124,9 @@ export const Pagination: React.FC<Props> = ({
           <div
             key={pageNumber}
             onClick={() => handlePagination(pageNumber)}
-            className={`pagination-item ${currentPage === pageNumber ? 'active' : ''}`}
+            className={`pagination-item ${
+              currentPage === pageNumber ? 'active' : ''
+            }`}
           >
             <ButtonPagination
               text={pageNumber}

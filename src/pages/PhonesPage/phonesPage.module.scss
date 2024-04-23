@@ -1,16 +1,16 @@
 @import '../../styles/utils/mixins';
 
 .container {
-  margin: 24px 17px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 24px 16px 64px;
 
   @include on-tablet {
-    margin: 24px 24px;
+    padding: 24px 24px 64px;
   }
 
   @include on-desktop {
-    margin: 24px 32px;
+    padding: 24px 32px 80px;
   }
 }
