@@ -33,7 +33,7 @@
   }
 }
 
-@mixin square ($size) {
+@mixin square($size) {
   width: $size;
   height: $size;
 }

@@ -14,6 +14,7 @@ import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
 import { Product } from '../../types/Product';
 import { ButtonFavourite } from '../../components/UI/ButtonFavourite';
 import { ButtonSlider } from '../../components/UI/ButtonSlider';
+import { ButtonBack } from '../../components/UI/ButtonBack';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -112,6 +113,11 @@ export const ProductItemPage = () => {
         <Breadcrumbs />
       </div>
 
+      <div className={styles.back__products}>
+        <ButtonBack textForBackButton={`Back`} />
+      </div>
+
+
       {product ? (
         <>
           <h1 className={styles.title}>{product.name}</h1>
@@ -129,6 +135,7 @@ export const ProductItemPage = () => {
                     <img
                       src={image}
                       alt={product.name}
+                      className={`${styles.mainImg}`}
                     />
                   </div>
                 ))}
