@@ -27,7 +27,12 @@ export const ProductItemPage = () => {
   const [selectedCapacity, setSelectedCapacity] = useState(
     product?.capacityAvailable[0],
   );
+  const [isSelectedPhoto, setIsSelectedPhoto] = useState(0);
 
+  const handleChangePhoto = (index: number) => {
+    setIsSelectedPhoto(index);
+  }
+  
   const productCategory = products.find(
     item => item.itemId === productId,
   )?.category;
@@ -119,7 +124,6 @@ export const ProductItemPage = () => {
         <ButtonBack textForBackButton={`Back`} />
       </div>
 
-
       {product ? (
         <>
           <h1 className={styles.title}>{product.name}</h1>
@@ -131,8 +135,9 @@ export const ProductItemPage = () => {
                   <div
                     key={index}
                     className={classNames(styles.product__image_column_small, {
-                      [styles.selected]: index === 0,
+                      [styles.selected]: index === isSelectedPhoto,
                     })}
+                    onClick={() => handleChangePhoto(index)}
                   >
                     <img
                       src={image}
@@ -145,7 +150,7 @@ export const ProductItemPage = () => {
               <div className={styles.product__image_main}>
                 {product.images.map(
                   (image, index) =>
-                    index === 0 && (
+                    index === isSelectedPhoto && (
                       <img
                         key={index}
                         src={image}
