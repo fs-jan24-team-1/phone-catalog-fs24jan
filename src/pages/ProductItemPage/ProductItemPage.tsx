@@ -208,6 +208,7 @@ export const ProductItemPage = () => {
                   />
                   <div className={styles.product__info__price_gap}></div>
                   <ButtonFavourite
+                    product={product}
                     callback={tempFunction} // щось додати у функцію
                   />
                 </div>
