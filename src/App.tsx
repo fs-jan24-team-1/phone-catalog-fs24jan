@@ -5,8 +5,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { useEffect } from 'react';
 import { getProducts } from './api';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './store/store';
+import { useDispatch } from 'react-redux';
 import { MessageContainer } from "./components/UI/MessageNotification";
 
 export const App = () => {

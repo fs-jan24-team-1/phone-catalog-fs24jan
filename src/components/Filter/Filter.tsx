@@ -2,7 +2,6 @@ import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from '../UI/DropDown';
 import styles from './filter.module.scss';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 export enum SortBy {
   age = 'age',
@@ -30,8 +29,8 @@ export const Filter = () => {
   const [sortBy, setSortBy] = useState<SortBy>(
     sortByParam ? (sortByParam as SortBy) : SortBy.age,
   );
+  console.log(sortBy);
 
-console.log(sortBy);
   const handleSortParams = (selectedSort: SortBy) => {
     const params = new URLSearchParams(searchParams);
     params.set('sort', selectedSort);
@@ -39,26 +38,19 @@ console.log(sortBy);
     setSortBy(selectedSort);
   };
 
-  const dispatch = useDispatch();
   const handlePerPageParams = (selectedItemsPerPage: string) => {
     const params = new URLSearchParams(searchParams);
-    if (params.has('perPage')) {
-      params.set('perPage', selectedItemsPerPage);
-    } else {
-      params.append('perPage', selectedItemsPerPage);
-    }
+    params.set('perPage', selectedItemsPerPage);
     setSearchParams(params.toString());
-    dispatch({
-      type: 'product/setProductsPerPage',
-      payload: selectedItemsPerPage,
-    });
   };
 
   return (
     <div className={styles.filter}>
       <div className={styles.filterContainer}>
         <span className={styles.filterDescription}>Sort by</span>
-        <Dropdown options={sortOptions} onSelectChange={handleSortParams} />
+        <Dropdown
+          options={sortOptions}
+          onSelectChange={handleSortParams} />
       </div>
 
       <div className={styles.filterContainer}>

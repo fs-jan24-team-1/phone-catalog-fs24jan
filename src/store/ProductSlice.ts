@@ -5,7 +5,6 @@ export interface ProductState {
   products: Product[];
   favourites: Product[];
   cart: Product[];
-  productsPerPage: number;
   cartTotalQuantity: number;
   cartTotalAmount: number;
 }
@@ -14,7 +13,6 @@ const initialState: ProductState = {
   products: [],
   favourites: [],
   cart: [],
-  productsPerPage: Infinity,
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
@@ -64,10 +62,6 @@ const productSlice = createSlice({
     setProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
     },
-    setProductsPerPage: (state, action: PayloadAction<number>) => {
-      state.productsPerPage = action.payload;
-    },
-
     addToFavourites: (state, action: PayloadAction<Product>) => {
       const productToAdd: Product = action.payload;
       state.favourites.push(productToAdd);
@@ -155,7 +149,6 @@ export const {
   setFavourites,
   setCart,
   setProducts,
-  setProductsPerPage,
   addToFavourites,
   removeFromFavourites,
   addToCart,
