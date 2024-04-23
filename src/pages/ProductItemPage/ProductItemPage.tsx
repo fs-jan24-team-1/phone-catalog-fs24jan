@@ -5,15 +5,15 @@ import { ProductItemType } from '../../types/ProductItemType';
 import { NotFoundPage } from '../NotFoundPage';
 import { ButtonColor } from '../../components/UI/ButtonColor';
 import styles from './productItemPage.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import classNames from 'classnames';
 import { ButtonCapacity } from '../../components/UI/ButtonCapacity';
 import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
-import { Product } from '../../types/Product';
+// import { Product } from '../../types/Product';
 import { ButtonFavourite } from '../../components/UI/ButtonFavourite';
-import { ButtonSlider } from '../../components/UI/ButtonSlider';
+// import { ButtonSlider } from '../../components/UI/ButtonSlider';
 import { ButtonBack } from '../../components/UI/ButtonBack';
 
 export const ProductItemPage = () => {
@@ -67,6 +67,7 @@ export const ProductItemPage = () => {
   const handleCapacityChange = (capacity: string) => {
     setSelectedCapacity(capacity);
   };
+  console.log(selectedCapacity, handleCapacityChange);
 
   // const dispatch = useDispatch();
   // const cart = useSelector((state: RootState) => state.product.cart);

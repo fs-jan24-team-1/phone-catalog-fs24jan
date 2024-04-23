@@ -34,7 +34,7 @@
 }
 
 .products {
-  @include page-grid;
+  @include pageGrid;
   width: fit-content;
   justify-content: center;
   margin: 40px auto 0;
