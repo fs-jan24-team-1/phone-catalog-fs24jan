@@ -13,8 +13,6 @@ export const ButtonCapacity: React.FC<Props> = ({ text }) => {
   return (
     <Link
       to="#"
-      // className={`${styles.button} ${selected ? styles.selected : styles.default}`}
-      // className={classNames({styles.button}, {selected : styles.selected, !selected : styles.default})}
       className={classNames([styles.button], {
         [styles.selected]: selected,
         [styles.default]: !selected,

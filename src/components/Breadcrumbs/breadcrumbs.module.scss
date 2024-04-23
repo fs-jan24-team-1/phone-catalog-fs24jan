@@ -8,13 +8,11 @@
 
 .breadcrumbs {
   display: flex;
-
   font-family: $Mont;
   align-items: center;
   text-decoration: none;
   color: $primary;
   margin-right: 8px;
-
   transition: color 0.5s ease;
 
   &__disabled {
@@ -28,7 +26,6 @@
       height: 19px;
       margin-right: 8px;
       aspect-ratio: 1;
-
 
       background-repeat: no-repeat;
       background-size: cover;
