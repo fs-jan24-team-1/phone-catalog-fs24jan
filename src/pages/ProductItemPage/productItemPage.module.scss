@@ -1,13 +1,388 @@
-.mainImage {
-  width: 50%;
-  height: auto;
-  border: 1px solid #ddd;
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.title {
+  grid-column: 1 / -1;
+  margin-bottom: 40px;
 }
 
-.thumbnailImage {
-  width: 10%;
-  height: auto;
-  border: 1px solid #ddd;
-  margin-right: 5px;
-  cursor: pointer;
+.breadcrumbs__products {
+  grid-column: 1 / -1;
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.back__products {
+  margin-bottom: 16px;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.mainImg {
+  object-fit: cover;
+  max-width: 100%
+}
+
+.details {
+  @include page-grid;
+
+  margin-bottom: 80px;
+  grid-column: 1 / -1;
+
+  @include on-mobile {
+    margin-bottom: 56px;
+  }
+}
+
+.product {
+  &__content {
+    @include page-grid;
+
+    @include on-mobile {
+      padding: 0 16px;
+    }
+
+    @include on-tablet {
+      padding: 0 24px;
+    }
+  }
+
+  &__id {
+    display: flex;
+    justify-content: end;
+
+    font-size: 12px;
+    font-weight: 500;
+    text-align: right;
+    color: $secondary;
+
+    @include on-mobile {
+      grid-column: 1 / -1;
+    }
+
+    @include on-tablet {
+      grid-column: 8 / -1;
+    }
+
+    @include on-desktop {
+      grid-column: 21 / -1;
+    }
+  }
+
+  &__images {
+    display: flex;
+    width: 100%;
+
+    @include on-mobile {
+      grid-column: 1 / -1;
+      margin-bottom: 40px;
+      flex-direction: column-reverse;
+    }
+
+    @include on-tablet {
+      grid-column: span 7;
+    }
+
+    @include on-desktop {
+      grid-column: span 12;
+      height: 464px;
+    }
+  }
+
+  &__image_column {
+    margin-right: 16px;
+
+    @include on-mobile {
+      display: flex;
+      flex-direction: row;
+      margin-right: 0;
+    }
+
+    &_small {
+      display: flex;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+
+      border: 1px solid $elements;
+      background-color: $white;
+      cursor: pointer;
+
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+      
+      @include on-mobile {
+        height: auto;
+        max-width: 100%;
+        margin-bottom: 0;
+        flex-grow: 1;
+        aspect-ratio: 1;
+
+        &:not(:last-child) {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  &__image_main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: $white;
+    border: 1px solid $elements;
+
+    @include on-mobile {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__info {
+    @include on-mobile {
+      grid-column: 1 / -1;
+    }
+
+    @include on-tablet {
+      grid-column: 8 / -1;
+    }
+
+    @include on-desktop {
+      grid-column: 14 / 21;
+    }
+
+    &__colors {
+      margin-bottom: 24px;
+
+      &::after {
+        content: '';
+        display: flex;
+        margin-bottom: 24px;
+        width: 100%;
+        height: 1px;
+        background-color: $icons;
+      }
+
+      &_title {
+        margin-bottom: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        color: $secondary;
+      }
+
+      &_buttons {
+        display: flex;
+        margin-bottom: 24px;
+      }
+    }
+
+    &__color_button {
+      margin-right: 8px;
+    }
+
+    &__capacity {
+      &::after {
+        content: '';
+        display: flex;
+        margin-bottom: 32px;
+        width: 100%;
+        height: 1px;
+        background-color: $icons;
+      }
+
+      &_title {
+        margin-bottom: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        color: $secondary;
+      }
+
+      &_buttons {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+
+      &_button {
+        margin-right: 8px;
+        margin-bottom: 8px;
+      }
+    }
+
+    &__price {
+      margin-bottom: 32px;
+
+      &_s {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      &_regular {
+        position: relative;
+        font-size: 22px;
+        font-weight: 500;
+        color: $secondary;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 50%;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background-color: $secondary;
+        }
+      }
+
+      &_discount {
+        margin-right: 8px;
+        font-size: 32px;
+        font-weight: 800;
+        color: $primary;
+      }
+
+      &_buttons {
+        display: flex;
+      }
+
+      &_gap {
+        margin-right: 8px;
+      }
+    }
+
+    &__smallDescription {
+      &_s {
+        display: flex;
+        margin-bottom: 8px;
+        justify-content: space-between;
+      }
+
+      &_name {
+        font-size: 12px;
+        font-weight: 600;
+        color: $secondary;
+      }
+
+      &_value {
+        font-size: 12px;
+        font-weight: 700;
+        text-align: right;
+        color: $primary;
+      }
+    }
+  }
+}
+
+.selected {
+  border: 1px solid $primary;
+}
+
+.more_details {
+  @include page-grid;
+
+  grid-column: 1 / -1;
+
+  &__about {
+    @include on-mobile {
+      grid-column: 1 / -1;
+      margin-bottom: 56px;
+    }
+
+    @include on-tablet {
+      grid-column: 1 / -1;
+    }
+
+    @include on-desktop {
+      grid-column: span 12;
+    }
+
+    &_strong {
+      font-size: 22px;
+      font-weight: 800;
+
+      &::after {
+        content: '';
+        display: flex;
+        margin-top: 16px;
+        margin-bottom: 24px;
+        width: 100%;
+        height: 1px;
+        background-color: $icons;
+      }
+    }
+
+    &__info {
+      margin-bottom: 32px;
+
+      &__title {
+        margin-bottom: 16px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      &__description {
+        margin-bottom: 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: $secondary;
+      }
+    }
+  }
+
+  &__tech {
+    @include on-mobile {
+      grid-column: 1 / -1;
+      margin-bottom: 56px;
+    }
+
+    @include on-tablet {
+      grid-column: 1 / -1;
+      margin-bottom: 64px;
+    }
+
+    @include on-desktop {
+      grid-column: 14 / -1;
+      margin-bottom: 80px;
+    }
+
+    &_strong {
+      font-size: 22px;
+      font-weight: 800;
+
+      &::after {
+        content: '';
+        display: flex;
+        margin-top: 16px;
+        margin-bottom: 24px;
+        width: 100%;
+        height: 1px;
+        background-color: $icons;
+      }
+    }
+
+    &__smallDescription {
+      &_s {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      &_name {
+        font-size: 14px;
+        font-weight: 500;
+        color: $secondary;
+      }
+
+      &_value {
+        font-size: 14px;
+        font-weight: 400;
+        color: $primary;
+      }
+    }
+  }
 }

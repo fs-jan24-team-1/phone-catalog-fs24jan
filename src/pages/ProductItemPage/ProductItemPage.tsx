@@ -8,6 +8,14 @@ import styles from './productItemPage.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import classNames from 'classnames';
+import { ButtonCapacity } from '../../components/UI/ButtonCapacity';
+import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
+// import { Product } from '../../types/Product';
+import { ButtonFavourite } from '../../components/UI/ButtonFavourite';
+// import { ButtonSlider } from '../../components/UI/ButtonSlider';
+import { ButtonBack } from '../../components/UI/ButtonBack';
+import { ProductButtonType } from '../../types/ProductButtonType';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -20,7 +28,9 @@ export const ProductItemPage = () => {
     product?.capacityAvailable[0],
   );
 
-  const productCategory = products.find(item => item.itemId === productId)?.category;
+  const productCategory = products.find(
+    item => item.itemId === productId,
+  )?.category;
   let [items] = useState<ProductItemType[]>([]);
 
   useEffect(() => {
@@ -50,7 +60,6 @@ export const ProductItemPage = () => {
     }
   }, [productCategory, productId]);
 
-
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
@@ -59,98 +68,297 @@ export const ProductItemPage = () => {
   const handleCapacityChange = (capacity: string) => {
     setSelectedCapacity(capacity);
   };
+  console.log(selectedCapacity, handleCapacityChange);
+
+  // const dispatch = useDispatch();
+  // const cart = useSelector((state: RootState) => state.product.cart);
+  // const isProductInCart = cart.some(
+  //   (cartProduct: Product) => cartProduct.id === product.id,
+  // );
+  // const handleAddToCart = () => {
+  //   if (isProductInCart) {
+  //     dispatch({
+  //       type: 'product/removeFromCart',
+  //       payload: product,
+  //     });
+  //   } else {
+  //     dispatch({
+  //       type: 'product/addToCart',
+  //       payload: product,
+  //     });
+  //   }
+  // };
+  //Need to DELETE or RECREATE this temp function
+  const tempFunction = () => {
+    return 0;
+  };
+
+  const findIdFullNumber = () => {
+    const foundElement = products.find(element => element.itemId === productId);
+
+    if (foundElement) {
+      const idLength = foundElement.id.toString().length;
+      let zeroElements = '';
+      for (let i = 0; i < 8 - idLength; i++) {
+        zeroElements += '0';
+      }
+
+      return zeroElements + foundElement.id;
+    } else {
+      return null;
+    }
+  };
 
   return (
-    <div className="product-item">
-      <Breadcrumbs />
+    <div className={styles.product__content}>
+      <div className={styles.breadcrumbs__products}>
+        <Breadcrumbs />
+      </div>
+
+      <div className={styles.back__products}>
+        <ButtonBack textForBackButton={`Back`} />
+      </div>
+
 
       {product ? (
         <>
-          <h1 className="title">{product.name}</h1>
-          <div className="product-details">
-            <div className="product-images">
-              {product.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={product.name}
-                  className={`product-image ${index === 0 ? `${styles.mainImage}` : `${styles.thumbnailImage}`}`}
-                />
-              ))}
-            </div>
-            <div className="product-info">
-              <p>
-                <strong>Category:</strong> {product.category}
-              </p>
-              <p>
-                <strong>Color:</strong>
-              </p>
-              <div className="color-buttons">
-                {product.colorsAvailable.map((color, index) => (
-                  <ButtonColor
+          <h1 className={styles.title}>{product.name}</h1>
+
+          <div className={styles.details}>
+            <div className={styles.product__images}>
+              <div className={styles.product__image_column}>
+                {product.images.map((image, index) => (
+                  <div
                     key={index}
-                    colorDevice={color}
-                  />
-                ))}
-              </div>
-              <p>
-                <strong>Capacity:</strong>
-              </p>
-              <div className="capacity-buttons">
-                {product.capacityAvailable.map((capacity, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleCapacityChange(capacity)}
-                    className={`capacity-button ${selectedCapacity === capacity ? 'selected' : ''}`}
+                    className={classNames(styles.product__image_column_small, {
+                      [styles.selected]: index === 0,
+                    })}
                   >
-                    {capacity}
-                  </button>
+                    <img
+                      src={image}
+                      alt={product.name}
+                      className={`${styles.mainImg}`}
+                    />
+                  </div>
                 ))}
               </div>
-              <p>
-                <strong>Price:</strong> ${product.priceRegular}
-              </p>
-              <p>
-                <strong>Description:</strong>
-              </p>
+              <div className={styles.product__image_main}>
+                {product.images.map(
+                  (image, index) =>
+                    index === 0 && (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={product.name}
+                        className={`${styles.mainImage}`}
+                      />
+                    ),
+                )}
+              </div>
+            </div>
+
+            <div className={styles.product__info}>
+              <div className={styles.product__info__colors}>
+                <p className={styles.product__info__colors_title}>
+                  Available colors
+                </p>
+                <div className={styles.product__info__colors_buttons}>
+                  {product.colorsAvailable.map((color, index) => (
+                    <div
+                      key={index}
+                      className={styles.product__info__color_button}
+                    >
+                      <ButtonColor colorDevice={color} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.product__info__capacity}>
+                <p className={styles.product__info__capacity_title}>
+                  Select capacity
+                </p>
+                <div className={styles.product__info__capacity_buttons}>
+                  {product.capacityAvailable.map((capacity, index) => (
+                    <div
+                      key={index}
+                      className={styles.product__info__capacity_button}
+                    >
+                      <ButtonCapacity text={capacity} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.product__info__price}>
+                <p className={styles.product__info__price_s}>
+                  <strong className={styles.product__info__price_discount}>
+                    ${product.priceDiscount}
+                  </strong>
+                  <div className={styles.product__info__price_regular}>
+                    ${product.priceRegular}
+                  </div>
+                </p>
+
+                <div className={styles.product__info__price_buttons}>
+                  <ButtonPrimary
+                    textForPrimaryButton={ProductButtonType.ADD}
+                    // callback={handleAddToCart}
+                    callback={tempFunction} // щось додати у функцію
+                  />
+                  <div className={styles.product__info__price_gap}></div>
+                  <ButtonFavourite
+                    callback={tempFunction} // щось додати у функцію
+                  />
+                </div>
+              </div>
+
+              <div className={styles.product__info__smallDescription}>
+                <div className={styles.product__info__smallDescription_s}>
+                  <p className={styles.product__info__smallDescription_name}>
+                    Screen
+                  </p>
+                  <p className={styles.product__info__smallDescription_value}>
+                    {product.screen}
+                  </p>
+                </div>
+
+                <div className={styles.product__info__smallDescription_s}>
+                  <p className={styles.product__info__smallDescription_name}>
+                    Resolution
+                  </p>
+                  <p className={styles.product__info__smallDescription_value}>
+                    {product.resolution}
+                  </p>
+                </div>
+
+                <div className={styles.product__info__smallDescription_s}>
+                  <p className={styles.product__info__smallDescription_name}>
+                    Processor
+                  </p>
+                  <p className={styles.product__info__smallDescription_value}>
+                    {product.processor}
+                  </p>
+                </div>
+
+                <div className={styles.product__info__smallDescription_s}>
+                  <p className={styles.product__info__smallDescription_name}>
+                    RAM
+                  </p>
+                  <p className={styles.product__info__smallDescription_value}>
+                    {product.ram}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.product__id}>
+              {'ID: ' + findIdFullNumber()}
+            </div>
+          </div>
+
+          <div className={styles.more_details}>
+            <div className={styles.more_details__about}>
+              <strong className={styles.more_details__about_strong}>
+                About
+              </strong>
+
               {product.description.map((desc, index) => (
-                <div key={index}>
-                  <p>
+                <div key={index} className={styles.more_details__about__info}>
+                  <p className={styles.more_details__about__info__title}>
                     <strong>{desc.title}</strong>
                   </p>
-                  <ul>
-                    {desc.text.map((text, idx) => (
-                      <li key={idx}>{text}</li>
-                    ))}
-                  </ul>
+
+                  {desc.text.map((text, indexJ) => (
+                    <div
+                      key={indexJ}
+                      className={styles.more_details__about__info__description}
+                    >
+                      {text}
+                    </div>
+                  ))}
                 </div>
               ))}
-              <p>
-                <strong>Screen:</strong> {product.screen}
-              </p>
-              <p>
-                <strong>Resolution:</strong> {product.resolution}
-              </p>
-              <p>
-                <strong>Processor:</strong> {product.processor}
-              </p>
-              <p>
-                <strong>RAM:</strong> {product.ram}
-              </p>
-              <p>
-                <strong>Camera:</strong> {product.camera}
-              </p>
-              <p>
-                <strong>Zoom:</strong> {product.zoom}
-              </p>
-              <p>
-                <strong>Cell:</strong>
-              </p>
-              <ul>
-                {product.cell.map((cell, idx) => (
-                  <li key={idx}>{cell}</li>
-                ))}
-              </ul>
+            </div>
+
+            <div className={styles.more_details__tech}>
+              <strong className={styles.more_details__tech_strong}>
+                Tech specs
+              </strong>
+
+              <div className={styles.more_details__tech__smallDescription}>
+                <div className={styles.more_details__tech__smallDescription_s}>
+                  <p className={styles.more_details__tech__smallDescription_name}>
+                    Screen
+                  </p>
+                  <p className={styles.more_details__tech__smallDescription_value}>
+                    {product.screen}
+                  </p>
+                </div>
+
+                <div className={styles.more_details__tech__smallDescription_s}>
+                  <p className={styles.more_details__tech__smallDescription_name}>
+                    Resolution
+                  </p>
+                  <p className={styles.more_details__tech__smallDescription_value}>
+                    {product.resolution}
+                  </p>
+                </div>
+
+                <div className={styles.more_details__tech__smallDescription_s}>
+                  <p className={styles.more_details__tech__smallDescription_name}>
+                    Processor
+                  </p>
+                  <p className={styles.more_details__tech__smallDescription_value}>
+                    {product.processor}
+                  </p>
+                </div>
+
+                <div className={styles.more_details__tech__smallDescription_s}>
+                  <p className={styles.more_details__tech__smallDescription_name}>
+                    RAM
+                  </p>
+                  <p className={styles.more_details__tech__smallDescription_value}>
+                    {product.ram}
+                  </p>
+                </div>
+
+                <div className={styles.more_details__tech__smallDescription_s}>
+                  <p className={styles.more_details__tech__smallDescription_name}>
+                    Built in memory
+                  </p>
+                  <p className={styles.more_details__tech__smallDescription_value}>
+                    {product.capacity}
+                  </p>
+                </div>
+
+                <div className={styles.more_details__tech__smallDescription_s}>
+                  <p className={styles.more_details__tech__smallDescription_name}>
+                    Camera
+                  </p>
+                  <p className={styles.more_details__tech__smallDescription_value}>
+                    {product.camera}
+                  </p>
+                </div>
+
+                <div className={styles.more_details__tech__smallDescription_s}>
+                  <p className={styles.more_details__tech__smallDescription_name}>
+                    Zoom
+                  </p>
+                  <p className={styles.more_details__tech__smallDescription_value}>
+                    {product.zoom}
+                  </p>
+                </div>
+
+                <div className={styles.more_details__tech__smallDescription_s}>
+                  <p className={styles.more_details__tech__smallDescription_name}>
+                    Cell
+                  </p>
+                  <p className={styles.more_details__tech__smallDescription_value}>
+                    {product.cell}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </>
