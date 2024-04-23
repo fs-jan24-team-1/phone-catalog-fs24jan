@@ -1,0 +1,107 @@
+@import './mixin.scss';
+
+.carousel {
+  margin-top: 80px;
+  padding-left: 5px;
+  @include on-tablet {
+    padding-right: 24px;
+  }
+
+  @include on-mobile {
+    margin-left: 16px;
+  }
+
+  &__top {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+
+  &__title {
+    color: #0F0F11;
+  }
+
+  &__nav {
+    @include on-mobile {
+      display: flex;
+      gap: 16px;
+      padding-right: 16px;
+    }
+
+    @include on-tablet {
+      padding-right: 32px;
+      padding-left: 32px;
+    }
+
+    @include on-desktop {
+      padding-right: 0;
+    }
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #B4BDC3;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #fafbfc;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+
+
+    &:hover {
+      border: 1px solid #E2E6E9;
+    }
+
+    &:disabled {
+      cursor: no-drop;
+    }
+
+    &--left {
+      background-image: url('../../img/icons/arrows_left.svg');
+      background-size: 5px;
+    }
+
+    &--left:disabled {
+      background-image: url('../../img/icons/arrows_left.svg');
+      border: 1px solid #e2e6e9;
+    }
+
+    &--right {
+      background-image: url('../../img/icons/arrows_right.svg');
+      background-size: 5px;
+    }
+
+    &--right:disabled {
+      background-image: url('../../img/icons/arrows_right.svg');
+      border: 1px solid #e2e6e9;
+    }
+  }
+
+  &__cards {
+    list-style-type: none;
+    @include on-mobile {
+      @include page-grid;
+
+      padding: 0;
+      overflow: hidden;
+      scroll-behavior: smooth;
+      grid-column: 1 / -1;
+      grid-row: 1;
+      column-gap: 16px;
+      grid-template-columns: repeat(20, 220px);
+    }
+
+    @include on-tablet {
+      grid-template-columns: repeat(20, 237px);
+    }
+
+    @include on-desktop {
+      grid-template-columns: repeat(20, 275px);
+    }
+  }
+}
