@@ -7,6 +7,7 @@ import { RootState } from '../../store/store';
 import { ButtonFavourite } from '../UI/ButtonFavourite';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { ProductButtonType } from '../../types/ProductButtonType';
 
 type Props = {
   product: Product;
@@ -124,7 +125,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <div className={styles.buttonBox} >
             <ButtonPrimary
               textForPrimaryButton={
-                isProductInCart ? 'Added to cart' : 'Add to cart'
+                isProductInCart ? ProductButtonType.ADDED : ProductButtonType.ADD
               }
               callback={handleAddToCart}
             />
