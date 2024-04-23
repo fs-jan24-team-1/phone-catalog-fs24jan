@@ -14,7 +14,7 @@ enum linkTypes {
 export const Breadcrumbs = () => {
   const location = useLocation();
   const { pathname } = location;
-  const parts = pathname.split('/').filter(part => part !== '');
+  const parts = pathname.split('/').filter((part: string) => part !== '');
 
   const [productName, setProductName] = useState('');
   const { productId } = useParams();
@@ -68,7 +68,7 @@ export const Breadcrumbs = () => {
   return (
     <div className={styles.breadcrumb__style}>
       <Link to={`/`} className={styles.home__icon}></Link>
-      {parts.map((part, index) => (
+      {parts.map((part: string, index: number) => (
         <>
           <Link
             key={part}
@@ -78,7 +78,7 @@ export const Breadcrumbs = () => {
             })}
           >
             {index < parts.length - 1 &&
-              part.replace(/\b\w/g, firstLetter => firstLetter.toUpperCase())}
+              part.replace(/\b\w/g, (firstLetter: string) => firstLetter.toUpperCase())}
           </Link>
           {index === parts.length - 1 && (
             <span

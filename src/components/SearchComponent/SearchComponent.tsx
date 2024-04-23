@@ -11,7 +11,7 @@ export const SearchComponent = () => {
     setSearchTerm('');
   }, [location.pathname]);
 
-  const delayedSearch = debounce((value) => {
+  const delayedSearch = debounce((value: string) => {
     navigate(`?query=${value}`);
   }, 300);
 
