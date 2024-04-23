@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { NavBar } from '../NavBar/NavBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { SearchComponent} from '../SearchComponent/SearchComponent';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
@@ -58,7 +59,7 @@ export const Header = () => {
           </div>
         </nav>
       </div>
-
+      <SearchComponent />
       <div className={styles.right_side}>
         <NavLink to="/Favorites" className={({ isActive }) => classNames(styles.favorites, { [styles.is_active]: isActive })}>
           <div className={styles.favoritesIconContainer}>
