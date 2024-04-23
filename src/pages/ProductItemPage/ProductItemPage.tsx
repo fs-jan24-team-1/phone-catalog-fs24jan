@@ -21,18 +21,9 @@ export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<ProductItemType | null>(null);
-  const [selectedColor, setSelectedColor] = useState(
-    product?.colorsAvailable[0],
-  );
-  const [selectedCapacity, setSelectedCapacity] = useState(
-    product?.capacityAvailable[0],
-  );
   const [isSelectedPhoto, setIsSelectedPhoto] = useState(0);
-
-  const handleChangePhoto = (index: number) => {
-    setIsSelectedPhoto(index);
-  }
-  
+  const [selectedColor, setSelectedColor] = useState(product?.color);
+  const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
   const productCategory = products.find(
     item => item.itemId === productId,
   )?.category;
@@ -65,15 +56,27 @@ export const ProductItemPage = () => {
     }
   }, [productCategory, productId]);
 
+  useEffect(() => {
+    if (product && product.colorsAvailable) {
+      setSelectedColor(product.color);
+    }
+
+    if (product && product.capacityAvailable) {
+      setSelectedCapacity(product.capacity);
+    }
+  }, [product]);
+
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
-  console.log(handleColorChange, selectedColor);
 
   const handleCapacityChange = (capacity: string) => {
     setSelectedCapacity(capacity);
   };
-  console.log(selectedCapacity, handleCapacityChange);
+
+  const handlePhotoChange = (index: number) => {
+    setIsSelectedPhoto(index);
+  };
 
   // const dispatch = useDispatch();
   // const cart = useSelector((state: RootState) => state.product.cart);
@@ -93,6 +96,7 @@ export const ProductItemPage = () => {
   //     });
   //   }
   // };
+
   //Need to DELETE or RECREATE this temp function
   const tempFunction = () => {
     return 0;
@@ -137,7 +141,7 @@ export const ProductItemPage = () => {
                     className={classNames(styles.product__image_column_small, {
                       [styles.selected]: index === isSelectedPhoto,
                     })}
-                    onClick={() => handleChangePhoto(index)}
+                    onClick={() => handlePhotoChange(index)}
                   >
                     <img
                       src={image}
@@ -172,8 +176,13 @@ export const ProductItemPage = () => {
                     <div
                       key={index}
                       className={styles.product__info__color_button}
+                      onClick={() => handleColorChange(color)}
                     >
-                      <ButtonColor colorDevice={color} />
+                      <ButtonColor
+                        colorDevice={color}
+                        selected={selectedColor === color}
+                        setSelectedColor={setSelectedColor}
+                      />
                     </div>
                   ))}
                 </div>
@@ -188,8 +197,13 @@ export const ProductItemPage = () => {
                     <div
                       key={index}
                       className={styles.product__info__capacity_button}
+                      onClick={() => handleCapacityChange(capacity)}
                     >
-                      <ButtonCapacity text={capacity} />
+                      <ButtonCapacity
+                        text={capacity}
+                        selected={selectedCapacity === capacity}
+                        setSelectedCapacity={setSelectedCapacity}
+                      />
                     </div>
                   ))}
                 </div>
@@ -200,9 +214,9 @@ export const ProductItemPage = () => {
                   <strong className={styles.product__info__price_discount}>
                     ${product.priceDiscount}
                   </strong>
-                  <div className={styles.product__info__price_regular}>
+                  <span className={styles.product__info__price_regular}>
                     ${product.priceRegular}
-                  </div>
+                  </span>
                 </p>
 
                 <div className={styles.product__info__price_buttons}>
@@ -293,73 +307,121 @@ export const ProductItemPage = () => {
 
               <div className={styles.more_details__tech__smallDescription}>
                 <div className={styles.more_details__tech__smallDescription_s}>
-                  <p className={styles.more_details__tech__smallDescription_name}>
+                  <p
+                    className={styles.more_details__tech__smallDescription_name}
+                  >
                     Screen
                   </p>
-                  <p className={styles.more_details__tech__smallDescription_value}>
+                  <p
+                    className={
+                      styles.more_details__tech__smallDescription_value
+                    }
+                  >
                     {product.screen}
                   </p>
                 </div>
 
                 <div className={styles.more_details__tech__smallDescription_s}>
-                  <p className={styles.more_details__tech__smallDescription_name}>
+                  <p
+                    className={styles.more_details__tech__smallDescription_name}
+                  >
                     Resolution
                   </p>
-                  <p className={styles.more_details__tech__smallDescription_value}>
+                  <p
+                    className={
+                      styles.more_details__tech__smallDescription_value
+                    }
+                  >
                     {product.resolution}
                   </p>
                 </div>
 
                 <div className={styles.more_details__tech__smallDescription_s}>
-                  <p className={styles.more_details__tech__smallDescription_name}>
+                  <p
+                    className={styles.more_details__tech__smallDescription_name}
+                  >
                     Processor
                   </p>
-                  <p className={styles.more_details__tech__smallDescription_value}>
+                  <p
+                    className={
+                      styles.more_details__tech__smallDescription_value
+                    }
+                  >
                     {product.processor}
                   </p>
                 </div>
 
                 <div className={styles.more_details__tech__smallDescription_s}>
-                  <p className={styles.more_details__tech__smallDescription_name}>
+                  <p
+                    className={styles.more_details__tech__smallDescription_name}
+                  >
                     RAM
                   </p>
-                  <p className={styles.more_details__tech__smallDescription_value}>
+                  <p
+                    className={
+                      styles.more_details__tech__smallDescription_value
+                    }
+                  >
                     {product.ram}
                   </p>
                 </div>
 
                 <div className={styles.more_details__tech__smallDescription_s}>
-                  <p className={styles.more_details__tech__smallDescription_name}>
+                  <p
+                    className={styles.more_details__tech__smallDescription_name}
+                  >
                     Built in memory
                   </p>
-                  <p className={styles.more_details__tech__smallDescription_value}>
+                  <p
+                    className={
+                      styles.more_details__tech__smallDescription_value
+                    }
+                  >
                     {product.capacity}
                   </p>
                 </div>
 
                 <div className={styles.more_details__tech__smallDescription_s}>
-                  <p className={styles.more_details__tech__smallDescription_name}>
+                  <p
+                    className={styles.more_details__tech__smallDescription_name}
+                  >
                     Camera
                   </p>
-                  <p className={styles.more_details__tech__smallDescription_value}>
+                  <p
+                    className={
+                      styles.more_details__tech__smallDescription_value
+                    }
+                  >
                     {product.camera}
                   </p>
                 </div>
 
                 <div className={styles.more_details__tech__smallDescription_s}>
-                  <p className={styles.more_details__tech__smallDescription_name}>
+                  <p
+                    className={styles.more_details__tech__smallDescription_name}
+                  >
                     Zoom
                   </p>
-                  <p className={styles.more_details__tech__smallDescription_value}>
+                  <p
+                    className={
+                      styles.more_details__tech__smallDescription_value
+                    }
+                  >
                     {product.zoom}
                   </p>
                 </div>
 
                 <div className={styles.more_details__tech__smallDescription_s}>
-                  <p className={styles.more_details__tech__smallDescription_name}>
+                  <p
+                    className={styles.more_details__tech__smallDescription_name}
+                  >
                     Cell
                   </p>
-                  <p className={styles.more_details__tech__smallDescription_value}>
+                  <p
+                    className={
+                      styles.more_details__tech__smallDescription_value
+                    }
+                  >
                     {product.cell}
                   </p>
                 </div>
