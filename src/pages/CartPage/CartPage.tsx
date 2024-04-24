@@ -10,7 +10,7 @@ import { LottieAnimation } from '../../components/UI/LottieAnimation';
 import * as animationData from './../../animations/EmptyCart.json';
 import { Link } from 'react-router-dom';
 import { ProductButtonType } from '../../types/ProductButtonType';
-
+import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 
 export const CartPage = () => {
   const { cart, cartTotalAmount, cartTotalQuantity } = useSelector(
@@ -21,6 +21,8 @@ export const CartPage = () => {
   useEffect(() => {
     dispatch({ type: 'product/getTotals' });
   }, [cart, dispatch]);
+
+  useScrollToTopEffect();
 
   //Need to DELETE or RECREATE this temp function
   const tempFunction = () => {
@@ -36,12 +38,13 @@ export const CartPage = () => {
       {cartTotalQuantity === 0 ? (
         <div className={styles.container__empty__cart}>
           <h1 style={{textAlign: 'center'}}>{`Your cart is empty :(`}</h1>
-          <LottieAnimation animationData={animationData} />
-          <Link to="/" className={styles.button}>
-          Сontinue shopping
-      </Link>
-        </div>
 
+          <LottieAnimation animationData={animationData} />
+
+          <Link to="/" className={styles.button}>
+            Сontinue shopping
+          </Link>
+        </div>
       ) : (
         <div className={styles.wrapper}>
           <div className={styles.wrapper__products}>
@@ -54,11 +57,14 @@ export const CartPage = () => {
             <strong
               className={styles.totalCost__price}
             >{`$${cartTotalAmount}`}</strong>
+
             <p className={styles.totalCost__itemCount}>
               Total for {cartTotalQuantity}{' '}
               {cartTotalQuantity > 1 ? 'items' : 'item'}
             </p>
+
             <div className={styles.totalCost__line}></div>
+
             <ButtonPrimary
               textForPrimaryButton={ProductButtonType.CHECKOUT}
               callback={tempFunction}

@@ -16,6 +16,7 @@ import { ButtonFavourite } from '../../components/UI/ButtonFavourite';
 // import { ButtonSlider } from '../../components/UI/ButtonSlider';
 import { ButtonBack } from '../../components/UI/ButtonBack';
 import { ProductButtonType } from '../../types/ProductButtonType';
+import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -59,6 +60,8 @@ export const ProductItemPage = () => {
       fetchProduct();
     }
   }, [productCategory, productId]);
+
+  useScrollToTopEffect();
 
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
