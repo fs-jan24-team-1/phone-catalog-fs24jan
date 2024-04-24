@@ -23,3 +23,12 @@
     transform: rotate(360deg);
   }
 }
+
+.animation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+}
