@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { SortProductBy } from '../../types/SortProductBy';
 import { sortProductsBy } from '../../utils/sortProductsBy';
+import styles from './homepage.module.scss';
+
 import { CategoriesSection } from '../../components/CategoriesSection';
 import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 
@@ -14,8 +16,8 @@ export const HomePage = () => {
   useScrollToTopEffect();
 
   return (
-    <>
-      <h1 className="title">Welcome to Nice Gadgets store!</h1>
+    <div className={styles.containers}>
+      <h1 className={styles.title}>Welcome to Nice Gadgets store!</h1>
       <Slider />
 
       <ProductsSlider
@@ -29,6 +31,6 @@ export const HomePage = () => {
         title="Hot prices"
         products={sortProductsBy(products, SortProductBy.price)}
       />
-    </>
+    </div>
   );
 };
