@@ -12,12 +12,14 @@ import { Link } from 'react-router-dom';
 import { ProductButtonType } from '../../types/ProductButtonType';
 import { CartModal } from '../../components/CartModal';
 import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
+import { useTranslation } from 'react-i18next';
 
 export const CartPage = () => {
   const { cart, cartTotalAmount, cartTotalQuantity } = useSelector(
     (state: RootState) => state.product,
   );
   const dispatch = useDispatch();
+  const [t] = useTranslation('global');
 
   useEffect(() => {
     dispatch({ type: 'product/getTotals' });
@@ -37,16 +39,18 @@ export const CartPage = () => {
 
   return (
     <div className={styles.container}>
-      <ButtonBack textForBackButton={`Back`} />
+      <ButtonBack textForBackButton={t('cart.Back')} />
 
       <h1 className={styles.title}>Cart</h1>
 
       {cartTotalQuantity === 0 ? (
         <div className={styles.container__empty__cart}>
-          <h1 style={{ textAlign: 'center' }}>{`Your cart is empty :(`}</h1>
+          <h1 style={{ textAlign: 'center' }}>
+            {t('cart.Your cart is empty') + ' :('}
+          </h1>
           <LottieAnimation animationData={animationData} />
           <Link to="/" className={styles.button}>
-            Сontinue shopping
+            {t('cart.Сontinue shopping')}
           </Link>
         </div>
       ) : (
@@ -63,8 +67,8 @@ export const CartPage = () => {
             >{`$${cartTotalAmount}`}</strong>
 
             <p className={styles.totalCost__itemCount}>
-              Total for {cartTotalQuantity}{' '}
-              {cartTotalQuantity > 1 ? 'items' : 'item'}
+              {t('cart.Total for')} {cartTotalQuantity}{' '}
+              {cartTotalQuantity > 1 ? t('cart.items') : t('cart.item')}
             </p>
 
             <div className={styles.totalCost__line}></div>

@@ -7,9 +7,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Product } from '../../types/Product';
 import { Category } from '../../types/Category';
+import { useTranslation } from 'react-i18next';
 
 export const CategoriesSection: React.FC = () => {
   const products = useSelector((state: RootState) => state.product.products);
+  const [t] = useTranslation('global');
 
   const phones = products.filter(
     (product: Product) => product.category === Category.phones,
@@ -25,21 +27,21 @@ export const CategoriesSection: React.FC = () => {
 
   const categories = [
     {
-      name: 'Mobile phones',
+      name: t('categories.Mobile phones'),
       totalQuantity: phones.length,
       image: phone,
       backgroundColor: 'violet-background',
       url: '/phones',
     },
     {
-      name: 'Tablets',
+      name: t('categories.Tablets'),
       totalQuantity: tablets.length,
       image: tablet,
       backgroundColor: 'grey-background',
       url: '/tablets',
     },
     {
-      name: 'Accessories',
+      name: t('categories.Accessories'),
       totalQuantity: accessories.length,
       image: accessory,
       backgroundColor: 'burgundy-background',
@@ -49,10 +51,14 @@ export const CategoriesSection: React.FC = () => {
 
   return (
     <section className={styles.category}>
-      <h1 className={styles.category__title}>Shop by category</h1>
+      <h1 className={styles.category__title}>{t('home.Shop by category')}</h1>
       <div className={styles.category__container}>
         {categories.map(category => (
-          <Link to={category.url} key={category.name} className={styles.category__link}>
+          <Link
+            to={category.url}
+            key={category.name}
+            className={styles.category__link}
+          >
             <article className={styles.category__type}>
               <div
                 className={`${styles.category__photo__container} ${styles[category.backgroundColor]}`}
@@ -68,9 +74,9 @@ export const CategoriesSection: React.FC = () => {
 
               <p
                 className={styles.category__quantity}
-              >{`${category.totalQuantity} models`}</p>
+              >{`${category.totalQuantity} ${t('categories.models')}`}</p>
             </article>
-            </Link>
+          </Link>
         ))}
       </div>
     </section>

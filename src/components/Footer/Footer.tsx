@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import styles from "./footer.module.scss"
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
+  const [t] = useTranslation("global");
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -17,17 +19,17 @@ export const Footer = () => {
           </li>
 
           <li className={styles.footer__item}>
-            <Link to="#" className={styles.footer__link}>Contacts</Link>
+            <Link to="#" className={styles.footer__link}>{t('footer.Contacts')}</Link>
           </li>
 
           <li className={styles.footer__item}>
-            <Link to="#" className={styles.footer__link}>Rights</Link>
+            <Link to="#" className={styles.footer__link}>{t('footer.Rights')}</Link>
           </li>
         </ul>
 
         <div className={styles['back-to-top']}>
           <div className={styles['back-to-top__content']} onClick={handleScrollToTop}>
-            <span className={styles['back-to-top__text']}>Back to top</span>
+            <span className={styles['back-to-top__text']}>{t('footer.Back to top')}</span>
 
             <div className={styles['back-to-top__button']} />
           </div>
