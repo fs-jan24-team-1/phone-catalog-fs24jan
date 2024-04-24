@@ -21,7 +21,7 @@ export const ButtonFavourite: React.FC<Props> = ({ product, callback }) => {
     callback();
   };
 
-  const findProductInFavourites = (products: any, product: Product | ProductItemType) => {
+  const findProductInFavourites = (products: Product[], product: Product | ProductItemType) => {
     return products.some((favProduct: Product | ProductItemType) => favProduct.id === product.id);
   }
 
