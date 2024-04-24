@@ -15,6 +15,7 @@ import { Product } from '../../types/Product';
 import { ButtonFavourite } from '../../components/UI/ButtonFavourite';
 import { ButtonBack } from '../../components/UI/ButtonBack';
 import { ProductButtonType } from '../../types/ProductButtonType';
+import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 import { toast } from 'react-toastify';
 
 export const ProductItemPage = () => {
@@ -55,6 +56,8 @@ export const ProductItemPage = () => {
       fetchProduct();
     }
   }, [productCategory, productId]);
+
+  useScrollToTopEffect();
 
   useEffect(() => {
     if (product && product.colorsAvailable) {
@@ -247,7 +250,8 @@ export const ProductItemPage = () => {
                   />
                   <div className={styles.product__info__price_gap}></div>
                   <ButtonFavourite
-                    callback={handleAddToFavourites} // щось додати у функцію
+                    product={product}
+                    callback={handleAddToFavourites}
                   />
                 </div>
               </div>

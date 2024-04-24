@@ -4,9 +4,12 @@ import { Pagination } from '../../components/Pagination';
 import { Category } from '../../types/Category';
 import { usePageLogic } from '../../hooks/usePageLogic';
 import styles from './tabletsPage.module.scss';
+import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 
 export const TabletsPage = () => {
   const { currentProducts, sortedProducts, currentPage, handlePagination } = usePageLogic(Category.tablets);
+
+  useScrollToTopEffect();
 
   return (
     <div className={styles.container}>

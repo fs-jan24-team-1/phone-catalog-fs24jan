@@ -129,7 +129,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
               }
               callback={handleAddToCart}
             />
-            <ButtonFavourite callback={handleAddToFavourites} />
+            <ButtonFavourite product={product} callback={handleAddToFavourites} />
           </div>
         </div>
       </article>
