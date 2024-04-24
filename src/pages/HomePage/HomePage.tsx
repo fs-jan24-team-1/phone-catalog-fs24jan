@@ -16,7 +16,6 @@ export const HomePage = () => {
   useScrollToTopEffect();
 
   return (
-    <>
     <div className={styles.containers}>
       <h1 className={styles.title}>Welcome to Nice Gadgets store!</h1>
       <Slider />
@@ -32,6 +31,6 @@ export const HomePage = () => {
         title="Hot prices"
         products={sortProductsBy(products, SortProductBy.price)}
       />
-    </>
+    </div>
   );
 };
