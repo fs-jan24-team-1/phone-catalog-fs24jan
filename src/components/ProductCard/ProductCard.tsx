@@ -26,7 +26,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     (cartProduct: Product) => cartProduct.id === product.id,
   );
 
-  const handleAddToFavourites = () => {
+  const handleAddToFavourites = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    
     if (isProductInFavourites) {
       toast.success('The product has been removed');
 
@@ -44,7 +46,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     }
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
     if (isProductInCart) {
       toast.success('The product has been removed');
 
