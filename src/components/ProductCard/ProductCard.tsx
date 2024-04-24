@@ -9,6 +9,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ProductButtonType } from '../../types/ProductButtonType';
 import { Variants, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   product: Product;
@@ -16,6 +17,7 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
+  const [t] = useTranslation("global")
   const favourites = useSelector((state: RootState) => state.product.favourites);
   const cart = useSelector((state: RootState) => state.product.cart);
 
@@ -123,17 +125,17 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
               <div
                 className={`${styles.description__container} ${styles.info}`}
               >
-                <span className={styles.info__title}>Screen</span>
+                <span className={styles.info__title}>{t('product.Screen')}</span>
                 <span className={styles.info__value}>{product.screen}</span>
               </div>
 
               <div className={styles.description__container}>
-                <span className={styles.info__title}>Capacity</span>
+                <span className={styles.info__title}>{t('product.Capacity')}</span>
                 <span className={styles.info__value}>{product.capacity}</span>
               </div>
 
               <div className={styles.description__container}>
-                <span className={styles.info__title}>RAM</span>
+                <span className={styles.info__title}>{t('product.RAM')}</span>
                 <span className={styles.info__value}>{product.ram}</span>
               </div>
             </div>

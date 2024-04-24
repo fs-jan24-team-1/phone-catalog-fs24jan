@@ -20,9 +20,11 @@ import { toast } from 'react-toastify';
 import { ProductsSlider } from '../../components/ProductsSlider/ProductsSlider';
 import { sortProductsBy } from '../../utils/sortProductsBy';
 import { SortProductBy } from '../../types/SortProductBy';
+import { useTranslation } from 'react-i18next';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
+  const [t] = useTranslation('global');
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<ProductItemType | null>(null);
   const [isSelectedPhoto, setIsSelectedPhoto] = useState(0);
@@ -109,7 +111,7 @@ export const ProductItemPage = () => {
     if (checkingColor && checkingColor.includes(' ')) {
       checkingColor = checkingColor.split(' ').join('-');
     }
-    
+
     const namespaceId = product?.namespaceId;
     const checkingCapacity = capacity.toLowerCase();
 
@@ -176,7 +178,7 @@ export const ProductItemPage = () => {
       </div>
 
       <div className={styles.back__products}>
-        <ButtonBack textForBackButton={`Back`} />
+        <ButtonBack textForBackButton={t('product.Back')} />
       </div>
 
       {product ? (
@@ -220,7 +222,7 @@ export const ProductItemPage = () => {
             <div className={styles.product__info}>
               <div className={styles.product__info__colors}>
                 <p className={styles.product__info__colors_title}>
-                  Available colors
+                  {t('productPage.Available colors')}
                 </p>
                 <div className={styles.product__info__colors_buttons}>
                   {product.colorsAvailable.map((color, index) => (
@@ -241,7 +243,7 @@ export const ProductItemPage = () => {
 
               <div className={styles.product__info__capacity}>
                 <p className={styles.product__info__capacity_title}>
-                  Select capacity
+                  {t('productPage.Select capacity')}
                 </p>
                 <div className={styles.product__info__capacity_buttons}>
                   {product.capacityAvailable.map((capacity, index) => (
@@ -292,7 +294,7 @@ export const ProductItemPage = () => {
               <div className={styles.product__info__smallDescription}>
                 <div className={styles.product__info__smallDescription_s}>
                   <p className={styles.product__info__smallDescription_name}>
-                    Screen
+                    {t('productPage.Screen')}
                   </p>
                   <p className={styles.product__info__smallDescription_value}>
                     {product.screen}
@@ -301,7 +303,7 @@ export const ProductItemPage = () => {
 
                 <div className={styles.product__info__smallDescription_s}>
                   <p className={styles.product__info__smallDescription_name}>
-                    Resolution
+                    {t('productPage.Resolution')}
                   </p>
                   <p className={styles.product__info__smallDescription_value}>
                     {product.resolution}
@@ -310,7 +312,7 @@ export const ProductItemPage = () => {
 
                 <div className={styles.product__info__smallDescription_s}>
                   <p className={styles.product__info__smallDescription_name}>
-                    Processor
+                    {t('productPage.Processor')}
                   </p>
                   <p className={styles.product__info__smallDescription_value}>
                     {product.processor}
@@ -319,7 +321,7 @@ export const ProductItemPage = () => {
 
                 <div className={styles.product__info__smallDescription_s}>
                   <p className={styles.product__info__smallDescription_name}>
-                    RAM
+                    {t('productPage.RAM')}
                   </p>
                   <p className={styles.product__info__smallDescription_value}>
                     {product.ram}
@@ -336,7 +338,7 @@ export const ProductItemPage = () => {
           <div className={styles.more_details}>
             <div className={styles.more_details__about}>
               <strong className={styles.more_details__about_strong}>
-                About
+                {t('productPage.About')}
               </strong>
 
               {product.description.map((desc, index) => (
@@ -359,7 +361,7 @@ export const ProductItemPage = () => {
 
             <div className={styles.more_details__tech}>
               <strong className={styles.more_details__tech_strong}>
-                Tech specs
+                {t('productPage.Tech specs')}
               </strong>
 
               <div className={styles.more_details__tech__smallDescription}>
@@ -367,7 +369,7 @@ export const ProductItemPage = () => {
                   <p
                     className={styles.more_details__tech__smallDescription_name}
                   >
-                    Screen
+                    {t('productPage.Screen')}
                   </p>
                   <p
                     className={
@@ -382,7 +384,7 @@ export const ProductItemPage = () => {
                   <p
                     className={styles.more_details__tech__smallDescription_name}
                   >
-                    Resolution
+                    {t('productPage.Resolution')}
                   </p>
                   <p
                     className={
@@ -397,7 +399,7 @@ export const ProductItemPage = () => {
                   <p
                     className={styles.more_details__tech__smallDescription_name}
                   >
-                    Processor
+                    {t('productPage.Processor')}
                   </p>
                   <p
                     className={
@@ -412,7 +414,7 @@ export const ProductItemPage = () => {
                   <p
                     className={styles.more_details__tech__smallDescription_name}
                   >
-                    RAM
+                    {t('productPage.RAM')}
                   </p>
                   <p
                     className={
@@ -427,7 +429,7 @@ export const ProductItemPage = () => {
                   <p
                     className={styles.more_details__tech__smallDescription_name}
                   >
-                    Built in memory
+                    {t('productPage.Built in memory')}
                   </p>
                   <p
                     className={
@@ -447,7 +449,7 @@ export const ProductItemPage = () => {
                         styles.more_details__tech__smallDescription_name
                       }
                     >
-                      Camera
+                      {t('productPage.Camera')}
                     </p>
                     <p
                       className={
@@ -468,7 +470,7 @@ export const ProductItemPage = () => {
                         styles.more_details__tech__smallDescription_name
                       }
                     >
-                      Zoom
+                      {t('productPage.Zoom')}
                     </p>
                     <p
                       className={
@@ -484,7 +486,7 @@ export const ProductItemPage = () => {
                   <p
                     className={styles.more_details__tech__smallDescription_name}
                   >
-                    Cell
+                    {t('productPage.Cell')}
                   </p>
                   <p
                     className={
@@ -500,7 +502,7 @@ export const ProductItemPage = () => {
 
           <div className={styles.slider}>
             <ProductsSlider
-              title="You may also like"
+              title={t('home.You may also like')}
               products={sortProductsBy(products, SortProductBy.price)}
             />
           </div>

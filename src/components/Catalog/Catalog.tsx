@@ -5,6 +5,7 @@ import { Filter } from '../Filter/Filter';
 import { LottieAnimation } from '../UI/LottieAnimation';
 import * as animationData from '../../animations/ProductsNotFound.json';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 interface Props {
@@ -14,12 +15,13 @@ interface Props {
 
 export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
   const { pathname } = useLocation();
+  const [t] = useTranslation('global');
 
   return (
     <section className={styles.section}>
       {products.length > 0 ? (
         <div className={styles.catalog}>
-          <h3 className={styles.catalog__quantity}>{totalProducts} models</h3>
+          <h3 className={styles.catalog__quantity}>{totalProducts} {t('categories.models')}</h3>
 
           <Filter />
 
@@ -36,11 +38,11 @@ export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
           </div>
 
           <p className={styles.message}>
-            There are no products matching the query!
+            {t('search.There are no products matching the query!')}
           </p>
 
           <Link to={pathname} className={styles['try-again-button']}>
-            Try again
+            {t('search.Try again')}
           </Link>
         </section>
       )}

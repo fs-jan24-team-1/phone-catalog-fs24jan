@@ -7,10 +7,13 @@ import styles from './accesoriesPage.module.scss';
 import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 import { useEffect, useState } from 'react';
 import { Loader } from '../../components/Loader';
+import { useTranslation } from 'react-i18next';
 
 export const AccessoriesPage = () => {
-  const { currentProducts, sortedProducts, currentPage, handlePagination } = usePageLogic(Category.accessories);
+  const { currentProducts, sortedProducts, currentPage, handlePagination } =
+    usePageLogic(Category.accessories);
   const [isLoading, setIsLoading] = useState(true);
+  const [t] = useTranslation('global');
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1000);
@@ -22,7 +25,7 @@ export const AccessoriesPage = () => {
     <div className={styles.container}>
       <Breadcrumbs />
 
-      <h1 className={styles.container__title}>Accesories</h1>
+      <h1 className={styles.container__title}>{t('categories.Accessories')}</h1>
 
       {isLoading ? (
         <Loader />

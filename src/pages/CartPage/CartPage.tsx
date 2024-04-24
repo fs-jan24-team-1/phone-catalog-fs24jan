@@ -41,7 +41,7 @@ export const CartPage = () => {
     <div className={styles.container}>
       <ButtonBack textForBackButton={t('cart.Back')} />
 
-      <h1 className={styles.title}>Cart</h1>
+      <h1 className={styles.title}>{t('cart.Cart')}</h1>
 
       {cartTotalQuantity === 0 ? (
         <div className={styles.container__empty__cart}>

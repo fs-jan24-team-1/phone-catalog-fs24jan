@@ -84,5 +84,14 @@
     "Cheapest": "Cheapest",
     "Alphabetically": "Alphabetically",
     "All": "All"
+  },
+  "ProductButtonType": {
+    "ADD": "Add to cart",
+    "ADDED": "Added to cart",
+    "CHECKOUT": "Checkout"
+  },
+  "404": {
+    "Oops, page not found!": "Oops, page not found!",
+    "Go to homepage": "Go to homepage"
   }
 }
