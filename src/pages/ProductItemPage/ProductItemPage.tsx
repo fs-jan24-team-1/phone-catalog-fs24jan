@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAccessories, getPhones, getTablets } from '../../api';
-import { useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { ProductItemType } from '../../types/ProductItemType';
 import { NotFoundPage } from '../NotFoundPage';
 import { ButtonColor } from '../../components/UI/ButtonColor';
@@ -29,6 +29,20 @@ export const ProductItemPage = () => {
     item => item.itemId === productId,
   )?.category;
   let [items] = useState<ProductItemType[]>([]);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: RootState) => state.product.cart);
+  const normalizedProduct = products.find(
+    product => product.itemId === productId,
+  );
+  const isProductInCart = cart.some(
+    (cartProduct: Product) => cartProduct.id === normalizedProduct?.id,
+  );
+  const favourites = useSelector(
+    (state: RootState) => state.product.favourites,
+  );
+  const isProductInFavourites = favourites.some(
+    (favProduct: Product) => favProduct.id === normalizedProduct?.id,
+  );
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -69,25 +83,35 @@ export const ProductItemPage = () => {
     }
   }, [product]);
 
+  const location = useLocation();
+  const { pathname } = location;
+  const parts = pathname.split('/').filter((part: string) => part !== '')[0];
+
   const handleColorChange = (color: string) => {
-    setSelectedColor(color);
+    const capacity = product?.capacity.toLowerCase();
+    const namespaceId = product?.namespaceId;
+    let checkingColor = color;
+
+    if (checkingColor.includes(' ')) {
+      checkingColor = checkingColor.split(' ').join('-');
+    }
+
+    const newLink = `${namespaceId}-${capacity}-${checkingColor}`;
+    return newLink;
   };
 
   const handleCapacityChange = (capacity: string) => {
-    setSelectedCapacity(capacity);
+    const color = product?.color;
+    const namespaceId = product?.namespaceId;
+    const checkingCapacity = capacity.toLowerCase();
+
+    const newLink = `${namespaceId}-${checkingCapacity}-${color}`;
+    return newLink;
   };
 
   const handlePhotoChange = (index: number) => {
     setIsSelectedPhoto(index);
   };
-
-  const dispatch = useDispatch();
-  const cart = useSelector((state: RootState) => state.product.cart);
-  const normalizedProduct = products.find(product => product.itemId === productId);
-
-  const isProductInCart = cart.some(
-    (cartProduct: Product) => cartProduct.id === normalizedProduct?.id,
-  );
 
   const handleAddToCart = () => {
     if (isProductInCart) {
@@ -102,11 +126,6 @@ export const ProductItemPage = () => {
       });
     }
   };
-
-  const favourites = useSelector((state: RootState) => state.product.favourites);
-  const isProductInFavourites = favourites.some(
-    (favProduct: Product) => favProduct.id === normalizedProduct?.id,
-  );
 
   const handleAddToFavourites = () => {
     if (isProductInFavourites) {
@@ -197,17 +216,17 @@ export const ProductItemPage = () => {
                 </p>
                 <div className={styles.product__info__colors_buttons}>
                   {product.colorsAvailable.map((color, index) => (
-                    <div
+                    <Link
+                      to={`/${parts}/${handleColorChange(color)}`}
                       key={index}
                       className={styles.product__info__color_button}
-                      onClick={() => handleColorChange(color)}
                     >
                       <ButtonColor
                         colorDevice={color}
                         selected={selectedColor === color}
                         setSelectedColor={setSelectedColor}
                       />
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -218,17 +237,17 @@ export const ProductItemPage = () => {
                 </p>
                 <div className={styles.product__info__capacity_buttons}>
                   {product.capacityAvailable.map((capacity, index) => (
-                    <div
+                    <Link
+                      to={`/${parts}/${handleCapacityChange(capacity)}`}
                       key={index}
                       className={styles.product__info__capacity_button}
-                      onClick={() => handleCapacityChange(capacity)}
                     >
                       <ButtonCapacity
                         text={capacity}
                         selected={selectedCapacity === capacity}
                         setSelectedCapacity={setSelectedCapacity}
                       />
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -245,14 +264,20 @@ export const ProductItemPage = () => {
 
                 <div className={styles.product__info__price_buttons}>
                   <ButtonPrimary
-                    textForPrimaryButton={ProductButtonType.ADD}
+                    textForPrimaryButton={
+                      isProductInCart
+                        ? ProductButtonType.ADDED
+                        : ProductButtonType.ADD
+                    }
                     callback={handleAddToCart}
                   />
                   <div className={styles.product__info__price_gap}></div>
-                  <ButtonFavourite
-                    product={product}
-                    callback={handleAddToFavourites}
-                  />
+                  {normalizedProduct && (
+                    <ButtonFavourite
+                      product={normalizedProduct}
+                      callback={handleAddToFavourites}
+                    />
+                  )}
                 </div>
               </div>
 

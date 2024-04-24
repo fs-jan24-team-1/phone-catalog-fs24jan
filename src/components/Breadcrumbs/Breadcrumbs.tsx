@@ -20,23 +20,23 @@ export const Breadcrumbs = () => {
   const { productId } = useParams();
 
   async function getPhonesById() {
-    let phones = [];
+    let devices = [];
 
     switch (parts[0]) {
       case 'phones':
-        phones = await getPhones();
+        devices = await getPhones();
         break;
       case 'tablets':
-        phones = await getTablets();
+        devices = await getTablets();
         break;
       case 'accessories':
-        phones = await getAccessories();
+        devices = await getAccessories();
         break;
       default:
         return 'Error: Not found the link path';
     }
 
-    const result = phones.find(phone => phone.id === productId);
+    const result = devices.find(device => device.id === productId);
 
     return result?.name;
   }
