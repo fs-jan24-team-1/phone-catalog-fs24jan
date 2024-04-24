@@ -4,7 +4,85 @@
     "phones": "СМАРТФОНИ",
     "tablets": "ПЛАНШЕТИ",
     "accessories": "АКСЕСУАРИ",
-    "favourites": "УЛЮБЛЕНІ",
-    "cart": "КОШИК"
+    "favourites": "Улюблене",
+    "cart": "Кошик"
+  },
+  "footer": {
+    "Back to top": "Повернутися до початку",
+    "Rights": "Права",
+    "Contacts": "Контакти"
+  },
+  "search": {
+    "Search": "Пошук",
+    "There are no products matching the query!": "Немає товарів, які відповідають запиту!",
+    "Search results": "Результати пошуку",
+    "Try again": "Спробуйте ще раз"
+  },
+  "cart": {
+    "Cart": "Кошик",
+    "Your cart is empty": "Ваш кошик порожній",
+    "Сontinue shopping": "Продовжити покупки",
+    "Total for": "Загальна за",
+    "Checkout": "Оформити замовлення",
+    "item": "позицію",
+    "items": "позиції",
+    "Back": "Назад",
+    "Checkout is not implemented yet. Do you want to clear the Cart?": "Оформлення замовлення ще не реалізовано. Бажаєте очистити кошик?",
+    "Cancel": "Скасувати",
+    "Confirm": "Підтвердити"
+  },
+  "home": {
+    "Welcome to Nice Gadgets store!": "Ласкаво просимо до магазину Nice Gadgets!",
+    "Brand new models": "Нові моделі",
+    "Hot prices": "Гарячі ціни",
+    "You may also like": "Вам також може сподобатися",
+    "Shop by category": "Покупки за категоріями"
+  },
+  "product": {
+    "Add to cart": "Додати до кошика",
+    "Added to cart": "Додано до кошика",
+    "Back": "Назад",
+    "Screen": "Екран",
+    "Capacity": "Ємність",
+    "RAM": "Оперативна пам'ять",
+    "Price": "Ціна"
+  },
+  "productPage": {
+    "Add to cart": "Додати до кошика",
+    "Added to cart": "Додано до кошика",
+    "Back": "Назад",
+    "Screen": "Екран",
+    "Processor": "Процесор",
+    "RAM": "Оперативна пам'ять",
+    "Resolution": "Роздільна здатність",
+    "Description": "Опис",
+    "Available colors": "Доступні кольори",
+    "Select capacity": "Оберіть ємність",
+    "About": "Про товар",
+    "Tech specs": "Технічні характеристики",
+    "Built in memory": "Вбудована пам'ять",
+    "Camera": "Камера",
+    "Zoom": "Збільшення",
+    "Cell": "Акумулятор"
+  },
+  "categories": {
+    "Mobile phones": "Смартфони",
+    "Tablets": "Планшети",
+    "Accessories": "Аксесуари",
+    "models": "моделі"
+  },
+  "favourites": {
+    "Favourites": "Улюблене",
+    "items": "позиції",
+    "There are no items yet": "Ще немає товарів",
+    "GO HOME": "ПЕРЕЙТИ НА ГОЛОВНУ"
+  },
+  "filters": {
+    "Sort by": "Сортувати за",
+    "Items on page": "Товарів на сторінці",
+    "Newest": "Найновіші",
+    "Cheapest": "Найдешевші",
+    "Alphabetically": "За алфавітом",
+    "All": "Усі"
   }
 }
