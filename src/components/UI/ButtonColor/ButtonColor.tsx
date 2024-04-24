@@ -10,6 +10,7 @@ export const ButtonColor: React.FC<Props> = ({ colorDevice, selected, setSelecte
   const handleClickColor = () => {
     setSelectedColor(colorDevice);
   };
+  console.log(colorDevice); // DELETE
 
   return (
     <div className={styles.color__сontainer}>

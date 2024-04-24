@@ -381,35 +381,47 @@ export const ProductItemPage = () => {
                   </p>
                 </div>
 
-                <div className={styles.more_details__tech__smallDescription_s}>
-                  <p
-                    className={styles.more_details__tech__smallDescription_name}
+                {product.camera && (
+                  <div
+                    className={styles.more_details__tech__smallDescription_s}
                   >
-                    Camera
-                  </p>
-                  <p
-                    className={
-                      styles.more_details__tech__smallDescription_value
-                    }
-                  >
-                    {product.camera}
-                  </p>
-                </div>
+                    <p
+                      className={
+                        styles.more_details__tech__smallDescription_name
+                      }
+                    >
+                      Camera
+                    </p>
+                    <p
+                      className={
+                        styles.more_details__tech__smallDescription_value
+                      }
+                    >
+                      {product.camera}
+                    </p>
+                  </div>
+                )}
 
-                <div className={styles.more_details__tech__smallDescription_s}>
-                  <p
-                    className={styles.more_details__tech__smallDescription_name}
+                {product.zoom && (
+                  <div
+                    className={styles.more_details__tech__smallDescription_s}
                   >
-                    Zoom
-                  </p>
-                  <p
-                    className={
-                      styles.more_details__tech__smallDescription_value
-                    }
-                  >
-                    {product.zoom}
-                  </p>
-                </div>
+                    <p
+                      className={
+                        styles.more_details__tech__smallDescription_name
+                      }
+                    >
+                      Zoom
+                    </p>
+                    <p
+                      className={
+                        styles.more_details__tech__smallDescription_value
+                      }
+                    >
+                      {product.zoom}
+                    </p>
+                  </div>
+                )}
 
                 <div className={styles.more_details__tech__smallDescription_s}>
                   <p
