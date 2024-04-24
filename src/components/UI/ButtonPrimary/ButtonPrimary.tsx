@@ -15,6 +15,7 @@ export const ButtonPrimary: FC<Props> = ({ textForPrimaryButton, callback }) => 
   const getButtonClass = (buttonType: ProductButtonType) => classNames(styles.button, {
     [styles.add]: ProductButtonType.ADD === buttonType,
     [styles.added]: ProductButtonType.ADDED === buttonType,
+    [styles.checkout]: ProductButtonType.CHECKOUT === buttonType,
   });
 
   const handleClick = () => {
