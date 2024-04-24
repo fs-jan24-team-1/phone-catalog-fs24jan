@@ -9,7 +9,7 @@ interface Props {
   callback: () => void;
 }
 
-export const ButtonPrimary: FC<Props> = ({ textForPrimaryButton, callback }) => {
+export const ButtonPrimary: FC<Props> = ({ textForPrimaryButton, callback}) => {
   const [selected, setSelected] = useState(false);
 
   const getButtonClass = (buttonType: ProductButtonType) => classNames(styles.button, {

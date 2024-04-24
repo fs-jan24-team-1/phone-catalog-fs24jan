@@ -4,12 +4,13 @@ import styles from './cartPage.module.scss';
 import { CartItem } from '../../components/CartIem';
 import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ButtonBack } from '../../components/UI/ButtonBack';
 import { LottieAnimation } from '../../components/UI/LottieAnimation';
 import * as animationData from './../../animations/EmptyCart.json';
 import { Link } from 'react-router-dom';
 import { ProductButtonType } from '../../types/ProductButtonType';
+import { CartModal } from '../../components/CartModal';
 import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 
 export const CartPage = () => {
@@ -24,9 +25,14 @@ export const CartPage = () => {
 
   useScrollToTopEffect();
 
-  //Need to DELETE or RECREATE this temp function
-  const tempFunction = () => {
-    return 0;
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
@@ -37,10 +43,8 @@ export const CartPage = () => {
 
       {cartTotalQuantity === 0 ? (
         <div className={styles.container__empty__cart}>
-          <h1 style={{textAlign: 'center'}}>{`Your cart is empty :(`}</h1>
-
+          <h1 style={{ textAlign: 'center' }}>{`Your cart is empty :(`}</h1>
           <LottieAnimation animationData={animationData} />
-
           <Link to="/" className={styles.button}>
             Сontinue shopping
           </Link>
@@ -67,11 +71,13 @@ export const CartPage = () => {
 
             <ButtonPrimary
               textForPrimaryButton={ProductButtonType.CHECKOUT}
-              callback={tempFunction}
+              callback={openModal}
             />
           </div>
         </div>
       )}
+
+      <CartModal isOpen={modalIsOpen} onClose={closeModal} />
     </div>
   );
 };
