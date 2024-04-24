@@ -6,6 +6,7 @@ import { LottieAnimation } from '../UI/LottieAnimation';
 import * as animationData from '../../animations/ProductsNotFound.json';
 import { Link, useLocation } from 'react-router-dom';
 
+
 interface Props {
   products: Product[];
   totalProducts: number;
@@ -17,10 +18,12 @@ export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
   return (
     <section className={styles.section}>
       {products.length > 0 ? (
-        <div className={styles.container}>
-          <h3>{totalProducts} models</h3>
+        <div className={styles.catalog}>
+          <h3 className={styles.catalog__quantity}>{totalProducts} models</h3>
+
           <Filter />
-          <div className={styles.sectionWrapper}>
+
+          <div className={styles.product}>
             {products.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}

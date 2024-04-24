@@ -28,7 +28,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleAddToFavourites = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    
+
     if (isProductInFavourites) {
       toast.success('The product has been removed');
 
@@ -73,67 +73,61 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       : `./${product.itemId}`;
 
   return (
-    <Link
-      to={url}
-      style={{ textDecoration: 'none', color: 'black' }}
-    >
+    <Link to={url} style={{ textDecoration: 'none', color: 'black' }}>
       <article className={styles.wrapper}>
-        <div className={styles.productCard}>
-          <div className={styles.productImageContainer}>
+        <div className={styles.product}>
+          <div className={styles.product__image}>
             <img
-              className={styles.productImage}
+              className={styles.product__image_img}
               src={product.image}
               alt={product.name}
             />
           </div>
 
-          <div className={styles.productDetails}>
-            <h3 className={styles.productName}>{product.name}</h3>
+          <div className={styles.product_details}>
+            <h3 className={styles.details__name}>{product.name}</h3>
 
-            <div className={styles.productPrice}>
-              <div className={styles.productDiscount}>${product.price}</div>
+            <div className={styles.details__price}>
+              <div className={styles.price__discount}>${product.price}</div>
 
               {product.fullPrice && (
-                <div className={styles.productFullPrice}>
-                  ${product.fullPrice}
-                </div>
+                <div className={styles.price__full}>${product.fullPrice}</div>
               )}
             </div>
           </div>
 
           <div className={styles.underline}></div>
 
-          <div className={styles.productDescription}>
-            <div className={styles.productDescriptionBox}>
-              <span className={styles.productDescriptionTitle}>Screen</span>
-              <span className={styles.productDescriptionValue}>
-                {product.screen}
-              </span>
+          <div className={styles.description}>
+            <div className={`${styles.description__container} ${styles.info}`}>
+              <span className={styles.info__title}>Screen</span>
+              <span className={styles.info__value}>{product.screen}</span>
             </div>
 
-            <div className={styles.productDescriptionBox}>
-              <span className={styles.productDescriptionTitle}>Capacity</span>
-              <span className={styles.productDescriptionValue}>
-                {product.capacity}
-              </span>
+            <div className={styles.description__container}>
+              <span className={styles.info__title}>Capacity</span>
+              <span className={styles.info__value}>{product.capacity}</span>
             </div>
 
-            <div className={styles.productDescriptionBox}>
-              <span className={styles.productDescriptionTitle}>RAM</span>
-              <span className={styles.productDescriptionValue}>
-                {product.ram}
-              </span>
+            <div className={styles.description__container}>
+              <span className={styles.info__title}>RAM</span>
+              <span className={styles.info__value}>{product.ram}</span>
             </div>
           </div>
 
-          <div className={styles.buttonBox} >
+          <div className={styles.buttons__container}>
             <ButtonPrimary
               textForPrimaryButton={
-                isProductInCart ? ProductButtonType.ADDED : ProductButtonType.ADD
+                isProductInCart
+                  ? ProductButtonType.ADDED
+                  : ProductButtonType.ADD
               }
               callback={handleAddToCart}
             />
-            <ButtonFavourite product={product} callback={handleAddToFavourites} />
+            <ButtonFavourite
+              product={product}
+              callback={handleAddToFavourites}
+            />
           </div>
         </div>
       </article>

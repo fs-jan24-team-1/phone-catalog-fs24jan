@@ -22,7 +22,7 @@ export const AccessoriesPage = () => {
     <div className={styles.container}>
       <Breadcrumbs />
 
-      <h1 className="title">AccesoriesCategory page</h1>
+      <h1 className={styles.container__title}>Accesories</h1>
 
       {isLoading ? (
         <Loader />

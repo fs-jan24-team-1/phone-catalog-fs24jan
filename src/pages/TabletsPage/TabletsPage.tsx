@@ -9,7 +9,8 @@ import { useEffect, useState } from 'react';
 import { Loader } from '../../components/Loader';
 
 export const TabletsPage = () => {
-  const { currentProducts, sortedProducts, currentPage, handlePagination } = usePageLogic(Category.tablets);
+  const { currentProducts, sortedProducts, currentPage, handlePagination } =
+    usePageLogic(Category.tablets);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +22,8 @@ export const TabletsPage = () => {
   return (
     <div className={styles.container}>
       <Breadcrumbs />
-      <h1 className="title">Tablets Page</h1>
+
+      <h1 className={styles.container__title}>Tablets</h1>
 
       {isLoading ? (
         <Loader />
