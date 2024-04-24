@@ -6,12 +6,20 @@
   align-items: center;
   gap: 8px;
   max-width: 100%;
+  margin-bottom: 56px;
+
+  @include on-tablet {
+    margin-bottom: 64px;
+  }
+
+  @include on-desktop {
+   margin-bottom: 80px;
+  }
 
   &__slider {
     max-width: 100%;
     display: flex;
     gap: 16px;
-
 
     &-button {
       display: flex;
@@ -29,7 +37,6 @@
         display: none;
       }
     }
-
     &-container {
       height: 100%;
       width: 100%;
