@@ -13,7 +13,7 @@ export const Footer = () => {
 
         <ul className={styles.footer__list}>
           <li className={styles.footer__item}>
-            <Link to="#" className={styles.footer__link}>Github</Link>
+            <Link to="https://github.com/fs-jan24-team-1/phone-catalog-fs24jan/tree/develop" className={styles.footer__link}>Github</Link>
           </li>
 
           <li className={styles.footer__item}>

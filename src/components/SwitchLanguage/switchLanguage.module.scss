@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 120px;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.button {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.button.active {
+  background-color: #ccc;
+  color: white;
+}
