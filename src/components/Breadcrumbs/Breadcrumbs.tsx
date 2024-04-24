@@ -68,18 +68,21 @@ export const Breadcrumbs = () => {
   return (
     <div className={styles.breadcrumb__style}>
       <Link to={`/`} className={styles.home__icon}></Link>
+
       {parts.map((part: string, index: number) => (
-        <>
-          <Link
-            key={part}
-            to={`/${parts.slice(0, index + 1).join('/')}`}
-            className={classNames({
-              [styles.breadcrumbs]: index < parts.length - 1,
-            })}
-          >
-            {index < parts.length - 1 &&
-              part.replace(/\b\w/g, (firstLetter: string) => firstLetter.toUpperCase())}
-          </Link>
+        <React.Fragment key={part}>
+          {index !== parts.length - 1 && (
+            <Link
+              to={`/${parts.slice(0, index + 1).join('/')}`}
+              className={classNames({
+                [styles.breadcrumbs]: index < parts.length - 1,
+              })}
+            >
+              {index < parts.length - 1 &&
+                part.replace(/\b\w/g, (firstLetter: string) => firstLetter.toUpperCase())}
+            </Link>
+          )}
+
           {index === parts.length - 1 && (
             <span
               className={classNames({
@@ -89,7 +92,7 @@ export const Breadcrumbs = () => {
               {isBreadcrumbs(part)}
             </span>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

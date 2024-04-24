@@ -20,7 +20,8 @@
 
   transition: all 0.5s ease;
 
-  &.default {
+  &.default,
+  &.checkout  {
     color: $white;
     background-color: $accent;
     border: 1px solid $accent;
@@ -37,14 +38,7 @@
   }
 }
 
-.add {
-  background-color: $accent;
-  color: $white;
-  border: 1px solid transparent;
-}
-
-.added {
-  background-color: $white;
-  color: $accent;
-  border: 1px solid $elements;
+.checkout {
+  height: 48px;
+  border-radius: 48px;
 }

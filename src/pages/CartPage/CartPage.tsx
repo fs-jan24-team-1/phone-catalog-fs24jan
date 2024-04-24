@@ -11,6 +11,7 @@ import * as animationData from './../../animations/EmptyCart.json';
 import { Link } from 'react-router-dom';
 import { ProductButtonType } from '../../types/ProductButtonType';
 import { CartModal } from '../../components/CartModal';
+import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 
 export const CartPage = () => {
   const { cart, cartTotalAmount, cartTotalQuantity } = useSelector(
@@ -21,6 +22,8 @@ export const CartPage = () => {
   useEffect(() => {
     dispatch({ type: 'product/getTotals' });
   }, [cart, dispatch]);
+
+  useScrollToTopEffect();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -58,11 +61,14 @@ export const CartPage = () => {
             <strong
               className={styles.totalCost__price}
             >{`$${cartTotalAmount}`}</strong>
+
             <p className={styles.totalCost__itemCount}>
               Total for {cartTotalQuantity}{' '}
               {cartTotalQuantity > 1 ? 'items' : 'item'}
             </p>
+
             <div className={styles.totalCost__line}></div>
+
             <ButtonPrimary
               textForPrimaryButton={ProductButtonType.CHECKOUT}
               callback={openModal}
