@@ -25,7 +25,7 @@ export const ButtonPrimary: FC<Props> = ({ textForPrimaryButton, callback }) => 
   return (
     <>
       <Link
-        to="./"
+        to="#"
         className={getButtonClass(textForPrimaryButton)}
         onClick={handleClick}
       >
