@@ -4,7 +4,7 @@
     "phones": "СМАРТФОНИ",
     "tablets": "ПЛАНШЕТИ",
     "accessories": "АКСЕСУАРИ",
-    "favourites": "Улюблене",
+    "favourites": "Улюблені",
     "cart": "Кошик"
   },
   "footer": {
@@ -32,7 +32,7 @@
     "Confirm": "Підтвердити"
   },
   "home": {
-    "Welcome to Nice Gadgets store!": "Ласкаво просимо до магазину Nice Gadgets!",
+    "Welcome to Nice Gadgets store!": "Вітаємо у Nice Gadgets!",
     "Brand new models": "Нові моделі",
     "Hot prices": "Гарячі ціни",
     "You may also like": "Вам також може сподобатися",
@@ -43,7 +43,7 @@
     "Added to cart": "Додано до кошика",
     "Back": "Назад",
     "Screen": "Екран",
-    "Capacity": "Ємність",
+    "Capacity": "Вбудована пам'ять",
     "RAM": "Оперативна пам'ять",
     "Price": "Ціна"
   },
@@ -57,7 +57,7 @@
     "Resolution": "Роздільна здатність",
     "Description": "Опис",
     "Available colors": "Доступні кольори",
-    "Select capacity": "Оберіть ємність",
+    "Select capacity": "Оберіть значення",
     "About": "Про товар",
     "Tech specs": "Технічні характеристики",
     "Built in memory": "Вбудована пам'ять",
@@ -72,10 +72,10 @@
     "models": "моделі"
   },
   "favourites": {
-    "Favourites": "Улюблене",
-    "items": "позиції",
+    "Favourites": "Улюблені",
+    "items": "позицій",
     "There are no items yet": "Ще немає товарів",
-    "GO HOME": "ПЕРЕЙТИ НА ГОЛОВНУ"
+    "GO HOME": "НА ГОЛОВНУ"
   },
   "filters": {
     "Sort by": "Сортувати за",
@@ -84,5 +84,9 @@
     "Cheapest": "Найдешевші",
     "Alphabetically": "За алфавітом",
     "All": "Усі"
+  },
+  "404": {
+    "Oops, page not found!": "Ой, сторінки не знайдено!",
+    "Go to homepage": "На головну"
   }
 }
