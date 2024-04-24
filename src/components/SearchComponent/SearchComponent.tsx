@@ -15,9 +15,9 @@ export const SearchComponent = () => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set('query', value);
     navigate(`?${searchParams.toString()}`);
-  }, 300);
+  }, 500);
 
-  const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchTerm(value);
     delayedSearch(value);
@@ -25,7 +25,12 @@ export const SearchComponent = () => {
 
   return (
     <div>
-      <input type="text" placeholder="Search" value={searchTerm} onChange={handleChange} />
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={handleChange}
+      />
     </div>
   );
 };
