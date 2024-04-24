@@ -37,7 +37,7 @@
   }
 }
 
-.add {
+.add, .checkout {
   background-color: $accent;
   color: $white;
   border: 1px solid transparent;
@@ -47,4 +47,9 @@
   background-color: $white;
   color: $accent;
   border: 1px solid $elements;
+}
+
+.checkout {
+  height: 48px;
+  border-radius: 48px;
 }
