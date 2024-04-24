@@ -13,8 +13,8 @@ export const ButtonPrimary: FC<Props> = ({ textForPrimaryButton, callback }) => 
   const [selected, setSelected] = useState(false);
 
   const getButtonClass = (buttonType: ProductButtonType) => classNames(styles.button, {
-    [styles.add]: ProductButtonType.ADD === buttonType,
-    [styles.added]: ProductButtonType.ADDED === buttonType,
+    [styles.default]: ProductButtonType.ADD === buttonType,
+    [styles.selected]: ProductButtonType.ADDED === buttonType,
   });
 
   const handleClick = () => {
@@ -27,6 +27,7 @@ export const ButtonPrimary: FC<Props> = ({ textForPrimaryButton, callback }) => 
       <Link
         to="#"
         className={getButtonClass(textForPrimaryButton)}
+        // className={classNames([styles.button])}
         onClick={handleClick}
       >
         {textForPrimaryButton}

@@ -5,17 +5,17 @@ import { ProductItemType } from '../../types/ProductItemType';
 import { NotFoundPage } from '../NotFoundPage';
 import { ButtonColor } from '../../components/UI/ButtonColor';
 import styles from './productItemPage.module.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import classNames from 'classnames';
 import { ButtonCapacity } from '../../components/UI/ButtonCapacity';
 import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
-// import { Product } from '../../types/Product';
+import { Product } from '../../types/Product';
 import { ButtonFavourite } from '../../components/UI/ButtonFavourite';
-// import { ButtonSlider } from '../../components/UI/ButtonSlider';
 import { ButtonBack } from '../../components/UI/ButtonBack';
 import { ProductButtonType } from '../../types/ProductButtonType';
+import { toast } from 'react-toastify';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -78,28 +78,49 @@ export const ProductItemPage = () => {
     setIsSelectedPhoto(index);
   };
 
-  // const dispatch = useDispatch();
-  // const cart = useSelector((state: RootState) => state.product.cart);
-  // const isProductInCart = cart.some(
-  //   (cartProduct: Product) => cartProduct.id === product.id,
-  // );
-  // const handleAddToCart = () => {
-  //   if (isProductInCart) {
-  //     dispatch({
-  //       type: 'product/removeFromCart',
-  //       payload: product,
-  //     });
-  //   } else {
-  //     dispatch({
-  //       type: 'product/addToCart',
-  //       payload: product,
-  //     });
-  //   }
-  // };
+  const dispatch = useDispatch();
+  const cart = useSelector((state: RootState) => state.product.cart);
+  const normalizedProduct = products.find(product => product.itemId === productId);
 
-  //Need to DELETE or RECREATE this temp function
-  const tempFunction = () => {
-    return 0;
+  const isProductInCart = cart.some(
+    (cartProduct: Product) => cartProduct.id === normalizedProduct?.id,
+  );
+
+  const handleAddToCart = () => {
+    if (isProductInCart) {
+      dispatch({
+        type: 'product/removeFromCart',
+        payload: normalizedProduct,
+      });
+    } else {
+      dispatch({
+        type: 'product/addToCart',
+        payload: normalizedProduct,
+      });
+    }
+  };
+
+  const favourites = useSelector((state: RootState) => state.product.favourites);
+  const isProductInFavourites = favourites.some(
+    (favProduct: Product) => favProduct.id === normalizedProduct?.id,
+  );
+
+  const handleAddToFavourites = () => {
+    if (isProductInFavourites) {
+      toast.success('The product has been removed');
+
+      dispatch({
+        type: 'product/removeFromFavourites',
+        payload: normalizedProduct,
+      });
+    } else {
+      toast.success('The product has been added');
+
+      dispatch({
+        type: 'product/addToFavourites',
+        payload: normalizedProduct,
+      });
+    }
   };
 
   const findIdFullNumber = () => {
@@ -222,12 +243,11 @@ export const ProductItemPage = () => {
                 <div className={styles.product__info__price_buttons}>
                   <ButtonPrimary
                     textForPrimaryButton={ProductButtonType.ADD}
-                    // callback={handleAddToCart}
-                    callback={tempFunction} // щось додати у функцію
+                    callback={handleAddToCart}
                   />
                   <div className={styles.product__info__price_gap}></div>
                   <ButtonFavourite
-                    callback={tempFunction} // щось додати у функцію
+                    callback={handleAddToFavourites} // щось додати у функцію
                   />
                 </div>
               </div>
