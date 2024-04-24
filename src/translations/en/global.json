@@ -1,0 +1,10 @@
+{
+  "header": {
+    "home": "HOME",
+    "phones": "PHONES",
+    "tablets": "TABLETS",
+    "accessories": "ACCESSORIES",
+    "favourites": "FAVOURITES",
+    "cart": "Cart"
+  }
+}
