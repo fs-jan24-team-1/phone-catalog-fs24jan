@@ -4,22 +4,23 @@
 .filter {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 
   @include on-tablet {
     justify-content: start;
     gap: 16px;
   }
-}
 
-.filterContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+  &__сontainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-.filterDescription {
-  color: $secondary;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15.34px;
+  &__description {
+    color: $secondary;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15.34px;
+  }
 }

@@ -1,16 +1,28 @@
 @import '../../styles/utils/mixins';
 
 .container {
+  margin: 24px 17px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 24px 16px 64px;
 
   @include on-tablet {
-    padding: 24px 24px 64px;
+    margin: 24px 24px;
   }
 
   @include on-desktop {
-    padding: 24px 32px 80px;
+    margin: 24px 32px;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+    margin-bottom: 8px;
+
+    @include on-tablet {
+      font-size: 48px;
+      line-height: 56px;
+    }
   }
 }

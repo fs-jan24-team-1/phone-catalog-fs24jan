@@ -46,15 +46,19 @@ export const Filter = () => {
 
   return (
     <div className={styles.filter}>
-      <div className={styles.filterContainer}>
-        <span className={styles.filterDescription}>Sort by</span>
+      <div className={styles.filter__сontainer}>
+        <span className={styles.filter__description}>Sort by</span>
+
         <Dropdown
           options={sortOptions}
-          onSelectChange={handleSortParams} />
+          onSelectChange={handleSortParams}
+          isSortDropdown={true}
+        />
       </div>
 
-      <div className={styles.filterContainer}>
-        <span className={styles.filterDescription}>Items on page</span>
+      <div className={styles.filter__сontainer}>
+        <span className={styles.filter__description}>Items on page</span>
+
         <Dropdown
           options={itemsPerPageOptions}
           onSelectChange={handlePerPageParams}

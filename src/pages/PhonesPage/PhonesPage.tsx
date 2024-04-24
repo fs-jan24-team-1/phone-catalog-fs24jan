@@ -22,7 +22,9 @@ export const PhonesPage = () => {
   return (
     <div className={styles.container}>
       <Breadcrumbs />
-      <h1 className="title">Mobile phones</h1>
+
+      <h1 className={styles.container__title}>Mobile phones</h1>
+
       {isLoading ? (
         <Loader />
       ) : (
