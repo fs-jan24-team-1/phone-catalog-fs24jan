@@ -17,6 +17,9 @@ import { ButtonBack } from '../../components/UI/ButtonBack';
 import { ProductButtonType } from '../../types/ProductButtonType';
 import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 import { toast } from 'react-toastify';
+import { ProductsSlider } from '../../components/ProductsSlider/ProductsSlider';
+import { sortProductsBy } from '../../utils/sortProductsBy';
+import { SortProductBy } from '../../types/SortProductBy';
 
 export const ProductItemPage = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -101,11 +104,16 @@ export const ProductItemPage = () => {
   };
 
   const handleCapacityChange = (capacity: string) => {
-    const color = product?.color;
+    let checkingColor = product?.color;
+
+    if (checkingColor && checkingColor.includes(' ')) {
+      checkingColor = checkingColor.split(' ').join('-');
+    }
+    
     const namespaceId = product?.namespaceId;
     const checkingCapacity = capacity.toLowerCase();
 
-    const newLink = `${namespaceId}-${checkingCapacity}-${color}`;
+    const newLink = `${namespaceId}-${checkingCapacity}-${checkingColor}`;
     return newLink;
   };
 
@@ -488,6 +496,13 @@ export const ProductItemPage = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className={styles.slider}>
+            <ProductsSlider
+              title="You may also like"
+              products={sortProductsBy(products, SortProductBy.price)}
+            />
           </div>
         </>
       ) : (

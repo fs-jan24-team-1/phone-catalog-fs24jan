@@ -13,6 +13,7 @@
 }
 
 .back__products {
+  grid-column: 1 / -1;
   margin-bottom: 16px;
 }
 
@@ -42,13 +43,13 @@
   &__content {
     @include page-grid;
 
-    @include on-mobile {
-      padding: 0 16px;
-    }
+    // @include on-mobile {
+    //   padding: 0 16px;
+    // }
 
-    @include on-tablet {
-      padding: 0 24px;
-    }
+    // @include on-tablet {
+    //   padding: 0 24px;
+    // }
   }
 
   &__id {
@@ -387,4 +388,8 @@
       }
     }
   }
+}
+
+.slider {
+  grid-column: 1 / -1;
 }
