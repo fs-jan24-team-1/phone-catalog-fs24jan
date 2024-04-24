@@ -15,7 +15,7 @@
   cursor: pointer;
   text-decoration: none;
 
-  background-color: $white;
+  // background-color: $white;
   border-radius: 48px;
 
   transition: all 0.5s ease;
@@ -34,7 +34,7 @@
   &.selected {
     color: $accent;
     background-color: $white;
-    border: 1px solid $elements;
+    border: 1px solid $icons;
   }
 }
 

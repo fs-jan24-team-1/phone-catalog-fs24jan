@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './buttonCapacity.module.scss';
 import classNames from 'classnames';
 
@@ -9,14 +8,17 @@ type Props = {
   setSelectedCapacity: (color: string) => void;
 };
 
-export const ButtonCapacity: React.FC<Props> = ({ text, selected, setSelectedCapacity }) => {
-const handleClickCapacity = () => {
+export const ButtonCapacity: React.FC<Props> = ({
+  text,
+  selected,
+  setSelectedCapacity,
+}) => {
+  const handleClickCapacity = () => {
     setSelectedCapacity(text);
   };
 
   return (
-    <Link
-      to="#"
+    <div
       className={classNames(styles.button, {
         [styles.selected]: selected,
         [styles.default]: !selected,
@@ -24,6 +26,6 @@ const handleClickCapacity = () => {
       onClick={handleClickCapacity}
     >
       {text}
-    </Link>
+    </div>
   );
 };
