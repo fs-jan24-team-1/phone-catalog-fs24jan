@@ -12,7 +12,9 @@ export const SearchComponent = () => {
   }, [location.pathname]);
 
   const delayedSearch = debounce((value: string) => {
-    navigate(`?query=${value}`);
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('query', value);
+    navigate(`?${searchParams.toString()}`);
   }, 300);
 
   const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
