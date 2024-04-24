@@ -20,23 +20,23 @@ export const Breadcrumbs = () => {
   const { productId } = useParams();
 
   async function getPhonesById() {
-    let phones = [];
+    let devices = [];
 
     switch (parts[0]) {
       case 'phones':
-        phones = await getPhones();
+        devices = await getPhones();
         break;
       case 'tablets':
-        phones = await getTablets();
+        devices = await getTablets();
         break;
       case 'accessories':
-        phones = await getAccessories();
+        devices = await getAccessories();
         break;
       default:
         return 'Error: Not found the link path';
     }
 
-    const result = phones.find(phone => phone.id === productId);
+    const result = devices.find(device => device.id === productId);
 
     return result?.name;
   }
@@ -68,18 +68,21 @@ export const Breadcrumbs = () => {
   return (
     <div className={styles.breadcrumb__style}>
       <Link to={`/`} className={styles.home__icon}></Link>
+
       {parts.map((part: string, index: number) => (
-        <>
-          <Link
-            key={part}
-            to={`/${parts.slice(0, index + 1).join('/')}`}
-            className={classNames({
-              [styles.breadcrumbs]: index < parts.length - 1,
-            })}
-          >
-            {index < parts.length - 1 &&
-              part.replace(/\b\w/g, (firstLetter: string) => firstLetter.toUpperCase())}
-          </Link>
+        <React.Fragment key={part}>
+          {index !== parts.length - 1 && (
+            <Link
+              to={`/${parts.slice(0, index + 1).join('/')}`}
+              className={classNames({
+                [styles.breadcrumbs]: index < parts.length - 1,
+              })}
+            >
+              {index < parts.length - 1 &&
+                part.replace(/\b\w/g, (firstLetter: string) => firstLetter.toUpperCase())}
+            </Link>
+          )}
+
           {index === parts.length - 1 && (
             <span
               className={classNames({
@@ -89,7 +92,7 @@ export const Breadcrumbs = () => {
               {isBreadcrumbs(part)}
             </span>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

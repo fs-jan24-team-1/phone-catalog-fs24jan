@@ -7,10 +7,13 @@ import styles from './favouritesPage.module.scss';
 import { LottieAnimation } from '../../components/UI/LottieAnimation';
 import * as animationData from '../../animations/EmptyFavourites.json';
 import { Link } from 'react-router-dom';
+import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
 
 export const FavoritesPage = () => {
   const products = useSelector((state: RootState) => state.product.favourites);
   const numberOfItems = products.length;
+
+  useScrollToTopEffect();
 
   return (
     <div className={styles.container}>

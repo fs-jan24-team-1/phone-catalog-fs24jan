@@ -15,12 +15,13 @@
   cursor: pointer;
   text-decoration: none;
 
-  background-color: $white;
+  // background-color: $white;
   border-radius: 48px;
 
   transition: all 0.5s ease;
 
-  &.default {
+  &.default,
+  &.checkout  {
     color: $white;
     background-color: $accent;
     border: 1px solid $accent;
@@ -33,18 +34,11 @@
   &.selected {
     color: $accent;
     background-color: $white;
-    border: 1px solid $elements;
+    border: 1px solid $icons;
   }
 }
 
-.add {
-  background-color: $accent;
-  color: $white;
-  border: 1px solid transparent;
-}
-
-.added {
-  background-color: $white;
-  color: $accent;
-  border: 1px solid $elements;
+.checkout {
+  height: 48px;
+  border-radius: 48px;
 }

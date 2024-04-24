@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './buttonPrimary.module.scss';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import classNames from 'classnames';
 import { ProductButtonType } from '../../../types/ProductButtonType';
 
@@ -10,15 +10,13 @@ interface Props {
 }
 
 export const ButtonPrimary: FC<Props> = ({ textForPrimaryButton, callback }) => {
-  const [selected, setSelected] = useState(false);
-
   const getButtonClass = (buttonType: ProductButtonType) => classNames(styles.button, {
-    [styles.add]: ProductButtonType.ADD === buttonType,
-    [styles.added]: ProductButtonType.ADDED === buttonType,
+    [styles.checkout]: ProductButtonType.CHECKOUT === buttonType,
+    [styles.default]: ProductButtonType.ADD === buttonType,
+    [styles.selected]: ProductButtonType.ADDED === buttonType,
   });
 
   const handleClick = () => {
-    setSelected(!selected);
     callback();
   };
 
