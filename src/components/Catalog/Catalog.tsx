@@ -2,6 +2,8 @@ import styles from './catalog.module.scss';
 import { ProductCard } from '../ProductCard';
 import { Product } from '../../types/Product';
 import { Filter } from '../Filter/Filter';
+import { useEffect, useState } from 'react';
+import { CardSkeleton } from '../ProductCardSkeleton';
 import { LottieAnimation } from '../UI/LottieAnimation';
 import * as animationData from '../../animations/ProductsNotFound.json';
 import { Link, useLocation } from 'react-router-dom';
@@ -14,8 +16,20 @@ interface Props {
 }
 
 export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { pathname } = useLocation();
   const [t] = useTranslation('global');
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className={styles.section}>
@@ -25,10 +39,14 @@ export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
 
           <Filter />
 
-          <div className={styles.product}>
-            {products.map((product: Product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+                <div className={styles.product}>
+                {isLoading ? (
+          <CardSkeleton amount={12} />
+        ) : (
+          products.map((product: Product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        )}
           </div>
         </div>
       ) : (

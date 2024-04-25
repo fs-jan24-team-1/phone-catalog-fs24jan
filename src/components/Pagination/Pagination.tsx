@@ -72,7 +72,7 @@ export const Pagination: React.FC<Props> = ({
     }
 
     return (
-      <div className={styles.paginationContainer}>
+      <div className={styles.container}>
         <div className={styles.pagination}>
           <ButtonSlider
             iconType="arrowLeft"

@@ -17,8 +17,10 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
-  const [t] = useTranslation("global")
-  const favourites = useSelector((state: RootState) => state.product.favourites);
+  const [t] = useTranslation('global');
+  const favourites = useSelector(
+    (state: RootState) => state.product.favourites,
+  );
   const cart = useSelector((state: RootState) => state.product.cart);
 
   const isProductInFavourites = favourites.some(
@@ -29,7 +31,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     (cartProduct: Product) => cartProduct.id === product.id,
   );
 
-  const handleAddToFavourites = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleAddToFavourites = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => {
     event.preventDefault();
 
     if (isProductInFavourites) {
@@ -82,7 +86,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     onscreen: {
       y: 0,
       transition: {
-        type: "spring",
+        type: 'spring',
         bounce: 0.2,
         duration: 0.4,
       },
@@ -110,7 +114,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             <div className={`${styles.product_details} ${styles.details}`}>
               <h3 className={styles.details__name}>{product.name}</h3>
 
-              <div className={styles.details__price}>
+              <div className={`${styles.details__price} ${styles.price}`}>
                 <div className={styles.price__discount}>${product.price}</div>
 
                 {product.fullPrice && (
@@ -125,12 +129,16 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
               <div
                 className={`${styles.description__container} ${styles.info}`}
               >
-                <span className={styles.info__title}>{t('product.Screen')}</span>
+                <span className={styles.info__title}>
+                  {t('product.Screen')}
+                </span>
                 <span className={styles.info__value}>{product.screen}</span>
               </div>
 
               <div className={styles.description__container}>
-                <span className={styles.info__title}>{t('product.Capacity')}</span>
+                <span className={styles.info__title}>
+                  {t('product.Capacity')}
+                </span>
                 <span className={styles.info__value}>{product.capacity}</span>
               </div>
 
