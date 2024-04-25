@@ -2,8 +2,11 @@
 // NavBar.tsx
 import { Link } from 'react-router-dom';
 import styles from './navBar.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const NavBar = ({ onClose }: { onClose: () => void }) => {
+  const [t] = useTranslation("global");
+
   return (
     <aside className={styles.menu}>
       <div className={styles.menu__top}>
@@ -20,22 +23,22 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
         <ul className={styles.nav__list}>
           <li className={styles.nav__item}>
             <Link to="/" className={styles.nav__link} onClick={onClose}>
-              HOME
+              {t('header.home')}
             </Link>
           </li>
           <li className={styles.nav__item}>
             <Link to="/phones" className={styles.nav__link} onClick={onClose}>
-              PHONES
+              {t('header.phones')}
             </Link>
           </li>
           <li className={styles.nav__item}>
             <Link to="/tablets" className={styles.nav__link} onClick={onClose}>
-              TABLETS
+              {t('header.tablets')}
             </Link>
           </li>
           <li className={styles.nav__item}>
             <Link to="/accessories" className={styles.nav__link} onClick={onClose}>
-              ACCESSORIES
+              {t('header.accessories')}
             </Link>
           </li>
         </ul>

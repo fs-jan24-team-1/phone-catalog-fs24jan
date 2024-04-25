@@ -10,10 +10,13 @@ import { useState } from 'react';
 import { NavBar } from '../NavBar/NavBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { SearchComponent } from '../SearchComponent/SearchComponent';
+import { SearchComponent} from '../SearchComponent/SearchComponent';
+import { useTranslation } from 'react-i18next';
+import { SwitchLanguage } from '../SwitchLanguage/SwitchLanguage';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
+  const [t] = useTranslation("global");
 
   const favourItes = useSelector((state: RootState) => state.product.favourites);
   const favoritesCount = favourItes.length;
@@ -45,24 +48,28 @@ export const Header = () => {
         <nav data-cy="nav" className="navbar">
           <div className={styles.header__navbar}>
             <NavLink className={getLinkClass} to="/">
-              Home
+              {t("header.home")}
             </NavLink>
 
             <NavLink className={getLinkClass} to="/phones">
-              Phones
+              {t("header.phones")}
             </NavLink>
 
             <NavLink className={getLinkClass} to="/tablets">
-              Tablets
+              {t("header.tablets")}
             </NavLink>
 
             <NavLink className={getLinkClass} to="/accessories">
-              Accessories
+              {t("header.accessories")}
             </NavLink>
           </div>
         </nav>
       </div>
+
       {isShowSearch && <SearchComponent />}
+
+     <SwitchLanguage />
+
       <div className={styles.right_side}>
         <NavLink to="/Favorites" className={({ isActive }) => classNames(styles.favorites, { [styles.is_active]: isActive })}>
           <div className={styles.favoritesIconContainer}>

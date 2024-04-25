@@ -8,10 +8,12 @@ import { LottieAnimation } from '../../components/UI/LottieAnimation';
 import * as animationData from '../../animations/EmptyFavourites.json';
 import { Link } from 'react-router-dom';
 import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
+import { useTranslation } from 'react-i18next';
 
 export const FavoritesPage = () => {
   const products = useSelector((state: RootState) => state.product.favourites);
   const numberOfItems = products.length;
+  const [t] = useTranslation('global');
 
   useScrollToTopEffect();
 
@@ -19,8 +21,8 @@ export const FavoritesPage = () => {
     <div className={styles.container}>
       <Breadcrumbs />
 
-      <h1 className={styles.title}>Favourites</h1>
-      <h3 className={styles.itemsLeft}>{numberOfItems} items</h3>
+      <h1 className={styles.title}>{t('favourites.Favourites')}</h1>
+      <h3 className={styles.itemsLeft}>{numberOfItems} {t('favourites.items')}</h3>
 
       {products.length > 0 ? (
         <div className={styles.products}>
@@ -34,9 +36,9 @@ export const FavoritesPage = () => {
             <LottieAnimation animationData={animationData} />
           </div>
 
-          <p className={styles.message}>There are no items yet</p>
+          <p className={styles.message}>{t('favourites.There are no items yet')}</p>
 
-          <Link to="/" className={styles['go-home-button']}>Go home</Link>
+          <Link to="/" className={styles['go-home-button']}>{t('favourites.GO HOME')}</Link>
         </>
       )}
     </div>

@@ -11,6 +11,7 @@ interface Option {
 interface DropdownProps {
   options: Option[];
   onSelectChange: (selectedOption: SortBy) => void;
+  isSortDropdown?: boolean;
 }
 
 interface CustomStylesProps {
@@ -19,7 +20,7 @@ interface CustomStylesProps {
   menuIsOpen?: boolean;
 }
 
-const customStyles: StylesConfig<Option, false> = {
+const baseStyles: StylesConfig<Option, false> = {
   control: (base: CSSObjectWithLabel, { isFocused }: CustomStylesProps) => ({
     ...base,
 
@@ -71,9 +72,25 @@ const customStyles: StylesConfig<Option, false> = {
   }),
 };
 
+const customStyles: StylesConfig<Option, false> = {
+  container: (base: CSSObjectWithLabel) => ({
+    ...base,
+    minWidth: '180px',
+  }),
+  ...baseStyles,
+};
+
+const defaultStyles: StylesConfig<Option, false> = {
+  ...baseStyles,
+  container: (base: CSSObjectWithLabel) => ({
+    ...base,
+    width: '136px',
+  }),
+};
 export const Dropdown: React.FC<DropdownProps> = ({
   options,
   onSelectChange,
+  isSortDropdown,
 }) => {
   const handleChange = (selectedOption: Option | null) => {
     if (selectedOption) {
@@ -88,17 +105,19 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   const getSelectedValue = (options: Option[]) => {
     if (options[0].value === SortBy.age) {
-      return options.find((option) => option.value === sortByParam);
+      return options.find(option => option.value === sortByParam);
     }
-    return options.find((option) => option.value === Number(perPageParam));
-  }
+    return options.find(option => option.value === Number(perPageParam));
+  };
+
+  const isWideScreen = window.innerWidth >= 640;
 
   return (
     <div>
       <Select
         defaultValue={getSelectedValue(options) || options[0]}
         options={options}
-        styles={customStyles}
+        styles={isSortDropdown && isWideScreen ? customStyles : defaultStyles}
         isSearchable={false}
         onChange={handleChange}
       />

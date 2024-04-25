@@ -4,68 +4,72 @@
   cursor: pointer;
 }
 
-.productCard {
+.product {
   display: flex;
   flex-direction: column;
-  padding: 32px;
   max-width: 290px;
+  box-sizing: border-box;
 
+  padding: 32px;
   border: 1px solid $elements;
   border-radius: 8px;
-  box-sizing: border-box;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
   overflow: hidden;
+
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
+    scale: 1.02;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 8px;
+    height: 196px;
+
+    &_img {
+      max-width: 100%;
+      max-height: 170px;
+    }
+  }
 }
 
-.productImageContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.details {
+  &__name {
+    height: 58px;
+    padding-top: 16px;
+    margin-bottom: 8px;
+    line-height: 21px;
 
-  margin-bottom: 8px;
-  max-height: 100%;
+    font-size: 14px;
+    font-weight: 600;
+  }
 }
 
-.productImage {
-  max-width: 100%;
-  max-height: 170px;
-}
-
-.productDetails {
-}
-
-.productName {
-  padding-top: 16px;
-  margin-bottom: 8px;
-  line-height: 21px;
-
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.productPrice {
+.price {
   display: flex;
   gap: 8px;
-
   margin-bottom: 8px;
 
   font-size: 22px;
-}
 
-.productDiscount {
-  color: $primary;
+  &__discount {
+    color: $primary;
 
-  font-weight: 800;
-  line-height: 30.8px;
-}
+    font-weight: 800;
+    line-height: 30.8px;
+  }
 
-.productFullPrice {
-  color: $secondary;
+  &__full {
+    color: $secondary;
 
-  font-weight: 600;
-  line-height: 28.12px;
-  text-decoration: line-through;
+    font-weight: 600;
+    line-height: 28.12px;
+    text-decoration: line-through;
+  }
 }
 
 .underline {
@@ -76,33 +80,35 @@
   background-color: $icons;
 }
 
-.productDescription {
+.description {
   display: flex;
   flex-direction: column;
   gap: 8px;
 
   padding: 8px 0;
   margin-bottom: 8px;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15.34px;
+  }
 }
 
-.productDescriptionBox {
-  display: flex;
-  justify-content: space-between;
+.info {
+  &__title {
+    color: $secondary;
+  }
 
-  font-weight: 600; // font-weight: 700;
-  font-size: 12px;
-  line-height: 15.34px;
+  &__value {
+    color: $primary;
+  }
 }
 
-.productDescriptionTitle {
-  color: $secondary;
-}
-
-.productDescriptionValue {
-  color: $primary;
-}
-
-.buttonBox {
+.buttons__container {
   display: flex;
   justify-content: space-between;
   gap: 8px;

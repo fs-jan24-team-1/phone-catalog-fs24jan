@@ -10,25 +10,31 @@ import classNames from 'classnames';
 
 interface Props {
   product: ProductItemType | Product;
-  callback: () => void;
+  callback: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 export const ButtonFavourite: React.FC<Props> = ({ product, callback }) => {
   const [selectedFavourite, setSelectedFavourite] = useState(false);
   const products = useSelector((state: RootState) => state.product.favourites);
 
-  const handleClickFavourite = () => {
+  const handleClickFavourite = (event: React.MouseEvent<HTMLAnchorElement>) => {
     setSelectedFavourite(!selectedFavourite);
-    callback();
+    callback(event);
   };
 
-  const findProductInFavourites = (products: Product[], product: Product | ProductItemType) => {
-    return products.some((favProduct: Product | ProductItemType) => favProduct.id === product.id);
-  }
+  const findProductInFavourites = (
+    products: Product[],
+    product: Product | ProductItemType,
+  ) => {
+    return products.some(
+      (favProduct: Product | ProductItemType) => favProduct.id === product.id,
+    );
+  };
 
-  const getButtonClass = (isProductInFavourites: boolean) => classNames(styles.button, {
-    [styles.selected]: isProductInFavourites,
-    [styles.default]: !isProductInFavourites,
-  });
+  const getButtonClass = (isProductInFavourites: boolean) =>
+    classNames(styles.button, {
+      [styles.selected]: isProductInFavourites,
+      [styles.default]: !isProductInFavourites,
+    });
 
   const isProductInFavourites = findProductInFavourites(products, product);
 
@@ -38,8 +44,7 @@ export const ButtonFavourite: React.FC<Props> = ({ product, callback }) => {
         to="#"
         className={getButtonClass(isProductInFavourites)}
         onClick={handleClickFavourite}
-      >
-      </Link>
+      ></Link>
     </>
   );
 };
