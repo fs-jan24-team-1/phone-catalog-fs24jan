@@ -1,11 +1,16 @@
 @import '../../styles/utils/variables';
 @import '../../styles/utils/typography';
+@import '../../styles/utils/mixins';
 
 .breadcrumb__style {
   display: flex;
   align-items: center;
-}
+  margin-bottom: 24px;
 
+  @include on-tablet {
+    margin-bottom: 40px;
+  }
+}
 .breadcrumbs {
   display: flex;
   font-family: $Mont;

@@ -6,14 +6,23 @@
   align-items: center;
   gap: 8px;
   max-width: 100%;
+  margin-bottom: 56px;
+
+  @include on-tablet {
+    margin-bottom: 64px;
+  }
+
+  @include on-desktop {
+   margin-bottom: 80px;
+  }
 
   &__slider {
     max-width: 100%;
     display: flex;
     gap: 16px;
 
-
     &-button {
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -28,16 +37,7 @@
       @include on-mobile {
         display: none;
       }
-
-      &-left {
-        margin-left: 24px;
-      }
-
-      &-right {
-        margin-right: 24px;
-      }
     }
-
     &-container {
       height: 100%;
       width: 100%;
@@ -52,6 +52,7 @@
       gap: 1px;
       transition-duration: 1s;
       list-style-type: none;
+      touch-action: pan-y;
     }
 
     &-item {

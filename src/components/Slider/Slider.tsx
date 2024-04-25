@@ -14,6 +14,7 @@ export const Slider = () => {
   const lastIndex = images.length - 1;
   const banner = useRef<HTMLDivElement>(null);
   const transformValue = sliderWidth * currentIndex;
+  const [touchPosition, setTouchPosition] = useState<number | null>(null);
 
   useEffect(() => {
     if (banner.current) {
@@ -45,8 +46,35 @@ export const Slider = () => {
     return () => clearInterval(timerId);
   }, [currentIndex]);
 
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchPosition(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchPosition === null) {
+      return;
+    }
+
+    const currentX = e.touches[0].clientX;
+    const diff = touchPosition - currentX;
+
+    if (diff > 5) {
+      handleNextSlide();
+    }
+
+    if (diff < -5) {
+      handlePrevSlide();
+    }
+
+    setTouchPosition(null);
+  };
+
   return (
-    <section className={styles.carousel}>
+    <section
+      className={styles.carousel}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+    >
       <div className={styles.carousel__slider}>
         <button
           type="button"

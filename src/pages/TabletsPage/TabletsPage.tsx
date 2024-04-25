@@ -5,23 +5,43 @@ import { Category } from '../../types/Category';
 import { usePageLogic } from '../../hooks/usePageLogic';
 import styles from './tabletsPage.module.scss';
 import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
+import { useEffect, useState } from 'react';
+import { Loader } from '../../components/Loader';
+import { useTranslation } from 'react-i18next';
 
 export const TabletsPage = () => {
-  const { currentProducts, sortedProducts, currentPage, handlePagination } = usePageLogic(Category.tablets);
+  const { currentProducts, sortedProducts, currentPage, handlePagination } =
+    usePageLogic(Category.tablets);
+  const [isLoading, setIsLoading] = useState(true);
+  const [t] = useTranslation('global');
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 1000);
+  }, [currentProducts]);
 
   useScrollToTopEffect();
 
   return (
     <div className={styles.container}>
       <Breadcrumbs />
-      <h1 className="title">Tablets Page</h1>
 
-      <Catalog products={currentProducts} totalProducts={sortedProducts.length} />
-      <Pagination
-        length={sortedProducts.length}
-        currentPage={currentPage}
-        handlePagination={handlePagination}
-      />
+      <h1 className={styles.container__title}>{t('categories.Tablets')}</h1>
+
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Catalog
+            products={currentProducts}
+            totalProducts={sortedProducts.length}
+          />
+          <Pagination
+            length={sortedProducts.length}
+            currentPage={currentPage}
+            handlePagination={handlePagination}
+          />
+        </>
+      )}
     </div>
   );
 };

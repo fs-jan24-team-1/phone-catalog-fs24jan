@@ -1,37 +1,27 @@
-import { Link } from 'react-router-dom';
 import styles from './buttonPrimary.module.scss';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import classNames from 'classnames';
 import { ProductButtonType } from '../../../types/ProductButtonType';
 
 interface Props {
   textForPrimaryButton: ProductButtonType;
-  callback: () => void;
+  callback: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const ButtonPrimary: FC<Props> = ({ textForPrimaryButton, callback}) => {
-  const [selected, setSelected] = useState(false);
-
-  const getButtonClass = (buttonType: ProductButtonType) => classNames(styles.button, {
-    [styles.checkout]: ProductButtonType.CHECKOUT === buttonType,
-    [styles.default]: ProductButtonType.ADD === buttonType,
-    [styles.selected]: ProductButtonType.ADDED === buttonType,
-  });
-
-  const handleClick = () => {
-    setSelected(!selected);
-    callback();
-  };
+export const ButtonPrimary: FC<Props> = ({
+  textForPrimaryButton,
+  callback,
+}) => {
+  const getButtonClass = (buttonType: ProductButtonType) =>
+    classNames(styles.button, {
+      [styles.checkout]: ProductButtonType.CHECKOUT === buttonType,
+      [styles.default]: ProductButtonType.ADD === buttonType,
+      [styles.selected]: ProductButtonType.ADDED === buttonType,
+    });
 
   return (
-    <>
-      <Link
-        to="#"
-        className={getButtonClass(textForPrimaryButton)}
-        onClick={handleClick}
-      >
-        {textForPrimaryButton}
-      </Link>
-    </>
+    <button className={getButtonClass(textForPrimaryButton)} onClick={callback}>
+      {textForPrimaryButton}
+    </button>
   );
 };
