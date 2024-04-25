@@ -42,14 +42,6 @@
 .product {
   &__content {
     @include page-grid;
-
-    // @include on-mobile {
-    //   padding: 0 16px;
-    // }
-
-    // @include on-tablet {
-    //   padding: 0 24px;
-    // }
   }
 
   &__id {
@@ -77,7 +69,6 @@
   &__images {
     display: flex;
     width: 100%;
-    // color: sier
 
     @include on-mobile {
       grid-column: 1 / -1;

@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
+import { toast } from 'react-toastify';
 
 export interface ProductState {
   products: Product[];
@@ -25,12 +26,15 @@ type CartTotal = {
 const loadState = (key: string) => {
   try {
     const serializedState = localStorage.getItem(key);
+
     if (serializedState === null) {
-      return undefined;
+      toast.error('Unable to upload products');
+      return;
     }
+
     return JSON.parse(serializedState);
   } catch (err) {
-    return undefined;
+    toast.error('The page can\'t load');
   }
 };
 
@@ -39,7 +43,7 @@ const saveState = (key: string, state: Product[]) => {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(key, serializedState);
   } catch {
-    // errors
+    toast.error('The product has not been removed');
   }
 };
 

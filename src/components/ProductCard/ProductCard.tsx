@@ -34,7 +34,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
     if (isProductInFavourites) {
       toast.success('The product has been removed');
-
+      
       dispatch({
         type: 'product/removeFromFavourites',
         payload: product,
