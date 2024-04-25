@@ -33,6 +33,7 @@ const baseStyles: StylesConfig<Option, false> = {
     fontSize: '14px',
     fontWeight: '700',
     minHeight: '40px',
+    cursor: 'pointer',
 
     '&:hover': {
       borderColor: '#89939A',
@@ -43,6 +44,7 @@ const baseStyles: StylesConfig<Option, false> = {
     ...base,
     fontSize: '14px',
     lineHeight: '21px',
+    cursor: 'pointer',
 
     color: isSelected ? '#0F0F11' : '#89939A',
     fontWeight: '700',
