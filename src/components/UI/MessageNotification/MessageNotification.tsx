@@ -3,7 +3,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const MessageContainer = () => (
   <ToastContainer
-    position="top-center"
+    stacked
+    position="bottom-right"
     autoClose={4000}
     hideProgressBar={false}
     rtl={false}
@@ -11,6 +12,6 @@ export const MessageContainer = () => (
     pauseOnFocusLoss
     draggable
     pauseOnHover
-    theme="colored"
+    theme="light"
   />
 )
