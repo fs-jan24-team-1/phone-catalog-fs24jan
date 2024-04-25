@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { NavBar } from '../NavBar/NavBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { SearchComponent} from '../SearchComponent/SearchComponent';
+import { SearchComponent } from '../SearchComponent/SearchComponent';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
@@ -62,7 +62,7 @@ export const Header = () => {
           </div>
         </nav>
       </div>
-      {isShowSearch && <SearchComponent/>}
+      {isShowSearch && <SearchComponent />}
       <div className={styles.right_side}>
         <NavLink to="/Favorites" className={({ isActive }) => classNames(styles.favorites, { [styles.is_active]: isActive })}>
           <div className={styles.favoritesIconContainer}>
@@ -79,11 +79,16 @@ export const Header = () => {
           </div>
         </NavLink>
 
-        <a className={styles.menus} onClick={toggleMenu}>
+        <button className={styles.menus} onClick={toggleMenu}>
           <img src={menu} alt="menuicon" className='menus__logo' />
-        </a>
+        </button>
 
-        {isMenuShow && <NavBar onClose={toggleMenu}/>}
+        {
+          isMenuShow &&
+          <div className={styles.navBarWrapper}>
+            <NavBar onClose={toggleMenu} />
+          </div>
+        }
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
   const [activeArrowRight, setActiveArrowRight] = useState(true);
   const slider = useRef<HTMLUListElement>(null);
   const [sliderItemWidth, setSliderItemWidth] = useState(0);
+  const [touchPosition, setTouchPosition] = useState<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,6 +68,29 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent<HTMLUListElement>) => {
+    setTouchPosition(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLUListElement>) => {
+    if (touchPosition === null) {
+      return;
+    }
+
+    const currentX = e.touches[0].clientX;
+    const diff = touchPosition - currentX;
+
+    if (diff > 5) {
+      goRight();
+    }
+
+    if (diff < -5) {
+      goLeft();
+    }
+
+    setTouchPosition(null);
+  };
+
   return (
     <div className="carousel">
       <div className="carousel__top">
@@ -90,7 +114,12 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
           />
         </div>
       </div>
-      <ul className="carousel__cards" ref={slider}>
+      <ul
+        className="carousel__cards"
+        ref={slider}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+      >
         {products.map((product) => (
           <li key={product.id}>
             <ProductCard product={product} />
@@ -99,12 +128,4 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
       </ul>
     </div>
   );
-};
-
-
-
-
-
-
-
-
+}

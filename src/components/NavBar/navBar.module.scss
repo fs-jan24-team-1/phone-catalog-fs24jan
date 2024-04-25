@@ -3,6 +3,7 @@
   src: url(../../../public/fonts/Mont-Regular.otf);
 }
 
+
 .menu {
   font-family: 'Mont-Bold';
   position: fixed;
@@ -24,17 +25,18 @@
 
 .menu__logo {
   width: 96px;
+  height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .logo {
   width: 64px;
-  height: 28px;
-  padding-left: 16px;
+  height: auto;
 }
 
 .menu__top {
+  padding-left: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,5 +128,19 @@ line-height: 11px;
 
   &:hover {
     border-bottom: 4px solid black;
+  }
+}
+
+
+.hide {
+  animation: slideOutToRight 12s forwards;
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
