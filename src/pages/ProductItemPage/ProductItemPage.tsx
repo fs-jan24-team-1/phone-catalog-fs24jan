@@ -23,28 +23,96 @@ import { SortProductBy } from '../../types/SortProductBy';
 import { useTranslation } from 'react-i18next';
 
 export const ProductItemPage = () => {
-  const products = useSelector((state: RootState) => state.product.products);
   const [t] = useTranslation('global');
+  const dispatch = useDispatch();
+  const location = useLocation();
+  useScrollToTopEffect();
+
+  const products = useSelector((state: RootState) => state.product.products);
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<ProductItemType | null>(null);
+  const { pathname } = location;
+  const parts = pathname.split('/').filter((part: string) => part !== '')[0];
+
   const [isSelectedPhoto, setIsSelectedPhoto] = useState(0);
   const [selectedColor, setSelectedColor] = useState(product?.color);
   const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
-  const productCategory = products.find(
-    item => item.itemId === productId,
-  )?.category;
-  let [items] = useState<ProductItemType[]>([]);
-  const dispatch = useDispatch();
+
+  let items: ProductItemType[] = [];
+
   const cart = useSelector((state: RootState) => state.product.cart);
+
+  // const checkValidProps = (value: ProductItemType) => {
+  //   return value !== undefined && value !== null;
+  // };
+
+  const SHORT_DESCRIPTION_SECTION = [
+    { language: t('productPage.Screen'), value: product?.screen },
+    { language: t('productPage.Resolution'), value: product?.resolution },
+    { language: t('productPage.Processor'), value: product?.processor },
+    { language: t('productPage.RAM'), value: product?.ram },
+  ];
+
+  const TECH_SECTION = [
+    {
+      language: t('productPage.Screen'),
+      value: product?.screen,
+      isValid: product?.screen !== undefined && product?.screen !== null,
+    },
+    {
+      language: t('productPage.Resolution'),
+      value: product?.resolution,
+      isValid:
+        product?.resolution !== undefined && product?.resolution !== null,
+    },
+    {
+      language: t('productPage.Processor'),
+      value: product?.processor,
+      isValid: product?.processor !== undefined && product?.processor !== null,
+    },
+    {
+      language: t('productPage.RAM'),
+      value: product?.ram,
+      isValid: product?.ram !== undefined && product?.ram !== null,
+    },
+    {
+      language: t('productPage.Built in memory'),
+      value: product?.capacity,
+      isValid: product?.capacity !== undefined && product?.capacity !== null,
+    },
+    {
+      language: t('productPage.Camera'),
+      value: product?.camera,
+      isValid: product?.camera !== undefined && product?.camera !== null,
+    },
+    {
+      language: t('productPage.Zoom'),
+      value: product?.zoom,
+      isValid: product?.zoom !== undefined && product?.zoom !== null,
+    },
+    {
+      language: t('productPage.Cell'),
+      value: product?.cell,
+      isValid: product?.cell !== undefined && product?.cell !== null,
+    },
+  ];
+
   const normalizedProduct = products.find(
     product => product.itemId === productId,
   );
+
   const isProductInCart = cart.some(
     (cartProduct: Product) => cartProduct.id === normalizedProduct?.id,
   );
+
+  const productCategory = products.find(
+    item => item.itemId === productId,
+  )?.category;
+
   const favourites = useSelector(
     (state: RootState) => state.product.favourites,
   );
+
   const isProductInFavourites = favourites.some(
     (favProduct: Product) => favProduct.id === normalizedProduct?.id,
   );
@@ -67,7 +135,7 @@ export const ProductItemPage = () => {
           setProduct(null);
         }
       } catch (error) {
-        console.error('Error fetching product');
+        toast.error('Error fetching product');
       }
     };
 
@@ -75,8 +143,6 @@ export const ProductItemPage = () => {
       fetchProduct();
     }
   }, [productCategory, productId]);
-
-  useScrollToTopEffect();
 
   useEffect(() => {
     if (product && product.colorsAvailable) {
@@ -88,11 +154,7 @@ export const ProductItemPage = () => {
     }
   }, [product]);
 
-  const location = useLocation();
-  const { pathname } = location;
-  const parts = pathname.split('/').filter((part: string) => part !== '')[0];
-
-  const handleColorChange = (color: string) => {
+  const getUrlFromNewColor = (color: string) => {
     const capacity = product?.capacity.toLowerCase();
     const namespaceId = product?.namespaceId;
     let checkingColor = color;
@@ -105,7 +167,7 @@ export const ProductItemPage = () => {
     return newLink;
   };
 
-  const handleCapacityChange = (capacity: string) => {
+  const getUrlFromNewCapacity = (capacity: string) => {
     let checkingColor = product?.color;
 
     if (checkingColor && checkingColor.includes(' ')) {
@@ -224,10 +286,11 @@ export const ProductItemPage = () => {
                 <p className={styles.product__info__colors_title}>
                   {t('productPage.Available colors')}
                 </p>
+                
                 <div className={styles.product__info__colors_buttons}>
                   {product.colorsAvailable.map((color, index) => (
                     <Link
-                      to={`/${parts}/${handleColorChange(color)}`}
+                      to={`/${parts}/${getUrlFromNewColor(color)}`}
                       key={index}
                       className={styles.product__info__color_button}
                     >
@@ -245,10 +308,11 @@ export const ProductItemPage = () => {
                 <p className={styles.product__info__capacity_title}>
                   {t('productPage.Select capacity')}
                 </p>
+
                 <div className={styles.product__info__capacity_buttons}>
                   {product.capacityAvailable.map((capacity, index) => (
                     <Link
-                      to={`/${parts}/${handleCapacityChange(capacity)}`}
+                      to={`/${parts}/${getUrlFromNewCapacity(capacity)}`}
                       key={index}
                       className={styles.product__info__capacity_button}
                     >
@@ -267,6 +331,7 @@ export const ProductItemPage = () => {
                   <strong className={styles.product__info__price_discount}>
                     ${product.priceDiscount}
                   </strong>
+
                   <span className={styles.product__info__price_regular}>
                     ${product.priceRegular}
                   </span>
@@ -281,7 +346,9 @@ export const ProductItemPage = () => {
                     }
                     callback={handleAddToCart}
                   />
+
                   <div className={styles.product__info__price_gap}></div>
+
                   {normalizedProduct && (
                     <ButtonFavourite
                       product={normalizedProduct}
@@ -292,41 +359,16 @@ export const ProductItemPage = () => {
               </div>
 
               <div className={styles.product__info__smallDescription}>
-                <div className={styles.product__info__smallDescription_s}>
-                  <p className={styles.product__info__smallDescription_name}>
-                    {t('productPage.Screen')}
-                  </p>
-                  <p className={styles.product__info__smallDescription_value}>
-                    {product.screen}
-                  </p>
-                </div>
-
-                <div className={styles.product__info__smallDescription_s}>
-                  <p className={styles.product__info__smallDescription_name}>
-                    {t('productPage.Resolution')}
-                  </p>
-                  <p className={styles.product__info__smallDescription_value}>
-                    {product.resolution}
-                  </p>
-                </div>
-
-                <div className={styles.product__info__smallDescription_s}>
-                  <p className={styles.product__info__smallDescription_name}>
-                    {t('productPage.Processor')}
-                  </p>
-                  <p className={styles.product__info__smallDescription_value}>
-                    {product.processor}
-                  </p>
-                </div>
-
-                <div className={styles.product__info__smallDescription_s}>
-                  <p className={styles.product__info__smallDescription_name}>
-                    {t('productPage.RAM')}
-                  </p>
-                  <p className={styles.product__info__smallDescription_value}>
-                    {product.ram}
-                  </p>
-                </div>
+                {SHORT_DESCRIPTION_SECTION.map((item, index) => (
+                  <div key={index} className={styles.product__info__smallDescription_s}>
+                    <p className={styles.product__info__smallDescription_name}>
+                      {item.language}
+                    </p>
+                    <p className={styles.product__info__smallDescription_value}>
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -365,137 +407,34 @@ export const ProductItemPage = () => {
               </strong>
 
               <div className={styles.more_details__tech__smallDescription}>
-                <div className={styles.more_details__tech__smallDescription_s}>
-                  <p
-                    className={styles.more_details__tech__smallDescription_name}
-                  >
-                    {t('productPage.Screen')}
-                  </p>
-                  <p
-                    className={
-                      styles.more_details__tech__smallDescription_value
-                    }
-                  >
-                    {product.screen}
-                  </p>
-                </div>
-
-                <div className={styles.more_details__tech__smallDescription_s}>
-                  <p
-                    className={styles.more_details__tech__smallDescription_name}
-                  >
-                    {t('productPage.Resolution')}
-                  </p>
-                  <p
-                    className={
-                      styles.more_details__tech__smallDescription_value
-                    }
-                  >
-                    {product.resolution}
-                  </p>
-                </div>
-
-                <div className={styles.more_details__tech__smallDescription_s}>
-                  <p
-                    className={styles.more_details__tech__smallDescription_name}
-                  >
-                    {t('productPage.Processor')}
-                  </p>
-                  <p
-                    className={
-                      styles.more_details__tech__smallDescription_value
-                    }
-                  >
-                    {product.processor}
-                  </p>
-                </div>
-
-                <div className={styles.more_details__tech__smallDescription_s}>
-                  <p
-                    className={styles.more_details__tech__smallDescription_name}
-                  >
-                    {t('productPage.RAM')}
-                  </p>
-                  <p
-                    className={
-                      styles.more_details__tech__smallDescription_value
-                    }
-                  >
-                    {product.ram}
-                  </p>
-                </div>
-
-                <div className={styles.more_details__tech__smallDescription_s}>
-                  <p
-                    className={styles.more_details__tech__smallDescription_name}
-                  >
-                    {t('productPage.Built in memory')}
-                  </p>
-                  <p
-                    className={
-                      styles.more_details__tech__smallDescription_value
-                    }
-                  >
-                    {product.capacity}
-                  </p>
-                </div>
-
-                {product.camera && (
-                  <div
-                    className={styles.more_details__tech__smallDescription_s}
-                  >
-                    <p
-                      className={
-                        styles.more_details__tech__smallDescription_name
-                      }
-                    >
-                      {t('productPage.Camera')}
-                    </p>
-                    <p
-                      className={
-                        styles.more_details__tech__smallDescription_value
-                      }
-                    >
-                      {product.camera}
-                    </p>
-                  </div>
+                {TECH_SECTION.map(
+                  (item, index) =>
+                    item.isValid && (
+                      <div
+                        key={index}
+                        className={
+                          styles.more_details__tech__smallDescription_s
+                        }
+                      >
+                        <p
+                          className={
+                            styles.more_details__tech__smallDescription_name
+                          }
+                        >
+                          {item.language}
+                        </p>
+                        {item.value && (
+                          <p
+                            className={
+                              styles.more_details__tech__smallDescription_value
+                            }
+                          >
+                            {item.value}
+                          </p>
+                        )}
+                      </div>
+                    ),
                 )}
-
-                {product.zoom && (
-                  <div
-                    className={styles.more_details__tech__smallDescription_s}
-                  >
-                    <p
-                      className={
-                        styles.more_details__tech__smallDescription_name
-                      }
-                    >
-                      {t('productPage.Zoom')}
-                    </p>
-                    <p
-                      className={
-                        styles.more_details__tech__smallDescription_value
-                      }
-                    >
-                      {product.zoom}
-                    </p>
-                  </div>
-                )}
-
-                <div className={styles.more_details__tech__smallDescription_s}>
-                  <p
-                    className={styles.more_details__tech__smallDescription_name}
-                  >
-                    {t('productPage.Cell')}
-                  </p>
-                  <p
-                    className={
-                      styles.more_details__tech__smallDescription_value
-                    }
-                  >
-                    {product.cell}
-                  </p>
-                </div>
               </div>
             </div>
           </div>

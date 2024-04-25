@@ -24,18 +24,19 @@ const itemsPerPageOptions = [
 
 export const Filter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  // const params = new URLSearchParams(searchParams);
-  // const sortByParam = params.get('sort');
-  // const [sortBy, setSortBy] = useState<SortBy>(
-  //   sortByParam ? (sortByParam as SortBy) : SortBy.age,
-  // );
+  const params = new URLSearchParams(searchParams);
+  const sortByParam = params.get('sort');
+  const [sortBy, setSortBy] = useState<SortBy>(
+    sortByParam ? (sortByParam as SortBy) : SortBy.age,
+  );
 
   const handleSortParams = (selectedSort: SortBy) => {
     const params = new URLSearchParams(searchParams);
     params.set('sort', selectedSort);
     setSearchParams(params.toString());
-    // setSortBy(selectedSort);
+    setSortBy(selectedSort);
   };
+  console.log(sortBy);
 
   const handlePerPageParams = (selectedItemsPerPage: string) => {
     const params = new URLSearchParams(searchParams);

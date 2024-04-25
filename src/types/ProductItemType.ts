@@ -15,7 +15,7 @@ export interface ProductItemType {
     text: string[];
   }[];
   screen: string;
-  resolution: string;
+  resolution: string | undefined;
   processor: string;
   ram: string;
   camera: string;
