@@ -50,7 +50,7 @@ export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
           </div>
         </div>
       ) : (
-        <section style={{ display: 'flex', flexDirection: 'column' }}>
+        <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div className={styles.animation}>
             <LottieAnimation animationData={animationData} />
           </div>
