@@ -1,6 +1,17 @@
-.paginationContainer {
+@import '../../styles/utils/mixins';
+
+.container {
   display: flex;
   justify-content: center;
+  margin: 24px 0 64px;
+
+  @include on-tablet {
+    margin-top: 40px;
+  }
+
+  @include on-desktop {
+    margin-bottom: 80px;
+  }
 }
 
 .pagination {
