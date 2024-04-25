@@ -86,11 +86,16 @@ export const Header = () => {
           </div>
         </NavLink>
 
-        <a className={styles.menus} onClick={toggleMenu}>
+        <button className={styles.menus} onClick={toggleMenu}>
           <img src={menu} alt="menuicon" className='menus__logo' />
-        </a>
+        </button>
 
-        {isMenuShow && <NavBar onClose={toggleMenu}/>}
+        {
+          isMenuShow &&
+          <div className={styles.navBarWrapper}>
+            <NavBar onClose={toggleMenu} />
+          </div>
+        }
       </div>
     </div>
   );
