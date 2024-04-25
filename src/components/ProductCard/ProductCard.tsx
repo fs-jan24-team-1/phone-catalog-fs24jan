@@ -74,7 +74,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       style={{ textDecoration: 'none', color: 'black' }}
     >
       <article className={styles.wrapper}>
-        <div className={styles.productCard}>
+        <div className={styles.productCard }>
           <div className={styles.productImageContainer}>
             <img
               className={styles.productImage}
