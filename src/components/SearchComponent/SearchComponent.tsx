@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 
 export const SearchComponent = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -25,27 +26,16 @@ export const SearchComponent = () => {
     delayedSearch(value);
   };
 
-  const searchVariants = {
-    hidden: {
-      // x: 500,
-      x: -100,
-    },
-    visible: {
-      // x: -500,
-      x: 0,
-
-      transition: {
-        type: 'spring',
-        bounce: 0.2,
-        duration: 3,
-      },
-    },
-  };
-
   const inputVariants = {
     hidden: {
       opacity: 0,
       x: 100,
+
+      transition: {
+        type: 'spring',
+        bounce: 0.1,
+        duration: 0.2,
+      },
     },
     visible: {
       opacity: 1,
@@ -59,30 +49,47 @@ export const SearchComponent = () => {
     },
   };
 
+  const handleSearchClear = () => {
+    if (searchTerm.length > 0) {
+      setSearchTerm('');
+    } else {
+      setIsSearchVisible(false);
+    }
+  };
+
   return (
     <>
       <label
+        htmlFor="search"
         className={styles.search}
+        onClick={() => setIsSearchVisible(true)}
       >
         <div className={styles.icon}></div>
       </label>
 
-      {true && (
-        <motion.input
-          type="text"
-          id="search"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={handleChange}
-          variants={inputVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className={styles.input}
-        />
-      )}
+      {isSearchVisible && (
+        <>
+          <motion.input
+            type="text"
+            id="search"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleChange}
+            variants={inputVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className={styles.input}
+            autoFocus
+            // onBlur={() => setIsSearchVisible(false)}
+          />
 
-      <div className={styles.clear}></div>
+          <div
+            className={styles.clear}
+            onClick={handleSearchClear}
+          ></div>
+        </>
+      )}
     </>
   );
 };
