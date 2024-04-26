@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { getAccessories, getPhones, getTablets } from 'api';
+import { SortProductBy, ProductButtonType, Product } from 'types';
+import { sortProductsBy, useScrollToTopEffect } from 'utils';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { ProductItemType } from 'types/ProductItemType';
+import { ProductItemType } from 'types';
 import { NotFoundPage } from 'pages/NotFoundPage';
-import { ButtonColor } from 'components/UI/ButtonColor';
 import styles from './productItemPage.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { Breadcrumbs } from 'components/Breadcrumbs';
-import classNames from 'classnames';
+import { ButtonColor } from 'components/UI/ButtonColor';
 import { ButtonCapacity } from 'components/UI/ButtonCapacity';
 import { ButtonPrimary } from 'components/UI/ButtonPrimary';
-import { Product } from 'types';
 import { ButtonFavourite } from 'components/UI/ButtonFavourite';
 import { ButtonBack } from 'components/UI/ButtonBack';
-import { ProductButtonType } from 'types';
-import { useScrollToTopEffect } from 'utils';
-import { toast } from 'react-toastify';
-import { ProductsSlider } from '../../components/ProductsSlider';
-import { sortProductsBy } from '../../utils';
-import { SortProductBy } from '../../types';
-import { useTranslation } from 'react-i18next';
+import { ProductsSlider } from 'components/ProductsSlider';
 
 export const ProductItemPage = () => {
   const [t] = useTranslation('global');

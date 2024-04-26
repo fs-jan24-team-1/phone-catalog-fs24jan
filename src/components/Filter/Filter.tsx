@@ -31,7 +31,6 @@ export const Filter = () => {
     params.set('sort', selectedSort);
     setSearchParams(params.toString());
   };
-  console.log(sortBy);
 
   const handlePerPageParams = (selectedItemsPerPage: string) => {
     const params = new URLSearchParams(searchParams);
