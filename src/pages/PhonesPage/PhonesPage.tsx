@@ -1,11 +1,11 @@
-import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { Catalog } from '../../components/Catalog';
-import { Pagination } from '../../components/Pagination';
-import { usePageLogic } from '../../hooks/usePageLogic';
-import { Category } from '../../types';
-import { useScrollToTopEffect } from '../../utils';
+import { usePageLogic } from 'hooks/usePageLogic';
+import { Category } from 'types';
+import { useScrollToTopEffect } from 'utils';
 import { useTranslation } from 'react-i18next';
 import styles from './phonesPage.module.scss';
+import { Breadcrumbs } from 'components/Breadcrumbs';
+import { Catalog } from 'components/Catalog';
+import { Pagination } from 'components/Pagination';
 
 export const PhonesPage = () => {
   const { currentProducts, sortedProducts, currentPage, handlePagination } =

@@ -1,10 +1,10 @@
-import { FC } from 'react';
 import styles from './cartItem.module.scss';
-import { Product } from '../../types/Product';
-import { ButtonSlider } from '../UI/ButtonSlider';
+import { FC } from 'react';
+import { Product } from 'types';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { RootState } from 'store/store';
 import { Link, useLocation } from 'react-router-dom';
+import { ButtonSlider } from 'components/UI/ButtonSlider';
 
 type Props = {
   product: Product;

@@ -1,11 +1,11 @@
-import { Catalog } from '../../components/Catalog';
-import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { Pagination } from '../../components/Pagination';
-import { Category } from '../../types';
-import { usePageLogic } from '../../hooks/usePageLogic';
-import { useScrollToTopEffect } from '../../utils';
+import { Category } from 'types';
+import { usePageLogic } from 'hooks/usePageLogic';
+import { useScrollToTopEffect } from 'utils';
 import { useTranslation } from 'react-i18next';
 import styles from './accesoriesPage.module.scss';
+import { Catalog } from 'components/Catalog';
+import { Breadcrumbs } from 'components/Breadcrumbs';
+import { Pagination } from 'components/Pagination';
 
 export const AccessoriesPage = () => {
   const { currentProducts, sortedProducts, currentPage, handlePagination } =

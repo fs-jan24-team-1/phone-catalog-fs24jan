@@ -1,18 +1,17 @@
-import { RootState } from '../../store/store';
-import { Product } from '../../types';
-import styles from './cartPage.module.scss';
-import { CartItem } from '../../components/CartIem';
-import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { ButtonBack } from '../../components/UI/ButtonBack';
-import { LottieAnimation } from '../../components/UI/LottieAnimation';
-import * as animationData from './../../animations/EmptyCart.json';
-import { Link } from 'react-router-dom';
-import { ProductButtonType } from '../../types';
-import { CartModal } from '../../components/CartModal';
-import { useScrollToTopEffect } from '../../utils';
+import { Product, ProductButtonType } from 'types';
+import { RootState } from 'store/store';
+import styles from './cartPage.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { useScrollToTopEffect } from 'utils';
+import { CartModal } from 'components/CartModal';
+import { CartItem } from 'components/CartIem';
+import { ButtonPrimary } from 'components/UI/ButtonPrimary';
+import { ButtonBack } from 'components/UI/ButtonBack';
+import { LottieAnimation } from 'components/UI/LottieAnimation';
+import * as animationData from 'animations/EmptyCart.json';
 
 export const CartPage = () => {
   const { cart, cartTotalAmount, cartTotalQuantity } = useSelector(

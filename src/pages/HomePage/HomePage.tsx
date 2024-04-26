@@ -1,14 +1,12 @@
 import React from 'react';
-import { Slider } from '../../components/Slider';
-import { ProductsSlider } from '../../components/ProductsSlider';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { SortProductBy } from '../../types';
-import { sortProductsBy } from '../../utils';
+import { RootState } from 'store/store';
+import { SortProductBy } from 'types';
 import styles from './homepage.module.scss';
-
-import { CategoriesSection } from '../../components/CategoriesSection';
-import { useScrollToTopEffect } from '../../utils';
+import { sortProductsBy, useScrollToTopEffect } from 'utils';
+import { Slider } from 'components/Slider';
+import { ProductsSlider } from 'components/ProductsSlider';
+import { CategoriesSection } from 'components/CategoriesSection';
 import { useTranslation } from 'react-i18next';
 
 export const HomePage = () => {

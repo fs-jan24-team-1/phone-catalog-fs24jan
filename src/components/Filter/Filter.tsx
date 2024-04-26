@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { Dropdown } from '../UI/DropDown';
+import { Dropdown } from 'components/UI/DropDown';
 import { useTranslation } from 'react-i18next';
 import styles from './filter.module.scss';
 

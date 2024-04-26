@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './notFoundPage.module.scss';
-import { useScrollToTopEffect } from '../../utils';
+import { useScrollToTopEffect } from 'utils';
 import { useTranslation } from 'react-i18next';
 
 export const NotFoundPage = () => {

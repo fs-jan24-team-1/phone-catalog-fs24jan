@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Select, { StylesConfig, CSSObjectWithLabel } from 'react-select';
-import { SortBy } from '../../Filter';
+import { SortBy } from 'components/Filter';
 import { useSearchParams } from 'react-router-dom';
 
 interface Option {
