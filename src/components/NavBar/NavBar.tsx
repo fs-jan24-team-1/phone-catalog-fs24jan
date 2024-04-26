@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import styles from './navBar.module.scss';
 import { useTranslation } from 'react-i18next';
-import Logo from '../../img/icons/Logo.svg';
-import Close from '../../img/icons/close.svg';
-import hearts from   '../../img/icons/hearts.svg';
-import cours from '../../img/icons/cours.svg';
+import Logo from 'img/icons/Logo.svg';
+import Close from 'img/icons/close.svg';
+import hearts from   'img/icons/hearts.svg';
+import cours from 'img/icons/cours.svg';
 
 export const NavBar = ({ onClose }: { onClose: () => void }) => {
   const [t] = useTranslation('global');

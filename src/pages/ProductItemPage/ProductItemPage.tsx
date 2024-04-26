@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styles from './productItemPage.module.scss';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +9,6 @@ import { sortProductsBy, useScrollToTopEffect } from 'utils';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { ProductItemType } from 'types';
 import { NotFoundPage } from 'pages/NotFoundPage';
-import styles from './productItemPage.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { Breadcrumbs } from 'components/Breadcrumbs';

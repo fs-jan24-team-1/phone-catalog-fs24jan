@@ -1,15 +1,14 @@
 import React, { FC } from 'react';
-import { Product } from '../../types';
-import styles from './productCard.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { ButtonPrimary } from '../UI/ButtonPrimary';
-import { RootState } from '../../store/store';
-import { ButtonFavourite } from '../UI/ButtonFavourite';
+import { RootState } from 'store/store';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { ProductButtonType } from '../../types';
 import { Variants, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { Product, ProductButtonType } from 'types';
+import styles from './productCard.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { ButtonPrimary } from 'components/UI/ButtonPrimary';
+import { ButtonFavourite } from 'components/UI/ButtonFavourite';
 
 type Props = {
   product: Product;
@@ -38,7 +37,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
 
     if (isProductInFavourites) {
       toast.success('The product has been removed');
-      
+
       dispatch({
         type: 'product/removeFromFavourites',
         payload: product,

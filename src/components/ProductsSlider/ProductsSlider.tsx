@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, FC } from 'react';
+import { Product } from 'types';
 import './ProductsSlider.scss';
-import { ProductCard } from '../ProductCard';
-import { Product } from '../../types';
+import { ProductCard } from 'components/ProductCard';
 
 type Props = {
   products: Product[];
