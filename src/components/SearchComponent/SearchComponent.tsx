@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { debounce } from 'lodash';
 import styles from './searchComponent.module.scss';
@@ -9,13 +9,13 @@ export const SearchComponent = () => {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
 
   useEffect(() => {
     setSearchTerm('');
   }, [location.pathname]);
 
   const delayedSearch = debounce((value: string) => {
-    const searchParams = new URLSearchParams(location.search);
     searchParams.set('query', value);
     navigate(`?${searchParams.toString()}`);
   }, 500);
@@ -50,11 +50,7 @@ export const SearchComponent = () => {
   };
 
   const handleSearchClear = () => {
-    if (searchTerm.length > 0) {
-      setSearchTerm('');
-    } else {
-      setIsSearchVisible(false);
-    }
+    setSearchTerm('');
   };
 
   return (
@@ -81,13 +77,24 @@ export const SearchComponent = () => {
             viewport={{ once: true, amount: 0.1 }}
             className={styles.input}
             autoFocus
-            // onBlur={() => setIsSearchVisible(false)}
+            onBlur={() => {
+              setIsSearchVisible(false);
+              searchParams.set('query', searchTerm);
+              navigate(`?${searchParams.toString()}`);
+            }}
           />
 
-          <div
+          <span
             className={styles.clear}
-            onClick={handleSearchClear}
-          ></div>
+            onMouseDown={event => {
+              event.preventDefault();
+              handleSearchClear();
+
+              if (!searchTerm.length) {
+                setIsSearchVisible(false);
+              }
+            }}
+          />
         </>
       )}
     </>
