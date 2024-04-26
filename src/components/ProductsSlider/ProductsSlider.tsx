@@ -14,6 +14,7 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
   const slider = useRef<HTMLUListElement>(null);
   const [sliderItemWidth, setSliderItemWidth] = useState(0);
   const [touchPosition, setTouchPosition] = useState<number | null>(null);
+  const [lastClickTime, setLastClickTime] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,6 +45,12 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
   }, []);
 
   const goLeft = () => {
+    const now = new Date().getTime();
+    if (now - lastClickTime < 500) {
+      return;
+    }
+    setLastClickTime(now);
+
     if (slider.current) {
       setActiveArrowRight(true);
       const currentScroll = slider.current.scrollLeft;
@@ -56,6 +63,12 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
   };
 
   const goRight = () => {
+    const now = new Date().getTime();
+    if (now - lastClickTime < 500) {
+      return;
+    }
+    setLastClickTime(now);
+
     if (slider.current) {
       const currentScroll = slider.current.scrollLeft;
       const maxScroll = slider.current.scrollWidth - slider.current.offsetWidth;
@@ -128,4 +141,4 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
       </ul>
     </div>
   );
-}
+};
