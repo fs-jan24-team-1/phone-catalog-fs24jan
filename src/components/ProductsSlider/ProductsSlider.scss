@@ -99,11 +99,12 @@
     }
 
     @include on-tablet {
-      grid-template-columns: repeat(20, 237px);
+      grid-template-columns: repeat(20, 275px);
     }
 
     @include on-desktop {
-      grid-template-columns: repeat(20, 275px);
+      grid-template-columns: repeat(20, 272px);
     }
   }
 }
+

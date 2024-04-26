@@ -5,9 +5,17 @@ import Logo from 'img/icons/Logo.svg';
 import Close from 'img/icons/close.svg';
 import hearts from   'img/icons/hearts.svg';
 import cours from 'img/icons/cours.svg';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 
 export const NavBar = ({ onClose }: { onClose: () => void }) => {
-  const [t] = useTranslation('global');
+  const [t] = useTranslation("global");
+
+  const favourItes = useSelector((state: RootState) => state.product.favourites);
+  const favoritesCount = favourItes.length;
+
+  const cartItes = useSelector((state: RootState) => state.product.cart);
+  const cartCount = cartItes.length;
 
   return (
     <aside className={styles.menu}>
@@ -55,15 +63,21 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
       </nav>
 
       <div className={styles.nav__bottom}>
-        <Link
-          to="/Favorites"
-          className={styles.nav__favorites}
-          onClick={onClose}
-        >
-          <img src={hearts} alt="" />
+        <Link to="/Favorites" className={styles.nav__favorites} onClick={onClose}>
+          <div className={styles.cartIconContainer}>
+            <img src={require('../../img/icons/hearts.svg').default} alt="" className={styles.nav__icons} />
+            {favoritesCount > 0 && <div className={styles.favoritesItemCount}>{favoritesCount}</div>}
+
+          </div>
+
         </Link>
         <Link to="/cart" className={styles.nav__cart} onClick={onClose}>
-          <img src={cours} alt="" />
+          <div className={styles.cartIconContainer}>
+
+            <img src={require('../../img/icons/cours.svg').default} alt="" className={styles.nav__icons} />
+            {cartCount > 0 && <div className={styles.favoritesItemCount}>{cartCount}</div>}
+          </div>
+
         </Link>
       </div>
     </aside>
