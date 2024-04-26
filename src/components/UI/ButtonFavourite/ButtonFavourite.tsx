@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
 import styles from './buttonFavourite.module.scss';
-import { useState } from 'react';
-import React from 'react';
+import React, { FC, useState } from 'react';
 import { RootState } from '../../../store/store';
 import { useSelector } from 'react-redux';
-import { ProductItemType } from '../../../types/ProductItemType';
-import { Product } from '../../../types/Product';
+import { ProductItemType } from '../../../types';
+import { Product } from '../../../types';
 import classNames from 'classnames';
 
 interface Props {
   product: ProductItemType | Product;
   callback: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
-export const ButtonFavourite: React.FC<Props> = ({ product, callback }) => {
+export const ButtonFavourite: FC<Props> = ({ product, callback }) => {
   const [selectedFavourite, setSelectedFavourite] = useState(false);
   const products = useSelector((state: RootState) => state.product.favourites);
 

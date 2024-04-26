@@ -1,9 +1,9 @@
 import { Catalog } from '../../components/Catalog';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Pagination } from '../../components/Pagination';
-import { Category } from '../../types/Category';
+import { Category } from '../../types';
 import { usePageLogic } from '../../hooks/usePageLogic';
-import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
+import { useScrollToTopEffect } from '../../utils';
 import { useTranslation } from 'react-i18next';
 import styles from './tabletsPage.module.scss';
 
