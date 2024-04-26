@@ -1,5 +1,5 @@
-import React from 'react';
-import { Product } from '../../types/Product';
+import React, { FC } from 'react';
+import { Product } from '../../types';
 import styles from './productCard.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from '../UI/ButtonPrimary';
@@ -7,7 +7,7 @@ import { RootState } from '../../store/store';
 import { ButtonFavourite } from '../UI/ButtonFavourite';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { ProductButtonType } from '../../types/ProductButtonType';
+import { ProductButtonType } from '../../types';
 import { Variants, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +15,7 @@ type Props = {
   product: Product;
 };
 
-export const ProductCard: React.FC<Props> = ({ product }) => {
+export const ProductCard: FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
   const [t] = useTranslation('global');
   const favourites = useSelector(

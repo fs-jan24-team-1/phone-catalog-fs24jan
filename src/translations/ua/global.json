@@ -39,8 +39,9 @@
     "Shop by category": "Покупки за категоріями"
   },
   "product": {
-    "Add to cart": "Додати до кошика",
-    "Added to cart": "Додано до кошика",
+    "Add to cart": "Купити",
+    "Added to cart": "У кошику",
+    "Checkout": "Оформити замовлення",
     "Back": "Назад",
     "Screen": "Екран",
     "Capacity": "Вбудована пам'ять",
@@ -88,5 +89,10 @@
   "404": {
     "Oops, page not found!": "Ой, сторінки не знайдено!",
     "Go to homepage": "На головну"
+  },
+  "buttons": {
+    "Add to cart": "Купити",
+    "Added to cart": "У кошику",
+    "Checkout": "Оформити замовлення"
   }
 }

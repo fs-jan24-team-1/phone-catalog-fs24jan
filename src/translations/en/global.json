@@ -41,6 +41,7 @@
   "product": {
     "Add to cart": "Add to cart",
     "Added to cart": "Added to cart",
+    "Checkout": "Checkout",
     "Back": "Back",
     "Screen": "Screen",
     "Capacity": "Capacity",
@@ -86,12 +87,17 @@
     "All": "All"
   },
   "ProductButtonType": {
-    "ADD": "Add to cart",
-    "ADDED": "Added to cart",
-    "CHECKOUT": "Checkout"
+    "Add to cart": "Add to cart",
+    "Added to cart": "Added to cart",
+    "Checkout": "Checkout"
   },
   "404": {
     "Oops, page not found!": "Oops, page not found!",
     "Go to homepage": "Go to homepage"
+  },
+  "buttons": {
+    "Add to cart": "Add to cart",
+    "Added to cart": "Added to cart",
+    "Checkout": "Checkout"
   }
 }

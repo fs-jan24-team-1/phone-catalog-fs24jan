@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styles from './buttonColor.module.scss';
 type Props = {
   colorDevice: string;
@@ -5,7 +6,7 @@ type Props = {
   setSelectedColor: (color: string) => void;
 };
 
-export const ButtonColor: React.FC<Props> = ({ colorDevice, selected, setSelectedColor }) => {
+export const ButtonColor: FC<Props> = ({ colorDevice, selected, setSelectedColor }) => {
   const handleClickColor = () => {
     setSelectedColor(colorDevice);
   };

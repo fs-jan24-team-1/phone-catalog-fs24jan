@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Product } from '../types/Product';
+import { Product } from '../types';
 import { toast } from 'react-toastify';
 
 export interface ProductState {

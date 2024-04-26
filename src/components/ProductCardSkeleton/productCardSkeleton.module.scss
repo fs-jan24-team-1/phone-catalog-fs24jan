@@ -1,31 +1,35 @@
 @import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
 
 .skeletonCard {
   display: flex;
   flex-direction: column;
   padding: 32px;
-  max-width: 290px;
+  width: 290px;
   gap: 8px;
 
   border: 1px solid $elements;
   border-radius: 8px;
   box-sizing: border-box;
-}
 
-.image {
-  margin-bottom: 16px;
-}
+  @include on-desktop {
+    width: 260px;
+  }
 
-.description {
-  display: flex;
-  flex-direction: column;
-
-  &__box {
-    display: flex;
-    justify-content: space-between;
+  &__container {
+    display: block;
+    line-height: 1;
   }
 }
 
 .image {
-  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.description {
+  margin-top: 8px;
+}
+
+.button {
+  margin-top: 8px;
 }

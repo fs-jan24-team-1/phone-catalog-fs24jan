@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from '../UI/DropDown';
+import { useTranslation } from 'react-i18next';
 import styles from './filter.module.scss';
-import { useState } from 'react';
 
 export enum SortBy {
   age = 'age',
@@ -9,32 +9,27 @@ export enum SortBy {
   price = 'price',
 }
 
-const sortOptions = [
-  { value: 'age', label: 'Newest' },
-  { value: 'title', label: 'Alphabetically' },
-  { value: 'price', label: 'Cheapest' },
-];
-
-const itemsPerPageOptions = [
-  { value: Infinity, label: 'All' },
-  { value: 4, label: '4' },
-  { value: 8, label: '8' },
-  { value: 16, label: '16' },
-];
-
 export const Filter = () => {
+  const [t] = useTranslation('global');
   const [searchParams, setSearchParams] = useSearchParams();
-  const params = new URLSearchParams(searchParams);
-  const sortByParam = params.get('sort');
-  const [sortBy, setSortBy] = useState<SortBy>(
-    sortByParam ? (sortByParam as SortBy) : SortBy.age,
-  );
+
+  const sortOptions = [
+    { value: 'age', label: t('filters.Newest') },
+    { value: 'title', label: t('filters.Alphabetically') },
+    { value: 'price', label: t('filters.Cheapest') },
+  ];
+
+  const itemsPerPageOptions = [
+    { value: Infinity, label: t('filters.All') },
+    { value: 4, label: '4' },
+    { value: 8, label: '8' },
+    { value: 16, label: '16' },
+  ];
 
   const handleSortParams = (selectedSort: SortBy) => {
     const params = new URLSearchParams(searchParams);
     params.set('sort', selectedSort);
     setSearchParams(params.toString());
-    setSortBy(selectedSort);
   };
   console.log(sortBy);
 
@@ -47,7 +42,9 @@ export const Filter = () => {
   return (
     <div className={styles.filter}>
       <div className={styles.filter__сontainer}>
-        <span className={styles.filter__description}>Sort by</span>
+        <span className={styles.filter__description}>
+          {t('filters.Sort by')}
+        </span>
 
         <Dropdown
           options={sortOptions}
@@ -57,7 +54,9 @@ export const Filter = () => {
       </div>
 
       <div className={styles.filter__сontainer}>
-        <span className={styles.filter__description}>Items on page</span>
+        <span className={styles.filter__description}>
+          {t('filters.Items on page')}
+        </span>
 
         <Dropdown
           options={itemsPerPageOptions}

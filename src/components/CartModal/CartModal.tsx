@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import Modal from 'react-modal';
 import styles from './cartModal.module.scss';
 import { useDispatch } from 'react-redux';
@@ -8,7 +8,7 @@ type ModalProps = {
   onClose: () => void;
 };
 
-export const CartModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+export const CartModal: FC<ModalProps> = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
 
   const handleClearCart = () => {
