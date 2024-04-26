@@ -2,6 +2,7 @@ import styles from './buttonPrimary.module.scss';
 import { FC } from 'react';
 import classNames from 'classnames';
 import { ProductButtonType } from '../../../types/ProductButtonType';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   textForPrimaryButton: ProductButtonType;
@@ -19,9 +20,11 @@ export const ButtonPrimary: FC<Props> = ({
       [styles.selected]: ProductButtonType.ADDED === buttonType,
     });
 
+  const [t] = useTranslation('global');
+
   return (
     <button className={getButtonClass(textForPrimaryButton)} onClick={callback}>
-      {textForPrimaryButton}
+      {t(`buttons.${textForPrimaryButton}`)}
     </button>
   );
 };
