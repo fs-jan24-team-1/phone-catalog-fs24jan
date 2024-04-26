@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { Category } from '../types/Category';
+import { Category } from '../types';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SortBy } from '../components/Filter';
 import { Product } from '../types/Product';
-import { sortProducts } from '../utils/sortProducts';
+import { sortProducts } from '../utils';
 
 export const usePageLogic = (category: Category) => {
   const products = useSelector((state: RootState) => state.product.products);

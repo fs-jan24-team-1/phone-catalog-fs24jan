@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './categoriesSection.module.scss';
 import phone from './img/Phone.png';
@@ -5,11 +6,11 @@ import tablet from './img/Tablet.png';
 import accessory from './img/Accessories.png';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { Product } from '../../types/Product';
-import { Category } from '../../types/Category';
+import { Product } from '../../types';
+import { Category } from '../../types';
 import { useTranslation } from 'react-i18next';
 
-export const CategoriesSection: React.FC = () => {
+export const CategoriesSection: FC = () => {
   const products = useSelector((state: RootState) => state.product.products);
   const [t] = useTranslation('global');
 

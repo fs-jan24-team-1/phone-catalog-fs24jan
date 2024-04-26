@@ -1,11 +1,13 @@
-import { Link, useNavigate} from 'react-router-dom';
+import { FC } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './buttonBack.module.scss';
+
 
 type Props = {
   textForBackButton: string;
 };
 
-export const ButtonBack: React.FC<Props> = ({ textForBackButton }) => {
+export const ButtonBack: FC<Props> = ({ textForBackButton }) => {
   const navigate = useNavigate();
 
   const goBack = () => {
