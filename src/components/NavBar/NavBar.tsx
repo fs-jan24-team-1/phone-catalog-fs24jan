@@ -65,7 +65,7 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
       <div className={styles.nav__bottom}>
         <Link to="/Favorites" className={styles.nav__favorites} onClick={onClose}>
           <div className={styles.cartIconContainer}>
-            <img src={require('../../img/icons/hearts.svg').default} alt="" className={styles.nav__icons} />
+            <img src={hearts} alt="" className={styles.nav__icons} />
             {favoritesCount > 0 && <div className={styles.favoritesItemCount}>{favoritesCount}</div>}
 
           </div>
@@ -74,7 +74,7 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
         <Link to="/cart" className={styles.nav__cart} onClick={onClose}>
           <div className={styles.cartIconContainer}>
 
-            <img src={require('../../img/icons/cours.svg').default} alt="" className={styles.nav__icons} />
+            <img src={cours} alt="" className={styles.nav__icons} />
             {cartCount > 0 && <div className={styles.favoritesItemCount}>{cartCount}</div>}
           </div>
 
