@@ -2,8 +2,8 @@ import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Catalog } from '../../components/Catalog';
 import { Pagination } from '../../components/Pagination';
 import { usePageLogic } from '../../hooks/usePageLogic';
-import { Category } from '../../types/Category';
-import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
+import { Category } from '../../types';
+import { useScrollToTopEffect } from '../../utils';
 import { useTranslation } from 'react-i18next';
 import styles from './phonesPage.module.scss';
 

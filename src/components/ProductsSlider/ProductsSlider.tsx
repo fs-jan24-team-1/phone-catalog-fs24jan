@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, FC } from 'react';
 import './ProductsSlider.scss';
-import { ProductCard } from '../ProductCard/ProductCard';
-import { Product } from '../../types/Product';
+import { ProductCard } from '../ProductCard';
+import { Product } from '../../types';
 
 type Props = {
   products: Product[];
   title: string;
 };
 
-export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
+export const ProductsSlider: FC<Props> = ({ title, products }) => {
   const [activeArrowLeft, setActiveArrowLeft] = useState(false);
   const [activeArrowRight, setActiveArrowRight] = useState(true);
   const slider = useRef<HTMLUListElement>(null);

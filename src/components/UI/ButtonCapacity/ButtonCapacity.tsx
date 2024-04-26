@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import styles from './buttonCapacity.module.scss';
 import classNames from 'classnames';
 
@@ -8,7 +8,7 @@ type Props = {
   setSelectedCapacity: (color: string) => void;
 };
 
-export const ButtonCapacity: React.FC<Props> = ({
+export const ButtonCapacity: FC<Props> = ({
   text,
   selected,
   setSelectedCapacity,

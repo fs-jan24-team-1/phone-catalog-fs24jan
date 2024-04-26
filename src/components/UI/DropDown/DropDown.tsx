@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 import Select, { StylesConfig, CSSObjectWithLabel } from 'react-select';
-import { SortBy } from '../../Filter/Filter';
+import { SortBy } from '../../Filter';
 import { useSearchParams } from 'react-router-dom';
 
 interface Option {
@@ -89,7 +89,8 @@ const defaultStyles: StylesConfig<Option, false> = {
     width: '136px',
   }),
 };
-export const Dropdown: React.FC<DropdownProps> = ({
+
+export const Dropdown: FC<DropdownProps> = ({
   options,
   onSelectChange,
   isSortDropdown,

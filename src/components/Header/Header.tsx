@@ -7,12 +7,12 @@ import menu from '../../img/icons/menu.svg';
 import cours from '../../img/icons/cours.svg';
 import favorites from '../../img/icons/hearts.svg';
 import { useState } from 'react';
-import { NavBar } from '../NavBar/NavBar';
+import { NavBar } from '../NavBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { SearchComponent} from '../SearchComponent/SearchComponent';
+import { SearchComponent} from '../SearchComponent';
 import { useTranslation } from 'react-i18next';
-import { SwitchLanguage } from '../SwitchLanguage/SwitchLanguage';
+import { SwitchLanguage } from '../SwitchLanguage';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);

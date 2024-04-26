@@ -1,7 +1,7 @@
 import styles from './buttonPrimary.module.scss';
 import { FC } from 'react';
 import classNames from 'classnames';
-import { ProductButtonType } from '../../../types/ProductButtonType';
+import { ProductButtonType } from '../../../types';
 import { useTranslation } from 'react-i18next';
 
 interface Props {

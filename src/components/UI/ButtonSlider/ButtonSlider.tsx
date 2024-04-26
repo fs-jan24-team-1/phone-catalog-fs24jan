@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import styles from './buttonSlider.module.scss';
 
 interface ButtonSliderProps {
@@ -8,7 +8,7 @@ interface ButtonSliderProps {
   disabled?: boolean;
 }
 
-export const ButtonSlider: React.FC<ButtonSliderProps> = ({ iconType, active, handleClick }) => {
+export const ButtonSlider: FC<ButtonSliderProps> = ({ iconType, active, handleClick }) => {
   return (
     <div
     className={`${styles.button} ${active ? styles.disable : styles.default}`}

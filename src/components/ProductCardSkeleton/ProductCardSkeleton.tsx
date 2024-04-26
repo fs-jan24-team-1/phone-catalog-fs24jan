@@ -1,12 +1,13 @@
 import Skeleton from 'react-loading-skeleton';
 import styles from './productCardSkeleton.module.scss';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { FC } from 'react';
 
 type Props = {
   amount: number;
 };
 
-export const CardSkeleton: React.FC<Props> = ({ amount }) => {
+export const CardSkeleton: FC<Props> = ({ amount }) => {
   const loadCards = Array(amount).fill(1);
   return (
     <>

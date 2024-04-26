@@ -1,7 +1,7 @@
 import { ProductCard } from '../ProductCard';
-import { Product } from '../../types/Product';
-import { Filter } from '../Filter/Filter';
-import { useEffect, useState } from 'react';
+import { Product } from '../../types';
+import { Filter } from '../Filter';
+import { FC, useEffect, useState } from 'react';
 import { CardSkeleton } from '../ProductCardSkeleton';
 import { LottieAnimation } from '../UI/LottieAnimation';
 import { Link, useLocation } from 'react-router-dom';
@@ -14,7 +14,7 @@ interface Props {
   totalProducts: number;
 }
 
-export const Catalog: React.FC<Props> = ({ products, totalProducts }) => {
+export const Catalog: FC<Props> = ({ products, totalProducts }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { pathname } = useLocation();
