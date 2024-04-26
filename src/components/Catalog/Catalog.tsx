@@ -1,13 +1,13 @@
-import { ProductCard } from '../ProductCard';
-import { Product } from '../../types';
-import { Filter } from '../Filter';
 import { FC, useEffect, useState } from 'react';
-import { CardSkeleton } from '../ProductCardSkeleton';
-import { LottieAnimation } from '../UI/LottieAnimation';
+import styles from './catalog.module.scss';
+import { Product } from 'types';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import * as animationData from '../../animations/ProductsNotFound.json';
-import styles from './catalog.module.scss';
+import * as animationData from 'animations/ProductsNotFound.json';
+import { Filter } from 'components/Filter';
+import { ProductCard } from 'components/ProductCard';
+import { CardSkeleton } from 'components/ProductCardSkeleton';
+import { LottieAnimation } from 'components/UI/LottieAnimation';
 
 interface Props {
   products: Product[];

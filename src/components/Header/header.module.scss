@@ -1,6 +1,6 @@
-@import '../../styles/utils/variables';
-@import '../../styles/utils/mixins';
-@import '../../styles/utils/normalize';
+@import 'styles/utils/variables';
+@import 'styles/utils/mixins';
+@import 'styles/utils/normalize';
 
 .header {
   display: flex;
@@ -88,6 +88,10 @@
     @include on-mobile {
       display: none;
     }
+
+    &:hover {
+    border-bottom: 3px solid black;
+    }
   }
 }
 
@@ -163,6 +167,7 @@
   border-left: 1px solid $elements;
   transition: border-bottom 0.3s;
 
+
   @include on-tablet {
     height: 48px;
     width: 48px;
@@ -183,6 +188,8 @@
     height: 64px;
     width: 64px;
   }
+
+
 }
 
 .cartIconContainer {

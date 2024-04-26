@@ -1,18 +1,17 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { Link, NavLink, useLocation } from 'react-router-dom';
 import styles from './header.module.scss';
-import classNames from 'classnames';
-import logo from '../../img/icons/Logo.svg';
-import menu from '../../img/icons/menu.svg';
-import cours from '../../img/icons/cours.svg';
-import favorites from '../../img/icons/hearts.svg';
 import { useState } from 'react';
-import { NavBar } from '../NavBar';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { SearchComponent} from '../SearchComponent';
+import classNames from 'classnames';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { SwitchLanguage } from '../SwitchLanguage';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { NavBar } from 'components/NavBar';
+import { SearchComponent} from 'components/SearchComponent';
+import { SwitchLanguage } from 'components/SwitchLanguage';
+import logo from 'img/icons/Logo.svg';
+import menu from 'img/icons/menu.svg';
+import cours from 'img/icons/cours.svg';
+import favorites from 'img/icons/hearts.svg';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);

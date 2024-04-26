@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import styles from './breadcrumbs.module.scss';
-import { getPhones, getTablets, getAccessories } from '../../api';
+import { getPhones, getTablets, getAccessories } from 'api';
 import classNames from 'classnames';
 
 enum linkTypes {
