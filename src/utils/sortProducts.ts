@@ -1,5 +1,5 @@
-import { SortBy } from "../components/Filter/Filter";
-import { Product } from "../types/Product";
+import { SortBy } from "../components/Filter";
+import { Product } from "../types";
 
 export const sortProducts = (products: Product[], sortBy: SortBy) => {
   const sortedProductsCopy = [...products];

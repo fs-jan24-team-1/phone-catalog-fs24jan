@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import styles from './cartItem.module.scss';
 import { Product } from '../../types/Product';
 import { ButtonSlider } from '../UI/ButtonSlider';
@@ -10,7 +10,7 @@ type Props = {
   product: Product;
 };
 
-export const CartItem: React.FC<Props> = ({ product }) => {
+export const CartItem: FC<Props> = ({ product }) => {
   const cart = useSelector((state: RootState) => state.product.cart);
   const dispatch = useDispatch();
 

@@ -1,5 +1,5 @@
 import { RootState } from '../../store/store';
-import { Product } from '../../types/Product';
+import { Product } from '../../types';
 import styles from './cartPage.module.scss';
 import { CartItem } from '../../components/CartIem';
 import { ButtonPrimary } from '../../components/UI/ButtonPrimary';
@@ -9,9 +9,9 @@ import { ButtonBack } from '../../components/UI/ButtonBack';
 import { LottieAnimation } from '../../components/UI/LottieAnimation';
 import * as animationData from './../../animations/EmptyCart.json';
 import { Link } from 'react-router-dom';
-import { ProductButtonType } from '../../types/ProductButtonType';
+import { ProductButtonType } from '../../types';
 import { CartModal } from '../../components/CartModal';
-import { useScrollToTopEffect } from '../../utils/useScrollToTopEffect';
+import { useScrollToTopEffect } from '../../utils';
 import { useTranslation } from 'react-i18next';
 
 export const CartPage = () => {

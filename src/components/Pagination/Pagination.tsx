@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { ButtonSlider } from '../UI/ButtonSlider';
 import { ButtonPagination } from '../UI/ButtonPagination';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,7 @@ type Props = {
   handlePagination: (pageNumber: number) => void;
 };
 
-export const Pagination: React.FC<Props> = ({
+export const Pagination: FC<Props> = ({
   length,
   currentPage,
   handlePagination,
@@ -72,7 +72,7 @@ export const Pagination: React.FC<Props> = ({
     }
 
     return (
-      <div className={styles.paginationContainer}>
+      <div className={styles.container}>
         <div className={styles.pagination}>
           <ButtonSlider
             iconType="arrowLeft"

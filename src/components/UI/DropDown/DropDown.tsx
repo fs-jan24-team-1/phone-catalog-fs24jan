@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 import Select, { StylesConfig, CSSObjectWithLabel } from 'react-select';
-import { SortBy } from '../../Filter/Filter';
+import { SortBy } from '../../Filter';
 import { useSearchParams } from 'react-router-dom';
 
 interface Option {
@@ -33,6 +33,7 @@ const baseStyles: StylesConfig<Option, false> = {
     fontSize: '14px',
     fontWeight: '700',
     minHeight: '40px',
+    cursor: 'pointer',
 
     '&:hover': {
       borderColor: '#89939A',
@@ -43,6 +44,7 @@ const baseStyles: StylesConfig<Option, false> = {
     ...base,
     fontSize: '14px',
     lineHeight: '21px',
+    cursor: 'pointer',
 
     color: isSelected ? '#0F0F11' : '#89939A',
     fontWeight: '700',
@@ -87,7 +89,8 @@ const defaultStyles: StylesConfig<Option, false> = {
     width: '136px',
   }),
 };
-export const Dropdown: React.FC<DropdownProps> = ({
+
+export const Dropdown: FC<DropdownProps> = ({
   options,
   onSelectChange,
   isSortDropdown,
