@@ -66,11 +66,11 @@ export const Header = () => {
         </nav>
       </div>
 
-      {isShowSearch && <SearchComponent />}
-
-     <SwitchLanguage />
+     {false && <SwitchLanguage />}
 
       <div className={styles.right_side}>
+        {isShowSearch && <SearchComponent />}
+
         <NavLink to="/Favorites" className={({ isActive }) => classNames(styles.favorites, { [styles.is_active]: isActive })}>
           <div className={styles.favoritesIconContainer}>
             <img src={favorites} alt="favorites" className={styles.favorites__logo} />

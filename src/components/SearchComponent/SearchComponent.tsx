@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { debounce } from 'lodash';
+import styles from './searchComponent.module.scss';
+import { motion } from 'framer-motion';
 
 export const SearchComponent = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,14 +25,64 @@ export const SearchComponent = () => {
     delayedSearch(value);
   };
 
+  const searchVariants = {
+    hidden: {
+      // x: 500,
+      x: -100,
+    },
+    visible: {
+      // x: -500,
+      x: 0,
+
+      transition: {
+        type: 'spring',
+        bounce: 0.2,
+        duration: 3,
+      },
+    },
+  };
+
+  const inputVariants = {
+    hidden: {
+      opacity: 0,
+      x: 100,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+
+      transition: {
+        type: 'spring',
+        bounce: 0.1,
+        duration: 0.2,
+      },
+    },
+  };
+
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={handleChange}
-      />
-    </div>
+    <>
+      <label
+        className={styles.search}
+      >
+        <div className={styles.icon}></div>
+      </label>
+
+      {true && (
+        <motion.input
+          type="text"
+          id="search"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleChange}
+          variants={inputVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className={styles.input}
+        />
+      )}
+
+      <div className={styles.clear}></div>
+    </>
   );
 };
