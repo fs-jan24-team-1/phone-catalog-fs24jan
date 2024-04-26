@@ -3,9 +3,17 @@
 import { Link } from 'react-router-dom';
 import styles from './navBar.module.scss';
 import { useTranslation } from 'react-i18next';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 
 export const NavBar = ({ onClose }: { onClose: () => void }) => {
   const [t] = useTranslation("global");
+
+  const favourItes = useSelector((state: RootState) => state.product.favourites);
+  const favoritesCount = favourItes.length;
+
+  const cartItes = useSelector((state: RootState) => state.product.cart);
+  const cartCount = cartItes.length;
 
   return (
     <aside className={styles.menu}>
@@ -46,10 +54,20 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
 
       <div className={styles.nav__bottom}>
         <Link to="/Favorites" className={styles.nav__favorites} onClick={onClose}>
-          <img src={require('../../img/icons/hearts.svg').default} alt="" />
+          <div className={styles.cartIconContainer}>
+            <img src={require('../../img/icons/hearts.svg').default} alt="" className={styles.nav__icons} />
+            {favoritesCount > 0 && <div className={styles.favoritesItemCount}>{favoritesCount}</div>}
+
+          </div>
+
         </Link>
         <Link to="/cart" className={styles.nav__cart} onClick={onClose}>
-          <img src={require('../../img/icons/cours.svg').default} alt="" />
+          <div className={styles.cartIconContainer}>
+
+            <img src={require('../../img/icons/cours.svg').default} alt="" className={styles.nav__icons} />
+            {cartCount > 0 && <div className={styles.favoritesItemCount}>{cartCount}</div>}
+          </div>
+
         </Link>
       </div>
     </aside>

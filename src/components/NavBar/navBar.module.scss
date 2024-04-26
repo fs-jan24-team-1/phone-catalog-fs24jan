@@ -5,6 +5,7 @@
 
 
 .menu {
+  overflow: hidden;
   font-family: 'Mont-Bold';
   position: fixed;
   top: 0;
@@ -131,6 +132,11 @@ line-height: 11px;
   }
 }
 
+.nav__icons {
+  width: 20px;
+  height: 20px;
+}
+
 
 .hide {
   animation: slideOutToRight 12s forwards;
@@ -143,4 +149,49 @@ line-height: 11px;
   100% {
     transform: translateX(100%);
   }
+}
+
+
+.cartIconContainer {
+  position: relative;
+}
+
+.cartItemCount {
+  right: 14px;
+  position: absolute;
+  top: -7.5px;
+  right: -8px;
+  background-color: #eb5757;
+  color: white;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 9px;
+}
+
+.favoritesIconContainer {
+  position: relative;
+}
+
+.favoritesItemCount {
+  right: 14px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #eb5757;
+  color: white;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 9px;
+}
+
+.styles.favorites.is_active {
+  border-bottom: 1px solid black;
 }
