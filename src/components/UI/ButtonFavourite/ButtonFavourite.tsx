@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import styles from './buttonFavourite.module.scss';
 import React, { FC, useState } from 'react';
-import { RootState } from '../../../store/store';
+import { RootState } from 'store/store';
 import { useSelector } from 'react-redux';
-import { ProductItemType } from '../../../types';
-import { Product } from '../../../types';
+import { Product, ProductItemType } from 'types';
 import classNames from 'classnames';
 
 interface Props {

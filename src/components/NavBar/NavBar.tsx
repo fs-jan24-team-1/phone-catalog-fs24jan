@@ -1,8 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-// NavBar.tsx
 import { Link } from 'react-router-dom';
 import styles from './navBar.module.scss';
 import { useTranslation } from 'react-i18next';
+import Logo from 'img/icons/Logo.svg';
+import Close from 'img/icons/close.svg';
+import hearts from   'img/icons/hearts.svg';
+import cours from 'img/icons/cours.svg';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 
@@ -19,11 +21,15 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
     <aside className={styles.menu}>
       <div className={styles.menu__top}>
         <Link to="/" className={styles.menu__logo}>
-          <img src={require('../../img/icons/Logo.svg').default} alt="logo" className={`${styles.menu__logo} ${styles.logo}`} />
+          <img
+            src={Logo}
+            alt="logo"
+            className={`${styles.menu__logo} ${styles.logo}`}
+          />
         </Link>
 
         <Link to="#" className={styles.menu__close} onClick={onClose}>
-          <img src={require('../../img/icons/close.svg').default} alt="close" className={styles.close} />
+          <img src={Close} alt="close" className={styles.close} />
         </Link>
       </div>
 
@@ -45,7 +51,11 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
             </Link>
           </li>
           <li className={styles.nav__item}>
-            <Link to="/accessories" className={styles.nav__link} onClick={onClose}>
+            <Link
+              to="/accessories"
+              className={styles.nav__link}
+              onClick={onClose}
+            >
               {t('header.accessories')}
             </Link>
           </li>
@@ -55,7 +65,7 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
       <div className={styles.nav__bottom}>
         <Link to="/Favorites" className={styles.nav__favorites} onClick={onClose}>
           <div className={styles.cartIconContainer}>
-            <img src={require('../../img/icons/hearts.svg').default} alt="" className={styles.nav__icons} />
+            <img src={hearts} alt="" className={styles.nav__icons} />
             {favoritesCount > 0 && <div className={styles.favoritesItemCount}>{favoritesCount}</div>}
 
           </div>
@@ -64,7 +74,7 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
         <Link to="/cart" className={styles.nav__cart} onClick={onClose}>
           <div className={styles.cartIconContainer}>
 
-            <img src={require('../../img/icons/cours.svg').default} alt="" className={styles.nav__icons} />
+            <img src={cours} alt="" className={styles.nav__icons} />
             {cartCount > 0 && <div className={styles.favoritesItemCount}>{cartCount}</div>}
           </div>
 
@@ -72,4 +82,5 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
       </div>
     </aside>
   );
+
 };

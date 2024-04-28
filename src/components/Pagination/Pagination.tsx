@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { ButtonSlider } from '../UI/ButtonSlider';
-import { ButtonPagination } from '../UI/ButtonPagination';
+import { ButtonSlider } from 'components/UI/ButtonSlider';
+import { ButtonPagination } from 'components/UI/ButtonPagination';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import styles from './pagination.module.scss';

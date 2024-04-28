@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { getProducts } from './api';
 import { useDispatch } from 'react-redux';
 import { MessageContainer } from "./components/UI/MessageNotification";
+import { toast } from 'react-toastify';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export const App = () => {
           payload: items,
         });
       } catch (error) {
-        console.error('Error fetching products:', error);
+        toast.error('Error fetching products');
       }
     };
 

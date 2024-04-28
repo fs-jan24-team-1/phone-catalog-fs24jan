@@ -1,0 +1,65 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.search {
+  display: flex;
+  border-left: 1px solid $elements;
+  width: 48px;
+  height: 100%;
+  justify-self: right;
+  cursor: pointer;
+
+  @include on-desktop {
+    width: 64px;
+  }
+}
+
+.input {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  background-color: $white;
+  border: none;
+  z-index: 101;
+  border-left: 1px solid $elements;
+  padding: 10px 15px;
+  font-family: $Mont, sans-serif;
+  font-size: 16px;
+}
+
+.icon {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background-image: url('./../../img/icons/search.svg');
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @include on-desktop {
+    width: 64px;
+    height: 64px;
+    background-size: 16px;
+  }
+}
+
+.clear {
+  position: absolute;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  background-image: url('./../../img/icons/close.svg');
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 102;
+  cursor: pointer;
+
+  @include on-desktop {
+    width: 64px;
+    height: 64px;
+    background-size: 16px;
+  }
+}

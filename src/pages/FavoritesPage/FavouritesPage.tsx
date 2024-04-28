@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { ProductCard } from '../../components/ProductCard';
-import { Product } from '../../types';
-import { Breadcrumbs } from '../../components/Breadcrumbs';
-import styles from './favouritesPage.module.scss';
-import { LottieAnimation } from '../../components/UI/LottieAnimation';
-import * as animationData from '../../animations/EmptyFavourites.json';
+import { Product } from 'types';
+import { RootState } from 'store/store';
+import { useScrollToTopEffect } from 'utils';
 import { Link } from 'react-router-dom';
-import { useScrollToTopEffect } from '../../utils';
 import { useTranslation } from 'react-i18next';
+import styles from './favouritesPage.module.scss';
+import * as animationData from 'animations/EmptyFavourites.json';
+import { ProductCard } from 'components/ProductCard';
+import { Breadcrumbs } from 'components/Breadcrumbs';
+import { LottieAnimation } from 'components/UI/LottieAnimation';
 
 export const FavoritesPage = () => {
   const products = useSelector((state: RootState) => state.product.favourites);

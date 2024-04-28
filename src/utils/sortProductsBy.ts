@@ -1,5 +1,4 @@
-import { Product } from "../types";
-import { SortProductBy } from "../types";
+import { Product, SortProductBy } from "types";
 
 export const sortProductsBy = (products: Product[], sortBy: SortProductBy) => {
   switch (sortBy) {
