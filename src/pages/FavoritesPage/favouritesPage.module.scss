@@ -23,6 +23,13 @@
   font-weight: 800;
   line-height: 41px;
   letter-spacing: -0.01em;
+
+  padding-bottom: 8px;
+
+  @include on-tablet {
+    font-size: 48px;
+    line-height: 56px;
+  }
 }
 
 .itemsLeft {

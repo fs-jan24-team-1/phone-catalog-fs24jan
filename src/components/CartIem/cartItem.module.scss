@@ -7,7 +7,6 @@
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  width: 288px;
   height: auto;
   justify-content: space-between;
   margin-bottom: 16px;
@@ -20,7 +19,6 @@
     flex-direction: row;
     gap: 24px;
     padding: 24px;
-    width: 592px;
   }
 
   @include on-desktop {
@@ -88,7 +86,6 @@
     line-height: 30.8px;
     font-weight: 800;
     color: $primary;
-
   }
 
   &__close {
@@ -107,6 +104,3 @@
     cursor: pointer;
   }
 }
-
-
-
