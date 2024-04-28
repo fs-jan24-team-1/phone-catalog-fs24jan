@@ -8,6 +8,7 @@ import { Filter } from 'components/Filter';
 import { ProductCard } from 'components/ProductCard';
 import { CardSkeleton } from 'components/ProductCardSkeleton';
 import { LottieAnimation } from 'components/UI/LottieAnimation';
+import { useSearchParams } from 'react-router-dom';
 
 interface Props {
   products: Product[];
@@ -15,14 +16,16 @@ interface Props {
 }
 
 export const Catalog: FC<Props> = ({ products, totalProducts }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { pathname } = useLocation();
   const [t] = useTranslation('global');
 
-  useEffect(() => {
-    setIsLoading(true);
+  const searchParams = useSearchParams();
 
+  const isSearchPerformed = searchParams.toString().includes('query');
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
@@ -32,17 +35,19 @@ export const Catalog: FC<Props> = ({ products, totalProducts }) => {
 
   return (
     <section className={styles.section}>
-      {isLoading ? (
+      {isLoading && (
         <div className={styles.catalog}>
           <h3 className={styles.catalog__quantity}>
             {totalProducts} {t('categories.models')}
           </h3>
           <Filter />
           <div className={styles.product}>
-            <CardSkeleton amount={products.length} />
+            <CardSkeleton amount={10} />
           </div>
         </div>
-      ) : products.length > 0 ? (
+      )}
+
+      {products.length > 0 && !isLoading && (
         <div className={styles.catalog}>
           <h3 className={styles.catalog__quantity}>
             {totalProducts} {t('categories.models')}
@@ -54,7 +59,9 @@ export const Catalog: FC<Props> = ({ products, totalProducts }) => {
             ))}
           </div>
         </div>
-      ) : (
+      )}
+
+      {!products.length && isSearchPerformed && (
         <section
           style={{
             display: 'flex',

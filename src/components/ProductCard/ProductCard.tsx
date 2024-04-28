@@ -80,13 +80,13 @@ export const ProductCard: FC<Props> = ({ product }) => {
 
   const cardVariants: Variants = {
     offscreen: {
-      y: 100,
+      y: 50,
     },
     onscreen: {
       y: 0,
       transition: {
         type: 'spring',
-        bounce: 0.2,
+        bounce: 0.1,
         duration: 0.4,
       },
     },
