@@ -28,6 +28,7 @@ export const LottieAnimation: FC<LottieAnimationProps> = ({
       height={height}
       width={width}
       speed={speed}
+      isClickToPauseDisabled={true}
     />
   );
 };

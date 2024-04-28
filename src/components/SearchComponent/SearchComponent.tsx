@@ -51,6 +51,8 @@ export const SearchComponent = () => {
 
   const handleSearchClear = () => {
     setSearchTerm('');
+    searchParams.set('query', '');
+    navigate(`?${searchParams.toString()}`);
   };
 
   return (
@@ -80,6 +82,11 @@ export const SearchComponent = () => {
             onBlur={() => {
               setIsSearchVisible(false);
               searchParams.set('query', searchTerm);
+
+              if (!searchTerm.length) {
+                searchParams.delete('query');
+              }
+
               navigate(`?${searchParams.toString()}`);
             }}
           />
@@ -92,6 +99,8 @@ export const SearchComponent = () => {
 
               if (!searchTerm.length) {
                 setIsSearchVisible(false);
+                searchParams.delete('query');
+                navigate(`?${searchParams.toString()}`);
               }
             }}
           />

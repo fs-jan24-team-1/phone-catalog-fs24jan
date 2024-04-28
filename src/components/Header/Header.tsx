@@ -65,7 +65,7 @@ export const Header = () => {
         </nav>
       </div>
 
-     {false && <SwitchLanguage />}
+     {true && <SwitchLanguage />}
 
       <div className={styles.right_side}>
         {isShowSearch && <SearchComponent />}
