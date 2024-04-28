@@ -25,7 +25,7 @@
 
 .mainImg {
   object-fit: cover;
-  max-width: 100%
+  max-width: 100%;
 }
 
 .details {
@@ -51,7 +51,8 @@
     font-size: 12px;
     font-weight: 500;
     text-align: right;
-    color: $secondary;
+    color: var(--secondary-color);
+    transition: $effectDuration;
 
     @include on-mobile {
       grid-column: 1 / -1;
@@ -101,9 +102,11 @@
       width: 80px;
       height: 80px;
 
-      border: 1px solid $elements;
-      background-color: $white;
+      border: 1px solid var(--elements-color);
+      background-color: var(--white-color);
       cursor: pointer;
+
+      transition: $effectDuration;
 
       &:not(:last-child) {
         margin-bottom: 16px;
@@ -127,8 +130,10 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: $white;
-    border: 1px solid $elements;
+    background-color: var(--white-color);
+    border: 1px solid var(--elements-color);
+
+    transition: $effectDuration;
 
     @include on-mobile {
       margin-bottom: 16px;
@@ -157,14 +162,18 @@
         margin-bottom: 24px;
         width: 100%;
         height: 1px;
-        background-color: $icons;
+        background-color: var(--icons-color);
+
+        transition: $effectDuration;
       }
 
       &_title {
         margin-bottom: 8px;
         font-size: 12px;
         font-weight: 600;
-        color: $secondary;
+        color: var(--secondary-color);
+
+        transition: $effectDuration;
       }
 
       &_buttons {
@@ -184,14 +193,18 @@
         margin-bottom: 32px;
         width: 100%;
         height: 1px;
-        background-color: $icons;
+        background-color: var(--icons-color);
+
+        transition: $effectDuration;
       }
 
       &_title {
         margin-bottom: 8px;
         font-size: 12px;
         font-weight: 600;
-        color: $secondary;
+        color: var(--secondary-color);
+
+        transition: $effectDuration;
       }
 
       &_buttons {
@@ -220,7 +233,9 @@
         position: relative;
         font-size: 22px;
         font-weight: 500;
-        color: $secondary;
+        color: var(--secondary-color);
+
+        transition: $effectDuration;
 
         &::after {
           content: '';
@@ -229,7 +244,9 @@
           left: 0;
           width: 100%;
           height: 2px;
-          background-color: $secondary;
+          background-color: var(--secondary-color);
+
+          transition: $effectDuration;
         }
       }
 
@@ -237,7 +254,9 @@
         margin-right: 8px;
         font-size: 32px;
         font-weight: 800;
-        color: $primary;
+        color: var(--primary-color);
+
+        transition: $effectDuration;
       }
 
       &_buttons {
@@ -259,21 +278,27 @@
       &_name {
         font-size: 12px;
         font-weight: 600;
-        color: $secondary;
+        color: var(--secondary-color);
+
+        transition: $effectDuration;
       }
 
       &_value {
         font-size: 12px;
         font-weight: 700;
         text-align: right;
-        color: $primary;
+        color: var(--primary-color);
+
+        transition: $effectDuration;
       }
     }
   }
 }
 
 .selected {
-  border: 1px solid $primary;
+  border: 1px solid var(--primary-color);
+
+  transition: $effectDuration;
 }
 
 .more_details {
@@ -306,7 +331,9 @@
         margin-bottom: 24px;
         width: 100%;
         height: 1px;
-        background-color: $icons;
+        background-color: var(--icons-color);
+
+        transition: $effectDuration;
       }
     }
 
@@ -323,7 +350,9 @@
         margin-bottom: 16px;
         font-size: 14px;
         font-weight: 500;
-        color: $secondary;
+        color: var(--secondary-color);
+
+        transition: $effectDuration;
       }
     }
   }
@@ -355,7 +384,9 @@
         margin-bottom: 24px;
         width: 100%;
         height: 1px;
-        background-color: $icons;
+        background-color: var(--icons-color);
+
+        transition: $effectDuration;
       }
     }
 
@@ -369,13 +400,17 @@
       &_name {
         font-size: 14px;
         font-weight: 500;
-        color: $secondary;
+        color: var(--secondary-color);
+
+        transition: $effectDuration;
       }
 
       &_value {
         font-size: 14px;
         font-weight: 400;
-        color: $primary;
+        color: var(--primary-color);
+
+        transition: $effectDuration;
       }
     }
   }

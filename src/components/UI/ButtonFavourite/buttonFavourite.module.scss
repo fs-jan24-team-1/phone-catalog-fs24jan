@@ -12,32 +12,43 @@
   cursor: pointer;
   text-decoration: none;
 
-  background-color: $white;
+  background-color: var(--bg-favorite);
   border-radius: 48px;
 
-  transition: all 0.5s ease;
+  transition: $effectDuration;
 
   &::before {
     content: '';
 
     width: 16px;
     height: 16px;
+
+    filter: brightness(var(--theme-change-brightness));
     background-image: url('../../../img/icons/favorite_heart.svg');
+    transition: $effectDuration;
   }
 
   &.default {
-    border: 1px solid $icons;
+    border: 1px solid var(--icons-color);
+
+    transition: $effectDuration;
   }
 
   &:hover {
-    border: 1px solid $primary;
+    border: 1px solid var(--primary-color);
+    background-color: var(--icons-color);
+
+    transition: $effectDuration;
   }
 
   &.selected {
-    border: 1px solid $elements;
+    border: 1px solid var(--elements-color);
+
+    transition: $effectDuration;
 
     &::before {
       background-image: url('../../../img/icons/favorite_heart_active.svg');
+      filter: brightness(1);
     }
   }
 }

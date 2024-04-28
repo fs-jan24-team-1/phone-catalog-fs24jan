@@ -4,14 +4,19 @@
 
 .header {
   display: flex;
+  justify-content: space-between;
+
   position: fixed;
   height: 48px;
   width: 100%;
-  justify-content: space-between;
+
   box-sizing: border-box;
-  border-bottom: 1px solid $elements;
-  background-color: $white;
-  z-index: 100;
+  border-bottom: 1px solid var(--elements-color);
+  background-color: var(--main-bg-color);
+
+  z-index: 3;
+
+  transition: $effectDuration;
 
   @include on-desktop {
     height: 64px;
@@ -75,11 +80,14 @@
 
     height: 48px;
 
-    color: $secondary;
+    color: var(--secondary-color);
+
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 12px;
+
+    transition: $effectDuration;
 
     @include on-desktop {
       height: 64px;
@@ -90,24 +98,31 @@
     }
 
     &:hover {
-    border-bottom: 3px solid black;
+      border-bottom: 3px solid var(--primary-color);
+
+      transition: $effectDuration;
     }
   }
 }
 
 .is_active {
-  color: $primary;
+  color: var(--primary-color);
+
+  transition: $effectDuration;
 
   &::after {
+    content: '';
+
     position: absolute;
     bottom: 0;
     left: 0;
 
     width: 100%;
     height: 3px;
-    content: '';
 
-    background-color: $primary;
+    background-color: var(--primary-color);
+
+    transition: $effectDuration;
   }
 }
 
@@ -119,14 +134,19 @@
 .menus {
   width: 48px;
   height: 100%;
-  display: none;
-  justify-content: center;
-  align-items: center;
+
   appearance: none;
   border: none;
   background: none;
   appearance: none;
-  border-left: 1px solid $elements;
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+
+  border-left: 1px solid var(--elements-color);
+
+  transition: $effectDuration;
 
   @include on-mobile {
     display: flex;
@@ -140,12 +160,15 @@
 
 .favorites {
   position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 100%;
   width: 64px;
-  border-left: 1px solid $elements;
+
+  border-left: 1px solid var(--elements-color);
 
   @include on-tablet {
     height: 48px;
@@ -159,14 +182,16 @@
 
 .cart {
   position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 64px;
   width: 64px;
-  border-left: 1px solid $elements;
-  transition: border-bottom 0.3s;
 
+  border-left: 1px solid var(--elements-color);
+  transition: border-bottom 0.3s;
 
   @include on-tablet {
     height: 48px;
@@ -188,8 +213,6 @@
     height: 64px;
     width: 64px;
   }
-
-
 }
 
 .cartIconContainer {
@@ -197,19 +220,25 @@
 }
 
 .cartItemCount {
-  right: 14px;
-  position: absolute;
-  top: -7.5px;
-  right: -8px;
-  background-color: #eb5757;
-  color: white;
-  border-radius: 50%;
-  width: 14px;
-  height: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: absolute;
+  right: 14px;
+  top: -7.5px;
+  right: -8px;
+
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+
+  background-color: var(--red-color);
+  color: var(--white-color);
+
   font-size: 9px;
+
+  transition: $effectDuration;
 }
 
 .favoritesIconContainer {
@@ -217,23 +246,30 @@
 }
 
 .favoritesItemCount {
-  right: 14px;
   position: absolute;
+  right: 14px;
   top: -8px;
   right: -8px;
-  background-color: #eb5757;
-  color: white;
-  border-radius: 50%;
   width: 14px;
   height: 14px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+
+  background-color: var(--red-color);
+  color: var(--white-color);
+
   font-size: 9px;
+
+  transition: $effectDuration;
 }
 
 .styles.favorites.is_active {
-  border-bottom: 1px solid $elements;
+  border-bottom: 1px solid var(--elements-color);
+
+  transition: $effectDuration;
 }
 
 .navBarWrapper {
@@ -244,7 +280,9 @@
   height: 100%;
   background-color: transparent;
   z-index: 2;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
 
   &.show {
     opacity: 1;
@@ -265,7 +303,7 @@
   right: 0;
   box-sizing: border-box;
   height: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--white-color);
   font-weight: 800;
   transition: transform 1s ease;
   transform: translateY(0%);
@@ -292,8 +330,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #E2E6E9;
+  border-bottom: 1px solid var(--elements-color);
   height: 48px;
+
+  transition: $effectDuration;
 }
 
 .menu__close {
@@ -304,7 +344,9 @@
   height: 48px;
   background-size: contain;
   background-repeat: no-repeat;
-  border-left: 1px solid #E2E6E9;
+  border-left: 1px solid var(--elements-color);
+
+  transition: $effectDuration;
 }
 
 .close {
@@ -314,7 +356,7 @@
 
 .nav {
   width: 100%;
-  padding: 24px  0 16px;
+  padding: 24px 0 16px;
   display: flex;
   justify-content: center;
 }
@@ -332,7 +374,7 @@
 
 .nav__list a {
   text-decoration: none;
-  color: #89939A;
+  color: var(--secondary-color);
   font-size: 12px;
   line-height: 11px;
   font-weight: 800px;
@@ -341,16 +383,20 @@
   transition: border-bottom 0.5s ease;
 
   &:hover {
-    color: black;
-    border-bottom: 2px solid black;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+
+    transition: $effectDuration;
   }
 }
 
 .nav_link {
   text-decoration: none;
-  color: black;
+  color: var(--primary-color);
   font-size: 12px;
   line-height: 11px;
+
+  transition: $effectDuration;
 }
 
 .nav__bottom {
@@ -362,8 +408,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #E2E6E9;
+  border-top: 1px solid var(--elements-color);
   height: 48px;
+
+  transition: $effectDuration;
 }
 
 .nav__favorites,
@@ -373,15 +421,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 1px solid #E2E6E9;
+  border-left: 1px solid var(--elements-color);
   border-bottom: 1px solid transparent;
   transition: border-bottom 0.3s ease;
 
   &:hover {
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid var(--primary-color);
   }
 }
-
 
 @keyframes slideInFromRight {
   0% {

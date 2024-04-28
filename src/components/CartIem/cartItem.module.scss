@@ -5,16 +5,19 @@
 .cartItem {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
+  margin-bottom: 16px;
   gap: 16px;
   padding: 16px;
+
   width: 288px;
   height: auto;
-  justify-content: space-between;
-  margin-bottom: 16px;
-
-  border: 1px solid $elements;
+  border: 1px solid var(--primary-color);
   border-radius: 16px;
   box-sizing: border-box;
+
+  transition: $effectDuration;
 
   @include on-tablet {
     flex-direction: row;
@@ -65,7 +68,9 @@
     text-align: left;
     font-size: 14px;
     font-weight: 600;
-    color: $primary;
+    color: var(--primary-color);
+
+    transition: $effectDuration;
   }
 
   &__column2 {
@@ -87,8 +92,9 @@
     font-size: 22px;
     line-height: 30.8px;
     font-weight: 800;
-    color: $primary;
+    color: var(--primary-color);
 
+    transition: $effectDuration;
   }
 
   &__close {
@@ -102,11 +108,10 @@
     background-image: url(../../img/icons/close.svg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: $background-color;
+    background-color: var(--background-color);
 
     cursor: pointer;
+
+    transition: $effectDuration;
   }
 }
-
-
-

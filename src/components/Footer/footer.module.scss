@@ -1,6 +1,6 @@
-@import "styles/utils/variables";
-@import "styles/utils/mixins";
-@import "styles/utils/typography";
+@import 'styles/utils/variables';
+@import 'styles/utils/mixins';
+@import 'styles/utils/typography';
 
 * {
   box-sizing: border-box;
@@ -9,8 +9,9 @@
 .footer {
   display: flex;
   width: 100%;
-  border-top: 1px solid $elements;
-  background-color: $white;
+  border-top: 1px solid var(--elements-color);
+  background-color: var(--white-color);
+  transition: $effectDuration;
 
   &__wrapper {
     display: flex;
@@ -73,7 +74,8 @@
 
   &__link {
     text-decoration: none;
-    color: $secondary;
+    color: var(--secondary-color);
+    transition: $effectDuration;
   }
 }
 
@@ -99,7 +101,8 @@
     font-size: 12px;
     font-weight: 700;
     line-height: 16px;
-    color: $secondary;
+    color: var(--secondary-color);
+    transition: $effectDuration;
   }
 
   &__button {
@@ -107,7 +110,8 @@
     height: 100%;
     aspect-ratio: 1;
     padding: 0;
-    border: 1px solid $icons;
+    border: 1px solid var(--icons-color);
+    transition: $effectDuration;
     border-radius: 50%;
     background-color: transparent;
 

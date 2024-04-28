@@ -27,10 +27,12 @@
 }
 
 .itemsLeft {
-  color: $secondary;
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
+
+  color: var(--secondary-color);
+    transition: $effectDuration;
 }
 
 .products {
@@ -61,14 +63,14 @@
   align-self: center;
   margin-top: 20px;
   padding: 10px 20px;
-  color: #fff;
+  color: var(--white-color);
   text-transform: uppercase;
   border-radius: 48px;
   border: none;
-  background-color: #4219d0;
+  background-color: var(--accent-color);
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: $effectDuration;
 
   &:hover {
     transition: 0.3s ease;

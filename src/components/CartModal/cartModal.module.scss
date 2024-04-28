@@ -28,12 +28,12 @@
   flex-direction: column;
   align-items: center;
 
-  border: 1px solid $secondary;
+  border: 1px solid var(--secondary-color);
   border-radius: 10px;
-  transition: all 0.5s;
+  transition: $effectDuration;
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-  background-color: white;
+  background-color: var(--white-color);
   overflow: auto;
   outline: none;
 }
@@ -45,7 +45,8 @@
   font-size: 20px;
   text-align: center;
   font-weight: 700;
-  color: $primary;
+  color: var(--primary-color);
+  transition: $effectDuration;
 }
 
 .buttons {
@@ -78,9 +79,9 @@
   text-decoration: none;
 
   border-radius: 48px;
-  border: 1px solid $secondary;
+  border: 1px solid var(--secondary-color);
 
-  transition: all 0.5s ease;
+  transition: $effectDuration;
 
   &:hover {
     box-shadow: 0px 1px 32px 0px rgba(22, 32, 49, 0.4);
@@ -88,11 +89,13 @@
 }
 
 .cancel {
-  color: $accent;
-  background-color: #fff;
+  background-color: var(--white-color);
+  color: var(--accent-color);
+  transition: $effectDuration;
 }
 
 .confirm {
   color: #fff;
-  background-color: $accent;
+  background-color: var(--accent-color);
+  transition: $effectDuration;
 }

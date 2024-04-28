@@ -3,7 +3,8 @@
 
 .search {
   display: flex;
-  border-left: 1px solid $elements;
+  border-left: 1px solid var(--elements-color);
+  transition: $effectDuration;
   width: 48px;
   height: 100%;
   justify-self: right;
@@ -20,10 +21,11 @@
   width: 100%;
   height: 100%;
   max-width: 500px;
-  background-color: $white;
+  background-color: var(--white-color);
   border: none;
   z-index: 101;
-  border-left: 1px solid $elements;
+  border-left: 1px solid var(--elements-color);
+  transition: $effectDuration;
   padding: 10px 15px;
   font-family: $Mont, sans-serif;
   font-size: 16px;

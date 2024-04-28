@@ -13,22 +13,28 @@
   cursor: pointer;
   text-decoration: none;
 
-  background-color: $white;
+  background-color: var(--white-color);
   border-radius: 48px;
 
   transition: all 0.5s ease;
 
   &.default {
-    border: 1px solid $icons;
+    border: 1px solid var(--icons-color);
+
+    transition: $effectDuration;
   }
 
   &:hover {
-    border: 1px solid $primary;
+    border: 1px solid var(--primary-color);
+
+    transition: $effectDuration;
   }
 
   &.disable {
-    border: 1px solid $elements;
+    border: 1px solid var(--elements-color);
     cursor: default;
+
+    transition: $effectDuration;
   }
 }
 

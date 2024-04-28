@@ -1,4 +1,5 @@
 @import './mixin.scss';
+// @import './variables.scss'; ??
 
 .carousel {
   @include on-mobile {
@@ -22,7 +23,8 @@
   }
 
   &__title {
-    color: #0F0F11;
+    color: var(--primary-color);
+    // transition: $effectDuration;
   }
 
   &__nav {
@@ -45,7 +47,7 @@
   &__button {
     width: 32px;
     height: 32px;
-    border: 1px solid #B4BDC3;
+    border: 1px solid var(--elements-color);
     border-radius: 50%;
     cursor: pointer;
     background-color: #fafbfc;
@@ -54,9 +56,8 @@
     background-repeat: no-repeat;
     background-size: 16px;
 
-
     &:hover {
-      border: 1px solid #E2E6E9;
+      border: 1px solid #e2e6e9;
     }
 
     &:disabled {
@@ -70,7 +71,8 @@
 
     &--left:disabled {
       background-image: url('../../img/icons/arrows_left.svg');
-      border: 1px solid #e2e6e9;
+      border: 1px solid var(--elements-color);
+      // transition: $effectDuration;
     }
 
     &--right {
@@ -80,7 +82,8 @@
 
     &--right:disabled {
       background-image: url('../../img/icons/arrows_right.svg');
-      border: 1px solid #e2e6e9;
+      border: 1px solid var(--elements-color);
+      // transition: $effectDuration;
     }
   }
 
@@ -107,4 +110,3 @@
     }
   }
 }
-

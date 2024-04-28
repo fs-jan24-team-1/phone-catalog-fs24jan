@@ -10,12 +10,14 @@
 
   cursor: pointer;
   text-decoration: none;
-  color: $secondary;
+  color: var(--secondary-color);
 
-  transition: all 0.5s ease;
+  transition: $effectDuration;
 
   &:hover {
-    color: $primary;
+    color: var(--primary-color);
+
+    transition: $effectDuration;
   }
 
   &::before {
