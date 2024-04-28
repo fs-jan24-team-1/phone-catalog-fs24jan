@@ -1,4 +1,5 @@
 @import 'styles/utils/variables';
+@import 'styles/utils/mixins';
 
 .wrapper {
   cursor: pointer;
@@ -15,11 +16,10 @@
   border-radius: 8px;
   overflow: hidden;
 
-  transition: 0.3s;
+  transition: $effectDuration;
 
   &:hover {
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
-    scale: 1.02;
   }
 
   &__image {

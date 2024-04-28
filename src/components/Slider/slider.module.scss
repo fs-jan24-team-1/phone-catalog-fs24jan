@@ -84,6 +84,7 @@
   }
 
   &__dots {
+    cursor: pointer;
     width: 80px;
     height: 24px;
     display: flex;
@@ -101,7 +102,7 @@
       &:hover {
         color: #0F0F11;
         box-shadow: 0 3px 13px 0 rgba(#0F0F11, 0.26);
-        border: 1px solid gray;
+        border: 1px solid  #0F0F11;
       }
     }
   }
