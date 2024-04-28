@@ -66,6 +66,7 @@
     @include on-desktop {
       gap: 64px;
     }
+
   }
 
   &__nav_link {
@@ -80,13 +81,11 @@
     text-transform: uppercase;
     font-weight: 800;
     font-size: 12px;
+    display: none;
 
     @include on-desktop {
       height: 64px;
-    }
-
-    @include on-mobile {
-      display: none;
+      display: flex;
     }
 
     &:hover {
@@ -128,8 +127,16 @@
   appearance: none;
   border-left: 1px solid $elements;
 
+  @include on-tablet {
+  display: flex;
+  }
+
   @include on-mobile {
     display: flex;
+  }
+
+  @include on-desktop {
+    display: none;
   }
 }
 
@@ -146,15 +153,14 @@
   height: 100%;
   width: 64px;
   border-left: 1px solid $elements;
+  display: none;
 
-  @include on-tablet {
-    height: 48px;
-    width: 48px;
+  @include on-desktop {
+   width: 64px;
+   height: 64px;
+   display: flex;
   }
 
-  @include on-mobile {
-    display: none;
-  }
 }
 
 .cart {
@@ -166,15 +172,12 @@
   width: 64px;
   border-left: 1px solid $elements;
   transition: border-bottom 0.3s;
+  display: none;
 
-
-  @include on-tablet {
-    height: 48px;
-    width: 48px;
-  }
-
-  @include on-mobile {
-    display: none;
+  @include on-desktop {
+   width: 64px;
+   height: 64px;
+   display: flex;
   }
 }
 
