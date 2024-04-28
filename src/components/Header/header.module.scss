@@ -75,7 +75,7 @@
     align-items: center;
 
     height: 48px;
-
+    box-sizing: border-box;
     color: $secondary;
     text-decoration: none;
     text-transform: uppercase;
@@ -88,8 +88,24 @@
       display: flex;
     }
 
-    &:hover {
-    border-bottom: 3px solid black;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background-color: black;
+      transition: width 0.4s;
+    }
+
+    &:hover:not(.is_active)::before {
+      width: 100%;
+    }
+
+    &.active::before {
+      width: 100%;
     }
   }
 }
