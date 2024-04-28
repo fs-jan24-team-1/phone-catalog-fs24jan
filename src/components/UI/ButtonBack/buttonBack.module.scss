@@ -1,9 +1,11 @@
 @import 'styles/utils/variables';
 @import 'styles/utils/typography';
+@import 'styles/utils/mixins';
 
 .button {
   display: flex;
   width: fit-content;
+  margin-bottom: 24px;
 
   font-family: $Mont;
   align-items: center;
@@ -12,7 +14,11 @@
   text-decoration: none;
   color: $secondary;
 
-  transition: all 0.5s ease;
+  transition: $effectDuration;
+
+  @include on-tablet {
+    margin-bottom: 16px;
+  }
 
   &:hover {
     color: $primary;
