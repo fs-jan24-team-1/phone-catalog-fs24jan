@@ -11,7 +11,7 @@
   box-sizing: border-box;
   border-bottom: 1px solid $elements;
   background-color: $white;
-  z-index: 100;
+  z-index: 3;
 
   @include on-desktop {
     height: 64px;
@@ -414,4 +414,12 @@
 .navBarWrapper {
   animation: slideInFromRight 0.5s forwards;
   transform: translateX(0%);
+}
+
+.language_switcher {
+  margin-right: 15px;
+
+  @include on-desktop {
+    margin-right: 25px;
+  }
 }

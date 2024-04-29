@@ -10,12 +10,17 @@ export const SwitchLanguage = () => {
 
   return (
     <div className={styles.container}>
-      <button className={`${styles.button} ${i18n.language === 'en' ? styles.active : ''}`} onClick={() => handleLanguage('en')}>
-        EN
-      </button>
-      <button className={`${styles.button} ${i18n.language === 'ua' ? styles.active : ''}`} onClick={() => handleLanguage('ua')}>
-        UA
-      </button>
+      <div
+        className={`${styles.flag} ${styles.ua} ${i18n.language === 'ua' ? styles.active : ''}`}
+        onClick={() => handleLanguage('ua')}
+      />
+
+      <div className={styles.separator} />
+
+      <div
+        className={`${styles.flag} ${styles.en} ${i18n.language === 'en' ? styles.active : ''}`}
+        onClick={() => handleLanguage('en')}
+      />
     </div>
   );
 };
