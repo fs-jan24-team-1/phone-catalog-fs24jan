@@ -9,6 +9,7 @@ import styles from './productCard.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from 'components/UI/ButtonPrimary';
 import { ButtonFavourite } from 'components/UI/ButtonFavourite';
+import { getImageUrl } from 'utils/urlUtils';
 
 type Props = {
   product: Product;
@@ -105,7 +106,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
             <div className={styles.product__image}>
               <img
                 className={styles.product__image_img}
-                src={product.image}
+                src={getImageUrl(product.image)}
                 alt={product.name}
               />
             </div>
