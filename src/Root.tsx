@@ -13,6 +13,8 @@ import { PhonesPage } from './pages/PhonesPage';
 import { AccessoriesPage } from './pages/AccessoriesPage';
 import { CartPage } from './pages/CartPage';
 import { ProductItemPage } from './pages/ProductItemPage';
+import { ContactsPage } from './pages/ContactsPage';
+import { RightsPage } from 'pages/RightsPage';
 
 export const Root = () => (
   <Router>
@@ -36,6 +38,8 @@ export const Root = () => (
         <Route path="/cart" element={<CartPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+         <Route path="/rights" element={<RightsPage />}/>
       </Route>
     </Routes>
   </Router>
