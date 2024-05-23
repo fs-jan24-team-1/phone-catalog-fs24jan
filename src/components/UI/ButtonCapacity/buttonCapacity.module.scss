@@ -18,7 +18,7 @@
   cursor: pointer;
   text-decoration: none;
 
-  background-color: var(--white-color);
+  background-color: var(--);
   border-radius: 4px;
 
   transition: $effectDuration;
@@ -39,7 +39,7 @@
   &.selected {
     border: 1px solid var(--primary-color);
     background-color: var(--primary-color);
-    color: var(--white-color);
+    color: var(--main-bg-color);
 
     transition: $effectDuration;
   }

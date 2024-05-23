@@ -1,27 +1,54 @@
+@import 'styles/utils/variables';
+@import 'styles/utils/mixins';
+
 .container {
   display: flex;
-  justify-content: space-between;
+  position: relative;
+  align-items: center;
   width: 120px;
-  border-radius: 20px;
-  background-color: #f0f0f0;
-  overflow: hidden;
+  height: 48px;
+
+  @include on-desktop {
+    height: 64px;
+  }
 }
 
-.button {
+.flag {
   flex: 1;
   padding: 10px 0;
-  font-size: 16px;
-  border: none;
-  background-color: transparent;
+  width: 8px;
+  height: 5px;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
   cursor: pointer;
   transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
-.button:hover {
+.en {
+  background-image: url('./../../img/icons/eng.png');
+}
+
+.ua {
+  background-image: url('./../../img/icons/ua.webp');
+}
+
+.separator {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.5px;
+  height: 30px;
+
+  background-color: var(--elements-color);
+}
+
+.active {
   transform: scale(1.1);
-}
-
-.button.active {
-  background-color: #ccc;
-  color: white;
 }

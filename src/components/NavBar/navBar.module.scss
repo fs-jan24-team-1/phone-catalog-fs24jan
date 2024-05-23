@@ -4,7 +4,7 @@
 }
 
 .menu {
-  overflow: hidden;
+  overflow-y: hidden;
   font-family: 'Mont-Bold';
   position: fixed;
   top: 0;
@@ -193,4 +193,10 @@ line-height: 11px;
 
 .styles.favorites.is_active {
   border-bottom: 1px solid black;
+}
+
+.preferences {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
 }

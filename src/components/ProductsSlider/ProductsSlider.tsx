@@ -3,6 +3,7 @@ import { Product } from 'types';
 import './ProductsSlider.scss';
 import { ProductCard } from 'components/ProductCard';
 
+
 type Props = {
   products: Product[];
   title: string;

@@ -1,5 +1,5 @@
 @import './mixin.scss';
-// @import './variables.scss'; ??
+@import 'styles/utils/variables';
 
 .carousel {
   @include on-mobile {
@@ -24,7 +24,7 @@
 
   &__title {
     color: var(--primary-color);
-    // transition: $effectDuration;
+    transition: $effectDuration;
   }
 
   &__nav {
@@ -45,19 +45,23 @@
   }
 
   &__button {
+    transition: $effectDuration;
     width: 32px;
     height: 32px;
-    border: 1px solid var(--elements-color);
+    border: 1px solid var(--icons-color);
     border-radius: 50%;
     cursor: pointer;
-    background-color: #fafbfc;
+    background-color: var(--slider-bg-color);
+
 
     background-position: center;
     background-repeat: no-repeat;
     background-size: 16px;
 
     &:hover {
-      border: 1px solid #e2e6e9;
+      transition: $effectDuration;
+      border: 1px solid var(--sloder-border-hover-color);
+      background-color: var(--slider-bg-hover-color);
     }
 
     &:disabled {
@@ -67,23 +71,32 @@
     &--left {
       background-image: url('../../img/icons/arrows_left.svg');
       background-size: 5px;
+      // filter: brightness(var(--theme-change-brightness));
+      fill: red;;
+      transition: $effectDuration;
     }
 
     &--left:disabled {
       background-image: url('../../img/icons/arrows_left.svg');
+      background-color: var(--slider-bg-disable-color);
       border: 1px solid var(--elements-color);
-      // transition: $effectDuration;
+      // filter: brightness(var(--theme-change-brightness));
+      transition: $effectDuration;
     }
 
     &--right {
       background-image: url('../../img/icons/arrows_right.svg');
       background-size: 5px;
+      // filter: brightness(var(--theme-change-brightness));
+      transition: $effectDuration;
     }
 
     &--right:disabled {
       background-image: url('../../img/icons/arrows_right.svg');
+      background-color: var(--slider-bg-disable-color);
       border: 1px solid var(--elements-color);
-      // transition: $effectDuration;
+      // filter: brightness(var(--theme-change-brightness));
+      transition: $effectDuration;
     }
   }
 

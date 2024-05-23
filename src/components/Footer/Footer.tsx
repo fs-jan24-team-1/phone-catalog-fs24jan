@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import styles from "./footer.module.scss"
 import { useTranslation } from "react-i18next";
+import { ReactComponent as Logo } from "img/icons/Logo.svg";
 
 export const Footer = () => {
   const [t] = useTranslation("global");
@@ -11,25 +12,41 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__wrapper}>
-        <Link to="/" className={styles.footer__logo} />
+        <Link to="/" aria-label="Nice gadgets logo">
+          <Logo className={styles.footer__logo} />
+        </Link>
 
         <ul className={styles.footer__list}>
           <li className={styles.footer__item}>
-            <Link to="https://github.com/fs-jan24-team-1/phone-catalog-fs24jan/tree/develop" className={styles.footer__link}>Github</Link>
+            <Link
+              to="https://github.com/fs-jan24-team-1/phone-catalog-fs24jan/tree/develop"
+              className={styles.footer__link}
+            >
+              Github
+            </Link>
           </li>
 
           <li className={styles.footer__item}>
-            <Link to="#" className={styles.footer__link}>{t('footer.Contacts')}</Link>
+            <Link to="#" className={styles.footer__link}>
+              {t('footer.Contacts')}
+            </Link>
           </li>
 
           <li className={styles.footer__item}>
-            <Link to="#" className={styles.footer__link}>{t('footer.Rights')}</Link>
+            <Link to="#" className={styles.footer__link}>
+              {t('footer.Rights')}
+            </Link>
           </li>
         </ul>
 
         <div className={styles['back-to-top']}>
-          <div className={styles['back-to-top__content']} onClick={handleScrollToTop}>
-            <span className={styles['back-to-top__text']}>{t('footer.Back to top')}</span>
+          <div
+            className={styles['back-to-top__content']}
+            onClick={handleScrollToTop}
+          >
+            <span className={styles['back-to-top__text']}>
+              {t('footer.Back to top')}
+            </span>
 
             <div className={styles['back-to-top__button']} />
           </div>

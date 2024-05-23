@@ -1,4 +1,5 @@
-@import "styles/utils/mixins";
+@import 'styles/utils/mixins';
+@import 'styles/utils/variables';
 
 .carousel {
   display: flex;
@@ -13,7 +14,7 @@
   }
 
   @include on-desktop {
-   margin-bottom: 80px;
+    margin-bottom: 80px;
   }
 
   &__slider {
@@ -22,20 +23,26 @@
     gap: 16px;
 
     &-button {
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      cursor: pointer;
+      border-radius: 48px;
       max-height: 100%;
       width: 32px;
-      border: 1px solid #B4BDC3;
-      background-color: transparent;
-      transition-duration: 0.5s;
-      border-radius: 48px;
+      border: 1px solid var(--icons-color);
+      background-color: var(--slider-bg-color);
 
+      transition-duration: $effectDuration;
 
       @include on-mobile {
         display: none;
+      }
+
+      &:hover {
+        background-color: var(--slider-bg-hover-color);
+        transition-duration: $effectDuration;
       }
     }
     &-container {
@@ -65,7 +72,7 @@
       object-fit: cover;
       object-position: center center;
       border-radius: 10px;
-      height:  440px;
+      height: 440px;
 
       @include on-mobile {
         border-radius: 0;
@@ -79,11 +86,11 @@
       @include on-desktop {
         height: 400px;
       }
-
     }
   }
 
   &__dots {
+    cursor: pointer;
     width: 80px;
     height: 24px;
     display: flex;
@@ -94,14 +101,15 @@
     &-item {
       width: 14px;
       height: 5px;
-      background-color: gray;
+      background-color: var(--slider-dots-color);
       opacity: 0.4;
       border: 1px solid transparent;
+      transition: $effectDuration;
 
       &:hover {
-        color: #0F0F11;
-        box-shadow: 0 3px 13px 0 rgba(#0F0F11, 0.26);
-        border: 1px solid gray;
+        color: #0f0f11;
+        box-shadow: 0 3px 13px 0 rgba(#0f0f11, 0.26);
+        border: 1px solid #0f0f11;
       }
     }
   }
@@ -112,15 +120,17 @@
 }
 
 .icon-left {
-  color: black;
   width: 5.33px;
   height: 9.33px;
-  background-image: url("./img/arrows_left.svg");
+  background-image: url('./img/arrows_left.svg');
+  filter: brightness(var(--theme-change-brightness));
+  transition: $effectDuration;
 }
 
 .icon-right {
-  color: black;
   width: 5.33px;
   height: 9.33px;
-  background-image: url("./img/arrows_right.svg");
+  background-image: url('./img/arrows_right.svg');
+  filter: brightness(var(--theme-change-brightness));
+  transition: $effectDuration;
 }

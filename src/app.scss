@@ -4,6 +4,7 @@
 
 html[data-theme='light'] {
   --accent-color: #4219d0;
+  --header-logo: #313237;
 
   --primary-color: #0f0f11;
   --secondary-color: #89939a;
@@ -11,6 +12,24 @@ html[data-theme='light'] {
 
   --icons-color: #b4bdc3;
   --elements-color: #e2e6e9;
+  --slider-bg-color: #fff;
+  --slider-dots-color: #b4bdc3;
+  --slider-bg-hover-color: #fff;
+  --slider-bg-disable-color: #e2e6e9;
+  --sloder-border-hover-color: #e2e6e9;
+
+  --sceleton-bg-color: red;
+  --product-back: #89939a;
+  --product-back-hover: #0f0f11;
+
+  --card--bg-color: #fff;
+  --card--bg-hover-color: #fff;
+  --cart-bg-disable-color: #fff;
+
+  --cart-border-color: #e2e6e9;
+  --cart-bg-color: #fff;
+
+  --pagination-selected-color: #0f0f11;
 
   --bg-favorite: #fff;
   --selected-btn-color: #fff;
@@ -22,6 +41,8 @@ html[data-theme='light'] {
   --hover-color: #fafbfc;
   --background-color: #fafbfc;
 
+  --footer-link-color: #89939a;
+
   --white-color: #ffffff;
   --green-color: #27ae60;
   --red-color: #eb5757;
@@ -29,13 +50,32 @@ html[data-theme='light'] {
 
 html[data-theme='dark'] {
   --accent-color: #905bff;
+  --header-logo: #f1f2f9;
 
   --primary-color: #f1f2f9;
   --secondary-color: #75767f;
-  --main-bg-color: #0F1121;
+  --main-bg-color: #0f1121;
 
   --icons-color: #4a4d58;
   --elements-color: #323542; // ??
+  --slider-bg-color: #4a4d58;
+  --slider-dots-color: #e2e6e9;
+  --slider-bg-hover-color: #75767f;
+  --slider-bg-disable-color: #0f1121;
+  --sloder-border-hover-color: #75767f;
+
+  --sceleton-bg-color: rgb(55, 0, 255);
+  --product-back: #fff;
+  --product-back-hover: #75767f;
+
+  --card--bg-color: #161827;
+  --card--bg-hover-color: #242736;
+
+  --cart-border-color: #161827;
+  --cart-bg-color: #161827;
+  --cart-bg-disable-color: #0f1121;
+
+  --pagination-selected-color: #905bff;
 
   --bg-favorite: #323542;
   --selected-btn-color: #323542;
@@ -46,6 +86,8 @@ html[data-theme='dark'] {
 
   --hover-color: #161827;
   --background-color: #0f1121;
+
+  --footer-link-color: #f1f2f9;
 
   --white-color: #ffffff;
   --green-color: #27ae60;

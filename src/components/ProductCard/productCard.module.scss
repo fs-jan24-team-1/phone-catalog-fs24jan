@@ -1,4 +1,5 @@
 @import 'styles/utils/variables';
+@import 'styles/utils/mixins';
 
 .wrapper {
   cursor: pointer;
@@ -12,6 +13,7 @@
 
   padding: 32px;
   border: 1px solid var(--elements-color);
+  background-color: var(--card--bg-color);
 
   border-radius: 8px;
   overflow: hidden;
@@ -20,7 +22,7 @@
 
   &:hover {
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
-    scale: 1.02;
+    background-color: var(--card--bg-hover-color);
   }
 
   &__image {

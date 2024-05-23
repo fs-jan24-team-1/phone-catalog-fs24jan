@@ -10,7 +10,7 @@
   display: flex;
   width: 100%;
   border-top: 1px solid var(--elements-color);
-  background-color: var(--white-color);
+  background-color: var(--main-bg-color);
   transition: $effectDuration;
 
   &__wrapper {
@@ -38,7 +38,9 @@
     width: 89px;
     height: 32px;
 
-    background-image: url(./../../img/icons/Logo.svg);
+    fill: var(--header-logo);
+    transition: $effectDuration;
+
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -74,7 +76,7 @@
 
   &__link {
     text-decoration: none;
-    color: var(--secondary-color);
+    color: var(--footer-link-color);
     transition: $effectDuration;
   }
 }
@@ -116,6 +118,7 @@
     background-color: transparent;
 
     background-image: url(./../../img/icons/arrow_up.svg);
+    // filter: brightness(var(--theme-change-brightness));
     background-position: center;
     background-repeat: no-repeat;
   }
@@ -127,4 +130,8 @@
   @include on-tablet {
     width: fit-content;
   }
+}
+
+.back-to-top__button {
+  background-color: var(--card--bg-color);
 }

@@ -1,5 +1,5 @@
 import styles from './header.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ import { RootState } from 'store/store';
 import { NavBar } from 'components/NavBar';
 import { SearchComponent } from 'components/SearchComponent';
 import { SwitchLanguage } from 'components/SwitchLanguage';
-import logo from 'img/icons/Logo.svg';
+import { ReactComponent as Logo } from 'img/icons/Logo.svg';
 import menu from 'img/icons/menu.svg';
 import cours from 'img/icons/cours.svg';
 import favorites from 'img/icons/hearts.svg';
@@ -16,7 +16,8 @@ import { Theme } from 'components/Theme/Theme';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
-  const [t] = useTranslation('global');
+  const [isLangSwitcherShow, setIsLangSwitcherShow] = useState(false);
+  const [t] = useTranslation("global");
 
   const favourItes = useSelector(
     (state: RootState) => state.product.favourites,
@@ -34,22 +35,23 @@ export const Header = () => {
     classNames(styles.header__nav_link, { [styles.is_active]: isActive });
 
   const { pathname } = useLocation();
-  const isShowSearch =
-    pathname === '/tablets' ||
-    pathname === '/accessories' ||
-    pathname === '/phones';
+  const isShowSearch = pathname === '/tablets'
+                    || pathname === '/accessories'
+                    || pathname === '/phones';
+
+  useEffect(() => {
+    if (window.innerWidth >= 640) {
+      setIsLangSwitcherShow(true);
+    }
+  }, []);
 
   return (
     <div className={styles.header}>
       <div className={styles.header__container}>
         <div className={styles.header__logo}>
           <div>
-            <Link to="/">
-              <img
-                className={styles.header__img}
-                src={logo}
-                alt="Nice gadgets logo"
-              />
+            <Link to="/" aria-label="Nice gadgets logo">
+              <Logo className={styles.header__img} />
             </Link>
           </div>
         </div>
@@ -79,6 +81,10 @@ export const Header = () => {
       <Theme />
 
       <div className={styles.right_side}>
+        <div className={styles.language_switcher}>
+          {isLangSwitcherShow && <SwitchLanguage />}
+        </div>
+
         {isShowSearch && <SearchComponent />}
 
         <NavLink

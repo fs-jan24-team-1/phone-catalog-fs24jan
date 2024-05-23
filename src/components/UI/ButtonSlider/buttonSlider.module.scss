@@ -13,10 +13,9 @@
   cursor: pointer;
   text-decoration: none;
 
-  background-color: var(--white-color);
+  background-color: var(--slider-bg-hover-color);
+  transition: $effectDuration;
   border-radius: 48px;
-
-  transition: all 0.5s ease;
 
   &.default {
     border: 1px solid var(--icons-color);
@@ -32,6 +31,7 @@
 
   &.disable {
     border: 1px solid var(--elements-color);
+    background-color: var(--cart-bg-disable-color);
     cursor: default;
 
     transition: $effectDuration;

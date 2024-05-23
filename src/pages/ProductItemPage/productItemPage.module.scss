@@ -4,12 +4,14 @@
 .title {
   grid-column: 1 / -1;
   margin-bottom: 40px;
+
+  color: var(--primary-color);
+  transition: $effectDuration;
 }
 
 .breadcrumbs__products {
   grid-column: 1 / -1;
   margin-top: 24px;
-  margin-bottom: 40px;
 }
 
 .back__products {
@@ -179,11 +181,13 @@
       &_buttons {
         display: flex;
         margin-bottom: 24px;
+
       }
     }
 
     &__color_button {
       margin-right: 8px;
+     
     }
 
     &__capacity {
@@ -324,6 +328,9 @@
       font-size: 22px;
       font-weight: 800;
 
+      color: var(--primary-color);
+      transition: $effectDuration;
+
       &::after {
         content: '';
         display: flex;
@@ -339,6 +346,9 @@
 
     &__info {
       margin-bottom: 32px;
+
+      color: var(--primary-color);
+      transition: $effectDuration;
 
       &__title {
         margin-bottom: 16px;
@@ -358,6 +368,9 @@
   }
 
   &__tech {
+    color: var(--primary-color);
+    transition: $effectDuration;
+
     @include on-mobile {
       grid-column: 1 / -1;
       margin-bottom: 56px;

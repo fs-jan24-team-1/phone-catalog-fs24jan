@@ -11,19 +11,26 @@
   gap: 16px;
   padding: 16px;
 
-  width: 288px;
   height: auto;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--cart-border-color);
+  background-color: var(--cart-bg-color);
+  transition: $effectDuration;
+
   border-radius: 16px;
   box-sizing: border-box;
 
   transition: $effectDuration;
 
+  &:hover {
+    border: 1px solid var(--cart-border-color);
+    background-color: var(--card--bg-hover-color);
+    transition: $effectDuration;
+  }
+
   @include on-tablet {
     flex-direction: row;
     gap: 24px;
     padding: 24px;
-    width: 592px;
   }
 
   @include on-desktop {
@@ -87,31 +94,30 @@
     width: 96px;
   }
 
+  &__count {
+    color: var(--primary-color);
+    transition: $effectDuration;
+  }
+
   &__price {
     width: 80px;
     font-size: 22px;
     line-height: 30.8px;
     font-weight: 800;
     color: var(--primary-color);
-
     transition: $effectDuration;
   }
 
   &__close {
     flex-shrink: 0;
-
     height: 16px;
     width: 16px;
-
-    border: 1px solid #0000;
 
     background-image: url(../../img/icons/close.svg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: var(--background-color);
 
     cursor: pointer;
-
     transition: $effectDuration;
   }
 }

@@ -47,19 +47,14 @@
   }
 
   &__img {
+    fill: var(--header-logo);
+    transition: $effectDuration;
+
+    width: 64px;
+    height: auto;
+
     @include on-desktop {
       width: 80px;
-      height: auto;
-    }
-
-    @include on-tablet {
-      width: 64px;
-      height: auto;
-    }
-
-    @include on-mobile {
-      width: 64px;
-      height: auto;
     }
   }
 
@@ -71,6 +66,7 @@
     @include on-desktop {
       gap: 64px;
     }
+
   }
 
   &__nav_link {
@@ -91,16 +87,29 @@
 
     @include on-desktop {
       height: 64px;
+      display: flex;
     }
 
-    @include on-mobile {
-      display: none;
-    }
-
-    &:hover {
-      border-bottom: 3px solid var(--primary-color);
+    &::before {
+        content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background-color: var(--primary-color);
 
       transition: $effectDuration;
+      transition: width 0.4s;
+    }
+
+    &:hover:not(.is_active)::before {
+      width: 100%;
+    }
+
+    &.active::before {
+      width: 100%;
     }
   }
 }
@@ -148,8 +157,16 @@
 
   transition: $effectDuration;
 
+  @include on-tablet {
+  display: flex;
+  }
+
   @include on-mobile {
     display: flex;
+  }
+
+  @include on-desktop {
+    display: none;
   }
 }
 
@@ -169,15 +186,14 @@
   width: 64px;
 
   border-left: 1px solid var(--elements-color);
+  display: none;
 
-  @include on-tablet {
-    height: 48px;
-    width: 48px;
+  @include on-desktop {
+   width: 64px;
+   height: 64px;
+   display: flex;
   }
 
-  @include on-mobile {
-    display: none;
-  }
 }
 
 .cart {
@@ -442,4 +458,12 @@
 .navBarWrapper {
   animation: slideInFromRight 0.5s forwards;
   transform: translateX(0%);
+}
+
+.language_switcher {
+  margin-right: 15px;
+
+  @include on-desktop {
+    margin-right: 25px;
+  }
 }
