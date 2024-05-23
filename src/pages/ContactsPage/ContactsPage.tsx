@@ -4,10 +4,6 @@ import { people } from './ourTeam';
 
 export const ContactsPage = () => {
 
-  const handleCardClick = (link: string | URL | undefined) => {
-    window.open(link, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <div className={styles.contactsPage}>
       {people.map(person => (
