@@ -119,32 +119,31 @@ export const ProductItemPage = () => {
     }
   }, [productId]);
 
-  const getAllProducts = async () => {
-    const getAllProducts = await getProducts();
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      const allProducts = await getProducts();
+      setProducts(allProducts);
+    };
 
-    return getAllProducts;
-  };
-
-  getAllProducts().then(result => {
-    setProducts(result);
-  });
+    fetchAllProducts();
+  }, []);
 
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const [recommendedProducts] = await Promise.all([
-          getRecommendedProducts(productId as string),
-        ]);
-        setRecommendedProducts(recommendedProducts);
-      } catch (error) {
-        toast.error('Failed to fetch products');
-      }
-    };
+    if (productId) {
+      const fetchRecommendedProducts = async () => {
+        try {
+          const recommendedProducts = await getRecommendedProducts(productId);
+          setRecommendedProducts(recommendedProducts);
+        } catch (error) {
+          toast.error('Failed to fetch products');
+        }
+      };
 
-    fetchProducts();
-  }, []);
+      fetchRecommendedProducts();
+    }
+  }, [productId]);
 
   useEffect(() => {
     if (product && product.colorsAvailable) {
@@ -207,14 +206,14 @@ export const ProductItemPage = () => {
 
   const handleAddToCart = () => {
     if (isProductInCart) {
-      toast.error('The product has been removed');
+      toast.success('The product has been removed');
 
       dispatch({
         type: 'product/removeFromCart',
         payload: productItemID,
       });
     } else {
-      toast.error('The product has been added');
+      toast.success('The product has been added');
 
       dispatch({
         type: 'product/addToCart',
@@ -223,29 +222,28 @@ export const ProductItemPage = () => {
     }
   };
 
-  const findIdFullNumber = async () => {
-    const getAllProducts = await getProducts();
+  useEffect(() => {
+    if (product) {
+      const findIdFullNumber = async () => {
+        const allProducts = await getProducts();
+        const foundElement = allProducts.find(
+          element => element.itemId === product.id,
+        );
 
-    const foundElement = getAllProducts.find(
-      element => element.itemId === product?.id,
-    );
+        if (foundElement) {
+          const idLength = foundElement.id.toString().length;
+          let zeroElements = '';
+          for (let i = 0; i < 8 - idLength; i++) {
+            zeroElements += '0';
+          }
 
-    if (foundElement) {
-      const idLength = foundElement.id.toString().length;
-      let zeroElements = '';
-      for (let i = 0; i < 8 - idLength; i++) {
-        zeroElements += '0';
-      }
+          setFullId(zeroElements + foundElement.id);
+        }
+      };
 
-      return zeroElements + foundElement.id;
-    } else {
-      return null;
+      findIdFullNumber();
     }
-  };
-
-  findIdFullNumber().then(result => {
-    setFullId(result);
-  });
+  }, [product]);
 
   return (
     <div className={styles.product__content}>
