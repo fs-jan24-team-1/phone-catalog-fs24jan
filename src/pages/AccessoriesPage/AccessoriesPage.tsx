@@ -8,7 +8,7 @@ import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Pagination } from 'components/Pagination';
 
 export const AccessoriesPage = () => {
-  const { currentProducts, sortedProducts, currentPage, handlePagination } =
+  const { currentProducts, totalCount = 0, currentPage, handlePagination } =
     usePageLogic(Category.accessories);
   const [t] = useTranslation('global');
 
@@ -22,10 +22,10 @@ export const AccessoriesPage = () => {
 
       <Catalog
         products={currentProducts}
-        totalProducts={sortedProducts.length}
+        totalProducts={totalCount}
       />
       <Pagination
-        length={sortedProducts.length}
+        length={totalCount}
         currentPage={currentPage}
         handlePagination={handlePagination}
       />
