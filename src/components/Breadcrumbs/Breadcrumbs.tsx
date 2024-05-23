@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import styles from './breadcrumbs.module.scss';
-import { getPhones, getTablets, getAccessories } from 'api';
+import { getOneProduct } from 'api';
 import classNames from 'classnames';
+import { ProductItemType } from 'types';
+import { toast } from 'react-toastify';
 
 enum linkTypes {
   phones = 'phones',
@@ -15,30 +17,27 @@ export const Breadcrumbs = () => {
   const location = useLocation();
   const { pathname } = location;
   const parts = pathname.split('/').filter((part: string) => part !== '');
+  const [product, setProduct] = useState<ProductItemType | null>(null);
 
   const [productName, setProductName] = useState('');
-  const { productId } = useParams();
+  const { productId } = useParams<{ productId: string }>();
+
+  useEffect(() => {
+    if (productId) {
+      getOneProduct(productId)
+        .then(data => {
+          setProduct(data);
+        })
+        .catch(() => {
+          toast.error('Failed to fetch product');
+        });
+    }
+  }, [productId]);
 
   async function getPhonesById() {
-    let devices = [];
+    const result = product?.name;
 
-    switch (parts[0]) {
-      case 'phones':
-        devices = await getPhones();
-        break;
-      case 'tablets':
-        devices = await getTablets();
-        break;
-      case 'accessories':
-        devices = await getAccessories();
-        break;
-      default:
-        return 'Error: Not found the link path';
-    }
-
-    const result = devices.find(device => device.id === productId);
-
-    return result?.name;
+    return result;
   }
 
   useEffect(() => {
@@ -50,7 +49,7 @@ export const Breadcrumbs = () => {
     }
 
     fetchData();
-  }, []);
+  }, [product]);
 
   const isBreadcrumbs = (part: string) => {
     if (

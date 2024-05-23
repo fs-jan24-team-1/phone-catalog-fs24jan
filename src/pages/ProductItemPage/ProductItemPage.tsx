@@ -3,9 +3,9 @@ import styles from './productItemPage.module.scss';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { getAccessories, getPhones, getTablets } from 'api';
-import { SortProductBy, ProductButtonType, Product } from 'types';
-import { sortProductsBy, useScrollToTopEffect } from 'utils';
+import { getOneProduct, getProducts, getRecommendedProducts } from 'api';
+import { ProductButtonType, Product } from 'types';
+import { useScrollToTopEffect } from 'utils';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { ProductItemType } from 'types';
 import { NotFoundPage } from 'pages/NotFoundPage';
@@ -18,6 +18,7 @@ import { ButtonPrimary } from 'components/UI/ButtonPrimary';
 import { ButtonFavourite } from 'components/UI/ButtonFavourite';
 import { ButtonBack } from 'components/UI/ButtonBack';
 import { ProductsSlider } from 'components/ProductsSlider';
+import { getImageUrl } from 'utils/urlUtils';
 
 export const ProductItemPage = () => {
   const [t] = useTranslation('global');
@@ -25,7 +26,6 @@ export const ProductItemPage = () => {
   const location = useLocation();
   useScrollToTopEffect();
 
-  const products = useSelector((state: RootState) => state.product.products);
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<ProductItemType | null>(null);
   const { pathname } = location;
@@ -35,9 +35,24 @@ export const ProductItemPage = () => {
   const [selectedColor, setSelectedColor] = useState(product?.color);
   const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
 
-  let items: ProductItemType[] = [];
-
+  const [products, setProducts] = useState<Product[] | null>(null);
+  const productItemID = products?.find(item => item.itemId === productId);
   const cart = useSelector((state: RootState) => state.product.cart);
+  const [fullId, setFullId] = useState<string | null>(null);
+
+  const favourites = useSelector(
+    (state: RootState) => state.product.favourites,
+  );
+
+  const isProductInCart = productItemID
+    ? cart.some((cartProduct: Product) => cartProduct.id === productItemID.id)
+    : false;
+
+  const isProductInFavourites = productItemID
+    ? favourites.some(
+        (favProduct: Product) => favProduct.id === productItemID.id,
+      )
+    : false;
 
   const SHORT_DESCRIPTION_SECTION = [
     { language: t('productPage.Screen'), value: product?.screen },
@@ -90,52 +105,46 @@ export const ProductItemPage = () => {
     },
   ];
 
-  const normalizedProduct = products.find(
-    product => product.itemId === productId,
-  );
+  useEffect(() => {
+    if (productId) {
+      getOneProduct(productId)
+        .then(data => {
+          setProduct(data);
+        })
+        .catch(() => {
+          toast.error('Failed to fetch product');
+        });
+    } else {
+      toast.error('Product ID is undefined');
+    }
+  }, [productId]);
 
-  const isProductInCart = cart.some(
-    (cartProduct: Product) => cartProduct.id === normalizedProduct?.id,
-  );
+  const getAllProducts = async () => {
+    const getAllProducts = await getProducts();
 
-  const productCategory = products.find(
-    item => item.itemId === productId,
-  )?.category;
+    return getAllProducts;
+  };
 
-  const favourites = useSelector(
-    (state: RootState) => state.product.favourites,
-  );
+  getAllProducts().then(result => {
+    setProducts(result);
+  });
 
-  const isProductInFavourites = favourites.some(
-    (favProduct: Product) => favProduct.id === normalizedProduct?.id,
-  );
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchProducts = async () => {
       try {
-        if (productCategory === 'phones') {
-          items = await getPhones();
-        } else if (productCategory === 'tablets') {
-          items = await getTablets();
-        } else if (productCategory === 'accessories') {
-          items = await getAccessories();
-        }
-
-        const foundProduct = items.find(item => item.id === productId);
-        if (foundProduct) {
-          setProduct(foundProduct);
-        } else {
-          setProduct(null);
-        }
+        const [recommendedProducts] = await Promise.all([
+          getRecommendedProducts(productId as string),
+        ]);
+        setRecommendedProducts(recommendedProducts);
       } catch (error) {
-        toast.error('Error fetching product');
+        toast.error('Failed to fetch products');
       }
     };
 
-    if (productId) {
-      fetchProduct();
-    }
-  }, [productCategory, productId]);
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     if (product && product.colorsAvailable) {
@@ -178,40 +187,48 @@ export const ProductItemPage = () => {
     setIsSelectedPhoto(index);
   };
 
-  const handleAddToCart = () => {
-    if (isProductInCart) {
-      dispatch({
-        type: 'product/removeFromCart',
-        payload: normalizedProduct,
-      });
-    } else {
-      dispatch({
-        type: 'product/addToCart',
-        payload: normalizedProduct,
-      });
-    }
-  };
-
   const handleAddToFavourites = () => {
     if (isProductInFavourites) {
       toast.success('The product has been removed');
 
       dispatch({
         type: 'product/removeFromFavourites',
-        payload: normalizedProduct,
+        payload: productItemID,
       });
     } else {
       toast.success('The product has been added');
 
       dispatch({
         type: 'product/addToFavourites',
-        payload: normalizedProduct,
+        payload: productItemID,
       });
     }
   };
 
-  const findIdFullNumber = () => {
-    const foundElement = products.find(element => element.itemId === productId);
+  const handleAddToCart = () => {
+    if (isProductInCart) {
+      toast.error('The product has been removed');
+
+      dispatch({
+        type: 'product/removeFromCart',
+        payload: productItemID,
+      });
+    } else {
+      toast.error('The product has been added');
+
+      dispatch({
+        type: 'product/addToCart',
+        payload: productItemID,
+      });
+    }
+  };
+
+  const findIdFullNumber = async () => {
+    const getAllProducts = await getProducts();
+
+    const foundElement = getAllProducts.find(
+      element => element.itemId === product?.id,
+    );
 
     if (foundElement) {
       const idLength = foundElement.id.toString().length;
@@ -225,6 +242,10 @@ export const ProductItemPage = () => {
       return null;
     }
   };
+
+  findIdFullNumber().then(result => {
+    setFullId(result);
+  });
 
   return (
     <div className={styles.product__content}>
@@ -252,7 +273,7 @@ export const ProductItemPage = () => {
                     onClick={() => handlePhotoChange(index)}
                   >
                     <img
-                      src={image}
+                      src={getImageUrl(image)}
                       alt={product.name}
                       className={`${styles.mainImg}`}
                     />
@@ -265,7 +286,7 @@ export const ProductItemPage = () => {
                     index === isSelectedPhoto && (
                       <img
                         key={index}
-                        src={image}
+                        src={getImageUrl(image)}
                         alt={product.name}
                         className={`${styles.mainImage}`}
                       />
@@ -341,10 +362,9 @@ export const ProductItemPage = () => {
                   />
 
                   <div className={styles.product__info__price_gap}></div>
-
-                  {normalizedProduct && (
+                  {productItemID && (
                     <ButtonFavourite
-                      product={normalizedProduct}
+                      product={productItemID}
                       callback={handleAddToFavourites}
                     />
                   )}
@@ -353,7 +373,10 @@ export const ProductItemPage = () => {
 
               <div className={styles.product__info__smallDescription}>
                 {SHORT_DESCRIPTION_SECTION.map((item, index) => (
-                  <div key={index} className={styles.product__info__smallDescription_s}>
+                  <div
+                    key={index}
+                    className={styles.product__info__smallDescription_s}
+                  >
                     <p className={styles.product__info__smallDescription_name}>
                       {item.language}
                     </p>
@@ -365,9 +388,7 @@ export const ProductItemPage = () => {
               </div>
             </div>
 
-            <div className={styles.product__id}>
-              {'ID: ' + findIdFullNumber()}
-            </div>
+            <div className={styles.product__id}>{'ID: ' + fullId}</div>
           </div>
 
           <div className={styles.more_details}>
@@ -433,10 +454,12 @@ export const ProductItemPage = () => {
           </div>
 
           <div className={styles.slider}>
-            <ProductsSlider
-              title={t('home.You may also like')}
-              products={sortProductsBy(products, SortProductBy.price)}
-            />
+            {products && (
+              <ProductsSlider
+                title={t('home.You may also like')}
+                products={recommendedProducts}
+              />
+            )}
           </div>
         </>
       ) : (
