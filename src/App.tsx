@@ -3,31 +3,9 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { useEffect } from 'react';
-import { getProducts } from './api';
-import { useDispatch } from 'react-redux';
 import { MessageContainer } from "./components/UI/MessageNotification";
-import { toast } from 'react-toastify';
 
 export const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const items = await getProducts();
-        dispatch({
-          type: 'product/setProducts',
-          payload: items,
-        });
-      } catch (error) {
-        toast.error('Error fetching products');
-      }
-    };
-
-    fetchProducts();
-  }, [dispatch]);
-
   return (
     <div data-cy="app" className="wrapper">
       <MessageContainer />

@@ -8,7 +8,7 @@ import { Catalog } from 'components/Catalog';
 import { Pagination } from 'components/Pagination';
 
 export const PhonesPage = () => {
-  const { currentProducts, sortedProducts, currentPage, handlePagination } =
+  const { currentProducts, totalCount = 0, currentPage, handlePagination } =
     usePageLogic(Category.phones);
   const [t] = useTranslation('global');
 
@@ -24,10 +24,10 @@ export const PhonesPage = () => {
 
       <Catalog
         products={currentProducts}
-        totalProducts={sortedProducts.length}
+        totalProducts={totalCount}
       />
       <Pagination
-        length={sortedProducts.length}
+        length={totalCount}
         currentPage={currentPage}
         handlePagination={handlePagination}
       />
