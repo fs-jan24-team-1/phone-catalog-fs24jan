@@ -11,6 +11,7 @@ import { getHotPricesProducts, getNewestProducts } from 'api';
 export const HomePage = () => {
   const [newestProducts, setNewestProducts] = useState<Product[]>([]);
   const [hotestPriceProducts, setHotestPriceProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [t] = useTranslation('global');
 
   useEffect(() => {
@@ -24,6 +25,8 @@ export const HomePage = () => {
         setHotestPriceProducts(hotPriceProducts);
       } catch (error) {
         console.error('Failed to fetch products', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -42,6 +45,7 @@ export const HomePage = () => {
       <ProductsSlider
         title={t('home.Brand new models')}
         products={newestProducts}
+        loading={isLoading}
       />
 
       <CategoriesSection />
@@ -49,6 +53,7 @@ export const HomePage = () => {
       <ProductsSlider
         title={t('home.Hot prices')}
         products={hotestPriceProducts}
+        loading={isLoading}
       />
     </div>
   );

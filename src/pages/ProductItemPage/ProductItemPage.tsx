@@ -35,6 +35,8 @@ export const ProductItemPage = () => {
   const [selectedColor, setSelectedColor] = useState(product?.color);
   const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   let items: ProductItemType[] = [];
 
   const cart = useSelector((state: RootState) => state.product.cart);
@@ -129,6 +131,8 @@ export const ProductItemPage = () => {
         }
       } catch (error) {
         toast.error('Error fetching product');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -436,6 +440,7 @@ export const ProductItemPage = () => {
             <ProductsSlider
               title={t('home.You may also like')}
               products={sortProductsBy(products, SortProductBy.price)}
+              loading={isLoading}
             />
           </div>
         </>

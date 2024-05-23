@@ -95,15 +95,15 @@
       grid-column: 1 / -1;
       grid-row: 1;
       column-gap: 16px;
-      grid-template-columns: repeat(20, 220px);
+      grid-template-columns: repeat(10, 220px);
     }
 
     @include on-tablet {
-      grid-template-columns: repeat(20, 275px);
+      grid-template-columns: repeat(10, 275px);
     }
 
     @include on-desktop {
-      grid-template-columns: repeat(20, 272px);
+      grid-template-columns: repeat(10, 272px);
     }
   }
 }
