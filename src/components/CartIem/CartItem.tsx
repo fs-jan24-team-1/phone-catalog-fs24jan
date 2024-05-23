@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { Link, useLocation } from 'react-router-dom';
 import { ButtonSlider } from 'components/UI/ButtonSlider';
+import { getImageUrl } from 'utils/urlUtils';
 
 type Props = {
   product: Product;
@@ -52,7 +53,7 @@ export const CartItem: FC<Props> = ({ product }) => {
         <Link to={url} className={styles.cartItem__image}>
           <img
             className={styles.cartItem__productImage}
-            src={product.image}
+            src={getImageUrl(product.image)}
             alt={product.name}
           />
         </Link>
