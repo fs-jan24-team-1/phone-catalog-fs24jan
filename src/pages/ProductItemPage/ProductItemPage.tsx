@@ -487,7 +487,9 @@ export const ProductItemPage = () => {
               </div>
             </>
           ) : (
-            <NotFoundPage />
+            <div className={styles.NotFoundPage}>
+              <NotFoundPage />
+            </div>
           )}
         </>
       )}
