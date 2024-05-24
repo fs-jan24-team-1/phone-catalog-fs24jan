@@ -34,7 +34,6 @@ export const ProductItemPage = () => {
   const [isSelectedPhoto, setIsSelectedPhoto] = useState(0);
   const [selectedColor, setSelectedColor] = useState(product?.color);
   const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
-
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   let items: ProductItemType[] = [];
