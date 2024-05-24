@@ -21,4 +21,5 @@ export interface ProductItemType {
   camera: string;
   zoom: string;
   cell: string[];
+  error?: string;
 }
