@@ -34,7 +34,9 @@ export const ProductItemPage = () => {
   const [isSelectedPhoto, setIsSelectedPhoto] = useState(0);
   const [selectedColor, setSelectedColor] = useState(product?.color);
   const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
-
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
+  
   const [products, setProducts] = useState<Product[] | null>(null);
   const productItemID = products?.find(item => item.itemId === productId);
   const cart = useSelector((state: RootState) => state.product.cart);
@@ -113,6 +115,9 @@ export const ProductItemPage = () => {
         })
         .catch(() => {
           toast.error('Failed to fetch product');
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     } else {
       toast.error('Product ID is undefined');
@@ -128,7 +133,6 @@ export const ProductItemPage = () => {
     fetchAllProducts();
   }, []);
 
-  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (productId) {
@@ -456,6 +460,7 @@ export const ProductItemPage = () => {
               <ProductsSlider
                 title={t('home.You may also like')}
                 products={recommendedProducts}
+                loading={isLoading}
               />
             )}
           </div>
