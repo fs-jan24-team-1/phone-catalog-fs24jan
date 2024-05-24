@@ -7,11 +7,12 @@ import { ProductsSlider } from 'components/ProductsSlider';
 import { CategoriesSection } from 'components/CategoriesSection';
 import { useTranslation } from 'react-i18next';
 import { getHotPricesProducts, getNewestProducts } from 'api';
+import { toast } from 'react-toastify';
 
 export const HomePage = () => {
   const [newestProducts, setNewestProducts] = useState<Product[]>([]);
-  const [hotestPriceProducts, setHotestPriceProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [hottestPriceProducts, setHottestPriceProducts] = useState<Product[]>([]);
   const [t] = useTranslation('global');
 
   useEffect(() => {
@@ -22,9 +23,9 @@ export const HomePage = () => {
           getHotPricesProducts(),
         ]);
         setNewestProducts(newestProducts);
-        setHotestPriceProducts(hotPriceProducts);
+        setHottestPriceProducts(hotPriceProducts);
       } catch (error) {
-        console.error('Failed to fetch products', error);
+        toast.error('Failed to fetch products');
       } finally {
         setIsLoading(false);
       }
@@ -52,7 +53,7 @@ export const HomePage = () => {
 
       <ProductsSlider
         title={t('home.Hot prices')}
-        products={hotestPriceProducts}
+        products={hottestPriceProducts}
         loading={isLoading}
       />
     </div>
