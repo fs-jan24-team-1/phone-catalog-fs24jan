@@ -28,6 +28,7 @@ export const ProductItemPage = () => {
 
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<ProductItemType | null>(null);
+  const [loader, setLoader] = useState(true);
   const { pathname } = location;
   const parts = pathname.split('/').filter((part: string) => part !== '')[0];
 
@@ -36,7 +37,7 @@ export const ProductItemPage = () => {
   const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
-  
+
   const [products, setProducts] = useState<Product[] | null>(null);
   const productItemID = products?.find(item => item.itemId === productId);
   const cart = useSelector((state: RootState) => state.product.cart);
@@ -112,15 +113,18 @@ export const ProductItemPage = () => {
       getOneProduct(productId)
         .then(data => {
           setProduct(data);
+          setLoader(false);
         })
         .catch(() => {
           toast.error('Failed to fetch product');
+          setLoader(false);
         })
         .finally(() => {
           setIsLoading(false);
         });
     } else {
       toast.error('Product ID is undefined');
+      setLoader(false);
     }
   }, [productId]);
 
@@ -132,7 +136,6 @@ export const ProductItemPage = () => {
 
     fetchAllProducts();
   }, []);
-
 
   useEffect(() => {
     if (productId) {
@@ -259,214 +262,236 @@ export const ProductItemPage = () => {
         <ButtonBack textForBackButton={t('product.Back')} />
       </div>
 
-      {product ? (
+      {!loader && (
         <>
-          <h1 className={styles.title}>{product.name}</h1>
+          {product && product?.error !== 'Product not found' ? (
+            <>
+              <h1 className={styles.title}>{product.name}</h1>
 
-          <div className={styles.details}>
-            <div className={styles.product__images}>
-              <div className={styles.product__image_column}>
-                {product.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className={classNames(styles.product__image_column_small, {
-                      [styles.selected]: index === isSelectedPhoto,
-                    })}
-                    onClick={() => handlePhotoChange(index)}
-                  >
-                    <img
-                      src={getImageUrl(image)}
-                      alt={product.name}
-                      className={`${styles.mainImg}`}
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className={styles.product__image_main}>
-                {product.images.map(
-                  (image, index) =>
-                    index === isSelectedPhoto && (
-                      <img
-                        key={index}
-                        src={getImageUrl(image)}
-                        alt={product.name}
-                        className={`${styles.mainImage}`}
-                      />
-                    ),
-                )}
-              </div>
-            </div>
-
-            <div className={styles.product__info}>
-              <div className={styles.product__info__colors}>
-                <p className={styles.product__info__colors_title}>
-                  {t('productPage.Available colors')}
-                </p>
-
-                <div className={styles.product__info__colors_buttons}>
-                  {product.colorsAvailable.map((color, index) => (
-                    <Link
-                      to={`/${parts}/${getUrlFromNewColor(color)}`}
-                      key={index}
-                      className={styles.product__info__color_button}
-                    >
-                      <ButtonColor
-                        colorDevice={color}
-                        selected={selectedColor === color}
-                        setSelectedColor={setSelectedColor}
-                      />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.product__info__capacity}>
-                <p className={styles.product__info__capacity_title}>
-                  {t('productPage.Select capacity')}
-                </p>
-
-                <div className={styles.product__info__capacity_buttons}>
-                  {product.capacityAvailable.map((capacity, index) => (
-                    <Link
-                      to={`/${parts}/${getUrlFromNewCapacity(capacity)}`}
-                      key={index}
-                      className={styles.product__info__capacity_button}
-                    >
-                      <ButtonCapacity
-                        text={capacity}
-                        selected={selectedCapacity === capacity}
-                        setSelectedCapacity={setSelectedCapacity}
-                      />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.product__info__price}>
-                <p className={styles.product__info__price_s}>
-                  <strong className={styles.product__info__price_discount}>
-                    ${product.priceDiscount}
-                  </strong>
-
-                  <span className={styles.product__info__price_regular}>
-                    ${product.priceRegular}
-                  </span>
-                </p>
-
-                <div className={styles.product__info__price_buttons}>
-                  <ButtonPrimary
-                    textForPrimaryButton={
-                      isProductInCart
-                        ? ProductButtonType.ADDED
-                        : ProductButtonType.ADD
-                    }
-                    callback={handleAddToCart}
-                  />
-
-                  <div className={styles.product__info__price_gap}></div>
-                  {productItemID && (
-                    <ButtonFavourite
-                      product={productItemID}
-                      callback={handleAddToFavourites}
-                    />
-                  )}
-                </div>
-              </div>
-
-              <div className={styles.product__info__smallDescription}>
-                {SHORT_DESCRIPTION_SECTION.map((item, index) => (
-                  <div
-                    key={index}
-                    className={styles.product__info__smallDescription_s}
-                  >
-                    <p className={styles.product__info__smallDescription_name}>
-                      {item.language}
-                    </p>
-                    <p className={styles.product__info__smallDescription_value}>
-                      {item.value}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.product__id}>{'ID: ' + fullId}</div>
-          </div>
-
-          <div className={styles.more_details}>
-            <div className={styles.more_details__about}>
-              <strong className={styles.more_details__about_strong}>
-                {t('productPage.About')}
-              </strong>
-
-              {product.description.map((desc, index) => (
-                <div key={index} className={styles.more_details__about__info}>
-                  <p className={styles.more_details__about__info__title}>
-                    <strong>{desc.title}</strong>
-                  </p>
-
-                  {desc.text.map((text, indexJ) => (
-                    <div
-                      key={indexJ}
-                      className={styles.more_details__about__info__description}
-                    >
-                      {text}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-
-            <div className={styles.more_details__tech}>
-              <strong className={styles.more_details__tech_strong}>
-                {t('productPage.Tech specs')}
-              </strong>
-
-              <div className={styles.more_details__tech__smallDescription}>
-                {TECH_SECTION.map(
-                  (item, index) =>
-                    item.isValid && (
+              <div className={styles.details}>
+                <div className={styles.product__images}>
+                  <div className={styles.product__image_column}>
+                    {product.images.map((image, index) => (
                       <div
                         key={index}
-                        className={
-                          styles.more_details__tech__smallDescription_s
+                        className={classNames(
+                          styles.product__image_column_small,
+                          {
+                            [styles.selected]: index === isSelectedPhoto,
+                          },
+                        )}
+                        onClick={() => handlePhotoChange(index)}
+                      >
+                        <img
+                          src={getImageUrl(image)}
+                          alt={product.name}
+                          className={`${styles.mainImg}`}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div className={styles.product__image_main}>
+                    {product.images.map(
+                      (image, index) =>
+                        index === isSelectedPhoto && (
+                          <img
+                            key={index}
+                            src={getImageUrl(image)}
+                            alt={product.name}
+                            className={`${styles.mainImage}`}
+                          />
+                        ),
+                    )}
+                  </div>
+                </div>
+
+                <div className={styles.product__info}>
+                  <div className={styles.product__info__colors}>
+                    <p className={styles.product__info__colors_title}>
+                      {t('productPage.Available colors')}
+                    </p>
+
+                    <div className={styles.product__info__colors_buttons}>
+                      {product.colorsAvailable.map((color, index) => (
+                        <Link
+                          to={`/${parts}/${getUrlFromNewColor(color)}`}
+                          key={index}
+                          className={styles.product__info__color_button}
+                        >
+                          <ButtonColor
+                            colorDevice={color}
+                            selected={selectedColor === color}
+                            setSelectedColor={setSelectedColor}
+                          />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.product__info__capacity}>
+                    <p className={styles.product__info__capacity_title}>
+                      {t('productPage.Select capacity')}
+                    </p>
+
+                    <div className={styles.product__info__capacity_buttons}>
+                      {product.capacityAvailable.map((capacity, index) => (
+                        <Link
+                          to={`/${parts}/${getUrlFromNewCapacity(capacity)}`}
+                          key={index}
+                          className={styles.product__info__capacity_button}
+                        >
+                          <ButtonCapacity
+                            text={capacity}
+                            selected={selectedCapacity === capacity}
+                            setSelectedCapacity={setSelectedCapacity}
+                          />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.product__info__price}>
+                    <p className={styles.product__info__price_s}>
+                      <strong className={styles.product__info__price_discount}>
+                        ${product.priceDiscount}
+                      </strong>
+
+                      <span className={styles.product__info__price_regular}>
+                        ${product.priceRegular}
+                      </span>
+                    </p>
+
+                    <div className={styles.product__info__price_buttons}>
+                      <ButtonPrimary
+                        textForPrimaryButton={
+                          isProductInCart
+                            ? ProductButtonType.ADDED
+                            : ProductButtonType.ADD
                         }
+                        callback={handleAddToCart}
+                      />
+
+                      <div className={styles.product__info__price_gap}></div>
+                      {productItemID && (
+                        <ButtonFavourite
+                          product={productItemID}
+                          callback={handleAddToFavourites}
+                        />
+                      )}
+                    </div>
+                  </div>
+
+                  <div className={styles.product__info__smallDescription}>
+                    {SHORT_DESCRIPTION_SECTION.map((item, index) => (
+                      <div
+                        key={index}
+                        className={styles.product__info__smallDescription_s}
                       >
                         <p
                           className={
-                            styles.more_details__tech__smallDescription_name
+                            styles.product__info__smallDescription_name
                           }
                         >
                           {item.language}
                         </p>
-                        {item.value && (
-                          <p
+                        <p
+                          className={
+                            styles.product__info__smallDescription_value
+                          }
+                        >
+                          {item.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.product__id}>{'ID: ' + fullId}</div>
+              </div>
+
+              <div className={styles.more_details}>
+                <div className={styles.more_details__about}>
+                  <strong className={styles.more_details__about_strong}>
+                    {t('productPage.About')}
+                  </strong>
+
+                  {product.description.map((desc, index) => (
+                    <div
+                      key={index}
+                      className={styles.more_details__about__info}
+                    >
+                      <p className={styles.more_details__about__info__title}>
+                        <strong>{desc.title}</strong>
+                      </p>
+
+                      {desc.text.map((text, indexJ) => (
+                        <div
+                          key={indexJ}
+                          className={
+                            styles.more_details__about__info__description
+                          }
+                        >
+                          {text}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+
+                <div className={styles.more_details__tech}>
+                  <strong className={styles.more_details__tech_strong}>
+                    {t('productPage.Tech specs')}
+                  </strong>
+
+                  <div className={styles.more_details__tech__smallDescription}>
+                    {TECH_SECTION.map(
+                      (item, index) =>
+                        item.isValid && (
+                          <div
+                            key={index}
                             className={
-                              styles.more_details__tech__smallDescription_value
+                              styles.more_details__tech__smallDescription_s
                             }
                           >
-                            {item.value}
-                          </p>
-                        )}
-                      </div>
-                    ),
+                            <p
+                              className={
+                                styles.more_details__tech__smallDescription_name
+                              }
+                            >
+                              {item.language}
+                            </p>
+                            {item.value && (
+                              <p
+                                className={
+                                  styles.more_details__tech__smallDescription_value
+                                }
+                              >
+                                {item.value}
+                              </p>
+                            )}
+                          </div>
+                        ),
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.slider}>
+                {products && (
+                  <ProductsSlider
+                    title={t('home.You may also like')}
+                    products={recommendedProducts}
+                    loading={isLoading}
+                  />
                 )}
               </div>
+            </>
+          ) : (
+            <div className={styles.NotFoundPage}>
+              <NotFoundPage />
             </div>
-          </div>
-
-          <div className={styles.slider}>
-            {products && (
-              <ProductsSlider
-                title={t('home.You may also like')}
-                products={recommendedProducts}
-                loading={isLoading}
-              />
-            )}
-          </div>
+          )}
         </>
-      ) : (
-        <NotFoundPage />
       )}
     </div>
   );
