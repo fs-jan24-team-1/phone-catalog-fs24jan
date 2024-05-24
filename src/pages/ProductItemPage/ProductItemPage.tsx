@@ -281,6 +281,7 @@ export const ProductItemPage = () => {
                           },
                         )}
                         onClick={() => handlePhotoChange(index)}
+                        onMouseEnter={() => handlePhotoChange(index)}
                       >
                         <img
                           src={getImageUrl(image)}
