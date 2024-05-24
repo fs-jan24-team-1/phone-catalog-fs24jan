@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 
 export const HomePage = () => {
   const [newestProducts, setNewestProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [hottestPriceProducts, setHottestPriceProducts] = useState<Product[]>([]);
   const [t] = useTranslation('global');
 
@@ -25,6 +26,8 @@ export const HomePage = () => {
         setHottestPriceProducts(hotPriceProducts);
       } catch (error) {
         toast.error('Failed to fetch products');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -43,6 +46,7 @@ export const HomePage = () => {
       <ProductsSlider
         title={t('home.Brand new models')}
         products={newestProducts}
+        loading={isLoading}
       />
 
       <CategoriesSection />
@@ -50,6 +54,7 @@ export const HomePage = () => {
       <ProductsSlider
         title={t('home.Hot prices')}
         products={hottestPriceProducts}
+        loading={isLoading}
       />
     </div>
   );

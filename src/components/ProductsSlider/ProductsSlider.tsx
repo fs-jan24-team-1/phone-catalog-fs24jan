@@ -1,14 +1,16 @@
-import { useState, useRef, useEffect, FC } from 'react';
+import React, { useState, useRef, useEffect, FC } from 'react';
 import { Product } from 'types';
 import './ProductsSlider.scss';
 import { ProductCard } from 'components/ProductCard';
+import { CardSkeleton } from 'components/ProductCardSkeleton';
 
 type Props = {
   products: Product[];
   title: string;
+  loading: boolean;
 };
 
-export const ProductsSlider: FC<Props> = ({ title, products }) => {
+export const ProductsSlider: FC<Props> = ({ title, products, loading }) => {
   const [activeArrowLeft, setActiveArrowLeft] = useState(false);
   const [activeArrowRight, setActiveArrowRight] = useState(true);
   const slider = useRef<HTMLUListElement>(null);
@@ -133,11 +135,15 @@ export const ProductsSlider: FC<Props> = ({ title, products }) => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
       >
-        {products.map((product) => (
-          <li key={product.id}>
-            <ProductCard product={product} />
-          </li>
-        ))}
+        {loading ? (
+          <CardSkeleton amount={6} />
+        ) : (
+          products.map((product) => (
+            <li key={product.id}>
+              <ProductCard product={product} />
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );
