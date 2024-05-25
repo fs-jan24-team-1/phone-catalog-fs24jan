@@ -45,15 +45,3 @@ export function getHotPricesProducts(): Promise<Product[]> {
     response.json(),
   );
 }
-
-export function getPhones(): Promise<ProductItemType[]> {
-  return fetch(API_URL + '/phones').then(response => response.json());
-}
-
-export function getTablets(): Promise<ProductItemType[]> {
-  return fetch(API_URL + '/tablets').then(response => response.json());
-}
-
-export function getAccessories(): Promise<ProductItemType[]> {
-  return fetch(API_URL + '/accessories').then(response => response.json());
-}
