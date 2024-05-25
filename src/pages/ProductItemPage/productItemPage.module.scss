@@ -276,6 +276,7 @@
 }
 
 .more_details {
+  text-align: justify;
   @include page-grid;
 
   grid-column: 1 / -1;
