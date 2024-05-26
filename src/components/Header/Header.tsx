@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { NavBar } from 'components/NavBar';
 import { SearchComponent} from 'components/SearchComponent';
-import { SwitchLanguage } from 'components/SwitchLanguage';
+import { SwitchLanguageHeader } from 'components/SwitchLanguageHeader';
 import logo from 'img/icons/Logo.svg';
 import menu from 'img/icons/menu.svg';
 import cours from 'img/icons/cours.svg';
@@ -76,7 +76,7 @@ export const Header = () => {
 
       <div className={styles.right_side}>
         <div className={styles.language_switcher}>
-          {isLangSwitcherShow && <SwitchLanguage />}
+          {isLangSwitcherShow && <SwitchLanguageHeader />}
         </div>
 
         {isShowSearch && <SearchComponent />}

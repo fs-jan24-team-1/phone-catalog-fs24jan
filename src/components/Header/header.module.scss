@@ -415,11 +415,3 @@
   animation: slideInFromRight 0.5s forwards;
   transform: translateX(0%);
 }
-
-.language_switcher {
-  margin-right: 15px;
-
-  @include on-desktop {
-    margin-right: 25px;
-  }
-}
