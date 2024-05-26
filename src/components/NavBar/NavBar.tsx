@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import styles from './navBar.module.scss';
 import { useTranslation } from 'react-i18next';
-import Logo from 'img/icons/Logo.svg';
-import Close from 'img/icons/close.svg';
-import hearts from   'img/icons/hearts.svg';
-import cours from 'img/icons/cours.svg';
+import { ReactComponent as Logo } from 'img/icons/Logo.svg';
+import { ReactComponent as Close} from 'img/icons/close.svg';
+import {ReactComponent as Heart} from   'img/icons/hearts.svg';
+import {ReactComponent as Cours} from 'img/icons/cours.svg';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { SwitchLanguage } from 'components/SwitchLanguage';
+
 
 
 export const NavBar = ({ onClose }: { onClose: () => void }) => {
@@ -23,15 +24,15 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
     <aside className={styles.menu}>
       <div className={styles.menu__top}>
         <Link to="/" className={styles.menu__logo}>
-          <img
-            src={Logo}
-            alt="logo"
+          <Logo
             className={`${styles.menu__logo} ${styles.logo}`}
           />
         </Link>
 
         <Link to="#" className={styles.menu__close} onClick={onClose}>
-          <img src={Close} alt="close" className={styles.close} />
+          <Close
+            className={styles.close}
+          />
         </Link>
       </div>
 
@@ -69,21 +70,28 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
       </div>
 
       <div className={styles.nav__bottom}>
-        <Link to="/Favorites" className={styles.nav__favorites} onClick={onClose}>
+        <Link
+          to="/Favorites"
+          className={styles.nav__favorites}
+          onClick={onClose}
+        >
           <div className={styles.cartIconContainer}>
-            <img src={hearts} alt="" className={styles.nav__icons} />
-            {favoritesCount > 0 && <div className={styles.favoritesItemCount}>{favoritesCount}</div>}
-
+            <Heart
+              className={styles.nav__icons}
+            />
+            {favoritesCount > 0 && (
+              <div className={styles.favoritesItemCount}>{favoritesCount}</div>
+            )}
           </div>
-
         </Link>
         <Link to="/cart" className={styles.nav__cart} onClick={onClose}>
           <div className={styles.cartIconContainer}>
-
-            <img src={cours} alt="" className={styles.nav__icons} />
-            {cartCount > 0 && <div className={styles.favoritesItemCount}>{cartCount}</div>}
+            <Cours
+              className={styles.nav__icons} />
+            {cartCount > 0 && (
+              <div className={styles.favoritesItemCount}>{cartCount}</div>
+            )}
           </div>
-
         </Link>
       </div>
     </aside>

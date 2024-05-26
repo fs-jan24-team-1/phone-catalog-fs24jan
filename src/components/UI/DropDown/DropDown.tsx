@@ -12,6 +12,7 @@ interface DropdownProps {
   options: Option[];
   onSelectChange: (selectedOption: SortBy) => void;
   isSortDropdown?: boolean;
+  theme: boolean;
 }
 
 interface CustomStylesProps {

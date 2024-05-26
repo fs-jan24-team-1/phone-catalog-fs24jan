@@ -3,13 +3,20 @@
 @import './styles/utils/mixins';
 
 html[data-theme='light'] {
+   --light: #d8dbe0;
+  --dark: #28292c;
+  --link: rgb(27, 129, 112);
+  --link-hover: rgb(24, 94, 82);
+
   --accent-color: #4219d0;
   --header-logo: #313237;
+  --header-text-color: #89939A;
 
   --primary-color: #0f0f11;
   --secondary-color: #89939a;
   --main-bg-color: #fff;
 
+  --main-icons-color: #0f0f11;
   --icons-color: #b4bdc3;
   --elements-color: #e2e6e9;
   --slider-bg-color: #fff;
@@ -18,7 +25,7 @@ html[data-theme='light'] {
   --slider-bg-disable-color: #e2e6e9;
   --sloder-border-hover-color: #e2e6e9;
 
-  --sceleton-bg-color: red;
+  // --sceleton-bg-color: red;
   --product-back: #89939a;
   --product-back-hover: #0f0f11;
 
@@ -49,13 +56,20 @@ html[data-theme='light'] {
 }
 
 html[data-theme='dark'] {
+  --light: #d8dbe0;
+  --dark: #28292c;
+  --link: rgb(27, 129, 112);
+  --link-hover: rgb(24, 94, 82);
+  
   --accent-color: #905bff;
   --header-logo: #f1f2f9;
+  --header-text-color: #75767F;
 
   --primary-color: #f1f2f9;
   --secondary-color: #75767f;
   --main-bg-color: #0f1121;
 
+  --main-icons-color: #fff;
   --icons-color: #4a4d58;
   --elements-color: #323542; // ??
   --slider-bg-color: #4a4d58;
@@ -64,7 +78,7 @@ html[data-theme='dark'] {
   --slider-bg-disable-color: #0f1121;
   --sloder-border-hover-color: #75767f;
 
-  --sceleton-bg-color: rgb(55, 0, 255);
+  // --sceleton-bg-color: rgb(55, 0, 255);
   --product-back: #fff;
   --product-back-hover: #75767f;
 

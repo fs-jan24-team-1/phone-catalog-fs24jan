@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import styles from "./footer.module.scss"
 import { useTranslation } from "react-i18next";
 import { ReactComponent as Logo } from "img/icons/Logo.svg";
+import { ReactComponent as ArrowUp } from 'img/icons/arrow_up.svg';
 
 export const Footer = () => {
   const [t] = useTranslation("global");
@@ -49,6 +50,7 @@ export const Footer = () => {
             </span>
 
             <div className={styles['back-to-top__button']} />
+                <ArrowUp className={styles['back-to-top__arrow']}/>
           </div>
         </div>
       </div>

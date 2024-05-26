@@ -1,3 +1,5 @@
+@import 'styles/utils/variables';
+
 @font-face {
   font-family: 'Mont-Bold';
   src: url(../../../public/fonts/Mont-Regular.otf);
@@ -12,9 +14,9 @@
   right: 0;
   box-sizing: border-box;
   height: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--main-bg-color);
   font-weight: 800;
-  transition: transform 1s ease;
+  transition: $effectDuration;
   transform: translateY(0%);
   font-size: 12px;
 }
@@ -28,6 +30,7 @@
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
+  fill: var(--header-logo);
 }
 
 .logo {
@@ -40,7 +43,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #E2E6E9;
+  border-bottom: 1px solid var(--elements-color);
   height: 48px;
 }
 
@@ -52,17 +55,19 @@
   height: 48px;
   background-size: contain;
   background-repeat: no-repeat;
-  border-left: 1px solid #E2E6E9;
+  border-left: 1px solid var(--elements-color);
 }
 
 .close {
   width: 20px;
   height: 20px;
+  fill: var(--main-icons-color);
+  transition: $effectDuration;
 }
 
 .nav {
   width: 100%;
-  padding: 24px  0 16px;
+  padding: 24px 0 16px;
   display: flex;
   justify-content: center;
 }
@@ -80,7 +85,7 @@
 
 .nav__list a {
   text-decoration: none;
-  color: #89939A;
+  color: var(--header-text-color);
   font-size: 12px;
   line-height: 11px;
   font-weight: 800px;
@@ -89,17 +94,16 @@
   transition: border-bottom 0.5s ease;
 
   &:hover {
-    color: black;
-    border-bottom: 2px solid black;
+    transition: $effectDuration;
+    color: var(--header-logo);
+    border-bottom: 2px solid var(--header-logo);
   }
 }
 
 .nav_link {
-text-decoration: none;
-color: black;
-font-size: 12px;
-line-height: 11px;
-
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 11px;
 }
 
 .nav__bottom {
@@ -111,7 +115,7 @@ line-height: 11px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #E2E6E9;
+  border-top: 1px solid var(--elements-color);
   height: 48px;
 }
 
@@ -122,20 +126,22 @@ line-height: 11px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 1px solid #E2E6E9;
+  border-left: 1px solid var(--elements-color);
   border-bottom: 1px solid transparent;
   transition: border-bottom 0.3s ease;
 
   &:hover {
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid var(--header-logo);
   }
 }
 
 .nav__icons {
   width: 20px;
   height: 20px;
-}
 
+  fill: var(--main-icons-color);
+  transition: $effectDuration;
+}
 
 .hide {
   animation: slideOutToRight 12s forwards;
@@ -149,7 +155,6 @@ line-height: 11px;
     transform: translateX(100%);
   }
 }
-
 
 .cartIconContainer {
   position: relative;
@@ -192,7 +197,7 @@ line-height: 11px;
 }
 
 .styles.favorites.is_active {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--header-logo);
 }
 
 .preferences {

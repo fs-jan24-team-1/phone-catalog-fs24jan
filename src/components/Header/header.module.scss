@@ -185,6 +185,7 @@
   height: 100%;
   width: 64px;
 
+
   border-left: 1px solid var(--elements-color);
   display: none;
 
@@ -194,6 +195,10 @@
    display: flex;
   }
 
+  &__logo {
+    fill: var(--main-icons-color);
+    transition: $effectDuration;
+  }
 }
 
 .cart {
@@ -216,6 +221,11 @@
 
   @include on-mobile {
     display: none;
+  }
+
+  &__logo {
+    fill: var(--main-icons-color);
+    transition: $effectDuration;
   }
 }
 

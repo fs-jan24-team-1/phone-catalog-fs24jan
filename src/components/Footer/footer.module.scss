@@ -108,6 +108,7 @@
   }
 
   &__button {
+    position: relative;
     display: flex;
     height: 100%;
     aspect-ratio: 1;
@@ -115,12 +116,14 @@
     border: 1px solid var(--icons-color);
     transition: $effectDuration;
     border-radius: 50%;
-    background-color: transparent;
+  }
 
-    background-image: url(./../../img/icons/arrow_up.svg);
-    // filter: brightness(var(--theme-change-brightness));
-    background-position: center;
-    background-repeat: no-repeat;
+  &__arrow {
+    position: relative;
+    right: 40px;
+
+    fill: var(--main-icons-color);
+    transition: $effectDuration;
   }
 
   @include on-mobile {

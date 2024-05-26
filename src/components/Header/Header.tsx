@@ -10,14 +10,14 @@ import { SearchComponent } from 'components/SearchComponent';
 import { SwitchLanguage } from 'components/SwitchLanguage';
 import { ReactComponent as Logo } from 'img/icons/Logo.svg';
 import menu from 'img/icons/menu.svg';
-import cours from 'img/icons/cours.svg';
-import favorites from 'img/icons/hearts.svg';
+import {ReactComponent as Cours} from 'img/icons/cours.svg';
+import {ReactComponent as Heart} from 'img/icons/hearts.svg';
 import { Theme } from 'components/Theme/Theme';
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
   const [isLangSwitcherShow, setIsLangSwitcherShow] = useState(false);
-  const [t] = useTranslation("global");
+  const [t] = useTranslation('global');
 
   const favourItes = useSelector(
     (state: RootState) => state.product.favourites,
@@ -35,9 +35,10 @@ export const Header = () => {
     classNames(styles.header__nav_link, { [styles.is_active]: isActive });
 
   const { pathname } = useLocation();
-  const isShowSearch = pathname === '/tablets'
-                    || pathname === '/accessories'
-                    || pathname === '/phones';
+  const isShowSearch =
+    pathname === '/tablets' ||
+    pathname === '/accessories' ||
+    pathname === '/phones';
 
   useEffect(() => {
     if (window.innerWidth >= 640) {
@@ -84,9 +85,7 @@ export const Header = () => {
         <div className={styles.language_switcher}>
           {isLangSwitcherShow && <SwitchLanguage />}
         </div>
-
         {isShowSearch && <SearchComponent />}
-
         <NavLink
           to="/Favorites"
           className={({ isActive }) =>
@@ -94,9 +93,7 @@ export const Header = () => {
           }
         >
           <div className={styles.favoritesIconContainer}>
-            <img
-              src={favorites}
-              alt="favorites"
+            <Heart
               className={styles.favorites__logo}
             />
 
@@ -105,7 +102,6 @@ export const Header = () => {
             )}
           </div>
         </NavLink>
-
         <NavLink
           to="/cart"
           className={({ isActive }) =>
@@ -113,13 +109,13 @@ export const Header = () => {
           }
         >
           <div className={styles.cartIconContainer}>
-            <img src={cours} alt="cart" className={styles.cart__logo} />
+            <Cours
+              className={styles.cart__logo} />
             {cartCount > 0 && (
               <div className={styles.cartItemCount}>{cartCount}</div>
             )}
           </div>
         </NavLink>
-
         <button className={styles.menus} onClick={toggleMenu}>
           <img src={menu} alt="menuicon" className="menus__logo" />
         </button>
