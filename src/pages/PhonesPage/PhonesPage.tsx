@@ -6,6 +6,7 @@ import styles from './phonesPage.module.scss';
 import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Catalog } from 'components/Catalog';
 import { Pagination } from 'components/Pagination';
+import { motion, Variants } from 'framer-motion';
 
 export const PhonesPage = () => {
   const { currentProducts, totalCount = 0, currentPage, handlePagination } =
@@ -14,13 +15,34 @@ export const PhonesPage = () => {
 
   useScrollToTopEffect();
 
+  const titleVariants: Variants = {
+    initial: {
+      y: -50,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        // type: 'spring',
+        stiffness: 70,
+        damping: 10,
+      },
+    },
+  };
+
   return (
     <div className={styles.container}>
       <Breadcrumbs />
 
-      <h1 className={styles.container__title}>
+      <motion.h1
+        className={styles.container__title}
+        variants={titleVariants}
+        initial="initial"
+        animate="visible"
+      >
         {t('categories.Mobile phones')}
-      </h1>
+      </motion.h1>
 
       <Catalog
         products={currentProducts}
