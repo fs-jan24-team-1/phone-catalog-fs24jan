@@ -6,6 +6,8 @@ import styles from './accesoriesPage.module.scss';
 import { Catalog } from 'components/Catalog';
 import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Pagination } from 'components/Pagination';
+import { isValidCurrentPage } from 'utils/isValidCurrentPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
 
 export const AccessoriesPage = () => {
   const { currentProducts, totalCount = 0, currentPage, handlePagination } =
@@ -15,20 +17,26 @@ export const AccessoriesPage = () => {
   useScrollToTopEffect();
 
   return (
-    <div className={styles.container}>
-      <Breadcrumbs />
+    <>
+    {isValidCurrentPage(totalCount, currentPage) ? (
+      <div className={styles.container}>
+        <Breadcrumbs />
 
-      <h1 className={styles.container__title}>{t('categories.Accessories')}</h1>
+        <h1 className={styles.container__title}>{t('categories.Accessories')}</h1>
 
-      <Catalog
-        products={currentProducts}
-        totalProducts={totalCount}
-      />
-      <Pagination
-        length={totalCount}
-        currentPage={currentPage}
-        handlePagination={handlePagination}
-      />
-    </div>
+        <Catalog
+          products={currentProducts}
+          totalProducts={totalCount}
+        />
+        <Pagination
+          length={totalCount}
+          currentPage={currentPage}
+          handlePagination={handlePagination}
+        />
+      </div>
+    ) : (
+      <NotFoundPage />
+    )}
+  </>
   );
 };

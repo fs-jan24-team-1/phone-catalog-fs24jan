@@ -51,12 +51,6 @@ export const usePageLogic = (category: Category) => {
     setSearchQuery(query);
   }, [searchParams]);
 
-  // if (searchQuery) {
-  //   sortedProducts = sortedProducts.filter((product: Product) =>
-  //     product.name.toLowerCase().includes(searchQuery.toLowerCase().trim()),
-  //   );
-  // }
-
   const handlePagination = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     params.set('page', pageNumber.toString());
