@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import styles from "./switchLanguage.module.scss";
+import styles from "./switchLanguageMenu.module.scss";
 
-export const SwitchLanguage = () => {
+export const SwitchLanguageMenu = () => {
   const [, i18n] = useTranslation('global');
 
   const handleLanguage = (lang: string) => {

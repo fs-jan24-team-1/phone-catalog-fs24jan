@@ -1,0 +1,56 @@
+@import 'styles/utils/variables';
+@import 'styles/utils/mixins';
+
+.container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 48px;
+  border-left: 1px solid $elements;
+
+  @include on-desktop {
+    height: 64px;
+  }
+}
+
+.flag {
+  position: absolute;
+  right: 21px;
+  height: 26px;
+  width: 28px;
+  border-radius: 50%;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.en {
+  background-image: url('./../../img/icons/eng.png');
+}
+
+.ua {
+  background-image: url('./../../img/icons/ua.webp');
+}
+
+.separator {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.5px;
+  height: 30px;
+
+  background-color: $elements;
+}
+
+.not-active {
+  right: 60px;
+}
+
+.active {
+  z-index: 2;
+  transform: scale(1.05) !important;
+}

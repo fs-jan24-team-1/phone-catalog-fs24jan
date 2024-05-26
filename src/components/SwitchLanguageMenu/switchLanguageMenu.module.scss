@@ -5,7 +5,8 @@
   display: flex;
   position: relative;
   align-items: center;
-  width: 120px;
+  justify-content: space-between;
+  width: 110px;
   height: 48px;
 
   @include on-desktop {
@@ -14,19 +15,27 @@
 }
 
 .flag {
-  flex: 1;
-  padding: 10px 0;
-  width: 8px;
-  height: 5px;
+  margin-right: 8px;
+  margin-left: 8px;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
 
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+  border-radius: 50%;
 
   &:hover {
+    transform: scale(1.1);
+  }
+
+  &.active {
     transform: scale(1.1);
   }
 }
@@ -40,15 +49,10 @@
 }
 
 .separator {
-  position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 0.5px;
   height: 30px;
 
   background-color: $elements;
-}
-
-.active {
-  transform: scale(1.1);
 }

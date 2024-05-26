@@ -7,7 +7,7 @@ import hearts from   'img/icons/hearts.svg';
 import cours from 'img/icons/cours.svg';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-import { SwitchLanguage } from 'components/SwitchLanguage';
+import { SwitchLanguageMenu } from 'components/SwitchLanguageMenu';
 
 
 export const NavBar = ({ onClose }: { onClose: () => void }) => {
@@ -65,7 +65,7 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
       </nav>
 
       <div className={styles.preferences}>
-        <SwitchLanguage />
+        {<SwitchLanguageMenu />}
       </div>
 
       <div className={styles.nav__bottom}>
