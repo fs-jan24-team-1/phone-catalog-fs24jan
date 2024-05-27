@@ -255,6 +255,22 @@
   border-bottom: 1px solid $elements;
 }
 
+
+.autos {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-left: 1px solid $elements;
+  width: 48px;
+
+  @include on-desktop {
+    width: 64px;
+  }
+}
+
+
 .navBarWrapper {
   position: fixed;
   top: 0;
@@ -414,4 +430,9 @@
 .navBarWrapper {
   animation: slideInFromRight 0.5s forwards;
   transform: translateX(0%);
+}
+
+.auto {
+  width: 20px;
+  height: 20px;
 }
