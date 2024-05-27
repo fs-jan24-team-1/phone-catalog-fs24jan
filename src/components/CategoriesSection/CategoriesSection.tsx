@@ -1,17 +1,30 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './categoriesSection.module.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store/store';
 import { Product, Category } from 'types';
 import { useTranslation } from 'react-i18next';
 import phone from './img/Phone.png';
 import tablet from './img/Tablet.png';
 import accessory from './img/Accessories.png';
+import { getProducts } from 'api';
+import { toast } from 'react-toastify';
 
 export const CategoriesSection: FC = () => {
-  const products = useSelector((state: RootState) => state.product.products);
+  const [products, setProducts] = useState<Product[]>([]);
   const [t] = useTranslation('global');
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+      } catch (error) {
+        toast.error('Failed to fetch products');
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const phones = products.filter(
     (product: Product) => product.category === Category.phones,
