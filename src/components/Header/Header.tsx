@@ -12,6 +12,7 @@ import logo from 'img/icons/Logo.svg';
 import menu from 'img/icons/menu.svg';
 import cours from 'img/icons/cours.svg';
 import favorites from 'img/icons/hearts.svg';
+import auto from './autos.jpg'
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
@@ -74,12 +75,19 @@ export const Header = () => {
         </nav>
       </div>
 
+
       <div className={styles.right_side}>
         <div className={styles.language_switcher}>
           {isLangSwitcherShow && <SwitchLanguageHeader />}
         </div>
 
         {isShowSearch && <SearchComponent />}
+
+      <div>
+        <NavLink to='/auth' className={({ isActive }) => classNames(styles.autos, { [styles.is_active]: isActive })}>
+          <img src={auto} alt="" className={styles.auto} />
+        </NavLink>
+      </div>
 
         <NavLink to="/Favorites" className={({ isActive }) => classNames(styles.favorites, { [styles.is_active]: isActive })}>
           <div className={styles.favoritesIconContainer}>
