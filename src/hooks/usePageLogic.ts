@@ -1,49 +1,55 @@
 import { useEffect, useState } from 'react';
 import { Product, Category } from 'types';
-import { sortProducts } from 'utils';
-import { RootState } from 'store/store';
-import { useSelector } from 'react-redux';
 import { SortBy } from 'components/Filter';
 import { useSearchParams } from 'react-router-dom';
+import { getProductsByCategory } from 'api';
 
 export const usePageLogic = (category: Category) => {
-  const products = useSelector((state: RootState) => state.product.products);
+  const [currentProducts, setCurrentProducts] = useState<Product[]>([]);
+  const [totalCount, setTotalCount] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<SortBy>(SortBy.age);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [, setSearchQuery] = useState('');
 
   const params = new URLSearchParams(searchParams);
   const perPage = params.get('perPage');
-  const productsPerPage = perPage ? Number(perPage) : products.length;
+  const productsPerPage = perPage ? Number(perPage) : totalCount;
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      const { products, totalCount } = await getProductsByCategory(
+        category,
+        sortBy,
+        String(productsPerPage),
+        currentPage,
+      );
+      setCurrentProducts(products);
+      setTotalCount(totalCount);
+    };
+
+    fetchProducts();
+  }, [category, sortBy, productsPerPage, currentPage]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
     const sortByParam = params.get('sort');
     setSortBy(
       sortByParam && Object.values(SortBy).includes(sortByParam as SortBy)
         ? (sortByParam as SortBy)
         : SortBy.age,
     );
+
     if (!params.get('page')) {
       params.set('page', '1');
       setCurrentPage(1);
     } else {
       setCurrentPage(parseInt(params.get('page') as string));
     }
+
     const query = searchParams.get('query') || '';
     setSearchQuery(query);
   }, [searchParams]);
-
-  const filteredProducts = products.filter(
-    (product: Product) => product.category === category,
-  );
-  let sortedProducts = sortProducts(filteredProducts, sortBy);
-
-  if (searchQuery) {
-    sortedProducts = sortedProducts.filter((product: Product) =>
-      product.name.toLowerCase().includes(searchQuery.toLowerCase().trim()),
-    );
-  }
 
   const handlePagination = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -51,12 +57,5 @@ export const usePageLogic = (category: Category) => {
     setSearchParams(params.toString());
   };
 
-  const indexOfLastPost = currentPage * productsPerPage;
-  const indexOfFirstPost = indexOfLastPost - productsPerPage;
-  const currentProducts = sortedProducts.slice(
-    indexOfFirstPost,
-    indexOfLastPost,
-  );
-
-  return { currentProducts, sortedProducts, currentPage, handlePagination };
+  return { currentProducts, totalCount, currentPage, handlePagination };
 };

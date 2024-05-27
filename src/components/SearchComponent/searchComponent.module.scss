@@ -3,12 +3,15 @@
 
 .search {
   display: flex;
-  border-left: 1px solid var(--elements-color);
-  transition: $effectDuration;
   width: 48px;
   height: 100%;
   justify-self: right;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+
+  border-left: 1px solid var(--elements-color);
+  transition: $effectDuration;
 
   @include on-desktop {
     width: 64px;
@@ -16,38 +19,37 @@
 }
 
 .input {
-  position: absolute;
-  right: 0;
   width: 100%;
-  height: 100%;
-  max-width: 500px;
-
-  border: none;
-  z-index: 5;
-
-  color: var(--primary-color);
   background-color: var(--main-bg-color);
-  border-left: 1px solid var(--secondary-color);
-  transition: $effectDuration;
-  padding: 10px 15px;
-
+  color: var(--primary-color);
+  border: none;
+  padding: 30px 40px;
+  outline: none;
   font-family: $Mont, sans-serif;
   font-size: 16px;
+  border: 1px solid transparent;
+  border: 1px solid var(--elements-color);
+  transition: $effectDuration;
 }
 
 .icon {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  background-image: url('./../../img/icons/search.svg');
-  background-size: 13px;
+  width: 13px;
+  height: 13px;
   background-repeat: no-repeat;
   background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @include on-desktop {
     width: 64px;
     height: 64px;
-    background-size: 16px;
+  }
+
+  &__search {
+    fill: var(--main-icons-color);
+    transition: $effectDuration;
   }
 }
 
@@ -56,16 +58,103 @@
   right: 0;
   width: 48px;
   height: 48px;
-  background-image: url('./../../img/icons/close.svg');
   background-size: 14px;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 102;
   cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @include on-desktop {
     width: 64px;
     height: 64px;
     background-size: 16px;
   }
+
+  &__icon {
+    fill: var(--main-icons-color);
+    transition: $effectDuration;
+
+    width: 18px;
+    height: 18px;
+
+    @include on-tablet {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+// .modal::-webkit-scrollbar-track {
+//   border: 10px;
+// }
+
+.modalContent {
+  overflow: auto;
+  max-height: 90vh;
+  height: 90vh;
+  background-color: var(--main-bg-color);
+  transition: $effectDuration;
+  border-radius: 8px;
+  position: relative;
+  width: 80vw;
+}
+
+.results {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  gap: 20px;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 48px;
+  border: none;
+  background-color: var(--accent-color);
+  transition: $effectDuration;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transition: 0.3s ease;
+    box-shadow: 0px 3px 13px 0px #17203166;
+  }
+}
+
+.noResults {
+  text-align: center;
+  padding-top: 20px;
+  width: 300px;
 }

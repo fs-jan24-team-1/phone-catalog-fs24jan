@@ -9,6 +9,8 @@ import styles from './productCard.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonPrimary } from 'components/UI/ButtonPrimary';
 import { ButtonFavourite } from 'components/UI/ButtonFavourite';
+import { getImageUrl } from 'utils/urlUtils';
+import useInViewOnce from './../../hooks/useInViewOnce';
 
 type Props = {
   product: Product;
@@ -92,12 +94,14 @@ export const ProductCard: FC<Props> = ({ product }) => {
     },
   };
 
+  const [ref, inView] = useInViewOnce({ threshold: 0 });
+
   return (
     <motion.div
+      ref={ref}
       variants={cardVariants}
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: true, amount: 0.1 }}
+      initial={!inView ? 'onscreen' : 'offscreen'}
+      animate={inView ? 'onscreen' : 'offscreen'}
     >
       <Link to={url} style={{ textDecoration: 'none', color: 'black' }}>
         <article className={styles.wrapper}>
@@ -105,7 +109,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
             <div className={styles.product__image}>
               <img
                 className={styles.product__image_img}
-                src={product.image}
+                src={getImageUrl(product.image)}
                 alt={product.name}
               />
             </div>

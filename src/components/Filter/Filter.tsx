@@ -7,8 +7,8 @@ import { useTheme } from 'hooks/useTheme';
 
 
 export enum SortBy {
-  age = 'age',
-  title = 'title',
+  age = 'year',
+  title = 'name',
   price = 'price',
 }
 
@@ -17,13 +17,13 @@ export const Filter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const sortOptions = [
-    { value: 'age', label: t('filters.Newest') },
-    { value: 'title', label: t('filters.Alphabetically') },
+    { value: 'year', label: t('filters.Newest') },
+    { value: 'name', label: t('filters.Alphabetically') },
     { value: 'price', label: t('filters.Cheapest') },
   ];
 
   const itemsPerPageOptions = [
-    { value: Infinity, label: t('filters.All') },
+    { value: 200, label: t('filters.All') },
     { value: 4, label: '4' },
     { value: 8, label: '8' },
     { value: 16, label: '16' },

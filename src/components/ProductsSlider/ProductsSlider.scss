@@ -69,33 +69,24 @@
     }
 
     &--left {
-      background-image: url('../../img/icons/arrows_left.svg');
       background-size: 5px;
-      // filter: brightness(var(--theme-change-brightness));
-      fill: red;;
       transition: $effectDuration;
     }
 
     &--left:disabled {
-      background-image: url('../../img/icons/arrows_left.svg');
       background-color: var(--slider-bg-disable-color);
       border: 1px solid var(--elements-color);
-      // filter: brightness(var(--theme-change-brightness));
       transition: $effectDuration;
     }
 
     &--right {
-      background-image: url('../../img/icons/arrows_right.svg');
       background-size: 5px;
-      // filter: brightness(var(--theme-change-brightness));
       transition: $effectDuration;
     }
 
     &--right:disabled {
-      background-image: url('../../img/icons/arrows_right.svg');
       background-color: var(--slider-bg-disable-color);
       border: 1px solid var(--elements-color);
-      // filter: brightness(var(--theme-change-brightness));
       transition: $effectDuration;
     }
   }
@@ -111,15 +102,15 @@
       grid-column: 1 / -1;
       grid-row: 1;
       column-gap: 16px;
-      grid-template-columns: repeat(20, 220px);
+      grid-template-columns: repeat(10, 220px);
     }
 
     @include on-tablet {
-      grid-template-columns: repeat(20, 275px);
+      grid-template-columns: repeat(10, 275px);
     }
 
     @include on-desktop {
-      grid-template-columns: repeat(20, 272px);
+      grid-template-columns: repeat(10, 272px);
     }
   }
 }

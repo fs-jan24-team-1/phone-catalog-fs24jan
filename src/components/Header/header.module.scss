@@ -4,16 +4,13 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
-
   position: fixed;
   height: 48px;
   width: 100%;
-
+  justify-content: space-between;
   box-sizing: border-box;
-  border-bottom: 1px solid var(--elements-color);
+  border-bottom: 1px solid var(--main-bg-color);
   background-color: var(--main-bg-color);
-
   z-index: 3;
 
   transition: $effectDuration;
@@ -50,11 +47,19 @@
     fill: var(--header-logo);
     transition: $effectDuration;
 
-    width: 64px;
-    height: auto;
-
     @include on-desktop {
       width: 80px;
+      height: auto;
+    }
+
+    @include on-tablet {
+      width: 64px;
+      height: auto;
+    }
+
+    @include on-mobile {
+      width: 64px;
+      height: auto;
     }
   }
 
@@ -66,7 +71,6 @@
     @include on-desktop {
       gap: 64px;
     }
-
   }
 
   &__nav_link {
@@ -75,13 +79,13 @@
     align-items: center;
 
     height: 48px;
-
+    box-sizing: border-box;
     color: var(--secondary-color);
-
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 12px;
+    display: none;
 
     transition: $effectDuration;
 
@@ -91,7 +95,7 @@
     }
 
     &::before {
-        content: '';
+      content: '';
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -99,8 +103,6 @@
       width: 0;
       height: 3px;
       background-color: var(--primary-color);
-
-      transition: $effectDuration;
       transition: width 0.4s;
     }
 
@@ -116,12 +118,10 @@
 
 .is_active {
   color: var(--primary-color);
-
   transition: $effectDuration;
 
   &::after {
     content: '';
-
     position: absolute;
     bottom: 0;
     left: 0;
@@ -130,7 +130,6 @@
     height: 3px;
 
     background-color: var(--primary-color);
-
     transition: $effectDuration;
   }
 }
@@ -144,21 +143,21 @@
   width: 48px;
   height: 100%;
 
+  justify-content: center;
+  align-items: center;
+
   appearance: none;
   border: none;
   background: none;
   appearance: none;
   display: none;
 
-  justify-content: center;
-  align-items: center;
-
   border-left: 1px solid var(--elements-color);
 
   transition: $effectDuration;
 
   @include on-tablet {
-  display: flex;
+    display: flex;
   }
 
   @include on-mobile {
@@ -173,6 +172,8 @@
 .menus__logo {
   width: 14px;
   height: 10px;
+
+  fill: var(--elements-color);
 }
 
 .favorites {
@@ -185,14 +186,13 @@
   height: 100%;
   width: 64px;
 
-
   border-left: 1px solid var(--elements-color);
   display: none;
 
   @include on-desktop {
-   width: 64px;
-   height: 64px;
-   display: flex;
+    width: 64px;
+    height: 64px;
+    display: flex;
   }
 
   &__logo {
@@ -468,12 +468,4 @@
 .navBarWrapper {
   animation: slideInFromRight 0.5s forwards;
   transform: translateX(0%);
-}
-
-.language_switcher {
-  margin-right: 15px;
-
-  @include on-desktop {
-    margin-right: 25px;
-  }
 }

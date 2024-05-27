@@ -5,8 +5,8 @@
   display: flex;
   position: relative;
   align-items: center;
-  width: 120px;
   height: 48px;
+  border-left: 1px solid var(--elements-color);
 
   @include on-desktop {
     height: 64px;
@@ -14,21 +14,18 @@
 }
 
 .flag {
-  flex: 1;
-  padding: 10px 0;
-  width: 8px;
-  height: 5px;
+  position: absolute;
+  right: 21px;
+  height: 26px;
+  width: 28px;
+  border-radius: 50%;
 
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
   cursor: pointer;
   transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.1);
-  }
 }
 
 .en {
@@ -40,7 +37,6 @@
 }
 
 .separator {
-  position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 0.5px;
@@ -49,6 +45,11 @@
   background-color: var(--elements-color);
 }
 
+.not-active {
+  right: 60px;
+}
+
 .active {
-  transform: scale(1.1);
+  z-index: 2;
+  transform: scale(1.05) !important;
 }

@@ -14,14 +14,18 @@ export const Theme = () => {
   };
 
   return (
-    <div className='container'>
+    <div className={styles.toggleWrapper}>
       <input
         type="checkbox"
-        id="switch"
+        name="toggle"
+        className={styles.mobileToggle}
+        id="toggle"
         onChange={handleToggle}
         checked={theme === 'dark'}
       />
-      <label htmlFor="switch">Toggle</label>
+      <label htmlFor="toggle"></label>
+
+      <div className={styles.bab}></div>
     </div>
   );
 };

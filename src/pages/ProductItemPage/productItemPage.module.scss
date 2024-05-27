@@ -23,6 +23,8 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  background-color: var(--main-bg-color);
+  transition: $effectDuration;
 }
 
 .mainImg {
@@ -105,7 +107,7 @@
       height: 80px;
 
       border: 1px solid var(--elements-color);
-      background-color: var(--white-color);
+      background-color: var(--main-bg-color);
       cursor: pointer;
 
       transition: $effectDuration;
@@ -132,7 +134,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: var(--white-color);
+    background-color: var(--main-bg-color);
     border: 1px solid var(--elements-color);
 
     transition: $effectDuration;
@@ -181,13 +183,11 @@
       &_buttons {
         display: flex;
         margin-bottom: 24px;
-
       }
     }
 
     &__color_button {
       margin-right: 8px;
-     
     }
 
     &__capacity {
@@ -306,6 +306,7 @@
 }
 
 .more_details {
+  text-align: justify;
   @include page-grid;
 
   grid-column: 1 / -1;
@@ -427,6 +428,10 @@
       }
     }
   }
+}
+
+.NotFoundPage {
+  grid-column: 1 / -1;
 }
 
 .slider {

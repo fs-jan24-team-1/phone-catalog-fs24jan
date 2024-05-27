@@ -2,15 +2,35 @@
 @import './styles/utils/variables';
 @import './styles/utils/mixins';
 
+
 html[data-theme='light'] {
-   --light: #d8dbe0;
+  --light: #d8dbe0;
   --dark: #28292c;
   --link: rgb(27, 129, 112);
   --link-hover: rgb(24, 94, 82);
 
+  --rigths-text-color: #532097;
+  --arrow-main-color: #0f0f11;
+
+  --select-border-color: #323542;
+  --select-border-focudes-color: #E8E9EE;
+  --select-menu-border-color: #fff;
+  --select-control-bg-color: #fff;
+  --select-border-color: #75767f;
+  --select-option-hover-color: #FAFBFC;
+  --select-hover-text-color: #0F0F11;
+   --select-menu-selected-color:#0F0F11;
+  --select-menu-not-selected-color: #75767f;
+
+
+  --scroll-bar-bg-color: #f1f1f1;
+  --scroll-bar-thumb-bg-color: #959595;
+  --scroll-bar-thumb-border-color: #f1f1f1;
+  --scroll-bar-thumb-hover-color: #888888;
+
   --accent-color: #4219d0;
   --header-logo: #313237;
-  --header-text-color: #89939A;
+  --header-text-color: #89939a;
 
   --primary-color: #0f0f11;
   --secondary-color: #89939a;
@@ -44,6 +64,9 @@ html[data-theme='light'] {
   --btn-hover-shadow: rgba(23, 32, 49, 0.4);
 
   --theme-change-brightness: 0;
+  --theme-main-color: #2ecc71;
+  --theme-second-color: lightgray;
+  --theme-background-color: #c4c7c9;
 
   --hover-color: #fafbfc;
   --background-color: #fafbfc;
@@ -60,10 +83,29 @@ html[data-theme='dark'] {
   --dark: #28292c;
   --link: rgb(27, 129, 112);
   --link-hover: rgb(24, 94, 82);
-  
+
+  --rigths-text-color: #abacb4;
+  --arrow-main-color: #fff;
+  --arrow-disable-color: #abacb4;
+
+  --select-border-color: #0F0F11;
+  --select-border-focudes-color: #4c4f5a ;
+  --select-menu-border-color: #0F0F11;
+  --select-control-bg-color: #242736;
+  --select-border-color: #323542;
+  --select-option-hover-color: #242736;
+  --select-hover-text-color: #fff;
+  --select-menu-selected-color:#fff;
+  --select-menu-not-selected-color: #4c4f5a;
+
+  --scroll-bar-bg-color: #75767f;
+  --scroll-bar-thumb-bg-color: #323542;
+  --scroll-bar-thumb-border-color:#75767f;
+  --scroll-bar-thumb-hover-color: #3a3d49;
+
   --accent-color: #905bff;
   --header-logo: #f1f2f9;
-  --header-text-color: #75767F;
+  --header-text-color: #75767f;
 
   --primary-color: #f1f2f9;
   --secondary-color: #75767f;
@@ -97,6 +139,9 @@ html[data-theme='dark'] {
   --btn-hover-shadow: rgba(120, 151, 209, 0.4);
 
   --theme-change-brightness: 10;
+  --theme-main-color: #2ecc71;
+  --theme-second-color: lightgray;
+  --theme-background-color: whitesmoke;
 
   --hover-color: #161827;
   --background-color: #0f1121;
@@ -143,4 +188,38 @@ body {
   @include on-desktop {
     padding-top: $header-height-desktop;
   }
+}
+
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+img {
+  opacity: 0;
+  animation: fadeInZoom 0.6s ease-in-out forwards;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--scroll-bar-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-bar-thumb-bg-color);
+  border-radius: 8px;
+  border: 3px solid var(--scroll-bar-thumb-border-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scroll-bar-thumb-hover-color);
 }

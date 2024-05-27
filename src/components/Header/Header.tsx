@@ -7,11 +7,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { NavBar } from 'components/NavBar';
 import { SearchComponent } from 'components/SearchComponent';
-import { SwitchLanguage } from 'components/SwitchLanguage';
+import { SwitchLanguageHeader } from 'components/SwitchLanguageHeader';
 import { ReactComponent as Logo } from 'img/icons/Logo.svg';
-import menu from 'img/icons/menu.svg';
-import {ReactComponent as Cours} from 'img/icons/cours.svg';
-import {ReactComponent as Heart} from 'img/icons/hearts.svg';
+import { ReactComponent as Menus } from 'img/icons/menu.svg';
+import { ReactComponent as Cours } from 'img/icons/cours.svg';
+import { ReactComponent as Heart } from 'img/icons/hearts.svg';
 import { Theme } from 'components/Theme/Theme';
 
 export const Header = () => {
@@ -78,12 +78,11 @@ export const Header = () => {
         </nav>
       </div>
 
-      {false && <SwitchLanguage />}
-      <Theme />
-
       <div className={styles.right_side}>
+        <Theme />
+
         <div className={styles.language_switcher}>
-          {isLangSwitcherShow && <SwitchLanguage />}
+          {isLangSwitcherShow && <SwitchLanguageHeader />}
         </div>
         {isShowSearch && <SearchComponent />}
         <NavLink
@@ -93,9 +92,7 @@ export const Header = () => {
           }
         >
           <div className={styles.favoritesIconContainer}>
-            <Heart
-              className={styles.favorites__logo}
-            />
+            <Heart className={styles.favorites__logo} />
 
             {favoritesCount > 0 && (
               <div className={styles.favoritesItemCount}>{favoritesCount}</div>
@@ -109,15 +106,14 @@ export const Header = () => {
           }
         >
           <div className={styles.cartIconContainer}>
-            <Cours
-              className={styles.cart__logo} />
+            <Cours className={styles.cart__logo} />
             {cartCount > 0 && (
               <div className={styles.cartItemCount}>{cartCount}</div>
             )}
           </div>
         </NavLink>
         <button className={styles.menus} onClick={toggleMenu}>
-          <img src={menu} alt="menuicon" className="menus__logo" />
+          <Menus className={styles.menus__logo} />
         </button>
 
         {isMenuShow && (

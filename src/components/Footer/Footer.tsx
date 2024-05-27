@@ -28,15 +28,11 @@ export const Footer = () => {
           </li>
 
           <li className={styles.footer__item}>
-            <Link to="#" className={styles.footer__link}>
-              {t('footer.Contacts')}
-            </Link>
+            <Link to="/contacts" className={styles.footer__link}>{t('footer.Contacts')}</Link>
           </li>
 
           <li className={styles.footer__item}>
-            <Link to="#" className={styles.footer__link}>
-              {t('footer.Rights')}
-            </Link>
+            <Link to="/rights" className={styles.footer__link}>{t('footer.Rights')}</Link>
           </li>
         </ul>
 
