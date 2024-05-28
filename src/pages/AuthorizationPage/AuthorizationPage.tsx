@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
 import styles from './authorizationPage.module.scss';
-// import eyeIcon from './lock.png';
-// import eyeSlashIcon from './onLock.jpg';
 import { ReactComponent as Lock } from 'img/icons/lock.svg';
 import { ReactComponent as Unlock } from 'img/icons/unlock.svg';
+import { API_URL } from 'api';
 
 interface PasswordInputProps {
   placeholder: string;
@@ -11,33 +10,70 @@ interface PasswordInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const AuthorizationPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, value, onChange }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const switchMode = () => {
-    setIsLogin(!isLogin);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+    if (inputRef.current) {
+      inputRef.current.type = showPassword ? 'text' : 'password';
+    }
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.form}>
-        {isLogin ? <LoginForm /> : <RegisterForm />}
-        <div className={styles.switchButton} onClick={switchMode}>
-          {isLogin ? 'No account? Sign up here' : 'Login here'}
-        </div>
+    <div className={styles.inputWithIcon}>
+      <input
+        ref={inputRef}
+        type={showPassword ? 'text' : 'password'}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required
+      />
+      <div className={styles.passwordToggle} onClick={togglePasswordVisibility}>
+        {showPassword ? <Unlock width="20" height="20" /> : <Lock width="20" height="20" />}
       </div>
     </div>
   );
 };
 
 const LoginForm = () => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const response = await fetch(`${API_URL}/login`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('accessToken', data.accessToken);
+      console.log('ok');
+    } else {
+      console.log('not ok');
+    }
+  };
+
   return (
-    <form action='/#'>
+    <form onSubmit={handleLoginSubmit}>
       <h2 className={styles.title}>Login</h2>
       <div className={styles.inputWithIcon}>
-        <input type="email" placeholder="Email" required />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
       </div>
       <div className={styles.inputWithIcon}>
         <PasswordInput
@@ -53,31 +89,45 @@ const LoginForm = () => {
 };
 
 const RegisterForm = () => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Passwords do not match');
+      return;
+    }
+
+    const response = await fetch(`${API_URL}/registration`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ firstName, lastName, email, password }),
+    });
+
+    if (response.ok) {
+      console.log('ok');
     } else {
-      setError('');
+      console.log('not ok');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} action="/#">
+    <form onSubmit={handleSubmit}>
       <h2 className={styles.title}>Sign up</h2>
       <div className={styles.nameFields}>
         <div className={styles.inputWithIcon}>
           <input
             type="text"
-            placeholder="Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </div>
@@ -86,26 +136,32 @@ const RegisterForm = () => {
             type="text"
             placeholder="Last Name"
             value={lastName}
-            onChange={e => setLastName(e.target.value)}
+            onChange={(e) => setLastName(e.target.value)}
             required
           />
         </div>
       </div>
       <div className={styles.inputWithIcon}>
-        <input type="email" placeholder="Email" required />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
       </div>
       <div className={styles.inputWithIcon}>
         <PasswordInput
           placeholder="Password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className={styles.inputWithIcon}>
         <PasswordInput
           placeholder="Confirm Password"
           value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
       {error && <div className={styles.error}>{error}</div>}
@@ -115,34 +171,20 @@ const RegisterForm = () => {
   );
 };
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, value, onChange }) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+export const AuthorizationPage = () => {
+  const [isLogin, setIsLogin] = useState(true);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-    if (inputRef.current) {
-      inputRef.current.type = showPassword ? 'password' : 'text';
-    }
+  const switchMode = () => {
+    setIsLogin(!isLogin);
   };
 
   return (
-    <div className={styles.inputWithIcon}>
-      <input
-        ref={inputRef}
-        type="password"
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        required
-      />
-      <div className={styles.passwordToggle} onClick={togglePasswordVisibility}>
-        {showPassword ? (
-          <Unlock className={styles.lock} />
-        ) : (
-          <Lock className={styles.lock} />
-        )}
-        {/* <img src={showPassword ? eyeSlashIcon : eyeIcon} alt={showPassword ? "Hide Password" : "Show Password"} width="20" height="20" /> */}
+    <div className={styles.container}>
+      <div className={styles.form}>
+        {isLogin ? <LoginForm /> : <RegisterForm />}
+        <div className={styles.switchButton} onClick={switchMode}>
+          {isLogin ? 'No account? Sign up here' : 'Login here'}
+        </div>
       </div>
     </div>
   );

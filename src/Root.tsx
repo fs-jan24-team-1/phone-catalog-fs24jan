@@ -16,6 +16,7 @@ import { ProductItemPage } from './pages/ProductItemPage';
 import { ContactsPage } from './pages/ContactsPage';
 import { RightsPage } from 'pages/RightsPage';
 import { AuthorizationPage } from 'pages/AuthorizationPage';
+import { ActivatePage } from 'pages/ActivatePage';
 
 export const Root = () => (
   <Router>
@@ -37,6 +38,8 @@ export const Root = () => (
         <Route path="/favorites" element={<FavoritesPage />} />
 
         <Route path="/cart" element={<CartPage />} />
+
+        <Route path="/activate/:token" element={<ActivatePage />} />
 
         <Route path="*" element={<NotFoundPage />} />
 
