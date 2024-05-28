@@ -170,8 +170,8 @@
 }
 
 .menus__logo {
-  width: 14px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
 
   fill: var(--elements-color);
 }
@@ -196,6 +196,8 @@
   }
 
   &__logo {
+    width: 20px;
+    height: 20px;
     fill: var(--main-icons-color);
     transition: $effectDuration;
   }
@@ -213,17 +215,18 @@
 
   border-left: 1px solid var(--elements-color);
   transition: border-bottom 0.3s;
+  display: none;
 
-  @include on-tablet {
-    height: 48px;
-    width: 48px;
+  @include on-desktop {
+    width: 64px;
+    height: 64px;
+    display: flex;
   }
 
-  @include on-mobile {
-    display: none;
-  }
 
   &__logo {
+    width: 20px;
+    height: 20px;
     fill: var(--main-icons-color);
     transition: $effectDuration;
   }

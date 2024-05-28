@@ -10,7 +10,7 @@ export const SliderSkeleton: FC = () => {
 
   return (
     <div className={styles.skeletonSlider}>
-      <Skeleton className={styles.image} height={300} containerClassName={styles.skeletonSlider__container} baseColor={theme === 'dark' ? '#313237' : '#b4bdc3'} />
+      <Skeleton className={styles.image} height={400} containerClassName={styles.skeletonSlider__container} baseColor={theme === 'dark' ? '#313237' : '#b4bdc3'} />
     </div>
   );
 };
