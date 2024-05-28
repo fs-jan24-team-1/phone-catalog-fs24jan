@@ -21,13 +21,12 @@ interface CustomStylesProps {
   menuIsOpen?: boolean;
 }
 
-// const selectBorder =
-
 const getBaseStyles = (theme: boolean): StylesConfig<Option, false> => ({
   control: (base: CSSObjectWithLabel, { isFocused }: CustomStylesProps) => ({
     ...base,
     border: `1px solid ${isFocused ? 'var(--select-border-focudes-color)' : 'var(--select-border-color)'}`,
     backgroundColor: 'var(--select-control-bg-color)',
+    color: `${theme ? '#242736' : '#fff'}`,
     boxShadow: 'none',
     borderRadius: '8px',
     fontFamily: 'Mont',
