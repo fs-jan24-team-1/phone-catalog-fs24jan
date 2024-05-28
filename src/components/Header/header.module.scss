@@ -8,8 +8,7 @@
   height: 48px;
   width: 100%;
   justify-content: space-between;
-  box-sizing: border-box;
-  border-bottom: 1px solid var(--main-bg-color);
+  border-bottom: 1px solid var(--elements-color);
   background-color: var(--main-bg-color);
   z-index: 3;
 
@@ -202,6 +201,8 @@
   }
 
   &__logo {
+    width: 20px;
+    height: 20px;
     fill: var(--main-icons-color);
     transition: $effectDuration;
   }
@@ -219,17 +220,18 @@
 
   border-left: 1px solid var(--elements-color);
   transition: border-bottom 0.3s;
+  display: none;
 
-  @include on-tablet {
-    height: 48px;
-    width: 48px;
+  @include on-desktop {
+    width: 64px;
+    height: 64px;
+    display: flex;
   }
 
-  @include on-mobile {
-    display: none;
-  }
 
   &__logo {
+    width: 20px;
+    height: 20px;
     fill: var(--main-icons-color);
     transition: $effectDuration;
   }
@@ -424,7 +426,6 @@
   color: var(--secondary-color);
   font-size: 12px;
   line-height: 11px;
-  font-weight: 800px;
 
   border-bottom: 1px solid transparent;
   transition: border-bottom 0.5s ease;

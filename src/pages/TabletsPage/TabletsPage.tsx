@@ -6,11 +6,14 @@ import styles from './tabletsPage.module.scss';
 import { Catalog } from 'components/Catalog';
 import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Pagination } from 'components/Pagination';
+import { motion } from 'framer-motion';
+import { titleVariants } from 'utils/titleVariants';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { isValidCurrentPage } from 'utils/isValidCurrentPage';
 
 export const TabletsPage = () => {
   const {
+    isLoading,
     currentProducts,
     totalCount = 0,
     currentPage,
@@ -22,11 +25,18 @@ export const TabletsPage = () => {
 
   return (
     <>
-      {isValidCurrentPage(totalCount, currentPage) ? (
+      {isValidCurrentPage(totalCount, currentPage) && (
         <div className={styles.container}>
           <Breadcrumbs />
 
-          <h1 className={styles.container__title}>{t('categories.Tablets')}</h1>
+          <motion.h1
+            className={styles.container__title}
+            variants={titleVariants}
+            initial="initial"
+            animate="visible"
+          >
+            {t('categories.Tablets')}
+          </motion.h1>
 
           <Catalog products={currentProducts} totalProducts={totalCount} />
           <Pagination
@@ -35,9 +45,9 @@ export const TabletsPage = () => {
             handlePagination={handlePagination}
           />
         </div>
-      ) : (
-        <NotFoundPage />
       )}
+
+      {!isValidCurrentPage(totalCount, currentPage) && !isLoading && <NotFoundPage />}
     </>
   );
 };

@@ -1,6 +1,8 @@
 @import '../../styles/utils/variables';
 
 
+@import 'styles/utils/mixins';
+
 .container {
   display: flex;
   flex-direction: column;

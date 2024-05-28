@@ -32,6 +32,7 @@ export const AuthorizationPage = () => {
 
 const LoginForm = () => {
   const [password, setPassword] = useState('');
+
   return (
     <form action='/#'>
       <h2 className={styles.title}>Login</h2>

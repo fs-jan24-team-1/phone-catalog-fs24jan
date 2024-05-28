@@ -6,11 +6,13 @@ import styles from './accesoriesPage.module.scss';
 import { Catalog } from 'components/Catalog';
 import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Pagination } from 'components/Pagination';
+import { motion } from 'framer-motion';
+import { titleVariants } from 'utils/titleVariants';
 import { isValidCurrentPage } from 'utils/isValidCurrentPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 
 export const AccessoriesPage = () => {
-  const { currentProducts, totalCount = 0, currentPage, handlePagination } =
+  const { isLoading, currentProducts, totalCount = 0, currentPage, handlePagination } =
     usePageLogic(Category.accessories);
   const [t] = useTranslation('global');
 
@@ -18,11 +20,18 @@ export const AccessoriesPage = () => {
 
   return (
     <>
-    {isValidCurrentPage(totalCount, currentPage) ? (
+    {isValidCurrentPage(totalCount, currentPage) && (
       <div className={styles.container}>
         <Breadcrumbs />
 
-        <h1 className={styles.container__title}>{t('categories.Accessories')}</h1>
+      <motion.h1
+        className={styles.container__title}
+        variants={titleVariants}
+        initial="initial"
+        animate="visible"
+      >
+        {t('categories.Accessories')}
+      </motion.h1>
 
         <Catalog
           products={currentProducts}
@@ -34,9 +43,9 @@ export const AccessoriesPage = () => {
           handlePagination={handlePagination}
         />
       </div>
-    ) : (
-      <NotFoundPage />
     )}
+
+    {!isValidCurrentPage(totalCount, currentPage) && !isLoading && <NotFoundPage />}
   </>
   );
 };

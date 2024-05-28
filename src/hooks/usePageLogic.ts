@@ -11,6 +11,7 @@ export const usePageLogic = (category: Category) => {
   const [sortBy, setSortBy] = useState<SortBy>(SortBy.age);
   const [searchParams, setSearchParams] = useSearchParams();
   const [, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const params = new URLSearchParams(searchParams);
   const perPage = params.get('perPage');
@@ -23,7 +24,7 @@ export const usePageLogic = (category: Category) => {
         sortBy,
         String(productsPerPage),
         currentPage,
-      );
+      ).finally(() => setIsLoading(false));
       setCurrentProducts(products);
       setTotalCount(totalCount);
     };
@@ -57,5 +58,5 @@ export const usePageLogic = (category: Category) => {
     setSearchParams(params.toString());
   };
 
-  return { currentProducts, totalCount, currentPage, handlePagination };
+  return { isLoading, currentProducts, totalCount, currentPage, handlePagination };
 };

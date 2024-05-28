@@ -6,8 +6,13 @@ import { ReactComponent as ArrowUp } from 'img/icons/arrow_up.svg';
 
 export const Footer = () => {
   const [t] = useTranslation("global");
-  const handleScrollToTop = () => {
+
+  const handleSmoothScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0 });
   }
 
   return (
@@ -28,7 +33,7 @@ export const Footer = () => {
           </li>
 
           <li className={styles.footer__item}>
-            <Link to="/contacts" className={styles.footer__link}>{t('footer.Contacts')}</Link>
+            <Link to="/contacts" className={styles.footer__link} onClick={handleScrollToTop}>{t('footer.Contacts')}</Link>
           </li>
 
           <li className={styles.footer__item}>
@@ -37,16 +42,11 @@ export const Footer = () => {
         </ul>
 
         <div className={styles['back-to-top']}>
-          <div
-            className={styles['back-to-top__content']}
-            onClick={handleScrollToTop}
-          >
-            <span className={styles['back-to-top__text']}>
-              {t('footer.Back to top')}
-            </span>
+          <div className={styles['back-to-top__content']} onClick={handleSmoothScrollToTop}>
+            <span className={styles['back-to-top__text']}>{t('footer.Back to top')}</span>
 
             <div className={styles['back-to-top__button']} />
-                <ArrowUp className={styles['back-to-top__arrow']}/>
+              <ArrowUp className={styles['back-to-top__arrow']}/>
           </div>
         </div>
       </div>
