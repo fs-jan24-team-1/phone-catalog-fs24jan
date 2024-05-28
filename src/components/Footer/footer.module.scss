@@ -1,6 +1,6 @@
-@import "styles/utils/variables";
-@import "styles/utils/mixins";
-@import "styles/utils/typography";
+@import 'styles/utils/variables';
+@import 'styles/utils/mixins';
+@import 'styles/utils/typography';
 
 * {
   box-sizing: border-box;
@@ -9,8 +9,9 @@
 .footer {
   display: flex;
   width: 100%;
-  border-top: 1px solid $elements;
-  background-color: $white;
+  border-top: 1px solid var(--elements-color);
+  background-color: var(--main-bg-color);
+  transition: $effectDuration;
 
   &__wrapper {
     display: flex;
@@ -37,7 +38,9 @@
     width: 89px;
     height: 32px;
 
-    background-image: url(./../../img/icons/Logo.svg);
+    fill: var(--header-logo);
+    transition: $effectDuration;
+
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -73,7 +76,8 @@
 
   &__link {
     text-decoration: none;
-    color: $secondary;
+    color: var(--footer-link-color);
+    transition: $effectDuration;
   }
 }
 
@@ -99,21 +103,27 @@
     font-size: 12px;
     font-weight: 700;
     line-height: 16px;
-    color: $secondary;
+    color: var(--secondary-color);
+    transition: $effectDuration;
   }
 
   &__button {
+    position: relative;
     display: flex;
     height: 100%;
     aspect-ratio: 1;
     padding: 0;
-    border: 1px solid $icons;
+    border: 1px solid var(--icons-color);
+    transition: $effectDuration;
     border-radius: 50%;
-    background-color: transparent;
+  }
 
-    background-image: url(./../../img/icons/arrow_up.svg);
-    background-position: center;
-    background-repeat: no-repeat;
+  &__arrow {
+    position: relative;
+    right: 40px;
+
+    fill: var(--main-icons-color);
+    transition: $effectDuration;
   }
 
   @include on-mobile {
@@ -123,4 +133,8 @@
   @include on-tablet {
     width: fit-content;
   }
+}
+
+.back-to-top__button {
+  background-color: var(--card--bg-color);
 }

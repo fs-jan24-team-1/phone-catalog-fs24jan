@@ -8,6 +8,8 @@ import { CategoriesSection } from 'components/CategoriesSection';
 import { useTranslation } from 'react-i18next';
 import { getHotPricesProducts, getNewestProducts } from 'api';
 import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
+import { titleVariants } from 'utils/titleVariants';
 
 export const HomePage = () => {
   const [newestProducts, setNewestProducts] = useState<Product[]>([]);
@@ -38,9 +40,14 @@ export const HomePage = () => {
 
   return (
     <div className={styles.containers}>
-      <h1 className={styles.title}>
+      <motion.h1
+        className={styles.title}
+        variants={titleVariants}
+        initial="initial"
+        animate="visible"
+      >
         {t('home.Welcome to Nice Gadgets store!')}
-      </h1>
+      </motion.h1>
       <Slider />
 
       <ProductsSlider

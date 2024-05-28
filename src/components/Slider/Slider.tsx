@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './slider.module.scss';
 import classNames from 'classnames';
+import { SliderSkeleton } from '../SliderSkeleton';
 
 const images = [
   require('./img/banner-phones.png'),
@@ -11,6 +12,7 @@ const images = [
 export const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sliderWidth, setSliderWidth] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const lastIndex = images.length - 1;
   const banner = useRef<HTMLDivElement>(null);
   const transformValue = sliderWidth * currentIndex;
@@ -21,6 +23,29 @@ export const Slider = () => {
       setSliderWidth(banner.current.offsetWidth);
     }
   }, [currentIndex]);
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      handleNextSlide();
+    }, 5000);
+
+    return () => clearInterval(timerId);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    const imageLoadPromises = images.map(
+      (src) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+        })
+    );
+
+    Promise.all(imageLoadPromises).then(() => {
+      setIsLoading(false);
+    });
+  }, []);
 
   const handlePrevSlide = () => {
     if (currentIndex !== 0) {
@@ -37,14 +62,6 @@ export const Slider = () => {
       setCurrentIndex(0);
     }
   };
-
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      handleNextSlide();
-    }, 5000);
-
-    return () => clearInterval(timerId);
-  }, [currentIndex]);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchPosition(e.touches[0].clientX);
@@ -75,44 +92,50 @@ export const Slider = () => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
-      <div className={styles.carousel__slider}>
-        <button
-          type="button"
-          aria-label="button"
-          className={classNames(styles['carousel__slider-button'], styles['carousel__slider-button-left'])}
-          onClick={handlePrevSlide}
-        >
-          <div className={classNames(styles.icon, styles['icon-left'])} />
-        </button>
-
+      {isLoading ? (
         <div className={styles['carousel__slider-container']} ref={banner}>
-          <ul
-            className={styles['carousel__slider-list']}
-            style={{
-              transform: `translateX(${-transformValue}px)`,
-            }}
-          >
-            {images.map((image, index) => (
-              <li key={index} className={styles['carousel__slider-item']}>
-                <img
-                  src={image}
-                  alt="Banner"
-                  className={styles['carousel__slider-image']}
-                />
-              </li>
-            ))}
-          </ul>
+          <SliderSkeleton />
         </div>
+      ) : (
+        <div className={styles.carousel__slider}>
+          <button
+            type="button"
+            aria-label="button"
+            className={classNames(styles['carousel__slider-button'], styles['carousel__slider-button-left'])}
+            onClick={handlePrevSlide}
+          >
+            <div className={classNames(styles.icon, styles['icon-left'])} />
+          </button>
 
-        <button
-          type="button"
-          aria-label="button"
-          className={classNames(styles['carousel__slider-button'], styles['carousel__slider-button-right'])}
-          onClick={handleNextSlide}
-        >
-          <div className={classNames(styles.icon, styles['icon-right'])} />
-        </button>
-      </div>
+          <div className={styles['carousel__slider-container']} ref={banner}>
+            <ul
+              className={styles['carousel__slider-list']}
+              style={{
+                transform: `translateX(${-transformValue}px)`,
+              }}
+            >
+              {images.map((image, index) => (
+                <li key={index} className={styles['carousel__slider-item']}>
+                  <img
+                    src={image}
+                    alt="Banner"
+                    className={styles['carousel__slider-image']}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button
+            type="button"
+            aria-label="button"
+            className={classNames(styles['carousel__slider-button'], styles['carousel__slider-button-right'])}
+            onClick={handleNextSlide}
+          >
+            <div className={classNames(styles.icon, styles['icon-right'])} />
+          </button>
+        </div>
+      )}
 
       <div className={styles['carousel__dots']}>
         {images.map((_, index) => (

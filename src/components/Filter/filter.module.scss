@@ -18,9 +18,11 @@
   }
 
   &__description {
-    color: $secondary;
     font-weight: 500;
     font-size: 12px;
     line-height: 15.34px;
+
+    color: var(--secondary-color);
+    transition: $effectDuration;
   }
 }

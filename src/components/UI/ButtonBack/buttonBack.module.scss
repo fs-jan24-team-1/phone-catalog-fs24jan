@@ -12,7 +12,7 @@
 
   cursor: pointer;
   text-decoration: none;
-  color: $secondary;
+  color: var(--product-back);
 
   transition: $effectDuration;
 
@@ -21,7 +21,9 @@
   }
 
   &:hover {
-    color: $primary;
+    color: var(--product-back-hover);
+
+    transition: $effectDuration;
   }
 
   &::before {
@@ -29,7 +31,8 @@
     width: 19px;
     height: 19px;
     margin-right: 4px;
-    filter: brightness(0);
+    filter: brightness(var(--theme-change-brightness));
+    transition: $effectDuration;
 
     background-repeat: no-repeat;
     background-size: cover;

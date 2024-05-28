@@ -22,18 +22,20 @@
   &.default,
   &.checkout  {
     color: $white;
-    background-color: $accent;
-    border: 1px solid $accent;
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    transition: $effectDuration;
   }
 
   &:hover {
-    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+    box-shadow: 0px 3px 13px 0px var(--btn-hover-shadow);
   }
 
   &.selected {
-    color: $accent;
-    background-color: $white;
-    border: 1px solid $icons;
+    color: var(--selected-text-color);
+    background-color: var(--selected-btn-color);
+    border: 1px solid var(--icons-color);
+    transition: $effectDuration;
   }
 }
 

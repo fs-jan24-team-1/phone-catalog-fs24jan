@@ -8,7 +8,9 @@
   width: 290px;
   gap: 8px;
 
-  border: 1px solid $elements;
+  border: 1px solid var(--elements-color);
+
+  transition: $effectDuration;
   border-radius: 8px;
   box-sizing: border-box;
 
@@ -24,6 +26,10 @@
 
 .image {
   margin-bottom: 8px;
+}
+
+.react-loading-skeleton {
+  background-color: blue !important;
 }
 
 .description {

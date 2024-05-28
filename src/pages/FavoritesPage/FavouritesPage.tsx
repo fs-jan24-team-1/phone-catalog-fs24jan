@@ -9,6 +9,8 @@ import * as animationData from 'animations/EmptyFavourites.json';
 import { ProductCard } from 'components/ProductCard';
 import { Breadcrumbs } from 'components/Breadcrumbs';
 import { LottieAnimation } from 'components/UI/LottieAnimation';
+import { motion } from 'framer-motion';
+import { titleVariants } from 'utils/titleVariants';
 
 export const FavoritesPage = () => {
   const products = useSelector((state: RootState) => state.product.favourites);
@@ -21,7 +23,15 @@ export const FavoritesPage = () => {
     <div className={styles.container}>
       <Breadcrumbs />
 
-      <h1 className={styles.title}>{t('favourites.Favourites')}</h1>
+      <motion.h1
+        className={styles.title}
+        variants={titleVariants}
+        initial="initial"
+        animate="visible"
+      >
+        {t('favourites.Favourites')}
+      </motion.h1>
+
       <h3 className={styles.itemsLeft}>
         {numberOfItems} {t('favourites.items')}
       </h3>
