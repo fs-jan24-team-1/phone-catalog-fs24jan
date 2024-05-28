@@ -12,7 +12,7 @@ import { isValidCurrentPage } from 'utils/isValidCurrentPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 
 export const AccessoriesPage = () => {
-  const { currentProducts, totalCount = 0, currentPage, handlePagination } =
+  const { isLoading, currentProducts, totalCount = 0, currentPage, handlePagination } =
     usePageLogic(Category.accessories);
   const [t] = useTranslation('global');
 
@@ -20,7 +20,7 @@ export const AccessoriesPage = () => {
 
   return (
     <>
-    {isValidCurrentPage(totalCount, currentPage) ? (
+    {isValidCurrentPage(totalCount, currentPage) && (
       <div className={styles.container}>
         <Breadcrumbs />
 
@@ -43,9 +43,9 @@ export const AccessoriesPage = () => {
           handlePagination={handlePagination}
         />
       </div>
-    ) : (
-      <NotFoundPage />
     )}
+
+    {!isValidCurrentPage(totalCount, currentPage) && !isLoading && <NotFoundPage />}
   </>
   );
 };

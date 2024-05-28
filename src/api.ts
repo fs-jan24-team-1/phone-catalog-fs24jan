@@ -25,6 +25,7 @@ export async function getProductsByCategory(
   perPage: string,
   page = 1,
 ): Promise<{ products: Product[]; totalCount: number; totalPages: number }> {
+
   try {
     const response = await fetch(
       `${API_URL}/products/category/${category}?sortBy=${sortBy}&perPage=${perPage}&page=${page}`,
