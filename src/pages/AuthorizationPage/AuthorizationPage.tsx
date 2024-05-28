@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './authorizationPage.module.scss';
-import eyeIcon from './lock.png';
-import eyeSlashIcon from './onLock.jpg';
+// import eyeIcon from './lock.png';
+// import eyeSlashIcon from './onLock.jpg';
 import { ReactComponent as Lock } from 'img/icons/lock.svg';
 import { ReactComponent as Unlock } from 'img/icons/unlock.svg';
 
