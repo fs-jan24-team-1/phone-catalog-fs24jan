@@ -8,6 +8,8 @@ import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Pagination } from 'components/Pagination';
 import { motion } from 'framer-motion';
 import { titleVariants } from 'utils/titleVariants';
+import { isValidCurrentPage } from 'utils/isValidCurrentPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
 
 export const AccessoriesPage = () => {
   const { currentProducts, totalCount = 0, currentPage, handlePagination } =
@@ -17,8 +19,10 @@ export const AccessoriesPage = () => {
   useScrollToTopEffect();
 
   return (
-    <div className={styles.container}>
-      <Breadcrumbs />
+    <>
+    {isValidCurrentPage(totalCount, currentPage) ? (
+      <div className={styles.container}>
+        <Breadcrumbs />
 
       <motion.h1
         className={styles.container__title}
@@ -29,15 +33,19 @@ export const AccessoriesPage = () => {
         {t('categories.Accessories')}
       </motion.h1>
 
-      <Catalog
-        products={currentProducts}
-        totalProducts={totalCount}
-      />
-      <Pagination
-        length={totalCount}
-        currentPage={currentPage}
-        handlePagination={handlePagination}
-      />
-    </div>
+        <Catalog
+          products={currentProducts}
+          totalProducts={totalCount}
+        />
+        <Pagination
+          length={totalCount}
+          currentPage={currentPage}
+          handlePagination={handlePagination}
+        />
+      </div>
+    ) : (
+      <NotFoundPage />
+    )}
+  </>
   );
 };

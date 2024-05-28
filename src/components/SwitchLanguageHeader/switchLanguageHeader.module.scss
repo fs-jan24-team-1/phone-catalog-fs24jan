@@ -6,7 +6,7 @@
   position: relative;
   align-items: center;
   height: 48px;
-  border-left: 1px solid $elements;
+  border-left: 1px solid var(--elements-color);
 
   @include on-desktop {
     height: 64px;
@@ -42,7 +42,7 @@
   width: 0.5px;
   height: 30px;
 
-  background-color: $elements;
+  background-color: var(--elements-color);
 }
 
 .not-active {

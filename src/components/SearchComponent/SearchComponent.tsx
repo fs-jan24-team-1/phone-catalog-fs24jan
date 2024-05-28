@@ -9,6 +9,8 @@ import { Product } from 'types';
 import { ProductCard } from 'components/ProductCard';
 import { LottieAnimation } from 'components/UI/LottieAnimation';
 import * as animationData from 'animations/Search.json';
+import {ReactComponent as Search} from 'img/icons/search.svg';
+import {ReactComponent as Clear} from 'img/icons/close.svg';
 
 export const SearchComponent = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -97,7 +99,9 @@ export const SearchComponent = () => {
         className={styles.search}
         onClick={() => setIsSearchVisible(true)}
       >
-        <div className={styles.icon}></div>
+        <div className={styles.icon}>
+          <Search className={styles.icon__search} />
+        </div>
       </label>
 
       {isSearchVisible && (
@@ -131,7 +135,8 @@ export const SearchComponent = () => {
                     navigate(`?${searchParams.toString()}`);
                   }
                 }}
-              />
+              ><Clear className={styles.clear__icon}/>
+              </span>
             </div>
             <div className={styles.results}>
               {filteredProducts.length > 0

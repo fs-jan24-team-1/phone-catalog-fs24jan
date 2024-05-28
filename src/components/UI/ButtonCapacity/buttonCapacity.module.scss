@@ -18,23 +18,29 @@
   cursor: pointer;
   text-decoration: none;
 
-  background-color: $white;
+  background-color: var(--);
   border-radius: 4px;
 
-  transition: all 0.5s ease;
+  transition: $effectDuration;
 
   &.default {
-    color: $primary;
-    border: 1px solid $icons;
+    color: var(--primary-color);
+    border: 1px solid var(--icons-color);
+
+    transition: $effectDuration;
   }
 
   &:hover {
-    border: 1px solid $primary;
+    border: 1px solid var(--primary-color);
+
+    transition: $effectDuration;
   }
 
   &.selected {
-    border: 1px solid $primary;
-    background-color: $primary;
-    color: $white;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--main-bg-color);
+
+    transition: $effectDuration;
   }
 }

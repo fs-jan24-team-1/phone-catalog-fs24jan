@@ -15,6 +15,7 @@ import { CartPage } from './pages/CartPage';
 import { ProductItemPage } from './pages/ProductItemPage';
 import { ContactsPage } from './pages/ContactsPage';
 import { RightsPage } from 'pages/RightsPage';
+import { AuthorizationPage } from 'pages/AuthorizationPage';
 
 export const Root = () => (
   <Router>
@@ -38,8 +39,11 @@ export const Root = () => (
         <Route path="/cart" element={<CartPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
+
         <Route path="/contacts" element={<ContactsPage />} />
-         <Route path="/rights" element={<RightsPage />}/>
+        <Route path="/rights" element={<RightsPage />}/>
+
+        <Route path='auth' element={<AuthorizationPage />}/>
       </Route>
     </Routes>
   </Router>

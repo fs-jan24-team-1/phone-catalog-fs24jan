@@ -1,0 +1,127 @@
+@import 'styles/utils/mixins';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.form {
+  margin-bottom: 55px;
+  margin-top: 60px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 30px;
+  border-radius: 10px;
+  width: 380px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form {
+  display: grid;
+  gap: 15px;
+}
+
+.label {
+  font-size: 14px;
+  color: #555;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px;
+  background-color: #4219CF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  transition: background-color 0.3s;
+  background-color: #007bff;
+}
+
+.switch {
+  margin-top: 10px;
+  cursor: pointer;
+  color: #4219CF;
+  text-align: center;
+}
+
+.switch:hover {
+  color: #4219CF;
+}
+
+.switchButton {
+  cursor: pointer;
+  color: #007bff;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  width: 250px;
+  margin: 10px auto;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.switchButton:hover {
+  background-color: #4219CF;
+  color: #fff;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+}
+
+.rememberMe input {
+  margin-right: 5px;
+}
+
+.separator {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 10px 0;
+}
+
+.checkbox {
+  width: 20px;
+}
+
+.nameFields {
+  display: flex;
+  gap: 10px;
+}

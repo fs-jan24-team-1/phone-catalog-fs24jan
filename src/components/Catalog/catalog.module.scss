@@ -13,7 +13,10 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;
-    color: $secondary;
+
+    color: var(--secondary-color);
+
+    transition: $effectDuration;
 
     @include on-tablet {
       margin-bottom: 40px;
@@ -24,26 +27,32 @@
 .message {
   display: flex;
   align-self: center;
+  margin-top: 24px;
+
   font-weight: 600;
   font-size: 16px;
-  margin-top: 24px;
 }
 
 .try-again-button {
   display: flex;
   justify-content: center;
+  align-items: center;
+
   width: 200px;
-  align-self: center;
   margin-top: 20px;
   padding: 10px 20px;
-  color: #fff;
+
   text-transform: uppercase;
   border-radius: 48px;
   border: none;
-  background-color: #4219d0;
+
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
+
+  background-color: var(--accent-color);
+  color: var(--white-color);
+
+  transition: $effectDuration;
 
   &:hover {
     transition: 0.3s ease;

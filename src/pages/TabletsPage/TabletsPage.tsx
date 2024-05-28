@@ -8,36 +8,45 @@ import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Pagination } from 'components/Pagination';
 import { motion } from 'framer-motion';
 import { titleVariants } from 'utils/titleVariants';
+import { NotFoundPage } from 'pages/NotFoundPage';
+import { isValidCurrentPage } from 'utils/isValidCurrentPage';
 
 export const TabletsPage = () => {
-  const { currentProducts, totalCount = 0, currentPage, handlePagination } =
-    usePageLogic(Category.tablets);
+  const {
+    currentProducts,
+    totalCount = 0,
+    currentPage,
+    handlePagination,
+  } = usePageLogic(Category.tablets);
   const [t] = useTranslation('global');
 
   useScrollToTopEffect();
 
   return (
-    <div className={styles.container}>
-      <Breadcrumbs />
+    <>
+      {isValidCurrentPage(totalCount, currentPage) ? (
+        <div className={styles.container}>
+          <Breadcrumbs />
 
-      <motion.h1
-        className={styles.container__title}
-        variants={titleVariants}
-        initial="initial"
-        animate="visible"
-      >
-        {t('categories.Tablets')}
-      </motion.h1>
+          <motion.h1
+            className={styles.container__title}
+            variants={titleVariants}
+            initial="initial"
+            animate="visible"
+          >
+            {t('categories.Tablets')}
+          </motion.h1>
 
-      <Catalog
-        products={currentProducts}
-        totalProducts={totalCount}
-      />
-      <Pagination
-        length={totalCount}
-        currentPage={currentPage}
-        handlePagination={handlePagination}
-      />
-    </div>
+          <Catalog products={currentProducts} totalProducts={totalCount} />
+          <Pagination
+            length={totalCount}
+            currentPage={currentPage}
+            handlePagination={handlePagination}
+          />
+        </div>
+      ) : (
+        <NotFoundPage />
+      )}
+    </>
   );
 };
