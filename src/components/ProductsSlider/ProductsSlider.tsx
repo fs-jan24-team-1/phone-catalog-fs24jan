@@ -3,8 +3,6 @@ import { Product } from 'types';
 import './ProductsSlider.scss';
 import { ProductCard } from 'components/ProductCard';
 import { CardSkeleton } from 'components/ProductCardSkeleton';
-// import {ReactComponent as ArrowLeft} from 'assets/icons/arrow-left.svg';
-// import {ReactComponent as ArrowRight} from 'assets/icons/arrow-right.svg';
 
 type Props = {
   products: Product[];
@@ -130,8 +128,8 @@ export const ProductsSlider: FC<Props> = ({ title, products, loading }) => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M5.47146 0.528636C5.21111 0.268287 4.789 0.268287 4.52865 0.528636L0.528646 4.52864C0.268297 4.78899 0.268297 5.2111 0.528646 5.47145L4.52865 9.47145C4.789 9.7318 5.21111 9.7318 5.47146 9.47145C5.7318 9.2111 5.7318 8.78899 5.47146 8.52864L1.94286 5.00004L5.47146 1.47145C5.7318 1.2111 5.7318 0.788986 5.47146 0.528636Z"
                 fill={`${!activeArrowLeft ? 'var(--arrow-disable-color)' : 'var(--arrow-main-color)'}`}
               />
@@ -154,8 +152,8 @@ export const ProductsSlider: FC<Props> = ({ title, products, loading }) => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M0.528636 0.528636C0.788986 0.268287 1.2111 0.268287 1.47145 0.528636L5.47145 4.52864C5.73179 4.78899 5.73179 5.2111 5.47145 5.47145L1.47145 9.47145C1.2111 9.7318 0.788986 9.7318 0.528636 9.47145C0.268287 9.2111 0.268287 8.78899 0.528636 8.52864L4.05723 5.00004L0.528636 1.47145C0.268287 1.2111 0.268287 0.788986 0.528636 0.528636Z"
                 fill={`${!activeArrowRight ? 'var(--arrow-disable-color)' : 'var(--arrow-main-color)'}`}
               />
