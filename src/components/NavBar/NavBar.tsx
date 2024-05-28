@@ -64,7 +64,7 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
 
       <div className={styles.preferences}>{<SwitchLanguageMenu />}</div>
 
-      <div className={styles.theme}>{<Theme />}</div>
+      {/* <div className={styles.theme}>{<Theme />}</div> */}
 
       <div className={styles.nav__bottom}>
         <Link

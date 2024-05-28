@@ -1,3 +1,6 @@
+@import '../../styles/utils/variables';
+
+
 @import 'styles/utils/mixins';
 
 .container {
@@ -12,18 +15,20 @@
 .form {
   margin-bottom: 55px;
   margin-top: 60px;
-  background: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid var(--cart-border-color);
   padding: 30px;
   border-radius: 10px;
   width: 380px;
+  background-color: var(--aut-form-bg-color);
+  transition: $effectDuration;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
+.title {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--primary-color);
+  transition: $effectDuration;
 }
 
 form {
@@ -38,16 +43,20 @@ form {
 
 input {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--select-border-color);
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
   font-size: 14px;
+  background-color: var(--aut-input-bg-color);
+  transition: $effectDuration;
+  color: var(--primary-color);
 }
 
 button {
   padding: 10px;
-  background-color: #4219CF;
+  background-color: var(--aut-btn-bg-color);
+  transition: $effectDuration;
   color: white;
   border: none;
   border-radius: 5px;
@@ -56,37 +65,40 @@ button {
 }
 
 button:hover {
-  transition: background-color 0.3s;
-  background-color: #007bff;
+  transition: $effectDuration;
+  box-shadow: 0px 3px 13px 0px var(--btn-hover-shadow);
 }
 
 .switch {
   margin-top: 10px;
   cursor: pointer;
-  color: #4219CF;
+  color: #4219cf;
   text-align: center;
 }
 
 .switch:hover {
-  color: #4219CF;
+  transition: $effectDuration;
+  box-shadow: 0px 3px 13px 0px var(--btn-hover-shadow);
 }
 
 .switchButton {
   cursor: pointer;
-  color: #007bff;
+  color: var(--aut-swithc-btn-color);
   text-align: center;
   font-size: 14px;
   padding: 10px;
-  border: 1px solid #007bff;
+  border: 1px solid var(--aut-swithc-btn-color);
   border-radius: 5px;
   width: 250px;
   margin: 10px auto;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .switchButton:hover {
-  background-color: #4219CF;
-  color: #fff;
+  transition: $effectDuration;
+  box-shadow: 0px 3px 13px 0px var(--btn-hover-shadow);
 }
 
 .passwordToggle {
@@ -95,6 +107,14 @@ button:hover {
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
+}
+
+.lock {
+  width: 20px;
+  height: 20px;
+
+  fill: var(--main-icons-color);
+  transition: $effectDuration;
 }
 
 .inputWithIcon {
@@ -113,7 +133,8 @@ button:hover {
 .separator {
   border: 0;
   height: 1px;
-  background: #ccc;
+  background: var(--aut-separator-color);
+  transition: $effectDuration;
   margin: 10px 0;
 }
 

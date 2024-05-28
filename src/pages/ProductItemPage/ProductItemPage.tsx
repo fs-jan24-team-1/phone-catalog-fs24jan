@@ -265,41 +265,32 @@ export const ProductItemPage = () => {
 
       {loader && (
         <div className={styles.skeletonContainer}>
-            <div className={styles.textSkeleton}>
-              <Skeleton height={44} width="100%" />
+          <div className={styles.textSkeleton}>
+            <Skeleton height={44} width="100%" />
+          </div>
+
+          <div className={styles.upperImages}>
+            <div className={styles.smallImageSkeletons}>
+              {[...Array(5)].map((_, index) => (
+                <Skeleton key={index} className={styles.imageSkeletonSmall} />
+              ))}
             </div>
 
-            <div className={styles.upperImages}>
-              <div className={styles.smallImageSkeletons}>
-                {[...Array(5)].map((_, index) => (
-                  <Skeleton key={index} className={styles.imageSkeletonSmall} />
-                ))}
-              </div>
-
-              <div className={styles.bigImageSkeletons}>
-                <Skeleton
-                  className={styles.imageSkeletonBig}
-                />
-              </div>
+            <div className={styles.bigImageSkeletons}>
+              <Skeleton className={styles.imageSkeletonBig} />
             </div>
+          </div>
 
-            <div className={styles.smallDescriptionSkeletons}>
-              <Skeleton
-                className={styles.smallTextSkeletons}
-                count={2}
-              />
+          <div className={styles.smallDescriptionSkeletons}>
+            <Skeleton className={styles.smallTextSkeletons} count={2} />
 
-              <Skeleton
-                className={styles.smallPriceSkeletons}
-              />
-              <Skeleton
-                className={styles.smallTextSkeletons}
-              />
-            </div>
+            <Skeleton className={styles.smallPriceSkeletons} />
+            <Skeleton className={styles.smallTextSkeletons} />
+          </div>
 
-            <div className={styles.textSkeleton}>
-              <Skeleton height={44} width="100%" />
-            </div>
+          <div className={styles.textSkeleton}>
+            <Skeleton height={44} width="100%" />
+          </div>
         </div>
       )}
 

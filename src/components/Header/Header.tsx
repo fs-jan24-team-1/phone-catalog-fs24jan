@@ -9,11 +9,12 @@ import { NavBar } from 'components/NavBar';
 import { SearchComponent } from 'components/SearchComponent';
 import { SwitchLanguageHeader } from 'components/SwitchLanguageHeader';
 import { ReactComponent as Logo } from 'img/icons/Logo.svg';
-import { ReactComponent as Menus } from 'img/icons/menu.svg';
+import { ReactComponent as Menus } from 'img/icons/burger-menu.svg';
 import { ReactComponent as Cours } from 'img/icons/cours.svg';
 import { ReactComponent as Heart } from 'img/icons/hearts.svg';
+import { ReactComponent as Auth } from 'img/icons/avatar.svg';
 import { Theme } from 'components/Theme/Theme';
-import auto from './autos.jpg'
+
 
 export const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
@@ -79,23 +80,33 @@ export const Header = () => {
         </nav>
       </div>
 
-
       <div className={styles.right_side}>
-
         <div className={styles.language_switcher}>
           {isLangSwitcherShow && <SwitchLanguageHeader />}
         </div>
         {isShowSearch && <SearchComponent />}
 
-        <Theme />
-        
-      <div>
-        <NavLink to='/auth' className={({ isActive }) => classNames(styles.autos, { [styles.is_active]: isActive })}>
-          <img src={auto} alt="" className={styles.auto} />
-        </NavLink>
-      </div>
+        <div className={styles.theme}>
+          <Theme />
+        </div>
 
-        <NavLink to="/Favorites" className={({ isActive }) => classNames(styles.favorites, { [styles.is_active]: isActive })}>
+        <div>
+          <NavLink
+            to="/auth"
+            className={({ isActive }) =>
+              classNames(styles.autos, { [styles.is_active]: isActive })
+            }
+          >
+            <Auth className={styles.auto} />
+          </NavLink>
+        </div>
+
+        <NavLink
+          to="/Favorites"
+          className={({ isActive }) =>
+            classNames(styles.favorites, { [styles.is_active]: isActive })
+          }
+        >
           <div className={styles.favoritesIconContainer}>
             <Heart className={styles.favorites__logo} />
 
@@ -104,6 +115,7 @@ export const Header = () => {
             )}
           </div>
         </NavLink>
+
         <NavLink
           to="/cart"
           className={({ isActive }) =>
@@ -117,6 +129,7 @@ export const Header = () => {
             )}
           </div>
         </NavLink>
+
         <button className={styles.menus} onClick={toggleMenu}>
           <Menus className={styles.menus__logo} />
         </button>
