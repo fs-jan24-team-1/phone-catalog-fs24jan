@@ -2,6 +2,9 @@ import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from 'components/UI/DropDown';
 import { useTranslation } from 'react-i18next';
 import styles from './filter.module.scss';
+import { useTheme } from 'hooks/useTheme';
+
+
 
 export enum SortBy {
   age = 'year',
@@ -38,6 +41,10 @@ export const Filter = () => {
     setSearchParams(params.toString());
   };
 
+  const { theme } = useTheme();
+  let isDarkTheme;
+  theme === 'dark' ? (isDarkTheme = true) : (isDarkTheme = false);
+
   return (
     <div className={styles.filter}>
       <div className={styles.filter__сontainer}>
@@ -49,6 +56,7 @@ export const Filter = () => {
           options={sortOptions}
           onSelectChange={handleSortParams}
           isSortDropdown={true}
+          theme={isDarkTheme}
         />
       </div>
 
@@ -60,6 +68,7 @@ export const Filter = () => {
         <Dropdown
           options={itemsPerPageOptions}
           onSelectChange={handlePerPageParams}
+          theme={isDarkTheme}
         />
       </div>
     </div>

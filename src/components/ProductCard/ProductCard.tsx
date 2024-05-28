@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { RootState } from 'store/store';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -23,6 +23,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
     (state: RootState) => state.product.favourites,
   );
   const cart = useSelector((state: RootState) => state.product.cart);
+  const location = useLocation();
 
   const isProductInFavourites = favourites.some(
     (favProduct: Product) => favProduct.id === product.id,
@@ -74,11 +75,24 @@ export const ProductCard: FC<Props> = ({ product }) => {
     }
   };
 
-  const { pathname } = useLocation();
-  const url =
-    pathname !== `/${product.category}`
-      ? `../${product.category}/${product.itemId}`
-      : `./${product.itemId}`;
+  const url = useMemo(() => {
+    const basePath = `/${product.category}`;
+    const productPath = `/${product.itemId}`;
+    const currentPath = location.pathname;
+
+    const pathSegments = currentPath.split('/').filter(Boolean);
+    const lastSegment = pathSegments[pathSegments.length - 1];
+
+    if (
+      lastSegment &&
+      lastSegment !== product.category &&
+      !lastSegment.includes(product.category)
+    ) {
+      return `${basePath}${productPath}`;
+    }
+
+    return `${basePath}${productPath}`;
+  }, [location.pathname, product.category, product.itemId]);
 
   const cardVariants: Variants = {
     offscreen: {
