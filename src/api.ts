@@ -1,7 +1,9 @@
 import { ProductItemType } from './types/ProductItemType';
 import { Product } from './types/Product';
 
-export const API_URL = 'https://phone-catalog-api-s7t8.onrender.com';
+// export const API_URL = 'https://phone-catalog-api-s7t8.onrender.com';
+export const API_URL = 'https://test-api-server-hetv.onrender.com';
+
 
 export function getProducts(): Promise<Product[]> {
   return fetch(API_URL + '/products').then(response => response.json());
