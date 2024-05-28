@@ -8,7 +8,7 @@ import { ReactComponent as Cours } from 'img/icons/cours.svg';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { SwitchLanguageMenu } from 'components/SwitchLanguageMenu';
-import { Theme } from 'components/Theme/Theme';
+// import { Theme } from 'components/Theme/Theme';
 
 export const NavBar = ({ onClose }: { onClose: () => void }) => {
   const [t] = useTranslation('global');
@@ -64,7 +64,7 @@ export const NavBar = ({ onClose }: { onClose: () => void }) => {
 
       <div className={styles.preferences}>{<SwitchLanguageMenu />}</div>
 
-      <div className={styles.theme}>{<Theme />}</div>
+      {/* <div className={styles.theme}>{<Theme />}</div> */}
 
       <div className={styles.nav__bottom}>
         <Link

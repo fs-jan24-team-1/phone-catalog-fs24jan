@@ -138,21 +138,26 @@
   justify-content: end;
 }
 
+.auto {
+  fill: var(--main-icons-color);
+  transition: $effectDuration;
+  width: 20px;
+  height: 20px;
+}
+
 .menus {
   width: 48px;
   height: 100%;
 
   justify-content: center;
   align-items: center;
-
+  display: flex;
   appearance: none;
   border: none;
   background: none;
   appearance: none;
   display: none;
-
   border-left: 1px solid var(--elements-color);
-
   transition: $effectDuration;
 
   @include on-tablet {
@@ -172,7 +177,8 @@
   width: 20px;
   height: 20px;
 
-  fill: var(--elements-color);
+  fill: var(--main-icons-color);
+  transition: $effectDuration;
 }
 
 .favorites {
@@ -300,7 +306,6 @@
   transition: $effectDuration;
 }
 
-
 .autos {
   position: relative;
   display: flex;
@@ -315,7 +320,6 @@
     width: 64px;
   }
 }
-
 
 .navBarWrapper {
   position: fixed;
@@ -491,4 +495,8 @@
 .auto {
   width: 20px;
   height: 20px;
+}
+
+.theme {
+  border-left: 1px solid var(--elements-color);
 }

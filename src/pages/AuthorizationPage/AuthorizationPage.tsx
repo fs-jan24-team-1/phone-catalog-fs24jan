@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './authorizationPage.module.scss';
-import eyeIcon from './lock.png';
-import eyeSlashIcon from './onLock.jpg';
+import { ReactComponent as Lock } from 'img/icons/lock.svg';
+import { ReactComponent as Unlock } from 'img/icons/unlock.svg';
 import { API_URL } from 'api';
 
 interface PasswordInputProps {
@@ -17,7 +17,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, value, onCha
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
     if (inputRef.current) {
-      inputRef.current.type = showPassword ? 'password' : 'text';
+      inputRef.current.type = showPassword ? 'text' : 'password';
     }
   };
 
@@ -32,7 +32,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, value, onCha
         required
       />
       <div className={styles.passwordToggle} onClick={togglePasswordVisibility}>
-        <img src={showPassword ? eyeSlashIcon : eyeIcon} alt={showPassword ? "Hide Password" : "Show Password"} width="20" height="20" />
+        {showPassword ? <Unlock width="20" height="20" /> : <Lock width="20" height="20" />}
       </div>
     </div>
   );
@@ -65,8 +65,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleLoginSubmit}>
-      <h2>Login</h2>
-
+      <h2 className={styles.title}>Login</h2>
       <div className={styles.inputWithIcon}>
         <input
           type="email"
@@ -76,7 +75,6 @@ const LoginForm = () => {
           required
         />
       </div>
-
       <div className={styles.inputWithIcon}>
         <PasswordInput
           placeholder="Password"
@@ -84,9 +82,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-
       <button type="submit">Login</button>
-
       <hr className={styles.separator} />
     </form>
   );
@@ -124,12 +120,12 @@ const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Sign up</h2>
+      <h2 className={styles.title}>Sign up</h2>
       <div className={styles.nameFields}>
         <div className={styles.inputWithIcon}>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required

@@ -19,6 +19,7 @@ import { ButtonFavourite } from 'components/UI/ButtonFavourite';
 import { ButtonBack } from 'components/UI/ButtonBack';
 import { ProductsSlider } from 'components/ProductsSlider';
 import { getImageUrl } from 'utils/urlUtils';
+import Skeleton from 'react-loading-skeleton';
 
 export const ProductItemPage = () => {
   const [t] = useTranslation('global');
@@ -261,6 +262,37 @@ export const ProductItemPage = () => {
       <div className={styles.back__products}>
         <ButtonBack textForBackButton={t('product.Back')} />
       </div>
+
+      {loader && (
+        <div className={styles.skeletonContainer}>
+          <div className={styles.textSkeleton}>
+            <Skeleton height={44} width="100%" />
+          </div>
+
+          <div className={styles.upperImages}>
+            <div className={styles.smallImageSkeletons}>
+              {[...Array(5)].map((_, index) => (
+                <Skeleton key={index} className={styles.imageSkeletonSmall} />
+              ))}
+            </div>
+
+            <div className={styles.bigImageSkeletons}>
+              <Skeleton className={styles.imageSkeletonBig} />
+            </div>
+          </div>
+
+          <div className={styles.smallDescriptionSkeletons}>
+            <Skeleton className={styles.smallTextSkeletons} count={2} />
+
+            <Skeleton className={styles.smallPriceSkeletons} />
+            <Skeleton className={styles.smallTextSkeletons} />
+          </div>
+
+          <div className={styles.textSkeleton}>
+            <Skeleton height={44} width="100%" />
+          </div>
+        </div>
+      )}
 
       {!loader && (
         <>
