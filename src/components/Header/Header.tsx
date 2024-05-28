@@ -81,13 +81,14 @@ export const Header = () => {
 
 
       <div className={styles.right_side}>
-        <Theme />
 
         <div className={styles.language_switcher}>
           {isLangSwitcherShow && <SwitchLanguageHeader />}
         </div>
         {isShowSearch && <SearchComponent />}
 
+        <Theme />
+        
       <div>
         <NavLink to='/auth' className={({ isActive }) => classNames(styles.autos, { [styles.is_active]: isActive })}>
           <img src={auto} alt="" className={styles.auto} />

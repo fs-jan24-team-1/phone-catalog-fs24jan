@@ -69,6 +69,7 @@
     }
 
     &--left {
+      padding: 1px;
       background-size: 5px;
       transition: $effectDuration;
     }
@@ -80,6 +81,7 @@
     }
 
     &--right {
+      padding: 1px;
       background-size: 5px;
       transition: $effectDuration;
     }
