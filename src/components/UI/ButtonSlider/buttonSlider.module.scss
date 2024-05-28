@@ -13,22 +13,28 @@
   cursor: pointer;
   text-decoration: none;
 
-  background-color: $white;
+  background-color: var(--slider-bg-hover-color);
+  transition: $effectDuration;
   border-radius: 48px;
 
-  transition: all 0.5s ease;
-
   &.default {
-    border: 1px solid $icons;
+    border: 1px solid var(--icons-color);
+
+    transition: $effectDuration;
   }
 
   &:hover {
-    border: 1px solid $primary;
+    border: 1px solid var(--primary-color);
+
+    transition: $effectDuration;
   }
 
   &.disable {
-    border: 1px solid $elements;
+    border: 1px solid var(--elements-color);
+    background-color: var(--cart-bg-disable-color);
     cursor: default;
+
+    transition: $effectDuration;
   }
 }
 
@@ -44,6 +50,7 @@
 
   &.arrowRight {
     background-image: url('../../../img/icons/arrow_right.svg');
+    fill: red;
   }
 
   &.arrowLeft,

@@ -12,6 +12,7 @@ interface DropdownProps {
   options: Option[];
   onSelectChange: (selectedOption: SortBy) => void;
   isSortDropdown?: boolean;
+  theme: boolean;
 }
 
 interface CustomStylesProps {
@@ -20,38 +21,49 @@ interface CustomStylesProps {
   menuIsOpen?: boolean;
 }
 
-const baseStyles: StylesConfig<Option, false> = {
+// const selectBorder =
+
+const getBaseStyles = (theme: boolean): StylesConfig<Option, false> => ({
   control: (base: CSSObjectWithLabel, { isFocused }: CustomStylesProps) => ({
     ...base,
-
-    border: `1px solid ${isFocused ? '#0F0F11' : '#B4BDC3'}`,
+    border: `1px solid ${isFocused ? 'var(--select-border-focudes-color)' : 'var(--select-border-color)'}`,
+    backgroundColor: 'var(--select-control-bg-color)',
     boxShadow: 'none',
     borderRadius: '8px',
-
-    color: '#0F0F11',
     fontFamily: 'Mont',
     fontSize: '14px',
-    fontWeight: '700',
+    fontWeight: '500',
     minHeight: '40px',
     cursor: 'pointer',
+    transition: 'all .3s ease',
 
     '&:hover': {
-      borderColor: '#89939A',
+      borderColor: 'var(--select-border-focudes-color)',
+      transition: 'all .3s ease',
     },
   }),
+  singleValue: (base: CSSObjectWithLabel) => ({
+    ...base,
+    color: 'var(--primary-color)',
+    transition: 'all .3s ease',
+  }),
 
+  menuList: (base: CSSObjectWithLabel) => ({
+    ...base,
+    backgroundColor: 'var(--select-menu-border-color)',
+  }),
   option: (base: CSSObjectWithLabel, { isSelected }: CustomStylesProps) => ({
     ...base,
     fontSize: '14px',
     lineHeight: '21px',
     cursor: 'pointer',
-
-    color: isSelected ? '#0F0F11' : '#89939A',
-    fontWeight: '700',
-    backgroundColor: isSelected ? '#FAFBFC' : '#fff',
+    color: `${isSelected ? 'var(--select-menu-selected-color)' : 'var(--select-menu-not-selected-color)'}`,
+    fontWeight: '500',
+    backgroundColor: `var(--main-bg-color)`,
     '&:hover': {
-      backgroundColor: '#FAFBFC',
-      color: '#0F0F11',
+      backgroundColor: `var(--select-option-hover-color)`,
+      color: `var(--select-hover-text-color)`,
+      transition: 'all .3s ease',
     },
   }),
   valueContainer: (base: CSSObjectWithLabel) => ({
@@ -72,28 +84,35 @@ const baseStyles: StylesConfig<Option, false> = {
     ...base,
     padding: '0 4px',
   }),
+});
+
+const getCustomStyles = (theme: boolean): StylesConfig<Option, false> => {
+  const baseStyles = getBaseStyles(theme);
+  return {
+    ...baseStyles,
+    container: (base: CSSObjectWithLabel) => ({
+      ...base,
+      minWidth: '180px',
+    }),
+  };
 };
 
-const customStyles: StylesConfig<Option, false> = {
-  container: (base: CSSObjectWithLabel) => ({
-    ...base,
-    minWidth: '180px',
-  }),
-  ...baseStyles,
-};
-
-const defaultStyles: StylesConfig<Option, false> = {
-  ...baseStyles,
-  container: (base: CSSObjectWithLabel) => ({
-    ...base,
-    width: '136px',
-  }),
+const getDefaultStyles = (theme: boolean): StylesConfig<Option, false> => {
+  const baseStyles = getBaseStyles(theme);
+  return {
+    ...baseStyles,
+    container: (base: CSSObjectWithLabel) => ({
+      ...base,
+      width: '136px',
+    }),
+  };
 };
 
 export const Dropdown: FC<DropdownProps> = ({
   options,
   onSelectChange,
   isSortDropdown,
+  theme,
 }) => {
   const handleChange = (selectedOption: Option | null) => {
     if (selectedOption) {
@@ -120,7 +139,11 @@ export const Dropdown: FC<DropdownProps> = ({
       <Select
         defaultValue={getSelectedValue(options) || options[0]}
         options={options}
-        styles={isSortDropdown && isWideScreen ? customStyles : defaultStyles}
+        styles={
+          isSortDropdown && isWideScreen
+            ? getCustomStyles(theme)
+            : getDefaultStyles(theme)
+        }
         isSearchable={false}
         onChange={handleChange}
       />

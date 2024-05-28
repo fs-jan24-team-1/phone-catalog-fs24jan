@@ -16,14 +16,17 @@
   font-family: $Mont;
   align-items: center;
   text-decoration: none;
-  color: $primary;
+  color: var(--primary-color);
   margin-right: 8px;
-  transition: color 0.5s ease;
+
+  transition: $effectDuration;
 
   &__disabled {
     display: flex;
     align-items: center;
-    color: $secondary;
+    color: var(--secondary-color);
+
+    transition: $effectDuration;
 
     &::before {
       content: '';
@@ -60,4 +63,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('../../img/icons/Home.svg');
+  filter: brightness(var(--theme-change-brightness));
+  transition: $effectDuration;
 }

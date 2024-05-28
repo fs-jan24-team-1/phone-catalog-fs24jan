@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './buttonSlider.module.scss';
 
+
 interface ButtonSliderProps {
   iconType: 'arrowLeft' | 'arrowRight' | 'plus' | 'minus';
   active?: boolean;
