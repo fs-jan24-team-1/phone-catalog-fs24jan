@@ -12,6 +12,8 @@ import { ButtonPrimary } from 'components/UI/ButtonPrimary';
 import { ButtonBack } from 'components/UI/ButtonBack';
 import { LottieAnimation } from 'components/UI/LottieAnimation';
 import * as animationData from 'animations/EmptyCart.json';
+import { motion } from 'framer-motion';
+import { titleVariants } from 'utils/titleVariants';
 
 export const CartPage = () => {
   const { cart, cartTotalAmount, cartTotalQuantity } = useSelector(
@@ -40,7 +42,14 @@ export const CartPage = () => {
     <div className={styles.container}>
       <ButtonBack textForBackButton={t('cart.Back')} />
 
-      <h1 className={styles.title}>{t('cart.Cart')}</h1>
+      <motion.h1
+        className={styles.title}
+        variants={titleVariants}
+        initial="initial"
+        animate="visible"
+      >
+        {t('cart.Cart')}
+      </motion.h1>
 
       {cartTotalQuantity === 0 ? (
         <div className={styles.container__empty__cart}>

@@ -6,9 +6,10 @@ import styles from './phonesPage.module.scss';
 import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Catalog } from 'components/Catalog';
 import { Pagination } from 'components/Pagination';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { isValidCurrentPage } from 'utils/isValidCurrentPage';
+import { titleVariants } from 'utils/titleVariants';
 
 export const PhonesPage = () => {
   const {
@@ -20,21 +21,6 @@ export const PhonesPage = () => {
   const [t] = useTranslation('global');
 
   useScrollToTopEffect();
-
-  const titleVariants: Variants = {
-    initial: {
-      y: -50,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        stiffness: 70,
-        damping: 10,
-      },
-    },
-  };
 
   return (
     <>

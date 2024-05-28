@@ -6,12 +6,16 @@ import { useTranslation } from 'react-i18next';
 import phone from './img/Phone.png';
 import tablet from './img/Tablet.png';
 import accessory from './img/Accessories.png';
+import { motion } from 'framer-motion';
+import { titleVariants } from 'utils/titleVariants';
+import useInViewOnce from 'hooks/useInViewOnce';
 import { getProducts } from 'api';
 import { toast } from 'react-toastify';
 
 export const CategoriesSection: FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [t] = useTranslation('global');
+  const [ ref, inView ] = useInViewOnce({ threshold: 0 });
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -64,7 +68,16 @@ export const CategoriesSection: FC = () => {
 
   return (
     <section className={styles.category}>
-      <h1 className={styles.category__title}>{t('home.Shop by category')}</h1>
+      <motion.h1
+        className={styles.category__title}
+        variants={titleVariants}
+        ref={ref}
+        initial={!inView ? 'visible' : 'initial'}
+        animate={inView ? 'visible' : 'initial'}
+      >
+        {t('home.Shop by category')}
+      </motion.h1>
+
       <div className={styles.category__container}>
         {categories.map(category => (
           <Link
