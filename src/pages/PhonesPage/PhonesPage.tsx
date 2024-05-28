@@ -13,6 +13,7 @@ import { titleVariants } from 'utils/titleVariants';
 
 export const PhonesPage = () => {
   const {
+    isLoading,
     currentProducts,
     totalCount = 0,
     currentPage,
@@ -24,7 +25,7 @@ export const PhonesPage = () => {
 
   return (
     <>
-      {isValidCurrentPage(totalCount, currentPage) ? (
+      {isValidCurrentPage(totalCount, currentPage) && (
         <div className={styles.container}>
           <Breadcrumbs />
 
@@ -44,9 +45,9 @@ export const PhonesPage = () => {
             handlePagination={handlePagination}
           />
         </div>
-      ) : (
-        <NotFoundPage />
       )}
+
+      {!isValidCurrentPage(totalCount, currentPage) && !isLoading && <NotFoundPage />}
     </>
   );
 };

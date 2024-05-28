@@ -13,6 +13,7 @@ import { isValidCurrentPage } from 'utils/isValidCurrentPage';
 
 export const TabletsPage = () => {
   const {
+    isLoading,
     currentProducts,
     totalCount = 0,
     currentPage,
@@ -24,7 +25,7 @@ export const TabletsPage = () => {
 
   return (
     <>
-      {isValidCurrentPage(totalCount, currentPage) ? (
+      {isValidCurrentPage(totalCount, currentPage) && (
         <div className={styles.container}>
           <Breadcrumbs />
 
@@ -44,9 +45,9 @@ export const TabletsPage = () => {
             handlePagination={handlePagination}
           />
         </div>
-      ) : (
-        <NotFoundPage />
       )}
+
+      {!isValidCurrentPage(totalCount, currentPage) && !isLoading && <NotFoundPage />}
     </>
   );
 };

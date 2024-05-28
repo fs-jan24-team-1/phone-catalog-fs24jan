@@ -46,7 +46,7 @@ export const Footer = () => {
             <span className={styles['back-to-top__text']}>{t('footer.Back to top')}</span>
 
             <div className={styles['back-to-top__button']} />
-                <ArrowUp className={styles['back-to-top__arrow']}/>
+              <ArrowUp className={styles['back-to-top__arrow']}/>
           </div>
         </div>
       </div>

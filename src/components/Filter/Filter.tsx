@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import styles from './filter.module.scss';
 import { useTheme } from 'hooks/useTheme';
 
-
-
 export enum SortBy {
   age = 'year',
   title = 'name',
@@ -38,6 +36,11 @@ export const Filter = () => {
   const handlePerPageParams = (selectedItemsPerPage: string) => {
     const params = new URLSearchParams(searchParams);
     params.set('perPage', selectedItemsPerPage);
+
+    if ((!params.get('perPage') || params.get('perPage') === '200') && params.get('page') && params.get('page') !== '1') {
+      params.set('page', '1');
+    }
+
     setSearchParams(params.toString());
   };
 
@@ -65,11 +68,13 @@ export const Filter = () => {
           {t('filters.Items on page')}
         </span>
 
-        <Dropdown
-          options={itemsPerPageOptions}
-          onSelectChange={handlePerPageParams}
-          theme={isDarkTheme}
-        />
+        <div>
+          <Dropdown
+            options={itemsPerPageOptions}
+            onSelectChange={handlePerPageParams}
+            theme={isDarkTheme}
+          />
+        </div>
       </div>
     </div>
   );
