@@ -6,6 +6,8 @@ import styles from './tabletsPage.module.scss';
 import { Catalog } from 'components/Catalog';
 import { Breadcrumbs } from 'components/Breadcrumbs';
 import { Pagination } from 'components/Pagination';
+import { motion } from 'framer-motion';
+import { titleVariants } from 'utils/titleVariants';
 
 export const TabletsPage = () => {
   const { currentProducts, totalCount = 0, currentPage, handlePagination } =
@@ -18,7 +20,14 @@ export const TabletsPage = () => {
     <div className={styles.container}>
       <Breadcrumbs />
 
-      <h1 className={styles.container__title}>{t('categories.Tablets')}</h1>
+      <motion.h1
+        className={styles.container__title}
+        variants={titleVariants}
+        initial="initial"
+        animate="visible"
+      >
+        {t('categories.Tablets')}
+      </motion.h1>
 
       <Catalog
         products={currentProducts}
