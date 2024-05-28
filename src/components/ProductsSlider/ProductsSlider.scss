@@ -53,10 +53,9 @@
     cursor: pointer;
     background-color: var(--slider-bg-color);
 
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
       transition: $effectDuration;

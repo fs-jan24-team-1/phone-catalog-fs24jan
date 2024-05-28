@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import styles from './authorizationPage.module.scss';
 import eyeIcon from './lock.png';
 import eyeSlashIcon from './onLock.jpg';
+import { ReactComponent as Lock } from 'img/icons/lock.svg';
+import { ReactComponent as Unlock } from 'img/icons/unlock.svg';
 
 interface PasswordInputProps {
   placeholder: string;
@@ -32,7 +34,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   return (
     <form action='/#'>
-      <h2>Login</h2>
+      <h2 className={styles.title}>Login</h2>
       <div className={styles.inputWithIcon}>
         <input type="email" placeholder="Email" required />
       </div>
@@ -66,15 +68,15 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} action='/#'>
-      <h2>Sign up</h2>
+    <form onSubmit={handleSubmit} action="/#">
+      <h2 className={styles.title}>Sign up</h2>
       <div className={styles.nameFields}>
         <div className={styles.inputWithIcon}>
           <input
             type="text"
             placeholder="Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
             required
           />
         </div>
@@ -83,7 +85,7 @@ const RegisterForm = () => {
             type="text"
             placeholder="Last Name"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={e => setLastName(e.target.value)}
             required
           />
         </div>
@@ -95,14 +97,14 @@ const RegisterForm = () => {
         <PasswordInput
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
         />
       </div>
       <div className={styles.inputWithIcon}>
         <PasswordInput
           placeholder="Confirm Password"
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={e => setConfirmPassword(e.target.value)}
         />
       </div>
       {error && <div className={styles.error}>{error}</div>}
@@ -134,7 +136,12 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, value, onCha
         required
       />
       <div className={styles.passwordToggle} onClick={togglePasswordVisibility}>
-        <img src={showPassword ? eyeSlashIcon : eyeIcon} alt={showPassword ? "Hide Password" : "Show Password"} width="20" height="20" />
+        {showPassword ? (
+          <Unlock className={styles.lock} />
+        ) : (
+          <Lock className={styles.lock} />
+        )}
+        {/* <img src={showPassword ? eyeSlashIcon : eyeIcon} alt={showPassword ? "Hide Password" : "Show Password"} width="20" height="20" /> */}
       </div>
     </div>
   );
